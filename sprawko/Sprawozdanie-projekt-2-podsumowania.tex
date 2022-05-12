@@ -49,17 +49,32 @@ wpływu wyboru kwantyfikatorów, sumatorów, kwalifikatorów i ich miar jakości
 
 
 \section{Baza danych, zmienne lingwistyczne, kwantyfikatory lingwistyczne}
-\noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 09 wg Harmonogramu Zajęć na WIKAMP KSR.}
+% \noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 09 wg Harmonogramu Zajęć na WIKAMP KSR.}
 
 \subsection{Charakterystyka podsumowywanej bazy danych}
-Krótki opis bazy danych wybranej do podsumowywania, źródło, opis treści,
-użyteczność/zastosowania. Liczba rekordów (min. $10\,000$ i koniecznie wszystkie tego
-samego typu), liczba atrybutów możliwych do rozmycia (min. $10$), czyli o stosunkowo dużej
-liczbie możliwych wartości. Zwyczajowe wartości lingwistyczne nadawane wybranym
-atrybutom oraz dlaczego istnieje zwyczaj, zapotrzebowanie/inne powody
-,,przekałdania'' tych danych na język
-naturalny (a nie formalny) \cite{niewiadomski19, niewiadomski08}.\\
-Realizacja bazy w wybranym DBMS. Rysunek lub tabela (fragment).
+
+W celu wykonania projektu wybrano zbiór danych SpeedDating\cite{database}, który zawiera dane zebrane na eksperymentalnych wydarzeniach 'speed dating' na przełomie lat 2002-2004, przeprowadzone przez Columbia Business School.
+
+Zbiór ten zawiera 8378 rekordów, tego samego typu, a każdy z nich opisany jest na 121 atrybutach, z czego wybrano 11 atrybutów do rozmycia:
+\begin{enumerate}
+  \item age,
+  \item d\_age
+  \item d\_importance\_same\_religion, 
+  \item pref\_o\_intelligence,
+  \item pref\_o\_ambitious
+  \item d\_sports
+  \item expected\_num\_interested\_in\_me
+\end{enumerate}
+
+
+% Krótki opis bazy danych wybranej do podsumowywania, źródło, opis treści,
+% użyteczność/zastosowania. Liczba rekordów (min. $10\,000$ i koniecznie wszystkie tego
+% samego typu), liczba atrybutów możliwych do rozmycia (min. $10$), czyli o stosunkowo dużej
+% liczbie możliwych wartości. Zwyczajowe wartości lingwistyczne nadawane wybranym
+% atrybutom oraz dlaczego istnieje zwyczaj, zapotrzebowanie/inne powody
+% ,,przekałdania'' tych danych na język
+% naturalny (a nie formalny) \cite{niewiadomski19, niewiadomski08}.\\
+% Realizacja bazy w wybranym DBMS. Rysunek lub tabela (fragment).
 
 \subsection{Zmienne lingwistyczne (atrybuty/własności obiektów)}
 Zmienne lingwistyczne dla wybranych 10 atrybutów z bazy danych, przedstawione w
