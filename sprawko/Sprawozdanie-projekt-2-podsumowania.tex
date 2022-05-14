@@ -54,21 +54,22 @@ wpływu wyboru kwantyfikatorów, sumatorów, kwalifikatorów i ich miar jakości
 
 \subsection{Charakterystyka podsumowywanej bazy danych}
 
-W celu wykonania projektu wybrano zbiór danych SpeedDating\cite{database}, który zawiera dane zebrane na eksperymentalnych wydarzeniach 'speed dating' na przełomie lat 2002-2004, przeprowadzone przez Columbia Business School. Speed dating to rodzaj zorganizowanego randkowania polegający na wyjątkowo krótkich spotkaniach z nieznajomymi. Jeden rekord odpowiada jednemu spotkaniu.  Dane opisują osobę randkującą oraz przypisanego jej partnera, oraz wrażenia i wyniki po spotkaniu.
-
+W celu wykonania projektu wybrano zbiór danych SpeedDating\cite{database}, który zawiera dane zebrane na eksperymentalnych wydarzeniach 'speed dating' na przełomie lat 2002-2004, przeprowadzone przez Columbia Business School. 
+Speed dating to rodzaj zorganizowanego randkowania polegający na wyjątkowo krótkich spotkaniach z nieznajomymi. Jeden rekord odpowiada jednemu spotkaniu. Dane opisują osobę randkującą oraz przypisanego jej partnera, oraz wrażenia i wyniki po spotkaniu. 
+Zbiór danych może posłużyć np. w celu polepszenia jakości usług agencji matrymonialnych.
 Zbiór ten zawiera 8378 rekordów, tego samego typu, a każdy z nich opisany jest na 121 atrybutach, z czego wybrano 11 atrybutów do rozmycia:
 \begin{enumerate}
   \item age (oznacza wiek osoby randkującej),
   \item d\_age (oznacza różnice wieku pomiędzy osobą randkującą a jej partnerem podczas spotkania),
-  \item importance\_same\_race (oznacza ważność posiadania tej samej rasy dla osoby randkującej), 
-  \item importance\_same\_religion (oznacza ważność posiadania tej samej religii dla osoby randkującej), 
-  \item pref\_o\_intelligence (oznacza preferowaną inteligencje partnera dla osoby randkującej),
-  \item pref\_o\_ambitious (oznacza preferowaną ambicje partnera dla osoby randkującej)
-  \item tvsports (oznacza poziom zainteresowania osoby randkującej oglądaniem sportów w telewizji),
+  \item importance\_same\_race (oznacza w skali [1-10] ważność posiadania tej samej rasy dla osoby randkującej), 
+  \item importance\_same\_religion (oznacza w skali [1-10] ważność posiadania tej samej religii dla osoby randkującej), 
+  \item pref\_o\_intelligence (oznacza w skali [0-100] preferowaną inteligencje partnera dla osoby randkującej),
+  \item pref\_o\_ambitious (oznacza w skali [0-100] preferowaną ambicje partnera dla osoby randkującej)
+  \item tvsports (oznacza w skali [1-10] poziom zainteresowania osoby randkującej oglądaniem sportów w telewizji),
   \item expected\_num\_interested\_in\_me (oznacza oczekiwaną przez osobę randkującą liczbę osób zainteresowanych nią),
-  \item guess\_prob\_liked (oznacza oczekiwaną szanse na to, że partner polubił osobę randkującą),
-  \item funny (oznacza jak bardzo zabawna jest osoba randkująca według samej siebie),
-  \item sincere (oznacza jak bardzo szczera jest osoba randkująca według samej siebie)
+  \item guess\_prob\_liked (oznacza w skali [1-10] oczekiwaną szanse na to, że partner polubił osobę randkującą),
+  \item funny (oznacza w skali [1-10] jak bardzo zabawna jest osoba randkująca według samej siebie),
+  \item sincere (oznacza w skali [1-10] jak bardzo szczera jest osoba randkująca według samej siebie)
 \end{enumerate}
 
 
@@ -123,9 +124,12 @@ sincere & fałszywy, nieszczery, średnio szczery, szczery \\ \hline
 % atrybutom oraz dlaczego istnieje zwyczaj, zapotrzebowanie/inne powody
 % ,,przekałdania'' tych danych na język
 % naturalny (a nie formalny) 
+% opis użyteczność/zastosowania. 
+
+% Troche DONE troche nie
+% Dodać opis możliwych wartości atrybutów
 
 % TO DO
-% opis użyteczność/zastosowania. 
 % Realizacja bazy w wybranym DBMS. Rysunek lub tabela (fragment).
 
 \subsection{Zmienne lingwistyczne (atrybuty/własności obiektów)}
