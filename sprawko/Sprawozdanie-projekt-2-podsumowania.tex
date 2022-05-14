@@ -58,22 +58,50 @@ W celu wykonania projektu wybrano zbiór danych SpeedDating\cite{database}, któ
 Zbiór ten zawiera 8378 rekordów, tego samego typu, a każdy z nich opisany jest na 121 atrybutach, z czego wybrano 11 atrybutów do rozmycia:
 \begin{enumerate}
   \item age,
-  \item d\_age
-  \item d\_importance\_same\_religion, 
+  \item d\_age,
+  \item importance\_same\_race, 
+  \item importance\_same\_religion, 
   \item pref\_o\_intelligence,
   \item pref\_o\_ambitious
-  \item d\_sports
-  \item expected\_num\_interested\_in\_me
+  \item tvsports,
+  \item expected\_num\_interested\_in\_me,
+  \item guess\_prob\_liked,
+  \item funny,
+  \item sincere
 \end{enumerate}
 
+Przykładowa wartość rekordu przedstawionego za pomocą wyżej wymienionych atrybutów:
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+atrybut & wartość \\ \hline
+age & 21 \\ \hline
+d\_age & 6 \\ \hline
+importance\_same\_race & 2 \\ \hline
+importance\_same\_religion & 4 \\ \hline
+pref\_o\_intelligence & 14 \\ \hline
+pref\_o\_ambitious & 50 \\ \hline
+tvsports & 9 \\ \hline
+expected\_num\_interested\_in\_me & 3 \\ \hline
+guess\_prob\_liked & 8 \\ \hline
+funny & 7 \\ \hline
+sincere& 5 \\ \hline
+\end{tabular}
+\caption{Tabela przedstawiająca wartości atrybutów przykładowego rekordu zbioru danych SpeedDating \cite{database}}
+\end{table}
 
+% DONE
 % Krótki opis bazy danych wybranej do podsumowywania, źródło, opis treści,
 % użyteczność/zastosowania. Liczba rekordów (min. $10\,000$ i koniecznie wszystkie tego
 % samego typu), liczba atrybutów możliwych do rozmycia (min. $10$), czyli o stosunkowo dużej
-% liczbie możliwych wartości. Zwyczajowe wartości lingwistyczne nadawane wybranym
+% liczbie możliwych wartości. 
+
+% TO DO
+%Zwyczajowe wartości lingwistyczne nadawane wybranym
 % atrybutom oraz dlaczego istnieje zwyczaj, zapotrzebowanie/inne powody
 % ,,przekałdania'' tych danych na język
-% naturalny (a nie formalny) \cite{niewiadomski19, niewiadomski08}.\\
+% naturalny (a nie formalny) 
 % Realizacja bazy w wybranym DBMS. Rysunek lub tabela (fragment).
 
 \subsection{Zmienne lingwistyczne (atrybuty/własności obiektów)}
@@ -89,6 +117,8 @@ przynależności i wzorami analitycznymi. Uzasadnione wiedzą dziedzinową
 {\bf zakresy i etykiety}. Precyzyjnie podane przestrzenie rozważań każdego kwantyfikatora 
 lingwistycznego/rozmytego, wzory i wykresy dla każdej wartości/etykiety. Opisy własne z~przypisami do literatury, tak by inżynier innej specjalności zrozumiał dalszy
 opis tego konkretnego ćwiczenia/eksperymentu.  
+
+% HERE ENDS 9 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 \section{Narzędzia obliczeniowe: wybór/implementacja. Diagram UML pakietu
 obliczeń rozmytych i~generatora podsumowań. Instrukcja użytkownika}
