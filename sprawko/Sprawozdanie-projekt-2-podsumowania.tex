@@ -1,6 +1,7 @@
 \documentclass{classrep}
 \usepackage[utf8]{inputenc}
 \usepackage{color}
+\usepackage{float}
 
 \studycycle{Informatyka, studia STACJONARNE, I st.}
 \coursesemester{VI}
@@ -53,22 +54,23 @@ wpływu wyboru kwantyfikatorów, sumatorów, kwalifikatorów i ich miar jakości
 
 \subsection{Charakterystyka podsumowywanej bazy danych}
 
-W celu wykonania projektu wybrano zbiór danych SpeedDating\cite{database}, który zawiera dane zebrane na eksperymentalnych wydarzeniach 'speed dating' na przełomie lat 2002-2004, przeprowadzone przez Columbia Business School.
+W celu wykonania projektu wybrano zbiór danych SpeedDating\cite{database}, który zawiera dane zebrane na eksperymentalnych wydarzeniach 'speed dating' na przełomie lat 2002-2004, przeprowadzone przez Columbia Business School. Speed dating to rodzaj zorganizowanego randkowania polegający na wyjątkowo krótkich spotkaniach z nieznajomymi. Jeden rekord odpowiada jednemu spotkaniu.  Dane opisują osobę randkującą oraz przypisanego jej partnera, oraz wrażenia i wyniki po spotkaniu.
 
 Zbiór ten zawiera 8378 rekordów, tego samego typu, a każdy z nich opisany jest na 121 atrybutach, z czego wybrano 11 atrybutów do rozmycia:
 \begin{enumerate}
-  \item age,
-  \item d\_age,
-  \item importance\_same\_race, 
-  \item importance\_same\_religion, 
-  \item pref\_o\_intelligence,
-  \item pref\_o\_ambitious
-  \item tvsports,
-  \item expected\_num\_interested\_in\_me,
-  \item guess\_prob\_liked,
-  \item funny,
-  \item sincere
+  \item age (oznacza wiek osoby randkującej),
+  \item d\_age (oznacza różnice wieku pomiędzy osobą randkującą a jej partnerem podczas spotkania),
+  \item importance\_same\_race (oznacza ważność posiadania tej samej rasy dla osoby randkującej), 
+  \item importance\_same\_religion (oznacza ważność posiadania tej samej religii dla osoby randkującej), 
+  \item pref\_o\_intelligence (oznacza preferowaną inteligencje partnera dla osoby randkującej),
+  \item pref\_o\_ambitious (oznacza preferowaną ambicje partnera dla osoby randkującej)
+  \item tvsports (oznacza poziom zainteresowania osoby randkującej oglądaniem sportów w telewizji),
+  \item expected\_num\_interested\_in\_me (oznacza oczekiwaną przez osobę randkującą liczbę osób zainteresowanych nią),
+  \item guess\_prob\_liked (oznacza oczekiwaną szanse na to, że partner polubił osobę randkującą),
+  \item funny (oznacza jak bardzo zabawna jest osoba randkująca według samej siebie),
+  \item sincere (oznacza jak bardzo szczera jest osoba randkująca według samej siebie)
 \end{enumerate}
+
 
 Przykładowa wartość rekordu przedstawionego za pomocą wyżej wymienionych atrybutów:
 \begin{table}[ht]
@@ -88,20 +90,42 @@ guess\_prob\_liked & 8 \\ \hline
 funny & 7 \\ \hline
 sincere& 5 \\ \hline
 \end{tabular}
-\caption{Tabela przedstawiająca wartości atrybutów przykładowego rekordu zbioru danych SpeedDating \cite{database}}
+\caption{Tabela przedstawiająca wartości wybranych atrybutów przykładowego rekordu zbioru danych SpeedDating \cite{database}}
+\end{table}
+
+Wybrane atrybuty przyjmują wartości liczbowe. Ludzie jednak nie posługują się liczbami w sytuacjach gdy istnieje potrzeba opisu pewnych obiektów lub pojęć takich jak na przykład inteligencja, wygląd, szczerość (nie mówimy ,,on jest szczery w stopniu 1 na 10'', tylko ,,on jest fałszywy''). Dlatego też atrybutom wybranym przez nas w tym zadaniu, zostały przypisane zwyczajowe wartości lingwistyczne:
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+atrybut & Zwyczajowe wartości lingwistyczne \\ & nadawane danemu atrybutowi \\ \hline
+age & natolatek, młody, \\ & w średnim wieku, w sile wieku, stary \\ \hline
+d\_age & brak, niewielka, mała, \\ & normalna, średnia, znacząca, spora \\ \hline
+importance\_same\_race & nieistotne, mało istotne, średnio ważne, \\ & znaczące, ważne \\ \hline
+importance\_same\_religion & nieistotne, mało istotne, \\ & średnio ważne, znaczące, ważne \\ \hline
+pref\_o\_intelligence & głupi, malo inteligentny, przeciętny, \\ & inteligenty, geniusz \\ \hline
+pref\_o\_ambitious & nieambitny, średnio ambitny, ambitny \\ \hline
+tvsports & niezaintresowany, obojętny, \\ & średnio zainteresowany, \\ & zainteresowany, pasjonat \\ \hline
+expected\_num\_interested\_in\_me & brak, niewiele, mało, \\ & kilka, dużo, wiele \\ \hline
+guess\_prob\_liked & brak, niewielka, mała, normalna, \\ & średnia, znacząca, spora \\ \hline
+funny & nudny, trochę nudny, \\ & przeciętnie zabawny, zabawny \\ \hline
+sincere & fałszywy, nieszczery, średnio szczery, szczery \\ \hline
+\end{tabular}
+\caption{Tabela przedstawiająca zwyczajowe wartości lingwistyczne wybranych atrybutów przykładowego rekordu zbioru danych SpeedDating \cite{database}}
 \end{table}
 
 % DONE
 % Krótki opis bazy danych wybranej do podsumowywania, źródło, opis treści,
-% użyteczność/zastosowania. Liczba rekordów (min. $10\,000$ i koniecznie wszystkie tego
+% Liczba rekordów (min. $10\,000$ i koniecznie wszystkie tego
 % samego typu), liczba atrybutów możliwych do rozmycia (min. $10$), czyli o stosunkowo dużej
 % liczbie możliwych wartości. 
-
-% TO DO
 %Zwyczajowe wartości lingwistyczne nadawane wybranym
 % atrybutom oraz dlaczego istnieje zwyczaj, zapotrzebowanie/inne powody
 % ,,przekałdania'' tych danych na język
 % naturalny (a nie formalny) 
+
+% TO DO
+% opis użyteczność/zastosowania. 
 % Realizacja bazy w wybranym DBMS. Rysunek lub tabela (fragment).
 
 \subsection{Zmienne lingwistyczne (atrybuty/własności obiektów)}
