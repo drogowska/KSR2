@@ -107,7 +107,7 @@ Wybrane atrybuty przyjmują wartości liczbowe. Ludzie jednak nie posługują si
 \hline
 Atrybut & Zwyczajowe wartości lingwistyczne \\ & nadawane danemu atrybutowi \\ \hline
 age & natolatek, młody, \\ & w średnim wieku, w sile wieku, stary \\ \hline
-d\_age & brak, niewielka, mała, \\ & normalna, średnia, znacząca, spora \\ \hline
+d\_age & brak, niewielka, mała, średnia,\\ &  znacząca, spora \\ \hline
 importance\_same\_race & nieistotne, mało istotne, średnio ważne, \\ & znaczące, ważne \\ \hline
 importance\_same\_religion & nieistotne, mało istotne, \\ & średnio ważne, znaczące, ważne \\ \hline
 pref\_o\_intelligence & głupi, malo inteligentny, przeciętny, \\ & inteligenty, geniusz \\ \hline
@@ -151,6 +151,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
 
 \begin{enumerate}
   \item age
+  \begin{item}
       \begin{equation}
         \mu_{nastolatek} =
           \begin{cases}
@@ -195,13 +196,79 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \end{equation} 
 
       \begin{figure}
-      \includegraphics{fp_wiek.png}
-      \caption{Wykres funkcji przynależności dla atrybutu określającego wiek.}
+      \includegraphics{fp_age.png}
+      \caption{Wykres funkcji przynależności dla atrybutu \(age\).}
       \end{figure}
+  \end{item}
 
   \item d\_age 
-  \item importance\_same\_race 
+  \begin{item}
+  \begin{equation}
+    \mu_{brak} =
+      \begin{cases}
+        1 & \text{dla } x \in [-\infty ,0] \\
+        -x +1 & \text{ dla } x \in [0,1]
+      \end{cases}  
+  \end{equation}
+
+  \begin{equation}
+  \mu_{niewielka} =
+      \begin{cases}
+        0.33x-0.33 & \text{dla } x \in [1,3] \\
+        1 & \text{ dla } x=3\\
+        -0.5x+3 & \text{dla } x \in [3,5] 
+      \end{cases}  
+  \end{equation}
+
+  \begin{equation}
+    \mu_{mała} =
+        \begin{cases}
+          0.25x-0.75 & \text{dla } x \in [3,7] \\
+          1 & \text{ dla } x=7\\
+          -0.33x+3.33 & \text{dla } x \in [7,10] 
+        \end{cases}  
+    \end{equation}
+
+    \begin{equation}
+      \mu_{średnia} =
+          \begin{cases}
+            0.125x-1.125 & \text{dla } x \in [9,17] \\
+            1 & \text{ dla } x\in [17,19]\\
+            -0.25x+5.75 & \text{dla } x \in [19,23] 
+          \end{cases}  
+      \end{equation}
+
+      \begin{equation}
+        \mu_{znacząca} =
+            \begin{cases}
+              0.2x-3 & \text{dla } x \in [15,19] \\
+              1 & \text{ dla } x\in [19,22]\\
+              -0.1x+3.2 & \text{dla } x \in [22,32] 
+            \end{cases}  
+        \end{equation}
+
+    \begin{figure}
+    \includegraphics{fp_d_age.png}
+    \caption{Wykres funkcji przynależności dla atrybutu \(d\_age\).}
+    \end{figure}
+  \end{item}
+
+  \item importance\_same\_race
+  \begin{item}
+   
+  
+      % \begin{figure}
+      % \includegraphics{fp_isr.png}
+      % \caption{Wykres funkcji przynależności dla atrybutu \(importance\_same\_race\).}
+      % \end{figure}
+    \end{item}
+  
+
   \item importance\_same\_religion 
+  \begin{item}
+    
+  \end{item}
+
   \item pref\_o\_intelligence
   \item pref\_o\_ambitious
   \item tvsports 
