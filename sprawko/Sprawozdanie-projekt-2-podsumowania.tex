@@ -116,7 +116,7 @@ tvsports & niezaintresowany, obojętny, \\ & średnio zainteresowany, \\ & zaint
 expected\_num\_interested\_in\_me & brak, niewiele, mało, \\ & kilka, dużo, wiele \\ \hline
 guess\_prob\_liked & brak, niewielka, mała, znacząca, spora \\ \hline
 funny & nudny, trochę nudny, \\ & przeciętnie zabawny, zabawny \\ \hline
-sincere & fałszywy, nieszczery, średnio szczery, szczery \\ \hline
+sincere & fałszywy, nieszczery, szczery \\ \hline
 \end{tabular}
 \caption{Tabela przedstawiająca zwyczajowe wartości lingwistyczne wybranych atrybutów przykładowego rekordu zbioru danych SpeedDating \cite{database}}
 \end{table}
@@ -538,7 +538,74 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{figure}
 
   \item funny
-  \item sincere 
+  \begin{equation}
+    \mu_{nudny} =
+      \begin{cases}
+        1 & \text{ dla } x \in [0,2] \\
+        -0.5x-1.5 & \text{ dla } x \in [2,3] 
+      \end{cases}  
+  \end{equation}
+ 
+  \begin{equation}
+    \mu_{trochę\_nudny} =
+      \begin{cases}
+        0.33x-0.34 & \text{ dla } x \in [1,4] \\
+        1 & \text{ dla } x \in [4,5] \\
+        -x+6 & \text{ dla } x \in [5,6] 
+      \end{cases}  
+  \end{equation}
+  
+  \begin{equation}
+    \mu_{przeciętnie\_zabawny} =
+      \begin{cases}
+        x-5 & \text{ dla } x \in [5,6] \\
+        1 & \text{ dla } x \in [6,7] \\
+        -0.34x-3.34 & \text{ dla } x \in [7,10] 
+      \end{cases}  
+  \end{equation}
+
+  \begin{equation}
+    \mu_{zabawny} =
+      \begin{cases}
+        x-9 & \text{ dla } x \in [9,10] \\
+        1 & \text{ dla } x \in [10,13] \\
+        
+      \end{cases}  
+  \end{equation}
+
+  \begin{figure}[H]
+    \includegraphics{fp_f.png}
+    \caption{Wykres funkcji przynależności dla atrybutu \(funny\).}
+    \end{figure}
+
+  \item sincere
+  
+  \begin{equation}
+    \mu_{fałszywy} =
+      \begin{cases}
+        1 & \text{ dla } x \in [0,2] \\
+        -0.34x+2 & \text{ dla } x \in [2,6] \\
+      \end{cases}  
+  \end{equation}
+
+  \begin{equation}
+    \mu_{nieszczery} =  e^{-(\frac{x-7}{2})^2}, dla x \in [4,11]
+  \end{equation}
+
+  \begin{equation}
+    \mu_{szczery} =
+      \begin{cases}
+        0.34x-2.67 & \text{ dla } x \in [8,11] \\
+        1 & \text{ dla } x \in [11,13] \\
+      \end{cases}  
+  \end{equation}
+
+  
+  \begin{figure}[H]
+    \includegraphics{fp_s.png}
+    \caption{Wykres funkcji przynależności dla atrybutu \(sincere\).}
+    \end{figure}
+
 \end{enumerate}
 
 
