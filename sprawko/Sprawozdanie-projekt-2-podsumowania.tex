@@ -114,7 +114,7 @@ pref\_o\_intelligence & głupi, malo inteligentny, przeciętny, \\ & inteligenty
 pref\_o\_ambitious & nieambitny, średnio ambitny, ambitny \\ \hline
 tvsports & niezaintresowany, obojętny, \\ & średnio zainteresowany, \\ & zainteresowany, pasjonat \\ \hline
 expected\_num\_interested\_in\_me & brak, niewiele, mało, \\ & kilka, dużo, wiele \\ \hline
-guess\_prob\_liked & brak, niewielka, mała, normalna, \\ & średnia, znacząca, spora \\ \hline
+guess\_prob\_liked & brak, niewielka, mała, znacząca, spora \\ \hline
 funny & nudny, trochę nudny, \\ & przeciętnie zabawny, zabawny \\ \hline
 sincere & fałszywy, nieszczery, średnio szczery, szczery \\ \hline
 \end{tabular}
@@ -439,13 +439,12 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \end{cases}  
   \end{equation} 
 
-
   \begin{equation}
     \mu_{niewiele} =
       \begin{cases}
         0.5x-0.5 & \text{ dla } x \in [1,3] \\
-        1 & \text{ dla } x =3 \\
-        0.34x+2  & \text{ dla } x \in [3,6]
+        1 & \text{ dla } x \in [3,4] \\
+        -x+5  & \text{ dla } x \in [4,6]
       \end{cases}  
   \end{equation}
   
@@ -463,16 +462,16 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \begin{cases}
         x-6 & \text{ dla } x \in [6,7] \\
         1 & \text{ dla } x =7 \\
-        x+8  & \text{ dla } x \in [7,8]
+        -x+4  & \text{ dla } x \in [7,8]
       \end{cases}  
   \end{equation}
   
   \begin{equation}
     \mu_{dużo} =
       \begin{cases}
-        0.5x-3.5 & \text{ dla } x \in [7,9] \\
+        x+8 & \text{ dla } x \in [7,9] \\
         1 & \text{ dla } x =9 \\
-        -0.5x+5.5  & \text{ dla } x \in [9,11]
+        -x+10  & \text{ dla } x \in [9,11]
       \end{cases}  
   \end{equation}
 
@@ -486,10 +485,58 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
 
   \begin{figure}[H]
     \includegraphics{fp_enim.png}
-    \caption{Wykres funkcji przynależności dla atrybutu \(tvsports\).}
+    \caption{Wykres funkcji przynależności dla atrybutu \(expected\_num\_interested\_in\_me\).}
     \end{figure}
 
-  \item guess\_prob\_liked 
+  \item guess\_prob\_liked
+  \begin{equation}
+    \mu_{brak} =
+      \begin{cases}
+        1 & \text{ dla } x \in [0,1] \\
+        -x+2  & \text{ dla } x \in [1,2]
+      \end{cases}  
+  \end{equation}
+
+  \begin{equation}
+    \mu_{niewielka} =
+      \begin{cases}
+        0.5x-0.5 & \text{ dla } x \in [1,3] \\
+        1 & \text{ dla } x =3 \\
+        -x+4  & \text{ dla } x \in [3,4]
+      \end{cases}  
+  \end{equation}
+
+  \begin{equation}
+    \mu_{mała} =
+      \begin{cases}
+        0.5x-1.5 & \text{ dla } x \in [3,5] \\
+        1 & \text{ dla } x =5 \\
+        -x+6  & \text{ dla } x \in [5,6]
+      \end{cases}  
+  \end{equation}
+
+  \begin{equation}
+    \mu_{znaczaca} =
+      \begin{cases}
+        0.34x-1.67 & \text{ dla } x \in [5,8] \\
+        1 & \text{ dla } x \in [8,9] \\
+        -x+9  & \text{ dla } x \in [9,10]
+      \end{cases}  
+  \end{equation}
+
+  \begin{equation}
+    \mu_{spora} =
+      \begin{cases}
+        0.5x-4.5 & \text{ dla } x \in [9,11] \\
+        1 & \text{ dla } x \in [11,12] \\
+      \end{cases}  
+  \end{equation}
+
+  \begin{figure}[H]
+    \includegraphics{fp_gpl.png}
+    \caption{Wykres funkcji przynależności dla atrybutu \(guess\_prob\_liked \).}
+    \end{figure}
+
   \item funny
   \item sincere 
 \end{enumerate}
