@@ -195,7 +195,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
           \end{cases}
       \end{equation} 
 
-      \begin{figure}
+      \begin{figure}[H]
       \includegraphics{fp_age.png}
       \caption{Wykres funkcji przynależności dla atrybutu \(age\).}
       \end{figure}
@@ -246,7 +246,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
             \end{cases}  
         \end{equation}
 
-    \begin{figure}
+    \begin{figure}[H]
     \includegraphics{fp_d_age.png}
     \caption{Wykres funkcji przynależności dla atrybutu \(d\_age\).}
     \end{figure}
@@ -306,7 +306,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \mu_{spora} = e^{-(\frac{x-9}{1.5})^2}, dla x \in [7,10]
     \end{equation}
 
-      \begin{figure}
+      \begin{figure}[H]
       \includegraphics{fp_isrel.png}
       \caption{Wykres funkcji przynależności dla atrybutu \(importance\_same\_religion\).}
       \end{figure}
@@ -356,7 +356,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \end{cases}  
   \end{equation}
   
-  \begin{figure}
+  \begin{figure}[H]
     \includegraphics{fp_poi.png}
     \caption{Wykres funkcji przynależności dla atrybutu \(pref\_o\_intelligence\).}
     \end{figure}
@@ -374,7 +374,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \mu_{ambitny} = e^{-(\frac{x-45}{5})^2}, dla x \in [30,55]
   \end{equation}
   
-  \begin{figure}
+  \begin{figure}[H]
     \includegraphics{fp_poa.png}
     \caption{Wykres funkcji przynależności dla atrybutu \(pref\_o\_ambitious\).}
     \end{figure}
@@ -424,12 +424,71 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \end{cases}  
   \end{equation}
 
-  \begin{figure}
+  \begin{figure}[H]
     \includegraphics{fp_tvs.png}
     \caption{Wykres funkcji przynależności dla atrybutu \(tvsports\).}
     \end{figure}
 
   \item expected\_num\_interested\_in\_me
+  
+  \begin{equation}
+    \mu_{brak} =
+      \begin{cases}
+        1 & \text{ dla } x \in [0,1] \\
+        0.5x+1.5  & \text{ dla } x \in [1,3]
+      \end{cases}  
+  \end{equation} 
+
+
+  \begin{equation}
+    \mu_{niewiele} =
+      \begin{cases}
+        0.5x-0.5 & \text{ dla } x \in [1,3] \\
+        1 & \text{ dla } x =3 \\
+        0.34x+2  & \text{ dla } x \in [3,6]
+      \end{cases}  
+  \end{equation}
+  
+  \begin{equation}
+    \mu_{mało} =
+      \begin{cases}
+        x-4 & \text{ dla } x \in [4,5] \\
+        1 & \text{ dla } x =5 \\
+        0.5x+3.5  & \text{ dla } x \in [5,7]
+      \end{cases}  
+  \end{equation}
+
+  \begin{equation}
+    \mu_{kilka} =
+      \begin{cases}
+        x-6 & \text{ dla } x \in [6,7] \\
+        1 & \text{ dla } x =7 \\
+        x+8  & \text{ dla } x \in [7,8]
+      \end{cases}  
+  \end{equation}
+  
+  \begin{equation}
+    \mu_{dużo} =
+      \begin{cases}
+        0.5x-3.5 & \text{ dla } x \in [7,9] \\
+        1 & \text{ dla } x =9 \\
+        -0.5x+5.5  & \text{ dla } x \in [9,11]
+      \end{cases}  
+  \end{equation}
+
+  \begin{equation}
+    \mu_{wiele} =
+      \begin{cases}
+        0.5x-4.5 & \text{ dla } x \in [8,11] \\
+        1 & \text{ dla } x \in [11,12]
+      \end{cases}  
+  \end{equation}
+
+  \begin{figure}[H]
+    \includegraphics{fp_enim.png}
+    \caption{Wykres funkcji przynależności dla atrybutu \(tvsports\).}
+    \end{figure}
+
   \item guess\_prob\_liked 
   \item funny
   \item sincere 
