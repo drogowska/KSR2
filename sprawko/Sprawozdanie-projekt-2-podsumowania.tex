@@ -170,8 +170,8 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \end{equation}
 
       \begin{equation}
-        \mu_{w średnim wieku} =
-        \begin{cases}
+        \mu_{w\_średnim\_wieku} =
+                \begin{cases}
             0.125x-3.375 & \text{ dla } x \in [28,34]  \\
             1 & \text{ dla } x \in [35,40] \\
             -0.25x + 11 & \text{ dla } x \in [40,44]
@@ -179,7 +179,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \end{equation} 
 
       \begin{equation}
-        \mu_{w sile wieku} =
+        \mu_{w\_sile\_ wieku} =
         \begin{cases}
             0.2x-8 & \text{ dla } x \in [40,45]  \\
             1 & \text{ dla } x \in [45,49] \\
@@ -205,7 +205,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \begin{equation}
     \mu_{brak} =
       \begin{cases}
-        1 & \text{dla } x \in [-\infty ,0] \\
+        1 & \text{dla } x =0 \\
         -x +1 & \text{ dla } x \in [0,1]
       \end{cases}  
   \end{equation}
@@ -266,7 +266,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \begin{equation}
       \mu_{brak} =
         \begin{cases}
-          1 & \text{dla } x \in [-\infty ,0] \\
+          1 & \text{dla } x =0 \\
           -x +1 & \text{ dla } x \in [0,1]
         \end{cases}  
     \end{equation}
@@ -316,13 +316,13 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \begin{equation}
     \mu_{głupi} =
       \begin{cases}
-        1 & \text{ dla } x \in [-\infty ,1] \\
+        1 & \text{ dla } x \in [0 ,1] \\
         -0.5x+1.5 & \text{ dla } x \in [1,3]       
       \end{cases}  
   \end{equation}
 
   \begin{equation}
-    \mu_{mało inteligentny} =
+    \mu_{mało\_inteligentny} =
       \begin{cases}
         0.33x-0.66 & \text{ dla } x \in [2,5]\\
         1 & \text{ dla } x \in [5,12] \\
@@ -367,7 +367,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{średnio ambitny} = e^{-(\frac{x-30}{10})^2}, dla x \in [5,52]
+    \mu_{średnio\_ambitny} = e^{-(\frac{x-30}{10})^2}, dla x \in [5,52]
   \end{equation}
 
   \begin{equation}
@@ -380,6 +380,55 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{figure}
   
   \item tvsports 
+  \begin{equation}
+    \mu_{niezaintresowany} =
+      \begin{cases}
+        1 & \text{ dla } x \in [0,2] \\
+        -0.33x+1.67 & \text{ dla } x \in [2,5]       
+      \end{cases}  
+  \end{equation}
+
+  \begin{equation}
+    \mu_{obojętny} =
+      \begin{cases}
+        0.5x-1 & \text{ dla } x \in [2,4]\\
+        1 & \text{ dla } x=4 \\
+        -0.33x+2.34 & \text{ dla } x \in [4,7]       
+      \end{cases}  
+  \end{equation}
+
+  \begin{equation}
+    \mu_{średnio\_zainteresowany} =
+      \begin{cases}
+        0.5x-2 & \text{ dla } x \in [4,6]\\
+        1 & \text{ dla } x \in [6,8] \\
+        -x+9 & \text{ dla } x \in [8,9]       
+      \end{cases}  
+  \end{equation}
+
+  \begin{equation}
+    \mu_{zainteresowany} =
+      \begin{cases}
+        x-8 & \text{ dla } x \in [8,9]\\
+        1 & \text{ dla } x =9 \\
+        -0.5x+5.5 & \text{ dla } x \in [9,11]       
+      \end{cases}  
+  \end{equation}
+
+  \begin{equation}
+    \mu_{pasjonat} =
+      \begin{cases}
+        0.5x-4.5 & \text{ dla } x \in [9,11]\\
+        1 & \text{ dla } x \in [11,12] \\
+     
+      \end{cases}  
+  \end{equation}
+
+  \begin{figure}
+    \includegraphics{fp_tvs.png}
+    \caption{Wykres funkcji przynależności dla atrybutu \(tvsports\).}
+    \end{figure}
+
   \item expected\_num\_interested\_in\_me
   \item guess\_prob\_liked 
   \item funny
