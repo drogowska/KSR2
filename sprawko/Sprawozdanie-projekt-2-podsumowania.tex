@@ -2,6 +2,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage{color}
 \usepackage{float}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{amsfonts}
 
 \studycycle{Informatyka, studia STACJONARNE, I st.}
 \coursesemester{VI}
@@ -77,19 +81,21 @@ Przykładowa wartość rekordu przedstawionego za pomocą wyżej wymienionych at
 \begin{table}[ht]
 \centering
 \begin{tabular}{|c|c|}
-\hline
-atrybut & wartość \\ \hline
-age & 21 \\ \hline
-d\_age & 6 \\ \hline
-importance\_same\_race & 2 \\ \hline
-importance\_same\_religion & 4 \\ \hline
-pref\_o\_intelligence & 14 \\ \hline
-pref\_o\_ambitious & 50 \\ \hline
-tvsports & 9 \\ \hline
-expected\_num\_interested\_in\_me & 3 \\ \hline
-guess\_prob\_liked & 8 \\ \hline
-funny & 7 \\ \hline
-sincere& 5 \\ \hline
+  \hline
+  \textbf{Atrybut} & \textbf{wartość}\\ [0.5ex] 
+  \hline
+  \hline 
+  age & 21 \\ \hline
+  d\_age & 6 \\ \hline
+  importance\_same\_race & 2 \\ \hline
+  importance\_same\_religion & 4 \\ \hline
+  pref\_o\_intelligence & 14 \\ \hline
+  pref\_o\_ambitious & 50 \\ \hline
+  tvsports & 9 \\ \hline
+  expected\_num\_interested\_in\_me & 3 \\ \hline
+  guess\_prob\_liked & 8 \\ \hline
+  funny & 7 \\ \hline
+  sincere& 5 \\ \hline
 \end{tabular}
 \caption{Tabela przedstawiająca wartości wybranych atrybutów przykładowego rekordu zbioru danych SpeedDating \cite{database}}
 \end{table}
@@ -99,7 +105,7 @@ Wybrane atrybuty przyjmują wartości liczbowe. Ludzie jednak nie posługują si
 \centering
 \begin{tabular}{|c|c|}
 \hline
-atrybut & Zwyczajowe wartości lingwistyczne \\ & nadawane danemu atrybutowi \\ \hline
+Atrybut & Zwyczajowe wartości lingwistyczne \\ & nadawane danemu atrybutowi \\ \hline
 age & natolatek, młody, \\ & w średnim wieku, w sile wieku, stary \\ \hline
 d\_age & brak, niewielka, mała, \\ & normalna, średnia, znacząca, spora \\ \hline
 importance\_same\_race & nieistotne, mało istotne, średnio ważne, \\ & znaczące, ważne \\ \hline
@@ -140,6 +146,72 @@ Baza danych została zrealizowana w PostgreSQL 14 \cite{postgres}. Poniższy zrz
 % Realizacja bazy w wybranym DBMS. Rysunek lub tabela (fragment).
 
 \subsection{Zmienne lingwistyczne (atrybuty/własności obiektów)}
+
+Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zmienne lingwistyczne:
+
+\begin{enumerate}
+  \item age
+      \begin{equation}
+        \mu_{nastolatek} =
+          \begin{cases}
+            1 & \text{dla } x \in [16,18] \\
+            -0.25x +5 & \text{ dla } x \in [18,20]
+          \end{cases}  
+      \end{equation}
+
+      \begin{equation}
+        \mu_{młody} =
+        \begin{cases}
+            0.2x-3.4 & \text{ dla } x \in [17,22]  \\
+            1 & \text{ dla } x \in [23,28] \\
+            -0.5x + 15 & \text{ dla } x \in [28,30]
+          \end{cases}
+      \end{equation}
+
+      \begin{equation}
+        \mu_{w średnim wieku} =
+        \begin{cases}
+            0.125x-3.375 & \text{ dla } x \in [28,34]  \\
+            1 & \text{ dla } x \in [35,40] \\
+            -0.25x + 11 & \text{ dla } x \in [40,44]
+          \end{cases}
+      \end{equation} 
+
+      \begin{equation}
+        \mu_{w sile wieku} =
+        \begin{cases}
+            0.2x-8 & \text{ dla } x \in [40,45]  \\
+            1 & \text{ dla } x \in [45,49] \\
+            -x + 50 & \text{ dla } x \in [19,50]
+          \end{cases}
+      \end{equation} 
+
+      \begin{equation}
+        \mu_{stary} =
+        \begin{cases}
+            0.2x-9 & \text{ dla } x \in [45,50]  \\
+            1 & \text{ dla } x \in [50,65] \\
+          \end{cases}
+      \end{equation} 
+
+      \begin{figure}
+      \includegraphics{fp_wiek.png}
+      \caption{Wykres funkcji przynależności dla atrybutu określającego wiek.}
+      \end{figure}
+
+  \item d\_age 
+  \item importance\_same\_race 
+  \item importance\_same\_religion 
+  \item pref\_o\_intelligence
+  \item pref\_o\_ambitious
+  \item tvsports 
+  \item expected\_num\_interested\_in\_me
+  \item guess\_prob\_liked 
+  \item funny
+  \item sincere 
+\end{enumerate}
+
+
 Zmienne lingwistyczne dla wybranych 10 atrybutów z bazy danych, przedstawione w
 formie wykresów funkcji przynależności i wzorów analitycznych, wymienione etykiety oraz objaśnione wszystkie
 symbole ułatwiające czytelnikowi ich zrozumienie \cite{zadrozny06}. {\bf Zbędne jest
