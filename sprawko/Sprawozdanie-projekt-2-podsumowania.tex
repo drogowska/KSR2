@@ -621,11 +621,63 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
 %zmiennej lingwistycznej}, wzory i wykresy dla każdej wartości/etykiety.
 
 \subsection{Kwantyfikatory lingwistyczne (liczności obiektów)}
-Jw. kwantyfikatory lingwistyczne -- opisane etykietami, wykresami funkcji
-przynależności i wzorami analitycznymi. Uzasadnione wiedzą dziedzinową  
-{\bf zakresy i etykiety}. Precyzyjnie podane przestrzenie rozważań każdego kwantyfikatora 
-lingwistycznego/rozmytego, wzory i wykresy dla każdej wartości/etykiety. Opisy własne z~przypisami do literatury, tak by inżynier innej specjalności zrozumiał dalszy
-opis tego konkretnego ćwiczenia/eksperymentu.  
+
+Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne kwantyfikatory lingwistyczne:
+
+ \begin{equation}
+    \mu_{\text{Prawie żadne}} = 
+    \begin{cases}
+        1 & \text{ dla } x \in [0,50] \\
+        2 - 0.02x & \text{ dla } x \in [50,100] \\
+      \end{cases}
+  \end{equation}
+
+  \begin{equation}
+    \mu_{\text{Trochę}} =
+      \begin{cases}
+        0.005x & \text{ dla } x \in [0,200] \\
+        1 & \text{ dla } x \in [200,1500] \\
+        -0.005x & \text{ dla } x \in [1500,1700] \\
+      \end{cases}  
+  \end{equation}
+  
+   \begin{equation}
+    \mu_{\text{Około połowy}} =
+      \begin{cases}
+        0.0025x - 9.4725 & \text{ dla } x \in [3789,4189] \\
+        -0.0025x + 11.4725 & \text{ dla } x \in [4189,4589] \\
+      \end{cases}  
+  \end{equation}
+  
+  \begin{equation}
+    \mu_{\text{Większość}} =
+      \begin{cases}
+        0.002x - 8.2 & \text{ dla } x \in [4100,4600] \\
+        1 & \text{ dla } x \in [4600,8378] \\
+      \end{cases}  
+  \end{equation}
+  
+  \begin{equation}
+    \mu_{\text{Prawie wszystkie}} =
+      \begin{cases}
+        0.001x - 7.3 & \text{ dla } x \in [7300,8300] \\
+        1 & \text{ dla } x \in [8300,8378] \\
+      \end{cases}  
+  \end{equation}
+  
+ \begin{figure}[H]
+ \centering
+   \includegraphics{kwantyfikatory.png}
+   \caption{Wykres funkcji przynależności dla kwantyfikatorów użytych w zadaniu}
+ \end{figure}
+
+%Jw. kwantyfikatory lingwistyczne -- opisane etykietami, wykresami funkcji
+%przynależności i wzorami analitycznymi. Uzasadnione wiedzą dziedzinową  
+%{\bf zakresy i etykiety}. Precyzyjnie podane przestrzenie rozważań każdego kwantyfikatora 
+%lingwistycznego/rozmytego, wzory i wykresy dla każdej wartości/etykiety. Opisy własne z~przypisami do literatury, tak by inżynier innej specjalności zrozumiał dalszy
+%opis tego konkretnego ćwiczenia/eksperymentu.  
+
+
 
 % HERE ENDS 9 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
