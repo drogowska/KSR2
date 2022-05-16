@@ -258,18 +258,8 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
 
   \item importance\_same\_race
 
-   
-  
-      % \begin{figure}
-      % \includegraphics{fp_isr.png}
-      % \caption{Wykres funkcji przynależności dla atrybutu \(importance\_same\_race\).}
-      % \end{figure}
-
-  
-
-  \item importance\_same\_religion 
-    \begin{equation}
-      \mu_{brak} =
+   \begin{equation}
+      \mu_{\text{nieistotne}} =
         \begin{cases}
           1 & \text{dla } x =0 \\
           -x +1 & \text{ dla } x \in [0,1]
@@ -277,7 +267,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{equation}
 
     \begin{equation}
-      \mu_{niewielka} =
+      \mu_{\text{mało istotne}} =
         \begin{cases}
           x-1 & \text{dla } x \in [1,2] \\
           1 & \text{ dla } x =2 \\
@@ -286,7 +276,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{equation}
 
     \begin{equation}
-      \mu_{mała} =
+      \mu_{\text{średnio ważne}} =
         \begin{cases}
           x-2 & \text{dla } x \in [2,3] \\
           1 & \text{ dla } x \in [3,4] \\
@@ -295,7 +285,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{equation}
 
     \begin{equation}
-      \mu_{przeciętna} =
+      \mu_{\text{przeciętne}} =
         \begin{cases}
           x-4 & \text{dla } x \in [4,5] \\
           1 & \text{ dla } x =5 \\
@@ -304,11 +294,62 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{equation}
 
     \begin{equation}
-      \mu_{znacząca} = e^{-{(x-6)}^2}, dla x \in [5,7]
+      \mu_{\text{znaczące}} = e^{-{(x-6)}^2}, dla x \in [5,7]
     \end{equation}
 
     \begin{equation}
-      \mu_{spora} = e^{-(\frac{x-9}{1.5})^2}, dla x \in [7,10]
+      \mu_{\text{ważne}} = e^{-(\frac{x-9}{1.5})^2}, dla x \in [7,10]
+    \end{equation}
+
+      \begin{figure}[H]
+      \includegraphics{fp_israce.png}
+      \caption{Wykres funkcji przynależności dla atrybutu \(importance\_same\_race\).}
+      \end{figure}
+
+  
+
+  \item importance\_same\_religion 
+    \begin{equation}
+      \mu_{\text{nieistotne}} =
+        \begin{cases}
+          1 & \text{dla } x =0 \\
+          -x +1 & \text{ dla } x \in [0,1]
+        \end{cases}  
+    \end{equation}
+
+    \begin{equation}
+      \mu_{\text{mało istotne}} =
+        \begin{cases}
+          x-1 & \text{dla } x \in [1,2] \\
+          1 & \text{ dla } x =2 \\
+          -x+3 & \text{ dla } x \in [2,3]       
+        \end{cases}  
+    \end{equation}
+
+    \begin{equation}
+      \mu_{\text{średnio ważne}} =
+        \begin{cases}
+          x-2 & \text{dla } x \in [2,3] \\
+          1 & \text{ dla } x \in [3,4] \\
+          -x+5 & \text{ dla } x \in [4,5]       
+        \end{cases}  
+    \end{equation}
+
+    \begin{equation}
+      \mu_{\text{przeciętne}} =
+        \begin{cases}
+          x-4 & \text{dla } x \in [4,5] \\
+          1 & \text{ dla } x =5 \\
+          -x+6 & \text{ dla } x \in [5,6]       
+        \end{cases}  
+    \end{equation}
+
+    \begin{equation}
+      \mu_{\text{znaczące}} = e^{-{(x-6)}^2}, dla x \in [5,7]
+    \end{equation}
+
+    \begin{equation}
+      \mu_{\text{ważne}} = e^{-(\frac{x-9}{1.5})^2}, dla x \in [7,10]
     \end{equation}
 
       \begin{figure}[H]
