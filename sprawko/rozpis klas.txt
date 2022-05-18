@@ -1,0 +1,58 @@
+EnumDziedzinaType
+	gesta, dyskretna
+
+Dziedzina
+	EnumDziedzinaType type
+	List<Double> dyskretna
+	Pair<Double, Double> gesta
+
+Set
+	Dziedzina dziedzina
+	Set sum(Set s)
+	Set multiply(Set s)
+	Dziedzina getDopełnienie()
+
+ClassicSet : Set
+
+EnumFuzzySetType
+	empty, normal, convex // wypukły
+
+FuzzySet : Set
+	EnumFuzzySetType type
+	ClassicSet getAlphaCut(double alpha)
+	ClassicSet getCarrier() // nośnik
+	double getHeight()
+
+KwantyfikatorRozmyty
+
+KwantyfikatorAbsolutny : KwantyfikatorRozmyty
+
+KwantyfikatorWzgledny : KwantyfikatorWzgledny 
+
+FunkcjaPrzynależności
+	double oblicz(double x)
+
+FunkcjaTrojkatna : FunkcjaPrzynależności
+
+FunkcjaTrapezoidalna : FunkcjaPrzynależności
+
+FunkcjaGaussowska : FunkcjaPrzynależności
+
+Etykieta
+	String nazwa
+	FunkcjaPrzynależności f
+
+ZmiennaLingwistyczna
+	String name
+	List<String> etykiety;
+
+Kwalifikator : FuzzySet ???
+
+Sumaryzator : FuzzySet ???
+
+Podmiot ???
+
+PodsumowanieLingwistyczne ???
+	KwantyfikatorRozmyty kwantyfikator
+	Podmiot podmiot
+	Sumaryzator sumaryzator
