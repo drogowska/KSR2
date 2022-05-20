@@ -1,4 +1,6 @@
-public class FuzzySet extends Set{
+package set;
+
+public class FuzzySet extends Set {
 
     private FuzzySetType type;
 
@@ -6,7 +8,7 @@ public class FuzzySet extends Set{
         return null;
     }
 
-    public ClassicSet getCarrier() {
+    public ClassicSet getSupp() {
         return null;
     }
 
@@ -17,8 +19,10 @@ public class FuzzySet extends Set{
     public Set sum(Set set) {
         return null;
     }
-
     public Set multiply(Set set) {
+        return null;
+    }
+    public Set getComplement(Set set) {
         return null;
     }
 }
