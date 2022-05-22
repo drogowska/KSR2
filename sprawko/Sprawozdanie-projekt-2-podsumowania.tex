@@ -37,7 +37,10 @@
 
 % poprawka
 Celem zadania jest stworzenie aplikacji, której główna funkcjonalność odpowiedzialna jest za lingwistyczną agregacje zawartości, wybranego do badania, zbioru danych\cite{database}. 
-Program generuje opis w jezyku quasi-naturlanym na podstawie danych liczbowych w zbiorze. Część eksperymentalna zadania stanowi określenie 
+Program generuje opis w jezyku quasi-naturlanym na podstawie danych liczbowych w zbiorze. 
+Podsumowania danych z bazy tworzone są, na podstawie elementów linwistycznego podsumowania tj. kwantyfikatory, kwalifikatory, sumatory oraz podmiot, podanych przez użytkownika, które to stanowią interpretację informacji i wiedzy pozyskanej z dużego zbioru danych.
+Wygenerowane podsumowania są prezentowane w formie tekstowej i opiera się na romytych modelach wyrażeń w języku naturlanym.
+Część eksperymentalna zadania stanowi określenie 
 wpływu wyboru kwantyfikatorów, sumatorów, kwalifikatorów i ich miar jakości na wiarygodność i jakość otrzymanych podsumowań. 
 
 
@@ -690,7 +693,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne kw
   \end{equation}
 
    \begin{equation}
-    \mu_{\text{Około połowy}} =
+    \mu_{\text{Mniej więcej połowa}} =
       \begin{cases}
         0.0025x - 9.4725 & \text{ dla } x \in [3789,4189] \\
         -0.0025x + 11.4725 & \text{ dla } x \in [4189,4589] \\
@@ -706,7 +709,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne kw
   \end{equation}
   
   \begin{equation}
-    \mu_{\text{Prawie wszystkie}} =
+    \mu_{\text{Zdecydowana większość}} =
       \begin{cases}
         0.001x - 7.3 & \text{ dla } x \in [7300,8300] \\
         1 & \text{ dla } x \in [8300,8378] \\
@@ -715,7 +718,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne kw
   
  \begin{figure}[H]
  \centering
-   \includegraphics{kwantyfikatory.png}
+   \includegraphics{fp_qr.png}
    \caption{Wykres funkcji przynależności dla kwantyfikatorów względnych użytych w zadaniu}
  \end{figure}
 
