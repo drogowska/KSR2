@@ -26,6 +26,10 @@ public class FuzzySet extends Set {
         return null;
     }
 
+    public int cardinality() {
+        return 0;
+    }
+
     @Override
     public FuzzySet and(FuzzySet... set) {
         //min
