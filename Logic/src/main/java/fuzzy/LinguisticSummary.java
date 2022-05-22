@@ -10,7 +10,9 @@ public class LinguisticSummary {
     private FuzzyQuantifier quantifier;  //Q
     private List<Qualifier> qualifiers;  //W
     private List<Summarizer> summarizers; //S
-    private List<Subject> subjects;  //P
+    private List<Subject> subjects;  //P1
+    private List<Subject> subjects2;  //P2
+
     private double T;
 
     private boolean withQualifier;
