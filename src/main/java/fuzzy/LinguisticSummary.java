@@ -1,5 +1,7 @@
+package fuzzy;
+
+import data.Subject;
 import quantifier.FuzzyQuantifier;
-import set.FuzzySet;
 
 import java.util.List;
 

@@ -6,21 +6,21 @@ Dziedzina
 	List<Double> dyskretna
 	Pair<Double, Double> gesta
 
-Set
+set.Set
 	Dziedzina dziedzina
-	Set sum(Set s)
-	Set multiply(Set s)
+	set.Set sum(set.Set s)
+	set.Set multiply(set.Set s)
 	Dziedzina getDopełnienie()
 
-ClassicSet : Set
+set.ClassicSet : set.Set
 
 EnumFuzzySetType
 	empty, normal, convex // wypukły
 
-FuzzySet : Set
+set.FuzzySet : set.Set
 	EnumFuzzySetType type
-	ClassicSet getAlphaCut(double alpha)
-	ClassicSet getCarrier() // nośnik
+	set.ClassicSet getAlphaCut(double alpha)
+	set.ClassicSet getCarrier() // nośnik
 	double getHeight()
 
 KwantyfikatorRozmyty
@@ -46,9 +46,9 @@ ZmiennaLingwistyczna
 	String name
 	List<String> etykiety;
 
-Kwalifikator : FuzzySet ???
+Kwalifikator : set.FuzzySet ???
 
-Sumaryzator : FuzzySet ???
+Sumaryzator : set.FuzzySet ???
 
 Podmiot ???
 

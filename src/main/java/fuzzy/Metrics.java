@@ -1,3 +1,5 @@
+package fuzzy;
+
 import set.FuzzySet;
 
 public class Metrics {

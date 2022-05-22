@@ -1,3 +1,5 @@
+package fuzzy;
+
 import functions.UniverseOfDiscourse;
 import quantifier.Tag;
 

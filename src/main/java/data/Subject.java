@@ -1,3 +1,5 @@
+package data;
+
 public class Subject {
 
     private final int age;
