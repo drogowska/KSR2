@@ -776,15 +776,10 @@ okienkowego interfejsu użytkownika.\\
 
 Implementacja została podzielona na dwa moduły warstwy logiki i widoku, wykorzystany został wzorzec projektowy Model View Controler. Z kolei cześć odpowiedzialna za logikę aplikacji składa się z poszczególnych pakietów:
 \begin{enumerate}
-  \item functions - pakiet reprezentujący funkcje przynależności oraz przestrzeń rozważań. 
-  %\begin{figure}[H]
-  % \includegraphics{p_functions.png}
-  % \caption{Diagram UML pakietu \(functions\).}
-  %\end{figure}
-  
-  \item fuzzy - pakiet reprezentujący poszczególne elementy podsumowania, jak i samo podsumowanie lingwistyczne oraz metryki użyte to obliczeń jakości wykonywanych operacji.
-  \item set - pakiet reprezentujący obiekt zbioru, zarówno rozmumianego w sensie klasycznym jak i rozmytym.
-  \item quantifier - pakiet odpowiedzialny za reprezentacje kwantyfikatorów absolutnych jak i względnych. 
+  \item functions - pakiet reprezentujący funkcje przynależności (klasa abstrakcyjna MembershipFunction i rozsrzerzające ją klasy) oraz przestrzeń rozważań (klasa UniverseOfDiscourse). 
+  \item fuzzy - pakiet reprezentujący poszczególne elementy podsumowania, jak i samo podsumowanie lingwistyczne oraz metryki użyte to obliczeń jakości wykonywanych operacji. Zawiera międzyinnymi klasy: Metrics - reprezentującą metryki oraz LinguisticVariable reprezentującą zmienną lingwistyczną
+  \item set - pakiet reprezentujący obiekt zbioru, zarówno rozmumianego w sensie klasycznym jak i rozmytym. Zawiera klase abstrakcyjną Set oraz rozszerzające ją klasy ClassicSet oraz FuzzySet.
+  \item quantifier - pakiet odpowiedzialny za reprezentacje kwantyfikatorów absolutnych (klasa FuzzyAbsoluteQuantifier) jak i względnych (klasa FuzzyRelativeQuantifier) oraz etykiet (klasa Tag). 
 \end{enumerate}
 
 
@@ -792,11 +787,30 @@ Implementacja została podzielona na dwa moduły warstwy logiki i widoku, wykorz
     \includegraphics[scale = 0.08]{all}
     \caption{Diagram UML modułu logiki}
   \end{figure}
+  
+  Poniżej zamieszczono poszczególne widoki GUI aplikacji:
+  
+  \begin{figure}[H]
+    \includegraphics[scale = 0.6]{gui1}
+    \caption{Widok GUI aplikacji dla użytkownika niezaawansowanego pozwalający na generowanie podsumowań poprzez wybranie między innymi kwantyfikatora, podmiotu oraz określenie wag dla poszczególnych metryk}
+  \end{figure}
+  
+  \begin{figure}[H]
+    \includegraphics[scale = 0.6]{gui2}
+    \caption{Widok GUI aplikacji dla użytkownika zaawansowanego pozwalający na definiowanie własnych etykiet i funckji przynależności dla nowych kwantyfikatorów, sumaryzatorów i kwalifikatorów}
+  \end{figure}
+  
+  \begin{figure}[H]
+    \includegraphics[scale = 0.6]{gui3}
+    \caption{Widok GUI aplikacji przedstawiający wyniki podsumowań}
+  \end{figure}
 
 
 %\noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 10 wg Harmonogramu Zajęć na WIKAMP KSR.}
 %Diagram UML i zwięzły opis pakietu obliczeń rozmytych: źródło pakietu
-%(zewnętrzny/własny/hybrydowy), przypis do literatury/źródeł. Krótka charakterystyka
+%(zewnętrzny/własny/hybrydowy), przypis do literatury/źródeł.
+
+% Krótka charakterystyka
 %najważniejszych klas i podstawowych dla zadania ich metod. \\
 
 %Diagram UML generatora podsumowań (warstwy obliczeniowej oraz interfejsu
