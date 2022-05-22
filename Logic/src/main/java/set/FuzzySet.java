@@ -22,16 +22,18 @@ public class FuzzySet extends Set {
     public Set multiply(Set set) {
         return null;
     }
-    public Set getComplement(Set set) {
+    public Set complement(Set set) {
         return null;
     }
 
-    public FuzzySet and(FuzzySet set) {
+    @Override
+    public FuzzySet and(FuzzySet... set) {
         //min
         return null;
     }
 
-    public FuzzySet or(FuzzySet set) {
+    @Override
+    public FuzzySet or(FuzzySet... set) {
         //max
         return null;
     }

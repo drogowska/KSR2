@@ -1,6 +1,5 @@
 package set;
-
-import quantifier.MembershipFunction;
+import functions.MembershipFunction;
 
 import java.util.List;
 
