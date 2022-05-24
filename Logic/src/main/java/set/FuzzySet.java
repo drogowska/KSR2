@@ -31,13 +31,13 @@ public class FuzzySet extends Set {
     }
 
     @Override
-    public FuzzySet and(FuzzySet... set) {
+    public FuzzySet and(Set... set) {
         //min
         return null;
     }
 
     @Override
-    public FuzzySet or(FuzzySet... set) {
+    public FuzzySet or(Set... set) {
         //max
         return null;
     }

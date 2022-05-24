@@ -15,12 +15,12 @@ public class ClassicSet extends Set {
     }
 
     @Override
-    public Set and(FuzzySet... set) {
+    public Set and(Set... set) {
         return null;
     }
 
     @Override
-    public Set or(FuzzySet... set) {
+    public Set or(Set... set) {
         return null;
     }
 
