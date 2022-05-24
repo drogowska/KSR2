@@ -7,7 +7,8 @@ import java.util.List;
 
 public abstract class Set {
     UniverseOfDiscourse universeOfDiscourse;
-    protected Tag tag;
+    protected List<Tag> tag;
+
 
     public abstract Set sum(Set set);
     public abstract Set multiply(Set set);

@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TabPane layoutX="2.0" layoutY="1.0" prefHeight="645.0" prefWidth="934.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -176,7 +161,7 @@
                         <Button layoutX="453.0" layoutY="199.0" mnemonicParsing="false" text="Usuń" />
                         <Text layoutX="33.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wybierz zmienną:" />
                         <ComboBox layoutX="176.0" layoutY="81.0" prefWidth="150.0" />
-                        <Text layoutX="33.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Podaj współrzędne punktów:" />
+                        <Text layoutX="33.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Współczynniki funkcji:" />
                         <GridPane layoutX="65.0" layoutY="260.0" prefHeight="63.0" prefWidth="233.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="25.0" minWidth="10.0" prefWidth="25.0" />
@@ -196,11 +181,11 @@
                               <TextField prefHeight="26.0" prefWidth="24.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="X3:" GridPane.rowIndex="2" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="X2:" GridPane.rowIndex="1" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="X1:" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A1:" />
                               <TextField prefHeight="23.0" prefWidth="88.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                               <TextField prefHeight="26.0" prefWidth="91.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                               <TextField prefHeight="26.0" prefWidth="74.0" GridPane.columnIndex="4" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Y1:" GridPane.columnIndex="3" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="B2" GridPane.columnIndex="3" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Y1:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Y1:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                            </children>

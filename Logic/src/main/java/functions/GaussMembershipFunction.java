@@ -4,9 +4,10 @@ public class GaussMembershipFunction extends MembershipFunction {
     private double center;
     private double width;
 
-    public GaussMembershipFunction(double center, double width) {
+    public GaussMembershipFunction(double center, double width, UniverseOfDiscourse universe) {
         if (width == 0)
             throw new IllegalArgumentException("Width in Gauss function can't be 0!");
+        universeOfDiscourse = universe;
         this.center = center;
         this.width = width;
     }
