@@ -1,6 +1,6 @@
 package functions;
 
-public class ConstantFunction extends LineFunction{
+public class ConstantFunction extends LineFunction {
     public ConstantFunction(UniverseOfDiscourse universe) {
         super(0, -1, universe);
     }

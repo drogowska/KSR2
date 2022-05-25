@@ -5,6 +5,7 @@ public class GaussMembershipFunction extends MembershipFunction {
     private double width;
 
     public GaussMembershipFunction(double center, double width, UniverseOfDiscourse universe) {
+        super(universe);
         if (width == 0)
             throw new IllegalArgumentException("Width in Gauss function can't be 0!");
         universeOfDiscourse = universe;

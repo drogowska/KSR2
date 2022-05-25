@@ -38,9 +38,7 @@ public class LinguisticSummary {
         return 0;
     }
 
-    private double sigmaCount() {
-        return 0;
-    }
+
 
     //degree of covering
     public static double T3() {

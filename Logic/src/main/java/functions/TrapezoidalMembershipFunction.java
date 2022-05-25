@@ -6,15 +6,18 @@ import java.util.List;
 public class TrapezoidalMembershipFunction extends MembershipFunction {
     private List<LineFunction> funs = new ArrayList<>();
 
-    public TrapezoidalMembershipFunction(double a1, double b1, double a3, double b3, UniverseOfDiscourse universe) {
-        this.universeOfDiscourse = universe;
-        LineFunction F1 = new LineFunction(a1, b1, universeOfDiscourse);
-        LineFunction F2 = new LineFunction(a3, b3, universeOfDiscourse);
-        double constMin = F1.getX(1);
-        double constMax = F2.getX(0);
+    public TrapezoidalMembershipFunction(double a1, double b1, double a3, double b3, List<UniverseOfDiscourse> universe) {
+        super(universe.get(0));
+        this.universeOfDiscourse = universe.get(0);
+        for(UniverseOfDiscourse u : universe) {
+            this.universeOfDiscourse.sum(u);
+        }
+        LineFunction F1 = new LineFunction(a1, b1, universe.get(0));
+        LineFunction F2 = new LineFunction(a3, b3, universe.get(2));
         funs.add(F1);
-        funs.add(new ConstantFunction(universe.split(constMin, constMax)));
+        funs.add(new ConstantFunction(universe.get(1)));
         funs.add(F2);
+        setValues();
     }
 
     public Double calculate(double x) {

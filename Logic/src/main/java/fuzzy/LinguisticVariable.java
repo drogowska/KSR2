@@ -1,7 +1,7 @@
 package fuzzy;
 
 import functions.UniverseOfDiscourse;
-import quantifier.Tag;
+import set.Tag;
 
 import java.util.List;
 

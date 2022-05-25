@@ -1,15 +1,15 @@
 package set;
 
-import functions.UniverseOfDiscourse;
-import quantifier.Tag;
-
 import java.util.List;
 
-public abstract class Set {
-    UniverseOfDiscourse universeOfDiscourse;
-    protected List<Tag> tag;
+public abstract class Set<T> {
 
 
+    public List<T> values;
+
+    public List<T> getValues() {
+        return values;
+    }
     public abstract Set sum(Set set);
     public abstract Set multiply(Set set);
     public abstract Set complement(Set set);
@@ -18,5 +18,4 @@ public abstract class Set {
 
     public abstract Set or(Set... set);
 
-    public abstract Set not() ;
 }

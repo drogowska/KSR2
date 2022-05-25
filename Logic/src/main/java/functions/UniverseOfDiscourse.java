@@ -1,52 +1,30 @@
 package functions;
 
-import jdk.javadoc.internal.doclets.toolkit.util.Utils;
+import lombok.Getter;
 import set.ClassicSet;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
-
-public class UniverseOfDiscourse extends ClassicSet<Double> implements Cloneable {
+@Getter
+public class UniverseOfDiscourse extends ClassicSet implements Cloneable {
     private UniverseOfDiscourseType universeOfDiscourseType;
-    private List<Double> discreetDomain;
-    private List<Utils.Pair<Double, Double>> denseDomain;
     boolean isDense = true;
+    boolean finite = true;
 
-    public UniverseOfDiscourse(UniverseOfDiscourseType universeOfDiscourseType, List<Double> discreetDomain, List<Utils.Pair<Double, Double>> denseDomain) {
-        this.discreetDomain = discreetDomain;
-        this.denseDomain = denseDomain;
+    public UniverseOfDiscourse(List<Double> values) {
+        super();
+        this.values = values;
+    }
+//    public List<Double> getValues()
+    public UniverseOfDiscourse(UniverseOfDiscourseType universeOfDiscourseType) {
+        super();
         this.universeOfDiscourseType = universeOfDiscourseType;
     }
 
-    public UniverseOfDiscourseType getUniverseOfDiscourseType() {
-        return universeOfDiscourseType;
+    public UniverseOfDiscourse(UniverseOfDiscourseType universeOfDiscourseType, List<Double> domain) {
+        this.universeOfDiscourseType = universeOfDiscourseType;
+        this.values = domain;
     }
 
-    boolean finite = true;
-    //TO DO - ogranac o co kaman z gestym i dyskretnym
 
 
-    UniverseOfDiscourse(List<Double> discreetDomain, boolean dense) {
-        this.universeOfDiscourseType = UniverseOfDiscourseType.DENSE;
-        this.discreetDomain = discreetDomain;
-        this.isDense = dense;
-    }
-
-    UniverseOfDiscourse(List<Utils.Pair<Double, Double>> denseDomain) {
-        this.universeOfDiscourseType = UniverseOfDiscourseType.DISCREET;
-        this.denseDomain = denseDomain;
-    }
-
-    public boolean contain(Double x) {
-        if (discreetDomain.contains(x))
-            return true;
-        return false;
-    }
-
-    public UniverseOfDiscourse split(double minX, double maxX) {
-        List<Double> list = discreetDomain.subList(discreetDomain.indexOf(minX), discreetDomain.indexOf(maxX));
-        return new UniverseOfDiscourse(this.universeOfDiscourseType, list, this.denseDomain);
-    }
 }
