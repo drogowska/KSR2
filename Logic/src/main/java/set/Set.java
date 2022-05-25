@@ -10,12 +10,12 @@ public abstract class Set<T> {
     public List<T> getValues() {
         return values;
     }
-    public abstract Set sum(Set set);
-    public abstract Set multiply(Set set);
-    public abstract Set complement(Set set);
+    public abstract Set<T> sum(Set<T> set);
+    public abstract Set<T> multiply(Set<T> set);
+    public abstract Set<T> complement();
 
-    public abstract Set and(Set... set);
+    public abstract Set<T> and(Set<T> set);
 
-    public abstract Set or(Set... set);
+    public abstract Set<T> or(Set<T> set);
 
 }

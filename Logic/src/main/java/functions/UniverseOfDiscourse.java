@@ -5,7 +5,7 @@ import set.ClassicSet;
 
 import java.util.List;
 @Getter
-public class UniverseOfDiscourse extends ClassicSet implements Cloneable {
+public class UniverseOfDiscourse extends ClassicSet implements Cloneable, Comparable<UniverseOfDiscourse> {
     private UniverseOfDiscourseType universeOfDiscourseType;
     boolean isDense = true;
     boolean finite = true;
@@ -26,5 +26,9 @@ public class UniverseOfDiscourse extends ClassicSet implements Cloneable {
     }
 
 
-
+    @Override
+    public int compareTo(UniverseOfDiscourse o) {
+        if (this.values.equals(o.values)) return 0;
+        return -1;
+    }
 }

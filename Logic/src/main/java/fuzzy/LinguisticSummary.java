@@ -33,10 +33,7 @@ public class LinguisticSummary {
         return 0.0;
     }
 
-    //degree of fuzziness
-    private double in() {
-        return 0;
-    }
+
 
 
 
