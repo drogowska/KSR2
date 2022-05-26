@@ -2,16 +2,16 @@ package set;
 import functions.MembershipFunction;
 
 
-public class Tag {
+public class Label {
 
     private String label;
     private MembershipFunction membershipFunctions;
 
-    public Tag(MembershipFunction membershipFunctions) {
+    public Label(MembershipFunction membershipFunctions) {
         this.membershipFunctions = membershipFunctions;
     }
 
-    public Tag(String label, MembershipFunction membershipFunctions) {
+    public Label(String label, MembershipFunction membershipFunctions) {
         this.label = label;
         this.membershipFunctions = membershipFunctions;
     }

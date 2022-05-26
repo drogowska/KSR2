@@ -12,7 +12,7 @@ public class UniverseOfDiscourse extends ClassicSet implements Cloneable, Compar
 
     public UniverseOfDiscourse(List<Double> values) {
         super();
-        this.values = values;
+        this.x = values;
     }
     public UniverseOfDiscourse(UniverseOfDiscourseType universeOfDiscourseType) {
         super();
@@ -21,13 +21,19 @@ public class UniverseOfDiscourse extends ClassicSet implements Cloneable, Compar
 
     public UniverseOfDiscourse(UniverseOfDiscourseType universeOfDiscourseType, List<Double> domain) {
         this.universeOfDiscourseType = universeOfDiscourseType;
-        this.values = domain;
+        this.x = domain;
+    }
+
+    public UniverseOfDiscourse(double min, double max, double step) {
+        for (Double i = min; i<=max; i+=step) {
+            x.add(i);
+        }
     }
 
 
     @Override
     public int compareTo(UniverseOfDiscourse o) {
-        if (this.values.equals(o.values)) return 0;
+        if (this.x.equals(o.x)) return 0;
         return -1;
     }
 }

@@ -1,13 +1,13 @@
 package quantifier;
 
 import functions.UniverseOfDiscourse;
-import set.Tag;
+import set.Label;
 
 import java.util.List;
 
 public class FuzzyAbsoluteQuantifier extends FuzzyQuantifier {
-    public FuzzyAbsoluteQuantifier(UniverseOfDiscourse universeOfDiscourse, List<Tag> tag) {
-        super(universeOfDiscourse, tag);
+    public FuzzyAbsoluteQuantifier(UniverseOfDiscourse universeOfDiscourse, List<Label> label) {
+        super(universeOfDiscourse, label);
     }
 
     public boolean isAbsolute() {

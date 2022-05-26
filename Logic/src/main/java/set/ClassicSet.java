@@ -9,26 +9,26 @@ public class ClassicSet extends Set<Double> {
 
     public ClassicSet(List<Double> values) {
         super();
-        this.values = values;
+        this.x = values;
         universe = null;
     }
 
     public ClassicSet(List<Double> universe, List<Double> values) {
         super();
-        this.values = values;
+        this.x = values;
         this.universe = new UniverseOfDiscourse(universe);
     }
 
     public ClassicSet(UniverseOfDiscourse universe, List<Double> values) {
         this.universe = universe;
-        this.values = values;
+        this.x = values;
     }
 
     public ClassicSet() {
         super();
     }
     public Double getMin() {
-        return Collections.min(values);
+        return Collections.min(x);
     }
 
     public UniverseOfDiscourse getUniverse() {
@@ -36,7 +36,7 @@ public class ClassicSet extends Set<Double> {
     }
 
     public Double getMax() {
-        return Collections.max(values);
+        return Collections.max(x);
     }
 
     @Override
@@ -48,16 +48,16 @@ public class ClassicSet extends Set<Double> {
 
     @Override
     public Set<Double> sum(Set<Double> set) {
-        HashSet<Double> val = new HashSet<>(values);
-        val.addAll(set.values);
+        HashSet<Double> val = new HashSet<>(x);
+        val.addAll(set.x);
         return new ClassicSet((List<Double>) val);
     }
-
+//część wspólna
     @Override
     public Set<Double> multiply(Set<Double> set) {
         List<Double> list = new ArrayList<>();
-        for (Double d : values) {
-            if (set.values.contains(d))
+        for (Double d : x) {
+            if (set.x.contains(d))
                 list.add(d);
         }
         return new ClassicSet(list);
@@ -67,7 +67,7 @@ public class ClassicSet extends Set<Double> {
     public Set<Double> complement() {
         List<Double> list = new ArrayList<>();
         for (Double d : universe.getValues()) {
-            if (!this.values.contains(d))
+            if (!this.x.contains(d))
                 list.add(d);
         }
         return new ClassicSet(list);
@@ -81,14 +81,14 @@ public class ClassicSet extends Set<Double> {
     @Override
     public Set<Double> or(Set<Double> set) {
         List<Double> list = new ArrayList<>();
-        for (Double d : values) {
-            if (!set.values.contains(d))
+        for (Double d : x) {
+            if (!set.x.contains(d))
                 list.add(d);
         }
         return new ClassicSet(list);
     }
 
     public boolean contain(Double x) {
-        return values.contains(x);
+        return this.x.contains(x);
     }
 }

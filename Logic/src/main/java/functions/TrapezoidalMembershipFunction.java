@@ -20,6 +20,14 @@ public class TrapezoidalMembershipFunction extends MembershipFunction {
         setValues();
     }
 
+    public TrapezoidalMembershipFunction(double minX, double maxYs, double maxYe, double maxX) {
+        super(new UniverseOfDiscourse(minX, maxX, 1.0));
+        funs.add(new LineFunction(-1 / (minX - maxYs), 1 /(maxYs - minX), new UniverseOfDiscourse(minX, maxYs, 1.0)));
+        funs.add(new ConstantFunction(new UniverseOfDiscourse(maxYs, maxYe, 1.0)));
+        funs.add(new LineFunction(-1 / (maxX - maxYe), 1 / (maxYe - maxX), new UniverseOfDiscourse(maxYe, maxX, 1.0)));
+        setValues();
+    }
+
     public Double calculate(double x) {
         for (LineFunction fun : funs) {
             if (fun.getUniverseOfDiscourse().contain(x))

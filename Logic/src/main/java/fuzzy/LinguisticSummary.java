@@ -4,7 +4,7 @@ import data.Record;
 import lombok.Getter;
 import quantifier.FuzzyQuantifier;
 import set.FuzzySet;
-import set.Tag;
+import set.Label;
 
 import java.util.List;
 
@@ -40,13 +40,6 @@ public class LinguisticSummary {
         return 0.0;
     }
 
-    private double r(FuzzySet set, double x) {
-        double suma = 0.0;
-        for (Tag t : set.values) {
-            suma += t.getMembershipFunctions().calculate(x);
-        }
-        return suma;
-    }
     //degree of imprecision
     public double T2() {
         return imprecision(summarizers);
@@ -90,7 +83,7 @@ public class LinguisticSummary {
     //degree of quantifier imprecision
     public double T6() {
         if (quantifier.isAbsolute())
-            return 1 - quantifier.getSupp().values.size() / objects.size();
+            return 1 - quantifier.getSupp().x.size() / objects.size();
         return 1 - quantifier.in();
     }
     //degree of quantifier cardinality
@@ -119,7 +112,7 @@ public class LinguisticSummary {
     private double cardinality(List<FuzzySet> set) {
         Double mul = 0.0;
         for (FuzzySet s : set)
-            mul *= s.sigmaCount() / s.getUniverseOfDiscourse().values.size();
+            mul *= s.sigmaCount() / s.getUniverseOfDiscourse().x.size();
         return 1 - Math.pow(mul, set.size());
     }
     //length of a qualifier
