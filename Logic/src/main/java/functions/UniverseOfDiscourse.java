@@ -14,7 +14,6 @@ public class UniverseOfDiscourse extends ClassicSet implements Cloneable, Compar
         super();
         this.values = values;
     }
-//    public List<Double> getValues()
     public UniverseOfDiscourse(UniverseOfDiscourseType universeOfDiscourseType) {
         super();
         this.universeOfDiscourseType = universeOfDiscourseType;

@@ -2,7 +2,7 @@ package functions;
 
 public class LineFunction extends MembershipFunction{
     //y =ax+b
-    private double a;
+    private final double a;
     double b;
 
     public LineFunction(double a, double b, UniverseOfDiscourse universe) {

@@ -15,10 +15,4 @@ public class Qualifier extends FuzzySet {
         super(universeOfDiscourse, tag);
     }
 
-//    public double compatibilityLevel(double x) {
-//
-////        return this.tag.contains(x);
-//    }
-
-
 }

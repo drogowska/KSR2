@@ -52,7 +52,7 @@ public class ClassicSet extends Set<Double> {
         val.addAll(set.values);
         return new ClassicSet((List<Double>) val);
     }
-//część wspólna
+
     @Override
     public Set<Double> multiply(Set<Double> set) {
         List<Double> list = new ArrayList<>();
@@ -86,5 +86,9 @@ public class ClassicSet extends Set<Double> {
                 list.add(d);
         }
         return new ClassicSet(list);
+    }
+
+    public boolean contain(Double x) {
+        return values.contains(x);
     }
 }

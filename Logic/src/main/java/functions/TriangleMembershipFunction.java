@@ -4,8 +4,8 @@ import java.util.List;
 
 public class TriangleMembershipFunction extends MembershipFunction {
 
-   private LineFunction fun1;
-    private LineFunction fun2;
+   private final LineFunction fun1;
+    private final LineFunction fun2;
 
     public TriangleMembershipFunction(double a1, double b1, double a2, double b2, List<UniverseOfDiscourse> universe) {
         super(universe.get(0));

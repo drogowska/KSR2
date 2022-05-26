@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrapezoidalMembershipFunction extends MembershipFunction {
-    private List<LineFunction> funs = new ArrayList<>();
+    private final List<LineFunction> funs = new ArrayList<>();
 
     public TrapezoidalMembershipFunction(double a1, double b1, double a3, double b3, List<UniverseOfDiscourse> universe) {
         super(universe.get(0));

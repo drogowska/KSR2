@@ -17,9 +17,7 @@ public class Tag {
     }
 
     public boolean contains(Double x) {
-        if (membershipFunctions.getUniverseOfDiscourse().contain(x))
-            return true;
-        return false;
+        return membershipFunctions.getUniverseOfDiscourse().contain(x);
     }
 
     public String getLabel() {

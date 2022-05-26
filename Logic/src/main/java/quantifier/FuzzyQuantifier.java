@@ -15,15 +15,5 @@ public abstract class FuzzyQuantifier extends FuzzySet {
         super(universeOfDiscourse, tag);
     }
 
-    public boolean isNormal() {
-        //height = 1
-        return isNormal;
-    }
-
-    public boolean isConvex() {
-        //if every alpha cut is convex
-        return isConvex;
-    }
-
     public abstract boolean isAbsolute();
 }

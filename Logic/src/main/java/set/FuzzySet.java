@@ -9,7 +9,7 @@ public class FuzzySet extends Set<Tag> {
 
     protected boolean isNormal;
     protected boolean isConvex;
-    private boolean isEmpty;
+    private final boolean isEmpty;
     UniverseOfDiscourse universeOfDiscourse;
     HashMap<Double, Double> valXY;
     public FuzzySet(UniverseOfDiscourse universeOfDiscourse, List<Tag> tags) {
@@ -20,6 +20,15 @@ public class FuzzySet extends Set<Tag> {
         isEmpty = isEmpty();
         isNormal = (getHeight() == 1.0);
 //        isConvex = (isConvex());
+    }
+
+    public UniverseOfDiscourse getUniverseOfDiscourse() {
+        return universeOfDiscourse;
+    }
+
+    //to do
+    private boolean isConvex() {
+        return false;
     }
 
     private boolean isEmpty() {
@@ -40,7 +49,7 @@ public class FuzzySet extends Set<Tag> {
         List<Double> tagsList = new ArrayList<>();
         for(Map.Entry<Double, Double> entry : valXY.entrySet()) {
             if (entry.getValue() >= alpha)
-                tagsList.add(entry.getKey());  //przestrzeń rozważań jednopunktowa, o wartości funkcji przynależności 1
+                tagsList.add(entry.getKey());
         }
         return new ClassicSet(universeOfDiscourse, tagsList);
     }
@@ -54,7 +63,7 @@ public class FuzzySet extends Set<Tag> {
     }
 
     @Override
-    public Set sum(Set<Tag> set) {
+    public Set<Tag> sum(Set<Tag> set) {
         HashMap<Double, Double> val = new HashMap<>();
         for (int i =0; i < values.size(); i++) {
             double x = universeOfDiscourse.values.get(i);
@@ -90,10 +99,10 @@ public class FuzzySet extends Set<Tag> {
         return new FuzzySet(universeOfDiscourse, tags);
     }
 
-//    public int cardinality() { inczaej sigma count
-//        return valXY.size();  //?
-//    }
-    private double sigmaCount() {
+    public double compatibilityLevel(double x) {
+        return valXY.get(x);
+    }
+    public double sigmaCount() {
         double res = 0;
         for(Map.Entry<Double, Double> entry : valXY.entrySet()) {
             res += entry.getValue();
@@ -112,7 +121,7 @@ public class FuzzySet extends Set<Tag> {
     }
 
     //degree of fuzziness
-    private Double in() {
+    public Double in() {
         return Double.valueOf(getSupp().values.size() / universeOfDiscourse.values.size());
     }
 

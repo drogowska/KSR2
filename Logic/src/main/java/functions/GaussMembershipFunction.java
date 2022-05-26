@@ -1,8 +1,8 @@
 package functions;
 
 public class GaussMembershipFunction extends MembershipFunction {
-    private double center;
-    private double width;
+    private final double center;
+    private final double width;
 
     public GaussMembershipFunction(double center, double width, UniverseOfDiscourse universe) {
         super(universe);

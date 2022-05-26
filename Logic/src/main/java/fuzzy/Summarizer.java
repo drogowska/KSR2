@@ -9,8 +9,12 @@ import java.util.List;
 
 public class Summarizer extends FuzzySet {
 
-
+    boolean isCompound;
+    String V;    //ex. age
     public Summarizer(UniverseOfDiscourse universeOfDiscourse, List<Tag> tag) {
         super(universeOfDiscourse, tag);
     }
+
+
+
 }
