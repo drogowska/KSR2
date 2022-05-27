@@ -1,6 +1,7 @@
 package set;
 
 import functions.*;
+import fuzzy.Label;
 import lombok.Getter;
 
 import java.util.*;

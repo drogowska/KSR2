@@ -127,14 +127,14 @@ public class Record {
     private String d_expected_happy_with_sd_people;
     private String d_expected_num_interested_in_me;
     private String d_expected_num_matches;
-    private float like;
+    private float _like;
     private float guess_prob_liked;
     private String d_like;
     private String d_guess_prob_liked;
     private int met;
     private int decision;
     private int decision_o;
-    private int match;
+    private int _match;
 
     public Record(int age, int d_age, int importance_same_race, int importance_same_religion, float pref_o_inteligence, float pref_o_ambitious,
                    int tvsports, int expected_num_interested_in_me, float guess_prob_liked, float sincere) {

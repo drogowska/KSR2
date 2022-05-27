@@ -1,18 +1,25 @@
 package quantifier;
 
-import functions.UniverseOfDiscourse;
-import set.FuzzySet;
-import set.Label;
+import functions.MembershipFunction;
+import lombok.Getter;
+import fuzzy.Label;
 
-import java.util.List;
-
-public abstract class FuzzyQuantifier extends FuzzySet {
+@Getter
+public class FuzzyQuantifier extends Label {
 
     private int form;
+    private boolean isAbsolute;
 
-    public FuzzyQuantifier(UniverseOfDiscourse universeOfDiscourse, List<Label> label) {
-        super(universeOfDiscourse, label);
+    public FuzzyQuantifier(MembershipFunction membershipFunctions) {
+        super(membershipFunctions);
     }
 
-    public abstract boolean isAbsolute();
+    public FuzzyQuantifier(String label, MembershipFunction membershipFunctions) {
+        super(label, membershipFunctions);
+    }
+
+//    public FuzzyQuantifier(UniverseOfDiscourse universeOfDiscourse, List<Label> label) {
+//        super(universeOfDiscourse, label);
+//    }
+
 }

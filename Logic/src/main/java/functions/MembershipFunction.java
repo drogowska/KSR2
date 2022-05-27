@@ -16,7 +16,7 @@ public abstract class MembershipFunction {
     }
 
     public void setValues() {
-        universeOfDiscourse.values.forEach(d -> map.put(d, calculate(d)));
+        universeOfDiscourse.x.forEach(d -> map.put(d, calculate(d)));
     }
     public HashMap<Double, Double> getValues() {
         return map;

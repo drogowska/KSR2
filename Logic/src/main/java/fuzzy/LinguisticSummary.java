@@ -3,8 +3,6 @@ package fuzzy;
 import data.Record;
 import lombok.Getter;
 import quantifier.FuzzyQuantifier;
-import set.FuzzySet;
-import set.Label;
 
 import java.util.List;
 
@@ -12,29 +10,112 @@ import java.util.List;
 public class LinguisticSummary {
 
     private FuzzyQuantifier quantifier;  //Q
-    private List<FuzzySet> qualifiers;  //W
-    private List<FuzzySet> summarizers; //S
-    private List<Record> subjects;  //P1
-    private List<Record> subjects2;  //P2
+    private LinguisticVariable qualifiers;  //W
+    private LinguisticVariable summarizers; //S1
+    private String subject;  //P1
+    private String subject2;  //P2
 
     private List<Record> objects;  //rekordy z bazy
+    private List<Record> filtered;
 
     private boolean withQualifier;
 
     private int form;
     private SummaryType summaryType;
     private List<Double> wages;
+    String string = "";
 
+    public LinguisticSummary(FuzzyQuantifier quantifier, LinguisticVariable qualifiers, LinguisticVariable summarizers, List<Record> subjects, List<Record> subjects2, List<Record> objects, boolean withQualifier, int form, SummaryType summaryType, List<Double> wages) {
+        this.quantifier = quantifier;
+        this.qualifiers = qualifiers;
+        this.objects = objects;
+        this.withQualifier = withQualifier;
+        this.form = form;
+        this.summaryType = summaryType;
+        this.wages = wages;
+    }
+    public LinguisticSummary(FuzzyQuantifier quantifier, LinguisticVariable summarizers, List<Record> objects, String subject) {
+        this.quantifier = quantifier;
+        this.summarizers = summarizers;
+        this.objects = objects;
+        this.form = 1;
+        this.subject = subject;
+        string = "are/have";
+        summaryType = SummaryType.ONESUBJECT;
+//        filtered = objects.stream().filter(Record::get)
+    }
+    public LinguisticSummary(FuzzyQuantifier quantifier, LinguisticVariable summarizers, LinguisticVariable sum2, List<Record> objects, String subject) {
+        this.quantifier = quantifier;
+        this.summarizers = summarizers;
+        qualifiers = sum2;
+        this.objects = objects;
+        this.subject = subject;
+        this.form = 2;
+        string = "being";
+        summaryType = SummaryType.ONESUBJECT;
+//        filtered = objects.stream().filter(Record::get)
+    }
+
+    public LinguisticSummary(FuzzyQuantifier quantifier, LinguisticVariable summarizers, List<Record> objects, String subject, String sub2, int form) {
+        this.quantifier = quantifier;
+        this.summarizers = summarizers;
+        this.objects = objects;
+        this.subject = subject;
+        this.subject2 = sub2;
+        this.form = form;
+        if (form == 1)
+             string = "in comparison to ";
+        else if (form == 4)
+            string = " than ";
+        summaryType = SummaryType.MULTISUBJECTS;
+//        filtered = objects.stream().filter(Record::get)
+    }
+    public LinguisticSummary(FuzzyQuantifier quantifier, LinguisticVariable summarizers, LinguisticVariable sum2, List<Record> objects, String subject, String s2, int form) {
+        this.quantifier = quantifier;
+        this.summarizers = summarizers;
+        qualifiers = sum2;
+        this.subject2 = s2;
+        this.objects = objects;
+        this.subject = subject;
+        this.form = form;
+        summaryType = SummaryType.MULTISUBJECTS;
+        if (form == 3)
+            string = " being ";
+        else
+            string = "in comparison to ";
+
+//        filtered = objects.stream().filter(Record::get)
+    }
+
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("LinguisticSummary{");
+        sb.append(quantifier.getLabel()).append(" ").append(subject).append(" ");
+        sb.append(string).append(" ");
+        if ((form == 1 || form == 2)  && summaryType.equals(SummaryType.ONESUBJECT)) {
+            sb.append(summarizers.getName()).append(" ");
+            if (form == 2)
+                sb.append("are ").append(qualifiers.getName()).append(" ");
+        } else if (form == 1 && summaryType.equals(SummaryType.MULTISUBJECTS))
+            sb.append(subject2).append(" are ").append(summarizers.getName());
+        else if (form == 2 && summaryType.equals(SummaryType.MULTISUBJECTS))
+            sb.append(subject2).append(" being ").append(qualifiers.name).append(" are ").append(summarizers.name);
+        else if (form == 4 && summaryType.equals(SummaryType.MULTISUBJECTS))
+            sb.append(qualifiers.name).append(" in comparison to ").append(subject2).append(" are ").append(summarizers.name);
+        else if (form == 3 && summaryType.equals(SummaryType.MULTISUBJECTS))
+            sb.append(subject2).append(" being ").append(qualifiers.name);
+        sb.append("\n");
+        return sb.toString();
+    }
 
     //degree of truth
     public double T1() {
         if (summaryType.equals(SummaryType.ONESUBJECT)) {
             if (quantifier.isAbsolute())
-                return quantifier.compatibilityLevel(summarizers.get(0).sigmaCount());
+                return quantifier.getFuzzy().compatibilityLevel(summarizers.getLabels().get(0).getFuzzy().sigmaCount());
             else {
-                FuzzySet sumSet = (FuzzySet) summarizers.get(0).sum(summarizers.get(1));
-                return quantifier.compatibilityLevel(
-                        sumSet.sigmaCount() / summarizers.get(1).sigmaCount());
+//                FuzzySet sumSet = (FuzzySet) summarizers.get(0).getLabels().getFuzzy().sum(summarizers.get(1).getFuzzy());
+//                return quantifier.getFuzzy().compatibilityLevel(
+//                        sumSet.sigmaCount() / summarizers.get(1).getFuzzy().sigmaCount());
             }
         }
         return 0.0;
@@ -45,11 +126,11 @@ public class LinguisticSummary {
         return imprecision(summarizers);
     }
 
-    private double imprecision(List<FuzzySet> set) {
+    private double imprecision(LinguisticVariable set) {
         Double mul = 0.0;
-        for (FuzzySet s : set)
-            mul *= s.in();
-        return 1 - Math.pow(mul, set.size());
+        for (Label s : set.getLabels())
+            mul *= s.getFuzzy().in();
+        return 1 - Math.pow(mul, set.getLabels().size());
     }
 
     //degree of covering
@@ -83,15 +164,15 @@ public class LinguisticSummary {
     //degree of quantifier imprecision
     public double T6() {
         if (quantifier.isAbsolute())
-            return 1 - quantifier.getSupp().x.size() / objects.size();
-        return 1 - quantifier.in();
+            return 1 - quantifier.getFuzzy().getSupp().x.size() / objects.size();
+        return 1 - quantifier.getFuzzy().in();
     }
     //degree of quantifier cardinality
     public double T7() {
         if (quantifier.isAbsolute()) {
-            return 1 - quantifier.sigmaCount() / objects.size();
+            return 1 - quantifier.getFuzzy().sigmaCount() / objects.size();
         }
-        return 1 - quantifier.sigmaCount();
+        return 1 - quantifier.getFuzzy().sigmaCount();
     }
     //degree of summarizer cardinality
     public double T8() {
@@ -106,14 +187,14 @@ public class LinguisticSummary {
         return cardinality(qualifiers);
     }
 
-    private double length(List<FuzzySet> set) {
-        return 2 * Math.pow(0.5, set.size());
+    private double length(LinguisticVariable set) {
+        return 2 * Math.pow(0.5, set.getLabels().size());
     }
-    private double cardinality(List<FuzzySet> set) {
+    private double cardinality(LinguisticVariable set) {
         Double mul = 0.0;
-        for (FuzzySet s : set)
-            mul *= s.sigmaCount() / s.getUniverseOfDiscourse().x.size();
-        return 1 - Math.pow(mul, set.size());
+        for (Label s : set.getLabels())
+            mul *= s.getFuzzy().sigmaCount() / s.getFuzzy().getUniverseOfDiscourse().x.size();
+        return 1 - Math.pow(mul, set.getLabels().size());
     }
     //length of a qualifier
     public double T11() {
