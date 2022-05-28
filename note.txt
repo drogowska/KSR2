@@ -12,11 +12,13 @@ Q P are/have S      - jedno, 1 forma
 ex1.
 Almost all female are young
 
-Q P BEING s1 are S2     - jedno, 2 forma
+Q P BEING w are S2     - jedno, 2 forma
 --------------------------------------------------------
 ex2.
 Allmost all woman being young prefer younger man.
 --------------------------------------------------------
+
+
 
 Q P1 in comparison to P2 are S1     - wielo, 1 forma
 --------------------------------------------------------
@@ -24,12 +26,12 @@ ex3.
 Allmost none woman in comparison to man are young.
 
 --------------------------------------------------------
-Q P1 in comparision to P2, being S2 are S1    - wielo, 2 forma
+Q P1 in comparision to P2, being w are S1    - wielo, 2 forma
 
 ex4.
 Most of woman in comparison to man, being old prefer high ambitious.
 --------------------------------------------------------
-Q P1 being S2 in comparision to P2 are S1    - wielo, 3 forma
+Q P1 being w in comparision to P2 are S1    - wielo, 3 forma
 
 ex5.
 

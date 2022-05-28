@@ -3,6 +3,7 @@ package fuzzy;
 import functions.UniverseOfDiscourse;
 import lombok.Getter;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +14,7 @@ public class LinguisticVariable {
     String name;             //L
     List<Label> labels;  //with used G and K
     private UniverseOfDiscourse universeOfDiscourse;
+    HashMap<Record, Double> map = new HashMap<Record, Double>();
 
     public LinguisticVariable(String name, List<Label> labels, UniverseOfDiscourse universeOfDiscourse) {
         this.name = name;

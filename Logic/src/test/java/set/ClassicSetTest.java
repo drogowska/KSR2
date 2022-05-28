@@ -7,7 +7,7 @@ import fuzzy.CompoundVariable;
 import fuzzy.Defined;
 import fuzzy.Label;
 import fuzzy.LinguisticSummary;
-import fuzzy.Summarizer;
+
 
 import org.junit.Test;
 import quantifier.FuzzyQuantifier;
@@ -25,11 +25,11 @@ class ClassicSetTest {
         String subject = "female"; //record.getGender()
         FuzzyQuantifier quantifier = (FuzzyQuantifier) Defined.quantifier.get(0);
         //1 forma
-        //almost none of female is young and funny.
+        //almost none of female is young and funny.  //f 1 o
 
 
         CompoundVariable sum = new CompoundVariable(List.of(l, l), List.of("and") );
-        LinguisticSummary s = new LinguisticSummary(quantifier, )
+//        LinguisticSummary s = new LinguisticSummary(quantifier, sum, subject);
 
 
     }

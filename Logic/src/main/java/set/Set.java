@@ -1,12 +1,14 @@
 package set;
 
+import functions.UniverseOfDiscourse;
+
 import java.util.List;
 
 public abstract class Set<T> {
 
-
     public List<T> x;
     public List<T> y;
+    UniverseOfDiscourse universe;
 
     public List<T> getValues() {
         return x;

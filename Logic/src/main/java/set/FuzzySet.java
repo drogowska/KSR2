@@ -11,13 +11,10 @@ public class FuzzySet extends Set<Double> {
     protected boolean isNormal;
     protected boolean isConvex;
     private boolean isEmpty;
-    UniverseOfDiscourse universeOfDiscourse;
 
-    public FuzzySet(UniverseOfDiscourse universeOfDiscourse, List<Label> labels) {
+    public FuzzySet(UniverseOfDiscourse universeOfDiscourse) {
         super();
-        this.universeOfDiscourse = universeOfDiscourse;
-//        valXY = new  HashMap<>();
-//        tags.forEach(t-> valXY.putAll(t.getMembershipFunctions().getValues()));
+        this.universe = universeOfDiscourse;
         isEmpty = isEmpty();
         isNormal = (getHeight() == 1.0);
 //        isConvex = (isConvex());
@@ -25,15 +22,31 @@ public class FuzzySet extends Set<Double> {
 
 
     public FuzzySet(UniverseOfDiscourse universe, MembershipFunction function) {
-        this.universeOfDiscourse = universeOfDiscourse;
+        this.universe = universe;
         this.x = universe.x;
         x.forEach(xs -> y.add(function.calculate(xs)));
         isEmpty = isEmpty();
         isNormal = (getHeight() == 1.0);
     }
 
+    public FuzzySet(UniverseOfDiscourse universe, List<Double> ys) {
+        this.universe = universe;
+        this.x = universe.x;
+        y = ys;
+        isEmpty = isEmpty();
+        isNormal = (getHeight() == 1.0);
+    }
+
+    public FuzzySet(List<Double> xs, List<Double> ys) {
+        x = xs;
+        y = ys;
+        universe = new UniverseOfDiscourse(Collections.min(xs), Collections.max(xs), 1);
+        isEmpty = isEmpty();
+        isNormal = (getHeight() == 1.0);
+    }
+
     public UniverseOfDiscourse getUniverseOfDiscourse() {
-        return universeOfDiscourse;
+        return universe;
     }
 
     //to do
@@ -43,31 +56,24 @@ public class FuzzySet extends Set<Double> {
 
     private boolean isEmpty() {
         int res = 0;
-//        for(Map.Entry<Double, Double> entry : valXY.entrySet())
-//            if (entry.getValue() == 0) res++;
         for (Double v : y)
             if (v > 0) res++;
         return (res == x.size());
     }
 
     public FuzzySet(UniverseOfDiscourse universeOfDiscourse, HashMap<Double, Double> valXY) {
-        this.universeOfDiscourse = universeOfDiscourse;
-//        this.valXY = valXY;
+        this.universe = universeOfDiscourse;
         isEmpty = isEmpty();
         isNormal = (getHeight() == 1.0);
     }
 
     public ClassicSet getAlphaCut(double alpha) {
         List<Double> tagsList = new ArrayList<>();
-//        for(Map.Entry<Double, Double> entry : valXY.entrySet()) {
-//            if (entry.getValue() >= alpha)
-//                tagsList.add(entry.getKey());
-//        }
         for (int i = 0; i < y.size(); i++ ){
             if (y.get(i) >= alpha)
                 tagsList.add(x.get(i));
         }
-        return new ClassicSet(universeOfDiscourse, tagsList);
+        return new ClassicSet(universe, tagsList);
     }
 
     public ClassicSet getSupp() {
@@ -80,39 +86,28 @@ public class FuzzySet extends Set<Double> {
 
     @Override
     public Set<Double> sum(Set<Double> set) {
-        HashMap<Double, Double> val = new HashMap<>();
-        for (int i =0; i < x.size(); i++) {
-//            double x = universeOfDiscourse.values.get(i);
-//            double y1 = values.get(i).getMembershipFunctions().calculate(x);
-//            double y2 = values.get(i).getMembershipFunctions().calculate(x);
-//            val.put(x, Math.min(y1, y2));
-        }
-        return new FuzzySet(universeOfDiscourse, val);
+        ClassicSet uni = (ClassicSet) set.universe.sum(this.universe);
+        List<Double> values = new ArrayList<>();
+        for (int i = 0; i <uni.x.size(); i++)
+            values.add(Math.min(y.get(i), set.y.get(i)));
+        return new FuzzySet(uni.x, values);
     }
     @Override
     public Set<Double> multiply(Set<Double> set) {
-        HashMap<Double, Double> val = new HashMap<>();
-//        for (int i =0; i < values.size(); i++) {
-//            double x = universeOfDiscourse.values.get(i);
-//            double y1 = values.get(i).getMembershipFunctions().calculate(x);
-//            double y2 = values.get(i).getMembershipFunctions().calculate(x);
-//            val.put(x, Math.max(y1, y2));
-//        }
-        return new FuzzySet(universeOfDiscourse, val);
+        ClassicSet uni = (ClassicSet) set.universe.sum(this.universe);
+        List<Double> values = new ArrayList<>();
+        for (int i = 0; i <uni.x.size(); i++) {
+            values.add(Math.max(y.get(i), set.y.get(i)));
+        }
+        return new FuzzySet(uni.x, values);
     }
 
     @Override
     public Set<Double> complement() {
-        List<Label> labels = new ArrayList<>();
-//        values.forEach(v -> {
-//            tags.add(new Tag(v.getLabel(), new MembershipFunction(v.getMembershipFunctions().getUniverseOfDiscourse()) {
-//                @Override
-//                public Double calculate(double x) {
-//                    return 1 - v.getMembershipFunctions().calculate(x);
-//                }
-//            }));
-//        });
-        return new FuzzySet(universeOfDiscourse, labels);
+        List<Double> labels = new ArrayList<>();
+        for (int i = 0; i < x.size(); i++)
+            labels.add(1-y.get(i));
+        return new FuzzySet(universe.x, labels);
     }
 
     public double compatibilityLevel(double x) {
@@ -121,26 +116,28 @@ public class FuzzySet extends Set<Double> {
     }
     public double sigmaCount() {
         double res = 0;
-     //   for(Map.Entry<Double, Double> entry : valXY.entrySet()) {
         for (Double i : y)
             res += i;
-       // }
         return res;
     }
     @Override
     public FuzzySet and(Set<Double> set) {
-        //min
         return (FuzzySet) multiply(set);
     }
 
     @Override
     public FuzzySet or(Set<Double> set) {
-        return null;
+        ClassicSet uni = (ClassicSet) set.universe.sum(this.universe);
+        List<Double> list = new ArrayList<>();
+        for (int i = 0; i < uni.x.size(); i++) {
+            list.add((set.y.get(i) != 0 && 0 == y.get(i))? set.y.get(i) : y.get(i));
+        }
+        return new FuzzySet(uni.x, list);
     }
 
     //degree of fuzziness
     public Double in() {
-        return Double.valueOf(getSupp().x.size() / universeOfDiscourse.x.size());
+        return Double.valueOf(getSupp().x.size() / universe.x.size());
     }
 
 }

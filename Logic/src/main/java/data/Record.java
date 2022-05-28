@@ -1,10 +1,10 @@
 package data;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 
 @Data
 @AllArgsConstructor

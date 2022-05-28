@@ -5,12 +5,12 @@ import functions.UniverseOfDiscourse;
 import java.util.*;
 
 public class ClassicSet extends Set<Double> {
-    private UniverseOfDiscourse universe;
+
 
     public ClassicSet(List<Double> values) {
         super();
         this.x = values;
-        universe = null;
+        this.universe = null;
     }
 
     public ClassicSet(List<Double> universe, List<Double> values) {

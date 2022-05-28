@@ -109,14 +109,17 @@ public class LinguisticSummary {
 
     //degree of truth
     public double T1() {
+        CompoundVariable q = (CompoundVariable) qualifiers;
+        CompoundVariable sumSet = (CompoundVariable) summarizers;
         if (summaryType.equals(SummaryType.ONESUBJECT)) {
-            if (quantifier.isAbsolute())
-                return quantifier.getFuzzy().compatibilityLevel(summarizers.getLabels().get(0).getFuzzy().sigmaCount());
+            if (form == 1)
+                return quantifier.getFuzzy().compatibilityLevel(sumSet.compound().sigmaCount());
             else {
-//                FuzzySet sumSet = (FuzzySet) summarizers.get(0).getLabels().getFuzzy().sum(summarizers.get(1).getFuzzy());
-//                return quantifier.getFuzzy().compatibilityLevel(
-//                        sumSet.sigmaCount() / summarizers.get(1).getFuzzy().sigmaCount());
+                return quantifier.getFuzzy().compatibilityLevel(sumSet.compound().and(q.compound()).sigmaCount()) / q.compound().sigmaCount();
             }
+        } else {
+            double a = 1.0 /
+            return q.compound().compatibilityLevel(a / b);
         }
         return 0.0;
     }

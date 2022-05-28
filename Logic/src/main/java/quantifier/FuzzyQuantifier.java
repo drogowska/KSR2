@@ -7,7 +7,6 @@ import fuzzy.Label;
 @Getter
 public class FuzzyQuantifier extends Label {
 
-    private int form;
     private boolean isAbsolute;
 
     public FuzzyQuantifier(MembershipFunction membershipFunctions) {
@@ -18,7 +17,12 @@ public class FuzzyQuantifier extends Label {
         super(label, membershipFunctions);
     }
 
-//    public FuzzyQuantifier(UniverseOfDiscourse universeOfDiscourse, List<Label> label) {
+    public FuzzyQuantifier(String label, MembershipFunction membershipFunctions, boolean isAbsolute) {
+        super(label, membershipFunctions);
+        this.isAbsolute = isAbsolute;
+    }
+
+    //    public FuzzyQuantifier(UniverseOfDiscourse universeOfDiscourse, List<Label> label) {
 //        super(universeOfDiscourse, label);
 //    }
 
