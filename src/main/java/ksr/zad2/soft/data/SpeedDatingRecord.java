@@ -1,9 +1,10 @@
 package ksr.zad2.soft.data;
 
 
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
