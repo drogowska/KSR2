@@ -1,17 +1,19 @@
 package data;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
+
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-
 @Data
 @AllArgsConstructor
-public class Record {
+@Entity(name = "sp_tab")
+public class SpeedDatingRecord {
+
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
+
     private int has_null;
     private float wave;
     private String gender;
@@ -136,8 +138,8 @@ public class Record {
     private int decision_o;
     private int _match;
 
-    public Record(int age, int d_age, int importance_same_race, int importance_same_religion, float pref_o_inteligence, float pref_o_ambitious,
-                   int tvsports, int expected_num_interested_in_me, float guess_prob_liked, float sincere) {
+    public SpeedDatingRecord(int age, int d_age, int importance_same_race, int importance_same_religion, float pref_o_inteligence, float pref_o_ambitious,
+                             int tvsports, int expected_num_interested_in_me, float guess_prob_liked, float sincere) {
         this.age = age;
         this.d_age = d_age;
         this.importance_same_race = importance_same_race;
@@ -148,6 +150,10 @@ public class Record {
         this.expected_num_interested_in_me = expected_num_interested_in_me;
         this.guess_prob_liked = guess_prob_liked;
         this.sincere = sincere;
+    }
+
+    public SpeedDatingRecord() {
+
     }
 
     public Long getId() {
