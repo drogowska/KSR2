@@ -137,13 +137,18 @@ public class LinguisticSummary {
     }
 
     //degree of covering
-    public static double T3() {
-        return  0.0;
+    public double T3() {
+        CompoundVariable q = (CompoundVariable) qualifiers;
+        CompoundVariable sumSet = (CompoundVariable) summarizers;
+        return sumSet.compound().and(q.compound()).getSupp().x.size() / q.compound().getSupp().x.size();
     }
 
     //degree of appropriateness
     public double T4() {
-        return 0;
+        Double mul = 0.0;
+        for (Label s : summarizers.getLabels())
+            mul *= (double) s.getFuzzy().getSupp().x.size() / objects.size();
+        return Math.abs(mul- T3());
     }
 
     //length of a summary

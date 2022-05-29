@@ -24,7 +24,10 @@ public abstract class MembershipFunction {
     }
 
     public void setValues() {
-        universeOfDiscourse.x.forEach(d -> map.put(d, calculate(d)));
+        universeOfDiscourse.x.forEach(d -> {
+            double y = calculate(d);
+            map.put(d, (y <= 0)? 0.0 : y);
+        });
     }
     public Map<Double, Double> getValues() {
         return map;
