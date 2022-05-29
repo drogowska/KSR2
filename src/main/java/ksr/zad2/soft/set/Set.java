@@ -2,12 +2,13 @@ package ksr.zad2.soft.set;
 
 import ksr.zad2.soft.functions.UniverseOfDiscourse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Set<T> {
 
-    public List<T> x;
-    public List<T> y;
+    public List<T> x = new ArrayList<>();
+    public List<T> y = new ArrayList<>();
     UniverseOfDiscourse universe;
 
     public List<T> getValues() {

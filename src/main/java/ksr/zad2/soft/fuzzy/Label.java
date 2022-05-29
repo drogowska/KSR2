@@ -1,10 +1,6 @@
 package ksr.zad2.soft.fuzzy;
 import ksr.zad2.soft.functions.MembershipFunction;
-import ksr.zad2.soft.fuzzy.LinguisticVariable;
 import ksr.zad2.soft.set.FuzzySet;
-
-import java.util.List;
-
 
 public class Label {
 

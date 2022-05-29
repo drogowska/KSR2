@@ -30,7 +30,7 @@ public class CompoundVariable extends LinguisticVariable {
         labels.forEach(l -> fuzzySet.add(l.getFuzzy()));
         int k =0;
         for (int i = 1; i < fuzzySet.size(); i += 2) {
-            FuzzySet f = (connectives.get(k).equals("and"))?
+            FuzzySet f = (connectives.get(k).equals("and")) ?
                     labels.get(i-1).getFuzzy().and(labels.get(i).getFuzzy()) :
                     labels.get(i-1).getFuzzy().or(labels.get(i).getFuzzy());
             k++;

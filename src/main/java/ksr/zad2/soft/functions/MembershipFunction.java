@@ -1,10 +1,11 @@
 package ksr.zad2.soft.functions;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public abstract class MembershipFunction {
     UniverseOfDiscourse universeOfDiscourse;
-    HashMap<Double, Double> map;
+    Map<Double, Double> map = new HashMap<>();
 
     public UniverseOfDiscourse getUniverseOfDiscourse() {
         return universeOfDiscourse;
@@ -18,7 +19,7 @@ public abstract class MembershipFunction {
     public void setValues() {
         universeOfDiscourse.x.forEach(d -> map.put(d, calculate(d)));
     }
-    public HashMap<Double, Double> getValues() {
+    public Map<Double, Double> getValues() {
         return map;
     }
 

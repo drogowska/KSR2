@@ -1,7 +1,6 @@
 package ksr.zad2.soft.set;
 
 import ksr.zad2.soft.functions.*;
-import ksr.zad2.soft.fuzzy.Label;
 import lombok.Getter;
 
 import java.util.*;
@@ -114,10 +113,12 @@ public class FuzzySet extends Set<Double> {
         int id = this.x.indexOf(x);
         return y.get(id);
     }
+
     public double sigmaCount() {
         double res = 0;
-        for (Double i : y)
+        for (Double i : y) {
             res += i;
+        }
         return res;
     }
     @Override

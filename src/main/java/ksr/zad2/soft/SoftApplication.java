@@ -1,25 +1,18 @@
 package ksr.zad2.soft;
 
+import javafx.application.Application;
 import ksr.zad2.soft.database.SpeedDatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SoftApplication implements CommandLineRunner {
+public class SoftApplication  {
 
     @Autowired
     private SpeedDatingRepository speedDatingRepository;
 
     public static void main(String[] args) {
-        SpringApplication.run(SoftApplication.class, args);
-    }
-
-    @Override
-    public void run(String... args) throws Exception
-    {
-        System.out.println(speedDatingRepository.findAll().size());
+        Application.launch(Main.class, args);
     }
 
 }

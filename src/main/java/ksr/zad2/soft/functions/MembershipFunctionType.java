@@ -4,5 +4,6 @@ public enum MembershipFunctionType {
     CONSTANT,
     GAUSS,
     TRAPEZOIDAL,
-    TRIANGLE
+    TRIANGLE,
+    LINE
 }

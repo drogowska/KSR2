@@ -94,8 +94,9 @@ public class LinguisticSummary {
         sb.append(string).append(" ");
         if ((form == 1 || form == 2)  && summaryType.equals(SummaryType.ONESUBJECT)) {
             sb.append(summarizers.getName()).append(" ");
-            if (form == 2)
+            if (form == 2) {
                 sb.append("are ").append(qualifiers.getName()).append(" ");
+            }
         } else if (form == 1 && summaryType.equals(SummaryType.MULTISUBJECTS))
             sb.append(subject2).append(" are ").append(summarizers.getName());
         else if (form == 2 && summaryType.equals(SummaryType.MULTISUBJECTS))
@@ -139,6 +140,7 @@ public class LinguisticSummary {
     public static double T3() {
         return  0.0;
     }
+
     //degree of appropriateness
     public double T4() {
         return 0;
@@ -148,6 +150,7 @@ public class LinguisticSummary {
     public double T5() {
         return length(summarizers);
     }
+
     //the optimal summary
     public double T(List<Double> wages) {
         return wages.get(0) * T1() +
@@ -180,10 +183,12 @@ public class LinguisticSummary {
     public double T8() {
        return cardinality(summarizers);
     }
+
     //degree of qualifier imprecision
     public double T9() {
         return imprecision(qualifiers);
     }
+
     //degree of qualifier cardinality
     public double T10() {
         return cardinality(qualifiers);
@@ -192,12 +197,14 @@ public class LinguisticSummary {
     private double length(LinguisticVariable set) {
         return 2 * Math.pow(0.5, set.getLabels().size());
     }
+
     private double cardinality(LinguisticVariable set) {
         Double mul = 0.0;
         for (Label s : set.getLabels())
             mul *= s.getFuzzy().sigmaCount() / s.getFuzzy().getUniverseOfDiscourse().x.size();
         return 1 - Math.pow(mul, set.getLabels().size());
     }
+
     //length of a qualifier
     public double T11() {
         return length(qualifiers);

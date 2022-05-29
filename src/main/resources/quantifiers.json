@@ -1,0 +1,13 @@
+[
+  ["Prawie żadne", "false", "TRAPEZOIDAL"],
+  ["Trochę", "false", "TRAPEZOIDAL"],
+  ["Mniej więcej połowa", "false", "TRAPEZOIDAL"],
+  ["Większość", "false", "TRAPEZOIDAL"],
+  ["Zdecydowana większość", "false", "TRAPEZOIDAL"],
+  ["Około 1/3", "false", "TRAPEZOIDAL"],
+  ["Mniej niż 1000", "true", "TRAPEZOIDAL"],
+  ["Około 3000", "true", "TRAPEZOIDAL" ],
+  ["Ponad 5000", "true", "TRAPEZOIDAL"],
+  ["Około 8000", "true", "TRAPEZOIDAL"],
+  ["Ponad 1000", "true", "TRAPEZOIDAL"]
+]
