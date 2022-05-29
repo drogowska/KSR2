@@ -1,7 +1,7 @@
-package fuzzy;
+package ksr.zad2.soft.fuzzy;
 
-import functions.*;
-import quantifier.FuzzyQuantifier;
+import ksr.zad2.soft.functions.*;
+import ksr.zad2.soft.quantifier.FuzzyQuantifier;
 
 import java.util.List;
 

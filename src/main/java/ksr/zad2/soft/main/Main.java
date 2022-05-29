@@ -1,4 +1,4 @@
-package main;
+package ksr.zad2.soft.main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

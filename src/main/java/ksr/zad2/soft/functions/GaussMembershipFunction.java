@@ -1,4 +1,4 @@
-package functions;
+package ksr.zad2.soft.functions;
 
 public class GaussMembershipFunction extends MembershipFunction {
     private final double center;

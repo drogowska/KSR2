@@ -1,4 +1,4 @@
-package ksr.zad2.soft;
+package ksr.zad2.soft.main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

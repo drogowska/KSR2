@@ -1,8 +1,8 @@
-package fuzzy;
+package ksr.zad2.soft.fuzzy;
 
-import data.SpeedDatingRecord;
+import ksr.zad2.soft.data.SpeedDatingRecord;
 import lombok.Getter;
-import quantifier.FuzzyQuantifier;
+import ksr.zad2.soft.quantifier.FuzzyQuantifier;
 
 import java.util.List;
 

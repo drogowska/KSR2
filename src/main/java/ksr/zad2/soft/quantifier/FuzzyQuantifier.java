@@ -1,8 +1,8 @@
-package quantifier;
+package ksr.zad2.soft.quantifier;
 
-import functions.MembershipFunction;
+import ksr.zad2.soft.functions.MembershipFunction;
 import lombok.Getter;
-import fuzzy.Label;
+import ksr.zad2.soft.fuzzy.Label;
 
 @Getter
 public class FuzzyQuantifier extends Label {

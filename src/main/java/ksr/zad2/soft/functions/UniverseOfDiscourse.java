@@ -1,7 +1,7 @@
-package functions;
+package ksr.zad2.soft.functions;
 
 import lombok.Getter;
-import set.ClassicSet;
+import ksr.zad2.soft.set.ClassicSet;
 
 import java.util.List;
 @Getter

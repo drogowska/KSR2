@@ -1,6 +1,6 @@
-package set;
+package ksr.zad2.soft.set;
 
-import functions.UniverseOfDiscourse;
+import ksr.zad2.soft.functions.UniverseOfDiscourse;
 
 import java.util.*;
 

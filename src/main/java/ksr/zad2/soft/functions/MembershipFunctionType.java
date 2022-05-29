@@ -1,4 +1,4 @@
-package functions;
+package ksr.zad2.soft.functions;
 
 public enum MembershipFunctionType {
     CONSTANT,

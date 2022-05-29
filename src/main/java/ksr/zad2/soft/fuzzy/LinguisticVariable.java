@@ -1,7 +1,7 @@
-package fuzzy;
+package ksr.zad2.soft.fuzzy;
 
-import data.SpeedDatingRecord;
-import functions.UniverseOfDiscourse;
+import ksr.zad2.soft.data.SpeedDatingRecord;
+import ksr.zad2.soft.functions.UniverseOfDiscourse;
 import lombok.Getter;
 
 import java.util.HashMap;

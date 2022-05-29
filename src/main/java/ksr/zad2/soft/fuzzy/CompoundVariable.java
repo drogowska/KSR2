@@ -1,8 +1,8 @@
-package fuzzy;
+package ksr.zad2.soft.fuzzy;
 
-import functions.UniverseOfDiscourse;
+import ksr.zad2.soft.functions.UniverseOfDiscourse;
 import lombok.Getter;
-import set.FuzzySet;
+import ksr.zad2.soft.set.FuzzySet;
 
 import java.util.ArrayList;
 import java.util.List;

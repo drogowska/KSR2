@@ -1,4 +1,4 @@
-package data;
+package ksr.zad2.soft.data;
 
 
 import javax.persistence.*;

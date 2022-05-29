@@ -1,6 +1,6 @@
-package database;
+package ksr.zad2.soft.database;
 
-import data.SpeedDatingRecord;
+import ksr.zad2.soft.data.SpeedDatingRecord;
 
 import javax.persistence.*;
 import java.util.List;

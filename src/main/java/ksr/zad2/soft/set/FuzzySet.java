@@ -1,7 +1,7 @@
-package set;
+package ksr.zad2.soft.set;
 
-import functions.*;
-import fuzzy.Label;
+import ksr.zad2.soft.functions.*;
+import ksr.zad2.soft.fuzzy.Label;
 import lombok.Getter;
 
 import java.util.*;
