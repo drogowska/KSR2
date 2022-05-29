@@ -6,6 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ksr.zad2.soft.database.SpeedDatingRepository;
+import ksr.zad2.soft.fuzzy.Defined;
+import ksr.zad2.soft.fuzzy.LinguisticSummary;
+import ksr.zad2.soft.fuzzy.LinguisticVariable;
+import ksr.zad2.soft.quantifier.FuzzyQuantifier;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -29,6 +34,10 @@ public class Main extends Application {
         primaryStage.setResizable(true);
         primaryStage.show();
         applicationContext.publishEvent(new StageReadyEvent(primaryStage));
+
+        //
+
+        //
     }
 
     @Override

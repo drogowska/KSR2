@@ -16,6 +16,13 @@ public abstract class MembershipFunction {
         setValues();
     }
 
+    public MembershipFunction(UniverseOfDiscourse universeOfDiscourse, boolean setValues) {
+        this.universeOfDiscourse = universeOfDiscourse;
+        if(setValues) {
+            setValues();
+        }
+    }
+
     public void setValues() {
         universeOfDiscourse.x.forEach(d -> map.put(d, calculate(d)));
     }

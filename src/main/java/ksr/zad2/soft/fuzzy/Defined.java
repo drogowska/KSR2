@@ -110,6 +110,4 @@ public class Defined {
                     new Label("a lot", new TrapezoidalMembershipFunction(9, 11, 15, 15))),
             new UniverseOfDiscourse(0, 15, 1));
 
-    public static List<Summarizer> summarizers = new ArrayList<>();
-
 }
