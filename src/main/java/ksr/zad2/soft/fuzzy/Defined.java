@@ -6,18 +6,18 @@ import ksr.zad2.soft.quantifier.FuzzyQuantifier;
 import java.util.List;
 
 /*
-* quantifiers 11 X
-* sincere 3 X
-* age 5
-* d_age 6
-* importance_same_race 6
-* importance_same_religion 6
+    * quantifiers 11 X
+    * sincere 3 X
+    * age 5
+    * d_age 6 X
+    * importance_same_race 6 X
+    * importance_same_religion 6 X
 * pref_o_intelligence 5
 * pref_o_ambitious 3
 * tvsports 5
 * expected_num_interested_in_me 6
-* guess_prob_liked 5 X
-* funny 4 X
+    * guess_prob_liked 5 X
+    * funny 4 X
 */
 
 public class Defined {
@@ -66,6 +66,33 @@ public class Defined {
                     new Label("in the prime of age", new TrapezoidalMembershipFunction(40,45,49,50)),
                     new Label("old", new TrapezoidalMembershipFunction(45,50,65,65))),
             new UniverseOfDiscourse(16, 65, 1));
+
+    public static LinguisticVariable d_age = new LinguisticVariable("d_age",
+            List.of(new Label("none", new TriangleMembershipFunction(0,0,1)),
+                    new Label("tiny", new TriangleMembershipFunction(1, 3, 5)),
+                    new Label("small", new TriangleMembershipFunction(3,7,10)),
+                    new Label("average", new TrapezoidalMembershipFunction(9,17,19,23)),
+                    new Label("significant", new TrapezoidalMembershipFunction(15,19,22,32)),
+                    new Label("huge", new TrapezoidalMembershipFunction(30,35,45,45))),
+            new UniverseOfDiscourse(0, 45, 1));
+
+    public static LinguisticVariable importance_same_race = new LinguisticVariable("importance_same_race",
+            List.of(new Label("none", new TriangleMembershipFunction(0,0,1)),
+                    new Label("tiny", new TriangleMembershipFunction(1, 2, 3)),
+                    new Label("small", new TrapezoidalMembershipFunction(2, 3, 4, 5)),
+                    new Label("average", new TriangleMembershipFunction(4,5,6)),
+                    new Label("significant", new GaussMembershipFunction(6, 1, new UniverseOfDiscourse(0, 13, 1))),
+                    new Label("huge", new GaussMembershipFunction(9,1.5, new UniverseOfDiscourse(0, 13, 1)))),
+            new UniverseOfDiscourse(0, 13, 1));
+
+    public static LinguisticVariable importance_same_religion = new LinguisticVariable("importance_same_religion",
+            List.of(new Label("none", new TriangleMembershipFunction(0,0,1)),
+                    new Label("tiny", new TriangleMembershipFunction(1, 2, 3)),
+                    new Label("small", new TrapezoidalMembershipFunction(2, 3, 4, 5)),
+                    new Label("average", new TriangleMembershipFunction(4,5,6)),
+                    new Label("significant", new GaussMembershipFunction(6, 1, new UniverseOfDiscourse(0, 13, 1))),
+                    new Label("huge", new GaussMembershipFunction(9,1.5, new UniverseOfDiscourse(0, 13, 1)))),
+            new UniverseOfDiscourse(0, 13, 1));
 
     public static List<Summarizer> summarizers = new ArrayList<>();
     {
