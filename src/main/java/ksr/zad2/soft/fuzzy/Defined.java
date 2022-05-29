@@ -5,21 +5,6 @@ import ksr.zad2.soft.quantifier.FuzzyQuantifier;
 
 import java.util.List;
 
-/*
-    * quantifiers 11 X
-    * sincere 3 X
-    * age 5
-    * d_age 6 X
-    * importance_same_race 6 X
-    * importance_same_religion 6 X
-* pref_o_intelligence 5
-* pref_o_ambitious 3
-* tvsports 5
-* expected_num_interested_in_me 6
-    * guess_prob_liked 5 X
-    * funny 4 X
-*/
-
 public class Defined {
 
     public static List<FuzzyQuantifier> quantifier = List.of
@@ -94,10 +79,37 @@ public class Defined {
                     new Label("huge", new GaussMembershipFunction(9,1.5, new UniverseOfDiscourse(0, 13, 1)))),
             new UniverseOfDiscourse(0, 13, 1));
 
-    public static List<Summarizer> summarizers = new ArrayList<>();
-    {
-        this.summarizers.add();
-    }
+    public static LinguisticVariable pref_o_ambitious = new LinguisticVariable("pref_o_ambitious",
+            List.of(new Label("not ambitious", new GaussMembershipFunction(6, 8, new UniverseOfDiscourse(0, 55, 1))),
+                    new Label("moderately ambitious'", new GaussMembershipFunction(30, 12, new UniverseOfDiscourse(0, 55, 1))),
+                    new Label("ambitious", new GaussMembershipFunction(45, 5, new UniverseOfDiscourse(0, 55, 1)))),
+            new UniverseOfDiscourse(0, 55, 1));
 
+    public static LinguisticVariable pref_o_intelligence = new LinguisticVariable("pref_o_intelligence",
+            List.of(new Label("stupid", new TrapezoidalMembershipFunction(0,0,1,3)),
+                    new Label("not very intelligent", new TrapezoidalMembershipFunction(2,5,12,16)),
+                    new Label("average", new TrapezoidalMembershipFunction(14, 20, 30, 35)),
+                    new Label("inteligent", new TrapezoidalMembershipFunction(32, 44, 58, 64)),
+                    new Label("genius", new TrapezoidalMembershipFunction(57, 62, 67, 67))),
+            new UniverseOfDiscourse(0, 68, 1));
+
+    public static LinguisticVariable tvsports = new LinguisticVariable("sports",
+            List.of(new Label("not interested", new TrapezoidalMembershipFunction(0, 0, 2, 5)),
+                    new Label("neutral", new TriangleMembershipFunction(2, 4, 7)),
+                    new Label("moderately interested", new TrapezoidalMembershipFunction(4, 6, 8, 9)),
+                    new Label("interested", new TriangleMembershipFunction(8, 9, 11)),
+                    new Label("passionate", new TrapezoidalMembershipFunction(9, 11, 12, 12))),
+            new UniverseOfDiscourse(0, 13, 1));
+
+    public static LinguisticVariable expected_num_interested_in_me = new LinguisticVariable("expected_num_interested_in_me",
+            List.of(new Label("none", new TrapezoidalMembershipFunction(0, 0, 1, 3)),
+                    new Label("few", new TrapezoidalMembershipFunction(1, 3, 4, 6)),
+                    new Label("not many", new TriangleMembershipFunction(4, 5, 7)),
+                    new Label("some", new TriangleMembershipFunction(6, 7, 8)),
+                    new Label("many", new TriangleMembershipFunction(8, 9, 10)),
+                    new Label("a lot", new TrapezoidalMembershipFunction(9, 11, 15, 15))),
+            new UniverseOfDiscourse(0, 15, 1));
+
+    public static List<Summarizer> summarizers = new ArrayList<>();
 
 }
