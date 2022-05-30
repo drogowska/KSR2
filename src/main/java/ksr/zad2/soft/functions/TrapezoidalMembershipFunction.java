@@ -8,9 +8,18 @@ public class TrapezoidalMembershipFunction extends MembershipFunction {
 
     public TrapezoidalMembershipFunction(double minX, double maxYs, double maxYe, double maxX) {
         super(new UniverseOfDiscourse(minX, maxX), false);
-        funs.add(new LineFunction(-1 / (minX - maxYs), 1 /(maxYs - minX), new UniverseOfDiscourse(minX, maxYs)));
-        funs.add(new ConstantFunction(new UniverseOfDiscourse(maxYs, maxYe)));
-        funs.add(new LineFunction(-1 / (maxX - maxYe), 1 / (maxYe - maxX), new UniverseOfDiscourse(maxYe, maxX)));
+        if (minX - maxYs != 0 && maxX - maxYe != 0) {
+            funs.add(new LineFunction( 1/(maxYs - minX), -1*minX / (maxYs - minX), new UniverseOfDiscourse(minX, maxYs)));
+            funs.add(new ConstantFunction(new UniverseOfDiscourse(maxYs, maxYe)));
+            funs.add(new LineFunction(-1 / (maxX - maxYe), -1*maxX / (maxYe - maxX), new UniverseOfDiscourse(maxYe, maxX)));
+        } else if (minX - maxYs == 0) {
+            funs.add(new ConstantFunction(new UniverseOfDiscourse(minX, maxYe)));
+            funs.add(new LineFunction(-1 / (maxX - maxYe), -1*maxX / (maxYe - maxX), new UniverseOfDiscourse(maxYe, maxX)));
+        } else {
+            funs.add(new LineFunction(-1 / (minX - maxYs), -1*minX / (maxYs - minX), new UniverseOfDiscourse(minX, maxYs)));
+            funs.add(new ConstantFunction(new UniverseOfDiscourse(maxYs, maxYe)));
+        }
+
     }
 
     public Double calculate(double x) {
