@@ -4,40 +4,32 @@ import ksr.zad2.soft.functions.UniverseOfDiscourse;
 
 import java.util.*;
 
-public class ClassicSet extends Set<Double> {
+public class ClassicSet<T> extends ArrayList<T> {
 
 
-    public ClassicSet(List<Double> values) {
-        super();
-        this.x = values;
-        this.universe = null;
-    }
 
-    public ClassicSet(List<Double> universe, List<Double> values) {
-        super();
-        this.x = values;
-        this.universe = new UniverseOfDiscourse(universe);
-    }
 
-    public ClassicSet(UniverseOfDiscourse universe, List<Double> values) {
-        this.universe = universe;
-        this.x = values;
-    }
+//    public ClassicSet(UniverseOfDiscourse universe, List<Double> values) {
+//        this. = universe;
+//        function = new ConstantFunction(universe);
+////        this.x = values;
+//    }
 
     public ClassicSet() {
         super();
     }
-    public Double getMin() {
-        return Collections.min(x);
+
+    public ClassicSet(List<T> values) {
     }
 
-    public UniverseOfDiscourse getUniverse() {
-        return universe;
-    }
-
-    public Double getMax() {
-        return Collections.max(x);
-    }
+//    public T getMin() {
+//        return Collections.min(this);
+//    }
+//
+//
+//    public T getMax() {
+//        return Collections.max(this);
+//    }
 
     @Override
     public String toString() {
@@ -46,49 +38,46 @@ public class ClassicSet extends Set<Double> {
         return sb.toString();
     }
 
-    @Override
-    public Set<Double> sum(Set<Double> set) {
-        HashSet<Double> val = new HashSet<>(x);
-        val.addAll(set.x);
-        return new ClassicSet((List<Double>) val);
+//    @Override
+//    public Set sum(Set set) {
+//        return new ClassicSet(universe.sum(set.getUniverse()));
+//    }
+
+    public ClassicSet sum(ClassicSet u) {
+        List<T> val = new ArrayList<>(this);
+        val.addAll(u);
+        return new ClassicSet(new ArrayList<>(new HashSet<>(val)));
     }
 //część wspólna
-    @Override
-    public Set<Double> multiply(Set<Double> set) {
-        List<Double> list = new ArrayList<>();
-        for (Double d : x) {
-            if (set.x.contains(d))
+    public ClassicSet multiply(ClassicSet set) {
+        List<T> list = new ArrayList<>();
+        for (T d : this) {
+            if (set.contains(d))
                 list.add(d);
         }
         return new ClassicSet(list);
     }
 
-    @Override
-    public Set<Double> complement() {
-        List<Double> list = new ArrayList<>();
-        for (Double d : universe.getValues()) {
-            if (!this.x.contains(d))
+    public ClassicSet complement() {
+        List<T> list = new ArrayList<>();
+        for (T d : this) {
+            if (!this.contains(d))
                 list.add(d);
         }
         return new ClassicSet(list);
     }
 
-    @Override
-    public Set<Double> and(Set<Double> set) {
+    public ClassicSet and(ClassicSet set) {
         return multiply(set);
     }
 
-    @Override
-    public Set<Double> or(Set<Double> set) {
-        List<Double> list = new ArrayList<>();
-        for (Double d : x) {
-            if (!set.x.contains(d))
+    public ClassicSet or(ClassicSet set) {
+        List<T> list = new ArrayList<>();
+        for (T d : this) {
+            if (!set.contains(d))
                 list.add(d);
         }
         return new ClassicSet(list);
     }
 
-    public boolean contain(Double x) {
-        return this.x.contains(x);
-    }
 }

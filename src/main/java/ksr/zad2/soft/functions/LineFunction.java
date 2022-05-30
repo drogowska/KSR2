@@ -1,5 +1,7 @@
 package ksr.zad2.soft.functions;
 
+import ksr.zad2.soft.set.ClassicSet;
+
 public class LineFunction extends MembershipFunction{
     //y =ax+b
     private final double a;
@@ -18,6 +20,7 @@ public class LineFunction extends MembershipFunction{
     }
     @Override
     public Double calculate(double x) {
-        return a*x +b;
+        double y = a*x+b;
+        return (y <= 0)? 0 : y;
     }
 }

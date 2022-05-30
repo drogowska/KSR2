@@ -1,25 +1,28 @@
 package ksr.zad2.soft.set;
 
+import ksr.zad2.soft.functions.MembershipFunction;
 import ksr.zad2.soft.functions.UniverseOfDiscourse;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public abstract class Set<T> {
-
-    public List<T> x = new ArrayList<>();
-    public List<T> y = new ArrayList<>();
+@Getter
+public abstract class Set {
+//
+//    public List<Double> x = new ArrayList<>();
+//    public List<Double> y = new ArrayList<>();
     UniverseOfDiscourse universe;
+    MembershipFunction function;
 
-    public List<T> getValues() {
-        return x;
+    public List<Double> getValues() {
+        return universe;
     }
-    public abstract Set<T> sum(Set<T> set);
-    public abstract Set<T> multiply(Set<T> set);
-    public abstract Set<T> complement();
+    public abstract Set sum(Set set);
+    public abstract Set multiply(Set set);
+    public abstract Set complement();
 
-    public abstract Set<T> and(Set<T> set);
+    public abstract Set and(Set set);
 
-    public abstract Set<T> or(Set<T> set);
+    public abstract Set or(Set set);
 
 }

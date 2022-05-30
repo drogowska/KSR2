@@ -19,7 +19,7 @@ public class CompoundVariable extends LinguisticVariable {
 
     public CompoundVariable(List<Label> labels, List<String> connectives) {
         super("compound", labels, new UniverseOfDiscourse(labels.get(0).getMembershipFunctions().getUniverseOfDiscourse().getMin(),
-                labels.get(1).getMembershipFunctions().getUniverseOfDiscourse().getMax(), 1));
+                labels.get(1).getMembershipFunctions().getUniverseOfDiscourse().getMax()));
         this.connectives = connectives;
         compound();
 
@@ -36,10 +36,10 @@ public class CompoundVariable extends LinguisticVariable {
             k++;
             fuzzySet.add(i+1, f);
         }
-        fset = fuzzySet.get(fuzzySet.size()+connectives.size()-1);
+        fset = fuzzySet.get(fuzzySet.size()-1);
         name = labels.get(0).getLabel();
         for (int i = 1; i<labels.size(); i++)
-            this.name += connectives.get(i-1) + labels.get(i).getLabel();
+            this.name += " " + connectives.get(i-1) + " " + labels.get(i).getLabel();
         return fset;
     }
 

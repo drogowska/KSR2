@@ -8,18 +8,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import static ksr.zad2.soft.SoftApplication.database;
+
 @Getter
 public class LinguisticVariable {
 
     String name;             //L
     List<Label> labels;  //with used G and K
     private UniverseOfDiscourse universeOfDiscourse;
-    HashMap<SpeedDatingRecord, Double> map = new HashMap<>();
 
     public LinguisticVariable(String name, List<Label> labels, UniverseOfDiscourse universeOfDiscourse) {
         this.name = name;
         this.labels = labels;
         this.universeOfDiscourse = universeOfDiscourse;
+//        database.forEach(d -> map.put(d, labels.get(0).getFuzzy().getFunction().calculate(d)));
     }
 
     public Label getByName(String name) {
@@ -40,5 +42,10 @@ public class LinguisticVariable {
 
     public List<Label> getLabels() {
         return labels;
+    }
+
+    public Double exstract(int i) {
+        Double d;
+        return 0.0;
     }
 }

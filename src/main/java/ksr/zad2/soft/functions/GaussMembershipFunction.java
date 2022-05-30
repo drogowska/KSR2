@@ -1,4 +1,5 @@
 package ksr.zad2.soft.functions;
+import ksr.zad2.soft.set.ClassicSet;
 
 public class GaussMembershipFunction extends MembershipFunction {
     private final double center;
@@ -14,6 +15,7 @@ public class GaussMembershipFunction extends MembershipFunction {
     }
 
     public Double calculate(double x) {
-        return Math.pow(Math.exp((-1 * (x-center)) / width), 2);
+        double y = Math.pow(Math.exp((-1 * (x-center)) / width), 2);
+        return (y <= 0)? 0 : y;
     }
 }

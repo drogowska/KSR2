@@ -2,9 +2,10 @@ package ksr.zad2.soft.fuzzy;
 
 import ksr.zad2.soft.data.SpeedDatingRecord;
 import lombok.Getter;
-import ksr.zad2.soft.quantifier.FuzzyQuantifier;
 
 import java.util.List;
+
+import static ksr.zad2.soft.SoftApplication.database;
 
 @Getter
 public class LinguisticSummary {
@@ -15,7 +16,6 @@ public class LinguisticSummary {
     private String subject;  //P1
     private String subject2;  //P2
 
-    private List<SpeedDatingRecord> objects;  //rekordy z bazy
     private List<SpeedDatingRecord> filtered;
 
     private boolean withQualifier;
@@ -28,7 +28,6 @@ public class LinguisticSummary {
     public LinguisticSummary(FuzzyQuantifier quantifier, LinguisticVariable qualifiers, LinguisticVariable summarizers, List<SpeedDatingRecord> subjects, List<SpeedDatingRecord> subjects2, List<SpeedDatingRecord> objects, boolean withQualifier, int form, SummaryType summaryType, List<Double> wages) {
         this.quantifier = quantifier;
         this.qualifiers = qualifiers;
-        this.objects = objects;
         this.withQualifier = withQualifier;
         this.form = form;
         this.summaryType = summaryType;
@@ -38,7 +37,6 @@ public class LinguisticSummary {
     public LinguisticSummary(FuzzyQuantifier quantifier, LinguisticVariable summarizers, List<SpeedDatingRecord> objects, String subject) {
         this.quantifier = quantifier;
         this.summarizers = summarizers;
-        this.objects = objects;
         this.form = 1;
         this.subject = subject;
         string = "are/have";
@@ -50,7 +48,6 @@ public class LinguisticSummary {
         this.quantifier = quantifier;
         this.summarizers = summarizers;
         qualifiers = sum2;
-        this.objects = objects;
         this.subject = subject;
         this.form = 2;
         string = "being";
@@ -61,7 +58,6 @@ public class LinguisticSummary {
     public LinguisticSummary(FuzzyQuantifier quantifier, LinguisticVariable summarizers, List<SpeedDatingRecord> objects, String subject, String sub2, int form) {
         this.quantifier = quantifier;
         this.summarizers = summarizers;
-        this.objects = objects;
         this.subject = subject;
         this.subject2 = sub2;
         this.form = form;
@@ -78,7 +74,6 @@ public class LinguisticSummary {
         this.summarizers = summarizers;
         qualifiers = sum2;
         this.subject2 = s2;
-        this.objects = objects;
         this.subject = subject;
         this.form = form;
         summaryType = SummaryType.MULTISUBJECTS;
@@ -140,14 +135,14 @@ public class LinguisticSummary {
     public double T3() {
         CompoundVariable q = (CompoundVariable) qualifiers;
         CompoundVariable sumSet = (CompoundVariable) summarizers;
-        return sumSet.compound().and(q.compound()).getSupp().x.size() / q.compound().getSupp().x.size();
+        return sumSet.compound().and(q.compound()).getSupp().size() / q.compound().getSupp().size();
     }
 
     //degree of appropriateness
     public double T4() {
         Double mul = 0.0;
         for (Label s : summarizers.getLabels())
-            mul *= (double) s.getFuzzy().getSupp().x.size() / objects.size();
+            mul *= (double) s.getFuzzy().getSupp().size() / database.size();
         return Math.abs(mul- T3());
     }
 
@@ -174,13 +169,13 @@ public class LinguisticSummary {
     //degree of quantifier imprecision
     public double T6() {
         if (quantifier.isAbsolute())
-            return 1 - quantifier.getFuzzy().getSupp().x.size() / objects.size();
+            return 1 - quantifier.getFuzzy().getSupp().size() / database.size();
         return 1 - quantifier.getFuzzy().in();
     }
     //degree of quantifier cardinality
     public double T7() {
         if (quantifier.isAbsolute()) {
-            return 1 - quantifier.getFuzzy().sigmaCount() / objects.size();
+            return 1 - quantifier.getFuzzy().sigmaCount() / database.size();
         }
         return 1 - quantifier.getFuzzy().sigmaCount();
     }
@@ -206,7 +201,7 @@ public class LinguisticSummary {
     private double cardinality(LinguisticVariable set) {
         Double mul = 0.0;
         for (Label s : set.getLabels())
-            mul *= s.getFuzzy().sigmaCount() / s.getFuzzy().getUniverseOfDiscourse().x.size();
+            mul *= s.getFuzzy().sigmaCount() / s.getFuzzy().getUniverseOfDiscourse().size();
         return 1 - Math.pow(mul, set.getLabels().size());
     }
 

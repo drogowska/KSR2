@@ -6,16 +6,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ksr.zad2.soft.data.SpeedDatingRecord;
 import ksr.zad2.soft.database.SpeedDatingRepository;
 import ksr.zad2.soft.fuzzy.Defined;
 import ksr.zad2.soft.fuzzy.LinguisticSummary;
 import ksr.zad2.soft.fuzzy.LinguisticVariable;
-import ksr.zad2.soft.quantifier.FuzzyQuantifier;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Main extends Application {
 

@@ -1,37 +1,22 @@
 package ksr.zad2.soft.functions;
 
+import ksr.zad2.soft.set.ClassicSet;
+import lombok.Getter;
+
 import java.util.HashMap;
 import java.util.Map;
-
+@Getter
 public abstract class MembershipFunction {
     UniverseOfDiscourse universeOfDiscourse;
-    Map<Double, Double> map = new HashMap<>();
-
-    public UniverseOfDiscourse getUniverseOfDiscourse() {
-        return universeOfDiscourse;
-    }
 
     public MembershipFunction(UniverseOfDiscourse universeOfDiscourse) {
         this.universeOfDiscourse = universeOfDiscourse;
-        setValues();
     }
 
     public MembershipFunction(UniverseOfDiscourse universeOfDiscourse, boolean setValues) {
         this.universeOfDiscourse = universeOfDiscourse;
-        if(setValues) {
-            setValues();
-        }
     }
 
-    public void setValues() {
-        universeOfDiscourse.x.forEach(d -> {
-            double y = calculate(d);
-            map.put(d, (y <= 0)? 0.0 : y);
-        });
-    }
-    public Map<Double, Double> getValues() {
-        return map;
-    }
 
     public abstract Double calculate(double x);
 }
