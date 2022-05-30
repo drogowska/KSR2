@@ -18,5 +18,5 @@ public abstract class MembershipFunction {
     }
 
 
-    public abstract Double calculate(double x);
+    public abstract int calculate(double x);
 }

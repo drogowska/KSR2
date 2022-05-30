@@ -10,14 +10,14 @@ public class Defined {
     public static List<FuzzyQuantifier> quantifier = List.of
             (new FuzzyQuantifier("Almost none of", new TrapezoidalMembershipFunction(0, 0, 50, 100), false),
                     new FuzzyQuantifier("Some of", new TrapezoidalMembershipFunction(0, 200, 1500, 1700), false),
-                    new FuzzyQuantifier("Approximately 1/3 of", new GaussMembershipFunction(2700.0, 800.0, new UniverseOfDiscourse(1000.0, 5000.0)), false),
+                    new FuzzyQuantifier("Approximately 1/3 of", new GaussMembershipFunction(2700.0, 800.0, new UniverseOfDiscourse(1000, 5000)), false),
                     new FuzzyQuantifier("Around half of", new TriangleMembershipFunction(3789, 4189, 4589), false),
-                    new FuzzyQuantifier("Most of", new TrapezoidalMembershipFunction(4100, 4600, 8378.0, 8378.0), false),
-                    new FuzzyQuantifier("The vast majority of", new TrapezoidalMembershipFunction(7300, 8300, 8378, 8378.0), false),
-                            new FuzzyQuantifier("Around 8000", new TrapezoidalMembershipFunction(5500.0, 8000, 8400, 8400), true),
-                            new FuzzyQuantifier("More than 5000", new GaussMembershipFunction(5000.0, 1000.0, new UniverseOfDiscourse(2800.0, 6900.0)), true),
+                    new FuzzyQuantifier("Most of", new TrapezoidalMembershipFunction(4100, 4600, 8378, 8378), false),
+                    new FuzzyQuantifier("The vast majority of", new TrapezoidalMembershipFunction(7300, 8300, 8378, 8378), false),
+                            new FuzzyQuantifier("Around 8000", new TrapezoidalMembershipFunction(5500, 8000, 8400, 8400), true),
+                            new FuzzyQuantifier("More than 5000", new GaussMembershipFunction(5000.0, 1000.0, new UniverseOfDiscourse(2800, 6900)), true),
                             new FuzzyQuantifier("Approximately 3000", new TrapezoidalMembershipFunction(1600, 2600,4000,5000), true),
-                            new FuzzyQuantifier("More than 1000", new GaussMembershipFunction(1500, 500, new UniverseOfDiscourse(300.0, 2700)), true),
+                            new FuzzyQuantifier("More than 1000", new GaussMembershipFunction(1500, 500, new UniverseOfDiscourse(300, 2700)), true),
                             new FuzzyQuantifier("Less than 1000", new TrapezoidalMembershipFunction(0, 0, 600, 1000), true)
                     );
 

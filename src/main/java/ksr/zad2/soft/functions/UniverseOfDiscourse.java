@@ -7,23 +7,23 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 @Getter
-public class UniverseOfDiscourse<T> extends ClassicSet<T> implements Cloneable, Comparable<UniverseOfDiscourse> {
+public class UniverseOfDiscourse<T> extends ClassicSet<Integer> implements Cloneable, Comparable<UniverseOfDiscourse> {
     private UniverseOfDiscourseType universeOfDiscourseType;
     boolean isDense = true;
     boolean finite = true;
 
-    T min;
-    T max;
+    Integer min;
+    Integer max;
 
-    public T getMin() {
+    public Integer getMin() {
         return min;
     }
 
-    public T getMax() {
+    public Integer getMax() {
         return max;
     }
 
-    public UniverseOfDiscourse(List<T> values) {
+    public UniverseOfDiscourse(List<Integer> values) {
         super(values);
     }
 
@@ -32,9 +32,12 @@ public class UniverseOfDiscourse<T> extends ClassicSet<T> implements Cloneable, 
         this.universeOfDiscourseType = universeOfDiscourseType;
     }
 
-    public UniverseOfDiscourse(T min, T max) {
+    public UniverseOfDiscourse(Integer min, Integer max) {
         this.min = min;
         this.max = max;
+        for (int i = (int) min; i <= (int) max; i+=1) {
+            this.add(i);
+        }
     }
 
     @Override

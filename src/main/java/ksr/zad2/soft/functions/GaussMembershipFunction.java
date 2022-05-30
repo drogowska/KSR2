@@ -14,8 +14,8 @@ public class GaussMembershipFunction extends MembershipFunction {
         this.width = width;
     }
 
-    public Double calculate(double x) {
+    public int calculate(double x) {
         double y = Math.pow(Math.exp((-1 * (x-center)) / width), 2);
-        return (y <= 0)? 0 : y;
+        return (y <= 0)? 0 : (int) y;
     }
 }

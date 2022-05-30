@@ -19,8 +19,8 @@ public class LineFunction extends MembershipFunction{
         return (y - b) / a;
     }
     @Override
-    public Double calculate(double x) {
+    public int calculate(double x) {
         double y = a*x+b;
-        return (y <= 0)? 0 : y;
+        return (y <= 0)? 0 : (int) y;
     }
 }

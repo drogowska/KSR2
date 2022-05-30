@@ -8,7 +8,7 @@ public class ConstantFunction extends LineFunction {
     }
 
     @Override
-    public Double calculate(double x) {
-        return 1.0;
+    public int calculate(double x) {
+        return 1;
     }
 }

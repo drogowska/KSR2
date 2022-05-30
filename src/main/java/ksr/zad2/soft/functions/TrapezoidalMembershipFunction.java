@@ -6,7 +6,7 @@ import java.util.List;
 public class TrapezoidalMembershipFunction extends MembershipFunction {
     private List<LineFunction> funs = new ArrayList<>();
 
-    public TrapezoidalMembershipFunction(double minX, double maxYs, double maxYe, double maxX) {
+    public TrapezoidalMembershipFunction(int minX, int maxYs, int maxYe, int maxX) {
         super(new UniverseOfDiscourse(minX, maxX), false);
         if (minX - maxYs != 0 && maxX - maxYe != 0) {
             funs.add(new LineFunction( 1/(maxYs - minX), -1*minX / (maxYs - minX), new UniverseOfDiscourse(minX, maxYs)));
@@ -22,11 +22,11 @@ public class TrapezoidalMembershipFunction extends MembershipFunction {
 
     }
 
-    public Double calculate(double x) {
+    public int calculate(double x) {
         for (LineFunction fun : funs) {
             if (fun.universeOfDiscourse.contains(x))
                 return (fun.calculate(x) <= 0)? 0: fun.calculate(x);
         }
-        return 0.0;
+        return 0;
     }
 }
