@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 public class UniverseOfDiscourse<T> extends ClassicSet<Integer> implements Cloneable, Comparable<UniverseOfDiscourse> {
     private UniverseOfDiscourseType universeOfDiscourseType;
-    boolean isDense = true;
+    boolean isDiscrete = true;
     boolean finite = true;
 
     Integer min;
@@ -38,8 +38,14 @@ public class UniverseOfDiscourse<T> extends ClassicSet<Integer> implements Clone
         for (int i = (int) min; i <= (int) max; i+=1) {
             this.add(i);
         }
+        this.universeOfDiscourseType = UniverseOfDiscourseType.DENSE;
     }
 
+    public UniverseOfDiscourse(Integer min, Integer max, boolean isDiscrete) {
+        this(min, max);
+        this.isDiscrete = isDiscrete;       //wtedy jest ciągła, określona danym przedziałem
+        this.universeOfDiscourseType = UniverseOfDiscourseType.DISCREET;
+    }
     @Override
     public int compareTo(UniverseOfDiscourse o) {
         if (this.equals(o)) return 0;

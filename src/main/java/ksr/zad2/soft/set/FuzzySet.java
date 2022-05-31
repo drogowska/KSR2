@@ -1,19 +1,25 @@
 package ksr.zad2.soft.set;
 
+import ksr.zad2.soft.data.CustomRecord;
 import ksr.zad2.soft.data.SpeedDatingRecord;
 import ksr.zad2.soft.functions.*;
 import lombok.Getter;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
+
+import static ksr.zad2.soft.SoftApplication.cutDB;
+
 @Getter
-public class FuzzySet<T> {
+public class FuzzySet {
 
     protected boolean isNormal;
     protected boolean isConvex;
     private boolean isEmpty;
     UniverseOfDiscourse<Double> universe;
     MembershipFunction function;
-
+    HashMap<SpeedDatingRecord, Double> map = new HashMap<>();
+    private String label;
 
     public void setUniverse(UniverseOfDiscourse universe) {
         this.universe = universe;
@@ -27,6 +33,11 @@ public class FuzzySet<T> {
 //        isConvex = (isConvex());
     }
 
+    public FuzzySet(String label, MembershipFunction function, UniverseOfDiscourse universe) {
+        this.function = function;
+        this.universe = universe;
+        this.label = label;
+    }
 
     public FuzzySet(UniverseOfDiscourse universe, MembershipFunction function) {
         this.universe = universe;
@@ -37,20 +48,16 @@ public class FuzzySet<T> {
         isNormal = (getHeight() == 1.0);
     }
 
-    public FuzzySet(UniverseOfDiscourse universe, List<Double> ys) {
+    public FuzzySet(UniverseOfDiscourse universe, MembershipFunction function, SpeedDatingRecord record) {
         this.universe = universe;
-//        this = universe;
-//        y = ys;
+//        this.x = universe.x;
+        this.function = function;
+//        x.forEach(xs -> y.add(function.calculate(xs)));
         isEmpty = isEmpty();
         isNormal = (getHeight() == 1.0);
     }
-
-    public FuzzySet(List<Double> xs, List<Double> ys) {
-//        x = xs;
-//        y = ys;
-//        universe = new UniverseOfDiscourse(Collections.min(xs), Collections.max(xs), 1);
-        isEmpty = isEmpty();
-        isNormal = (getHeight() == 1.0);
+    public double getValue(Double x) {
+        return function.calculate(x);
     }
 
     public UniverseOfDiscourse getUniverseOfDiscourse() {
@@ -64,7 +71,7 @@ public class FuzzySet<T> {
 
     private boolean isEmpty() {
         int res = 0;
-        for (Double v : universe)
+        for (int v : universe)
             if (function.calculate(v) > 0) res++;
         return (res == universe.size());
     }
@@ -75,13 +82,23 @@ public class FuzzySet<T> {
         isNormal = (getHeight() == 1.0);
     }
 
-    public ClassicSet getAlphaCut(double alpha) {
-        List<Double> tagsList = new ArrayList<>();
-        for (int i = 0; i < universe.size(); i++ ){
-            if (function.calculate((Double) universe.get(i)) >= alpha)
-                tagsList.add((Double) universe.get(i));
+//    public ClassicSet getAlphaCut(double alpha) {
+//        List<Integer> tagsList = new ArrayList<>();
+//        for (int i = 0; i < universe.size(); i++ ){
+//            if (function.calculate(universe.get(i)) >= alpha) {
+//                tagsList.add(universe.get(i));
+//            }
+//        }
+//        return new ClassicSet(tagsList);
+//    }
+    public ClassicSet<CustomRecord> getAlphaCut(double alpha) {
+        List<CustomRecord> tagsList = new ArrayList<>();
+        for (CustomRecord customRecord : cutDB) {
+            if (function.calculate(map.get(customRecord)) >= alpha) {
+                tagsList.add(customRecord);
+            }
         }
-        return new ClassicSet(tagsList);
+        return new ClassicSet<CustomRecord>(tagsList);
     }
 
     public ClassicSet getSupp() {
@@ -89,17 +106,23 @@ public class FuzzySet<T> {
     }
 
     public Double getHeight() {
-        return 0.0;//Collections.max(function.calculate(0.0));
+        return Collections.max(map.values());
     }
 
-//    @Override
     public FuzzySet sum(FuzzySet set) {
         return null;
-       // ClassicSet uni = (ClassicSet) set.universe.sum(this.universe);
-//        List<Double> values = new ArrayList<>();
-//        for (int i = 0; i <universe.size(); i++)
-//            values.add(Math.min(function.calculate(universe.get(i)), set.function.calculate(set.universe.get(i))));
-//        return new FuzzySet(set.universe, values);
+//        UniverseOfDiscourse<Integer> uni = new UniverseOfDiscourse(
+//                (set.getUniverse().getMin() >= this.universe.getMin())? set.getUniverse().getMin() : this.universe.getMin(),
+//                (set.getUniverse().getMax() >= this.universe.getMax())? this.universe.getMax() : set.getUniverse().getMax());
+//        for (int i = 0; i < uni.size(); i++) {
+//            if (uni.get(i))
+//        }
+////        List<Double> values = new ArrayList<>();
+////        for (int i = 0; i <universe.size(); i++)
+////            values.add(Math.min(function.calculate(universe.get(i)), set.function.calculate(set.universe.get(i))));
+////        return x -> Math.min(this.getFunction().calculate(x), set.getFunction().calculate(x));
+//
+//        new FuzzySet(uni, values);
     }
 
     public FuzzySet multiply(FuzzySet set) {
@@ -120,8 +143,8 @@ public class FuzzySet<T> {
 //        return new FuzzySet(universe, labels);
     }
 
-    public double compatibilityLevel(double x) {
-        return 0;
+    public double compatibilityLevel(CustomRecord x) {
+        return map.get(x);
 //        int id = this.x.indexOf(x);
 //        return y.get(id);
     }
@@ -155,7 +178,7 @@ public class FuzzySet<T> {
 
     //degree of fuzziness
     public Double in() {
-        return 0.0;//Double.valueOf(getSupp().x.size() / universe.x.size());
+        return Double.valueOf(getSupp().size() / map.size());
     }
 
 }

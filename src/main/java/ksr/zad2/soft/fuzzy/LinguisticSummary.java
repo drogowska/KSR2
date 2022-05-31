@@ -1,6 +1,7 @@
 package ksr.zad2.soft.fuzzy;
 
 import ksr.zad2.soft.data.SpeedDatingRecord;
+import ksr.zad2.soft.set.FuzzySet;
 import lombok.Getter;
 
 import java.util.List;
@@ -80,7 +81,7 @@ public class LinguisticSummary {
         if (form == 3)
             string = " being ";
         else
-            string = "in comparison to ";
+            string = " in comparison to ";
     }
 
     public String toString() {
@@ -110,9 +111,9 @@ public class LinguisticSummary {
         CompoundVariable sumSet = (CompoundVariable) summarizers;
         if (summaryType.equals(SummaryType.ONESUBJECT)) {
             if (form == 1)
-                return quantifier.getFuzzy().compatibilityLevel(sumSet.compound().sigmaCount());
+                return quantifier.compatibilityLevel(sumSet.compound().sigmaCount());
             else {
-                return quantifier.getFuzzy().compatibilityLevel(sumSet.compound().and(q.compound()).sigmaCount()) / q.compound().sigmaCount();
+                return quantifier.compatibilityLevel(sumSet.compound().and(q.compound()).sigmaCount()) / q.compound().sigmaCount();
             }
         } else {
             throw new RuntimeException("TWO SUBJECT QUALIFIERS ARE NOT AVAILABLE RIGHT NOW");
@@ -126,8 +127,8 @@ public class LinguisticSummary {
 
     private double imprecision(LinguisticVariable set) {
         Double mul = 0.0;
-        for (Label s : set.getLabels())
-            mul *= s.getFuzzy().in();
+        for (FuzzySet s : set.getLabels())
+            mul *= s.in();
         return 1 - Math.pow(mul, set.getLabels().size());
     }
 
@@ -141,8 +142,8 @@ public class LinguisticSummary {
     //degree of appropriateness
     public double T4() {
         Double mul = 0.0;
-        for (Label s : summarizers.getLabels())
-            mul *= (double) s.getFuzzy().getSupp().size() / database.size();
+        for (FuzzySet s : summarizers.getLabels())
+            mul *= (double) s.getSupp().size() / database.size();
         return Math.abs(mul- T3());
     }
 
@@ -169,15 +170,15 @@ public class LinguisticSummary {
     //degree of quantifier imprecision
     public double T6() {
         if (quantifier.isAbsolute())
-            return 1 - quantifier.getFuzzy().getSupp().size() / database.size();
-        return 1 - quantifier.getFuzzy().in();
+            return 1 - quantifier.getSupp().size() / database.size();
+        return 1 - quantifier.in();
     }
     //degree of quantifier cardinality
     public double T7() {
         if (quantifier.isAbsolute()) {
-            return 1 - quantifier.getFuzzy().sigmaCount() / database.size();
+            return 1 - quantifier.sigmaCount() / database.size();
         }
-        return 1 - quantifier.getFuzzy().sigmaCount();
+        return 1 - quantifier.sigmaCount();
     }
     //degree of summarizer cardinality
     public double T8() {
@@ -200,8 +201,8 @@ public class LinguisticSummary {
 
     private double cardinality(LinguisticVariable set) {
         Double mul = 0.0;
-        for (Label s : set.getLabels())
-            mul *= s.getFuzzy().sigmaCount() / s.getFuzzy().getUniverseOfDiscourse().size();
+        for (FuzzySet s : set.getLabels())
+            mul *= s.sigmaCount() / s.getUniverseOfDiscourse().size();
         return 1 - Math.pow(mul, set.getLabels().size());
     }
 

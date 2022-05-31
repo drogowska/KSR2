@@ -1,6 +1,7 @@
 package ksr.zad2.soft.fuzzy;
 
 import ksr.zad2.soft.functions.*;
+import ksr.zad2.soft.set.FuzzySet;
 import org.springframework.jmx.export.naming.IdentityNamingStrategy;
 
 import java.util.List;
@@ -43,23 +44,23 @@ public class Defined {
 //                    new Label("huge", new TrapezoidalMembershipFunction(9, 11, 12, 12))),
 //            new UniverseOfDiscourse<Integer>(0, 13));
 
-
+    private static UniverseOfDiscourse<Integer> ageUni = new UniverseOfDiscourse<Integer>(List.of(18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,42,55));
     public static LinguisticVariable age = new LinguisticVariable("age",
-            List.of(new Label("teneageer", new TrapezoidalMembershipFunction(16,16,18, 20)),
-                    new Label("young", new TrapezoidalMembershipFunction(17, 22, 28,30)),
-                    new Label("in middle age", new TrapezoidalMembershipFunction(28,34,40,44)),
-                    new Label("in the prime of age", new TrapezoidalMembershipFunction(40,45,49,50)),
-                    new Label("old", new TrapezoidalMembershipFunction(45,50,65,65))),
-            new UniverseOfDiscourse<Integer>(List.of(18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,42,55)));
+            List.of(new FuzzySet("teneageer", new TrapezoidalMembershipFunction(16,16,18, 20), ageUni),
+                    new FuzzySet("young", new TrapezoidalMembershipFunction(17, 22, 28,30), ageUni),
+                    new FuzzySet("in middle age", new TrapezoidalMembershipFunction(28,34,40,44), ageUni),
+                    new FuzzySet("in the prime of age", new TrapezoidalMembershipFunction(40,45,49,50), ageUni),
+                    new FuzzySet("old", new TrapezoidalMembershipFunction(45,50,65,65), ageUni)),ageUni);
+
+    private static UniverseOfDiscourse<Integer> dageUni = new UniverseOfDiscourse<Integer>(List.of(18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,42,55));
 
     public static LinguisticVariable d_age = new LinguisticVariable("d_age",
-            List.of(new Label("none", new TriangleMembershipFunction(0,0,1)),
-                    new Label("tiny", new TriangleMembershipFunction(1, 3, 5)),
-                    new Label("small", new TriangleMembershipFunction(3,7,10)),
-                    new Label("average", new TrapezoidalMembershipFunction(9,17,19,23)),
-                    new Label("significant", new TrapezoidalMembershipFunction(15,19,22,32)),
-                    new Label("huge", new TrapezoidalMembershipFunction(30,35,45,45))),
-            new UniverseOfDiscourse<Integer>(List.of(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,32,34,36,37)));
+            List.of(new FuzzySet("none difference in age", new TriangleMembershipFunction(0,0,1), dageUni),
+                    new FuzzySet("tiny difference in age", new TriangleMembershipFunction(1, 3, 5), dageUni),
+                    new FuzzySet("small difference in age", new TriangleMembershipFunction(3,7,10), dageUni),
+                    new FuzzySet("average difference in age", new TrapezoidalMembershipFunction(9,17,19,23),dageUni),
+                    new FuzzySet("significant difference in age", new TrapezoidalMembershipFunction(15,19,22,32),dageUni),
+                    new FuzzySet("huge difference in age", new TrapezoidalMembershipFunction(30,35,45,45),dageUni)),dageUni);
 
 //    public static LinguisticVariable importance_same_race = new LinguisticVariable("importance_same_race",
 //            List.of(new Label("none", new TriangleMembershipFunction(0,0,1)),

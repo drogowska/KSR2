@@ -6,30 +6,13 @@ import java.util.*;
 
 public class ClassicSet<T> extends ArrayList<T> {
 
-
-
-
-//    public ClassicSet(UniverseOfDiscourse universe, List<Double> values) {
-//        this. = universe;
-//        function = new ConstantFunction(universe);
-////        this.x = values;
-//    }
-
     public ClassicSet() {
         super();
     }
 
     public ClassicSet(List<T> values) {
+        super(values);
     }
-
-//    public T getMin() {
-//        return Collections.min(this);
-//    }
-//
-//
-//    public T getMax() {
-//        return Collections.max(this);
-//    }
 
     @Override
     public String toString() {
@@ -38,17 +21,12 @@ public class ClassicSet<T> extends ArrayList<T> {
         return sb.toString();
     }
 
-//    @Override
-//    public Set sum(Set set) {
-//        return new ClassicSet(universe.sum(set.getUniverse()));
-//    }
-
     public ClassicSet sum(ClassicSet u) {
         List<T> val = new ArrayList<>(this);
         val.addAll(u);
         return new ClassicSet(new ArrayList<>(new HashSet<>(val)));
     }
-//część wspólna
+
     public ClassicSet multiply(ClassicSet set) {
         List<T> list = new ArrayList<>();
         for (T d : this) {
