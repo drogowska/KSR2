@@ -60,8 +60,6 @@ public class FuzzySet<T> {
         return (res == universe.size());
     }
 
-
-//
     public Double getHeight() {
         List<Double> values = new ArrayList<>();
         for (T d : universe) {
@@ -76,15 +74,24 @@ public class FuzzySet<T> {
     public FuzzySet or(FuzzySet set) {
         return null;
     }
-//
-//    public FuzzySet sum(FuzzySet set) {
-////        return null;
-//        HashMap<Integer, Double> values = new HashMap<>();
-//        for (Object i : universe) {
-//            values.put(i, Math.min(map.get(i),set.map.get(i)));
-//        }
-//        return new FuzzySet(values);
-//    }
+
+    public double sigmaCount() {
+        double res = 0;
+        if (!universe.isDiscrete)
+            System.out.println("to do");
+            // to calka
+        else {
+            for (T i : universe)
+                res += function.calculate(i);
+        }
+        return res;
+    }
+
+    //degree of fuzziness
+    public Double in() {
+        return (double) (supp().size() / universe.size());
+    }
+
 //
 //    public FuzzySet multiply(FuzzySet set) {
 //        HashMap<Object, Double> values = new HashMap<>();
@@ -108,15 +115,7 @@ public class FuzzySet<T> {
 ////        return y.get(id);
 //    }
 //
-//    public double sigmaCount() {
-//        double res = 0;
-////        if (universe.getClass().isInstance(DenseUniverse.class))
-//            //to calka
-////        else {
-////           for (Map.Entry<Object, Double> e : map.entrySet()) {
-////                 res += e.getValue();
-////           }
-////        }
+
 //
 //        return res;
 //    }
@@ -140,9 +139,6 @@ public class FuzzySet<T> {
 ////        return new FuzzySet(uni.x, list);
 //    }
 //
-//    //degree of fuzziness
-//    public Double in() {
-//        return Double.valueOf(getSupp().size() / map.size());
-//    }
+
 
 }

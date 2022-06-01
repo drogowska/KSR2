@@ -111,19 +111,20 @@ public class LinguisticSummary {
     }
 
     //degree of truth
-//    public double T1() {
-//        CompoundVariable q = (CompoundVariable) qualifiers;
+    public double T1() {
+        CompoundVariable q = (CompoundVariable) qualifiers;
 //        CompoundVariable sumSet = (CompoundVariable) summarizers;
-//        if (summaryType.equals(SummaryType.ONESUBJECT)) {
-//            if (form == 1)
-//                return quantifier.compatibilityLevel((int) sumSet.compound().sigmaCount());
+        if (summaryType.equals(SummaryType.ONESUBJECT)) {
+            if (form == 1)
+                return quantifier.compatibility(summarizers.getLabel().sigmaCount());
 //            else {
-//                return quantifier.compatibilityLevel((int)sumSet.compound().and(q.compound()).sigmaCount()) / q.compound().sigmaCount();
+//                return quantifier.compatibility(sumSet.compound().and(q.compound()).sigmaCount()) / q.compound().sigmaCount();
 //            }
-//        } else {
-//            throw new RuntimeException("TWO SUBJECT QUALIFIERS ARE NOT AVAILABLE RIGHT NOW");
-//        }
-//    }
+        } else {
+            throw new RuntimeException("TWO SUBJECT QUALIFIERS ARE NOT AVAILABLE RIGHT NOW");
+        }
+        return 0;
+    }
 //
 //    //degree of imprecision
 //    public double T2() {

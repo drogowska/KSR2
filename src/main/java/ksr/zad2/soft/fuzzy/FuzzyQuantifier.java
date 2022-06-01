@@ -12,21 +12,28 @@ import java.util.List;
 import static ksr.zad2.soft.SoftApplication.database;
 
 @Getter
-public class FuzzyQuantifier extends LinguisticVariable<Double> {
+public class FuzzyQuantifier extends FuzzySet<Double> {
 
     private boolean isAbsolute;
+    String name;
 //    private HashMap<Double, Double> map = new HashMap<>();
 
-    public FuzzyQuantifier(String label, MembershipFunction membershipFunctions) {
-        super(label, List.of(new FuzzySet(new ClassicSet(0, database.size()), membershipFunctions)),
-                new ClassicSet(0, database.size()));
-        for (Double d : denseUniverse)
-            map.put(d,d);
+    public FuzzyQuantifier(ClassicSet universe, MembershipFunction function, boolean isAbsolute) {
+        super(universe, function);
+        this.isAbsolute = isAbsolute;
     }
 
+//    public FuzzyQuantifier(String label, MembershipFunction membershipFunctions) {
+//        super(label, List.of(new FuzzySet(new ClassicSet(0, database.size()), membershipFunctions)),
+//                new ClassicSet(0, database.size()));
+//        for (Double d : denseUniverse)
+//            map.put(d,d);
+//    }
+
     public FuzzyQuantifier(String label, MembershipFunction membershipFunctions, boolean isAbsolute) {
-        this(label, membershipFunctions);
+        super(new ClassicSet(0, database.size()), membershipFunctions);
         this.isAbsolute = isAbsolute;
+        name = label;
     }
 
     public boolean isAbsolute() {

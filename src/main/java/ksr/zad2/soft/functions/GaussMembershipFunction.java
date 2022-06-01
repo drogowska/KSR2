@@ -18,7 +18,7 @@ public class GaussMembershipFunction<T> extends MembershipFunction<T> {
     public double calculate(T x) {
         double z = extractor.apply(x);
         double y = Math.pow(Math.exp((-1 * (z-center)) / width), 2);
-        return (y <= 0 && y > 1)? 0 : (double) y;
+        return y;
     }
 
 

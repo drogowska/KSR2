@@ -15,12 +15,21 @@ public class LinguisticVariable<T> {
     String name;             //L
     List<FuzzySet<T>> labels;  //with used G and K
     ClassicSet<T> denseUniverse;
-    HashMap<T, Double> map = new HashMap<>();
 
     public LinguisticVariable(String name, List<FuzzySet<T>> labels, ClassicSet denseUniverse) {
         this.name = name;
         this.labels = labels;
         this.denseUniverse = denseUniverse;
+    }
+
+    public FuzzySet<T> getLabel() {
+        return labels.get(0);
+    }
+
+    public LinguisticVariable(FuzzySet<T> set) {
+        this.name = set.getLabel();
+        this.labels = List.of(set);
+        this.denseUniverse = set.getUniverse();
     }
 
     public FuzzySet getByName(String name) {

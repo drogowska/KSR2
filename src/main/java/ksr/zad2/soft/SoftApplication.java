@@ -33,19 +33,20 @@ public class SoftApplication  {
                 d.getField(), d.getD_age(), d.getImportance_same_race(), d.getImportance_same_religion(), d.getPref_o_ambitious(),
                 d.getPref_o_intelligence(), d.getSincere(), d.getTvsports(), d.getExpected_num_interested_in_me(), d.getGuess_prob_liked())));
         FuzzyQuantifier q = Defined.quantifier.get(3);
-        FuzzySet s = Defined.age.getByName("young");
+        LinguisticVariable s = new LinguisticVariable(Defined.age.getByName("young"));
         double y = Extractor.age(cutDB.get(0));
         System.out.println(y);
-        System.out.println(s.getFunction().calculate(cutDB.get(0)));
+//        System.out.println(s.getLabels().get(0).getFunction().calculate(cutDB.get(0)));
 //        System.out.println(s.getFunction().;
-        q.getLabels().get(0).getFunction().calculate((double) cutDB.get(0).getAge());
-        q.getLabels().get(0).getFunction().calculate(Extractor.age(cutDB.get(0)));
-        CompoundVariable ss = new CompoundVariable(
-                List.of(Defined.age.getByName("young"),Defined.d_age.getByName("tiny")),
-                List.of("and"));
+        q.getFunction().calculate((double) cutDB.get(0).getAge());
+        q.getFunction().calculate(Extractor.age(cutDB.get(0)));
+//        CompoundVariable ss = new CompoundVariable(
+//                List.of(Defined.age.getByName("young"),Defined.d_age.getByName("tiny")),
+//                List.of("and"));
         SpeedDatingRecord r = database.get(0);
-//        LinguisticSummary linguisticSummary = new LinguisticSummary(q, s, cutDB, "people");
-
+        LinguisticSummary linguisticSummary = new LinguisticSummary(q, s, cutDB, "people");
+        System.out.println(linguisticSummary.toString());
+        System.out.println(linguisticSummary.T1());
 
     }
 
