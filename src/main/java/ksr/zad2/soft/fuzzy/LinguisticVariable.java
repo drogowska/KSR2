@@ -1,7 +1,7 @@
 package ksr.zad2.soft.fuzzy;
 
-import ksr.zad2.soft.data.SpeedDatingRecord;
-import ksr.zad2.soft.functions.UniverseOfDiscourse;
+import ksr.zad2.soft.data.CustomRecord;
+import ksr.zad2.soft.set.ClassicSet;
 import ksr.zad2.soft.set.FuzzySet;
 import lombok.Getter;
 
@@ -9,20 +9,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-import static ksr.zad2.soft.SoftApplication.database;
-
 @Getter
-public class LinguisticVariable {
+public class LinguisticVariable<T> {
 
     String name;             //L
-    List<FuzzySet> labels;  //with used G and K
-    UniverseOfDiscourse universeOfDiscourse;
+    List<FuzzySet<T>> labels;  //with used G and K
+    ClassicSet<T> denseUniverse;
+    HashMap<T, Double> map = new HashMap<>();
 
-    public LinguisticVariable(String name, List<FuzzySet> labels, UniverseOfDiscourse universeOfDiscourse) {
+    public LinguisticVariable(String name, List<FuzzySet<T>> labels, ClassicSet denseUniverse) {
         this.name = name;
         this.labels = labels;
-        this.universeOfDiscourse = universeOfDiscourse;
-//        database.forEach(d -> map.put(d, labels.get(0).getFuzzy().getFunction().calculate(d)));
+        this.denseUniverse = denseUniverse;
     }
 
     public FuzzySet getByName(String name) {
@@ -33,20 +31,8 @@ public class LinguisticVariable {
         return labels.get(id);
     }
 
-    public LinguisticVariable(List<FuzzySet> labels) {
+    public LinguisticVariable(List<FuzzySet<T>> labels) {
         this.labels = labels;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public List<FuzzySet> getLabels() {
-        return labels;
-    }
-
-    public Double extract(int i) {
-        Double d;
-        return 0.0;
-    }
 }

@@ -1,15 +1,17 @@
 package ksr.zad2.soft.functions;
 
 import ksr.zad2.soft.set.ClassicSet;
+import lombok.Getter;
 
-public class LineFunction extends MembershipFunction{
+@Getter
+public class LineFunction<T> extends MembershipFunction<T>{
     //y =ax+b
-    private final double a;
-    double b;
+    public Double a;
+    public Double b;
 
-    public LineFunction(double a, double b, UniverseOfDiscourse universe) {
-        super(universe);
-        universeOfDiscourse = universe;
+    public LineFunction(ValueExtractor<T> extractor, Double a, Double b, ClassicSet universe) {
+        super(universe, extractor);
+        denseUniverse = universe;
         this.a = a;
         this.b = b;
     }
@@ -19,8 +21,9 @@ public class LineFunction extends MembershipFunction{
         return (y - b) / a;
     }
     @Override
-    public int calculate(double x) {
-        double y = a*x+b;
-        return (y <= 0)? 0 : (int) y;
+    public double calculate(T x) {
+        double z = extractor.apply(x);
+        double y = a*z+b;
+        return (y <= 0 && y > 1)? 0 : y;
     }
 }

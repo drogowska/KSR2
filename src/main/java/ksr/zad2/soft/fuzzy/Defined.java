@@ -1,25 +1,28 @@
 package ksr.zad2.soft.fuzzy;
 
+import ksr.zad2.soft.data.CustomRecord;
 import ksr.zad2.soft.functions.*;
+import ksr.zad2.soft.set.ClassicSet;
 import ksr.zad2.soft.set.FuzzySet;
-import org.springframework.jmx.export.naming.IdentityNamingStrategy;
 
 import java.util.List;
+
+import static ksr.zad2.soft.SoftApplication.cutDB;
 
 public class Defined {
 
     public static List<FuzzyQuantifier> quantifier = List.of
-            (new FuzzyQuantifier("Almost none of", new TrapezoidalMembershipFunction(0, 0, 50, 100), false),
-                    new FuzzyQuantifier("Some of", new TrapezoidalMembershipFunction(0, 200, 1500, 1700), false),
-                    new FuzzyQuantifier("Approximately 1/3 of", new GaussMembershipFunction(2700.0, 800.0, new UniverseOfDiscourse(1000, 5000)), false),
-                    new FuzzyQuantifier("Around half of", new TriangleMembershipFunction(3789, 4189, 4589), false),
-                    new FuzzyQuantifier("Most of", new TrapezoidalMembershipFunction(4100, 4600, 8378, 8378), false),
-                    new FuzzyQuantifier("The vast majority of", new TrapezoidalMembershipFunction(7300, 8300, 8378, 8378), false),
-                            new FuzzyQuantifier("Around 8000", new TrapezoidalMembershipFunction(5500, 8000, 8400, 8400), true),
-                            new FuzzyQuantifier("More than 5000", new GaussMembershipFunction(5000.0, 1000.0, new UniverseOfDiscourse(2800, 6900)), true),
-                            new FuzzyQuantifier("Approximately 3000", new TrapezoidalMembershipFunction(1600, 2600,4000,5000), true),
-                            new FuzzyQuantifier("More than 1000", new GaussMembershipFunction(1500, 500, new UniverseOfDiscourse(300, 2700)), true),
-                            new FuzzyQuantifier("Less than 1000", new TrapezoidalMembershipFunction(0, 0, 600, 1000), true)
+            (new FuzzyQuantifier("Almost none of", new TrapezoidalMembershipFunction<Double>(x-> x, 0, 0, 50, 100), false),
+                    new FuzzyQuantifier("Some of", new TrapezoidalMembershipFunction<Double>(x-> x,0, 200, 1500, 1700), false),
+                    new FuzzyQuantifier("Approximately 1/3 of", new GaussMembershipFunction<Double>(x-> x,2700.0, 800.0, new ClassicSet<Integer>(1000, 5000)), false),
+                    new FuzzyQuantifier("Around half of", new TriangleMembershipFunction<Double>(x-> x,3789, 4189, 4589), false),
+                    new FuzzyQuantifier("Most of", new TrapezoidalMembershipFunction<Double>(x-> x,4100, 4600, 8378, 8378), false),
+                    new FuzzyQuantifier("The vast majority of", new TrapezoidalMembershipFunction<Double>(x-> x,7300, 8300, 8378, 8378), false),
+                            new FuzzyQuantifier("Around 8000", new TrapezoidalMembershipFunction<Double>(x-> x,5500, 8000, 8400, 8400), true),
+                            new FuzzyQuantifier("More than 5000", new GaussMembershipFunction<Double>(x-> x,5000.0, 1000.0, new ClassicSet<Integer>(2800, 6900)), true),
+                            new FuzzyQuantifier("Approximately 3000", new TrapezoidalMembershipFunction<Double>(x-> x,1600, 2600,4000,5000), true),
+                            new FuzzyQuantifier("More than 1000", new GaussMembershipFunction<Double>(x-> x,1500, 500, new ClassicSet<Integer>(300, 2700)), true),
+                            new FuzzyQuantifier("Less than 1000", new TrapezoidalMembershipFunction<Double>(x-> x,0, 0, 600, 1000), true)
                     );
 
 //    public static LinguisticVariable sincere = new LinguisticVariable("sincere",
@@ -44,23 +47,23 @@ public class Defined {
 //                    new Label("huge", new TrapezoidalMembershipFunction(9, 11, 12, 12))),
 //            new UniverseOfDiscourse<Integer>(0, 13));
 
-    private static UniverseOfDiscourse<Integer> ageUni = new UniverseOfDiscourse<Integer>(List.of(18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,42,55));
-    public static LinguisticVariable age = new LinguisticVariable("age",
-            List.of(new FuzzySet("teneageer", new TrapezoidalMembershipFunction(16,16,18, 20), ageUni),
-                    new FuzzySet("young", new TrapezoidalMembershipFunction(17, 22, 28,30), ageUni),
-                    new FuzzySet("in middle age", new TrapezoidalMembershipFunction(28,34,40,44), ageUni),
-                    new FuzzySet("in the prime of age", new TrapezoidalMembershipFunction(40,45,49,50), ageUni),
-                    new FuzzySet("old", new TrapezoidalMembershipFunction(45,50,65,65), ageUni)),ageUni);
+    private static ClassicSet<Integer> ageUni = new ClassicSet(List.of(18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,42,55));
+    public static LinguisticVariable age = new LinguisticVariable<CustomRecord>("age",
+            List.of(new FuzzySet("teneageer", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::age, 16,16,18, 20), cutDB),
+                    new FuzzySet("young", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::age, 17, 22, 28,30), ageUni),
+                    new FuzzySet("in middle age", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::age, 28,34,40,44), ageUni),
+                    new FuzzySet("in the prime of age", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::age, 40,45,49,50), ageUni),
+                    new FuzzySet("old", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::age, 45,50,65,65), ageUni)),ageUni);
 
-    private static UniverseOfDiscourse<Integer> dageUni = new UniverseOfDiscourse<Integer>(List.of(18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,42,55));
+    private static ClassicSet dageUni = new ClassicSet(List.of(18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,42,55));
 
     public static LinguisticVariable d_age = new LinguisticVariable("d_age",
-            List.of(new FuzzySet("none difference in age", new TriangleMembershipFunction(0,0,1), dageUni),
-                    new FuzzySet("tiny difference in age", new TriangleMembershipFunction(1, 3, 5), dageUni),
-                    new FuzzySet("small difference in age", new TriangleMembershipFunction(3,7,10), dageUni),
-                    new FuzzySet("average difference in age", new TrapezoidalMembershipFunction(9,17,19,23),dageUni),
-                    new FuzzySet("significant difference in age", new TrapezoidalMembershipFunction(15,19,22,32),dageUni),
-                    new FuzzySet("huge difference in age", new TrapezoidalMembershipFunction(30,35,45,45),dageUni)),dageUni);
+            List.of(new FuzzySet("none difference in age", new TriangleMembershipFunction<CustomRecord>(Extractor::d_age,0,0,1), dageUni),
+                    new FuzzySet("tiny difference in age", new TriangleMembershipFunction<CustomRecord>(Extractor::d_age,1, 3, 5), dageUni),
+                    new FuzzySet("small difference in age", new TriangleMembershipFunction<CustomRecord>(Extractor::d_age,3,7,10), dageUni),
+                    new FuzzySet("average difference in age", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::d_age,9,17,19,23),dageUni),
+                    new FuzzySet("significant difference in age", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::d_age,15,19,22,32),dageUni),
+                    new FuzzySet("huge difference in age", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::d_age,30,35,45,45),dageUni)),dageUni);
 
 //    public static LinguisticVariable importance_same_race = new LinguisticVariable("importance_same_race",
 //            List.of(new Label("none", new TriangleMembershipFunction(0,0,1)),

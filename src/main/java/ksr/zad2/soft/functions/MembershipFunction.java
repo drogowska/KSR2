@@ -3,20 +3,21 @@ package ksr.zad2.soft.functions;
 import ksr.zad2.soft.set.ClassicSet;
 import lombok.Getter;
 
-import java.util.HashMap;
-import java.util.Map;
 @Getter
-public abstract class MembershipFunction {
-    UniverseOfDiscourse universeOfDiscourse;
-
-    public MembershipFunction(UniverseOfDiscourse universeOfDiscourse) {
-        this.universeOfDiscourse = universeOfDiscourse;
+public abstract class MembershipFunction<T> {
+    ClassicSet denseUniverse;
+    ValueExtractor<T> extractor;
+    double height;
+    double support = 0.0;
+    double clm = 0.0;
+    public MembershipFunction(ClassicSet denseUniverse) {
+        this.denseUniverse = denseUniverse;
     }
 
-    public MembershipFunction(UniverseOfDiscourse universeOfDiscourse, boolean setValues) {
-        this.universeOfDiscourse = universeOfDiscourse;
+    public MembershipFunction(ClassicSet denseUniverse, ValueExtractor<T> extractor) {
+        this.denseUniverse = denseUniverse;
+        this.extractor = extractor;
     }
 
-
-    public abstract int calculate(double x);
+    public abstract double calculate(T x);
 }

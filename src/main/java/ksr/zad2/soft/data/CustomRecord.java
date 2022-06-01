@@ -28,8 +28,5 @@ public class CustomRecord {
     private float expected_num_interested_in_me;
     private float guess_prob_liked;
 
-    public float get(String label) {
-
-    }
 
 }

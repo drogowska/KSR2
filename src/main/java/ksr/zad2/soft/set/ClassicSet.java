@@ -1,17 +1,27 @@
 package ksr.zad2.soft.set;
 
-import ksr.zad2.soft.functions.UniverseOfDiscourse;
+import lombok.Getter;
 
 import java.util.*;
 
+@Getter
 public class ClassicSet<T> extends ArrayList<T> {
 
+    double begin;
+    double end;
+    boolean isDiscrete;
     public ClassicSet() {
         super();
     }
 
+    public ClassicSet(double begin, double end) {
+        this.begin = begin;
+        this.end = end;
+    }
+
     public ClassicSet(List<T> values) {
         super(values);
+        this.isDiscrete = true;
     }
 
     @Override
@@ -34,6 +44,12 @@ public class ClassicSet<T> extends ArrayList<T> {
                 list.add(d);
         }
         return new ClassicSet(list);
+    }
+
+    public boolean isEmpty() {
+        if (isDiscrete)
+            return this.isEmpty();
+        return begin - end > 0;
     }
 
     public ClassicSet complement() {
