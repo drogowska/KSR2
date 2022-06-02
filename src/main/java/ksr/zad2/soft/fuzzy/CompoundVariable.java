@@ -29,23 +29,23 @@ public class CompoundVariable extends LinguisticVariable<CustomRecord> {
         super(List.of(labels));
     }
 
-    public FuzzySet compound() {
-        List<FuzzySet> fuzzySet = new ArrayList<>();
-        fuzzySet.addAll(labels);
-        int k =0;
-        for (int i = 1; i < fuzzySet.size(); i += 2) {
-            FuzzySet f = (connectives.get(k).equals("and")) ?
-                    labels.get(i-1).and(labels.get(i)) :
-                    labels.get(i-1).or(labels.get(i));
-            k++;
-            fuzzySet.add(i+1, f);
-        }
-        fset = fuzzySet.get(fuzzySet.size()-1);
-        name = labels.get(0).getLabel();
-        for (int i = 1; i<labels.size(); i++)
-            this.name += " " + connectives.get(i-1) + " " + labels.get(i).getLabel();
-        return fset;
-    }
+//    public static FuzzySet compound() {
+//        List<FuzzySet> fuzzySet = new ArrayList<>();
+//        fuzzySet.addAll(labels);
+//        int k =0;
+//        for (int i = 1; i < fuzzySet.size(); i += 2) {
+//            FuzzySet f = (connectives.get(k).equals("and")) ?
+//                    labels.get(i-1).and(labels.get(i)) :
+//                    labels.get(i-1).or(labels.get(i));
+//            k++;
+//            fuzzySet.add(i+1, f);
+//        }
+//        fset = fuzzySet.get(fuzzySet.size()-1);
+//        name = labels.get(0).getLabel();
+//        for (int i = 1; i<labels.size(); i++)
+//            this.name += " " + connectives.get(i-1) + " " + labels.get(i).getLabel();
+//        return fset;
+//    }
 
 
 

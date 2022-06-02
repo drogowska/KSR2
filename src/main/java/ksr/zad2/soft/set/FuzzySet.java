@@ -68,20 +68,23 @@ public class FuzzySet<T> {
         return Collections.max(values);
     }
 
-    public FuzzySet<T> and(FuzzySet<T> set) {
-        return null;
+    public double and(FuzzySet<T> set, T obj) {
+        return Math.min(set.compatibility(obj), this.compatibility(obj));
+    }
+    public double or(FuzzySet<T> set, T obj) {
+        return Math.max(set.compatibility(obj), this.compatibility(obj));
     }
     public FuzzySet or(FuzzySet set) {
         return null;
     }
 
-    public double sigmaCount() {
+    public double sigmaCount(List<T> list) {
         double res = 0;
         if (!universe.isDiscrete)
             System.out.println("to do");
             // to calka
         else {
-            for (T i : universe)
+            for (T i : list)
                 res += function.calculate(i);
         }
         return res;

@@ -32,7 +32,7 @@ public class SoftApplication  {
         database.forEach(d -> cutDB.add(new CustomRecord(d.getId(), d.getAge(), d.getGender(), d.getRace(),
                 d.getField(), d.getD_age(), d.getImportance_same_race(), d.getImportance_same_religion(), d.getPref_o_ambitious(),
                 d.getPref_o_intelligence(), d.getSincere(), d.getTvsports(), d.getExpected_num_interested_in_me(), d.getGuess_prob_liked())));
-        FuzzyQuantifier q = Defined.quantifier.get(3);
+        FuzzyQuantifier q = Defined.quantifier.get(4);
         LinguisticVariable s = new LinguisticVariable(Defined.age.getByName("young"));
         double y = Extractor.age(cutDB.get(0));
         System.out.println(y);

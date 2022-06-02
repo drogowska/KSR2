@@ -113,13 +113,17 @@ public class LinguisticSummary {
     //degree of truth
     public double T1() {
         CompoundVariable q = (CompoundVariable) qualifiers;
+        double a = 0; 
+//        for (CustomRecord i : records) {
+//            a += summarizers.getLabels().forEach(l -> l.sum())
+//        }
 //        CompoundVariable sumSet = (CompoundVariable) summarizers;
         if (summaryType.equals(SummaryType.ONESUBJECT)) {
             if (form == 1)
-                return quantifier.compatibility(summarizers.getLabel().sigmaCount());
-//            else {
+                return quantifier.compatibility(summarizers.getLabel().sigmaCount(records));
+            else {
 //                return quantifier.compatibility(sumSet.compound().and(q.compound()).sigmaCount()) / q.compound().sigmaCount();
-//            }
+            }
         } else {
             throw new RuntimeException("TWO SUBJECT QUALIFIERS ARE NOT AVAILABLE RIGHT NOW");
         }

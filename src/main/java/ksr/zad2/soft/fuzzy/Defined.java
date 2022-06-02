@@ -3,6 +3,7 @@ package ksr.zad2.soft.fuzzy;
 import ksr.zad2.soft.data.CustomRecord;
 import ksr.zad2.soft.functions.*;
 import ksr.zad2.soft.set.ClassicSet;
+import ksr.zad2.soft.set.DenseClassicSet;
 import ksr.zad2.soft.set.FuzzySet;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class Defined {
 //                    new Label("huge", new TrapezoidalMembershipFunction(9, 11, 12, 12))),
 //            new UniverseOfDiscourse<Integer>(0, 13));
 
-    private static ClassicSet<Integer> ageUni = new ClassicSet(List.of(18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,42,55));
+    private static DenseClassicSet ageUni = new DenseClassicSet(List.of(18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,42,55));
     public static LinguisticVariable age = new LinguisticVariable<CustomRecord>("age",
             List.of(new FuzzySet("teneageer", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::age, 16,16,18, 20), cutDB),
                     new FuzzySet("young", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::age, 17, 22, 28,30), ageUni),
@@ -55,7 +56,7 @@ public class Defined {
                     new FuzzySet("in the prime of age", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::age, 40,45,49,50), ageUni),
                     new FuzzySet("old", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::age, 45,50,65,65), ageUni)),ageUni);
 
-    private static ClassicSet dageUni = new ClassicSet(List.of(18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,42,55));
+    private static DenseClassicSet dageUni = new DenseClassicSet(List.of(18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,42,55));
 
     public static LinguisticVariable d_age = new LinguisticVariable("d_age",
             List.of(new FuzzySet("none difference in age", new TriangleMembershipFunction<CustomRecord>(Extractor::d_age,0,0,1), dageUni),
