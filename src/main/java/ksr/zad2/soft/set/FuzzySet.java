@@ -23,7 +23,7 @@ public class FuzzySet<T> {
         this.function = function;
     }
 
-    public FuzzySet(String label, TrapezoidalMembershipFunction<T> function, ClassicSet<T> cutDB) {
+    public FuzzySet(String label, MembershipFunction<T> function, ClassicSet<T> cutDB) {
         this.label = label;
         this.function = function;
         this.universe = cutDB;

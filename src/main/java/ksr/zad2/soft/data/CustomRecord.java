@@ -27,6 +27,7 @@ public class CustomRecord {
     private float tvsports;
     private float expected_num_interested_in_me;
     private float guess_prob_liked;
+    private float funny;
 
 
 }

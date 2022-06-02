@@ -26,27 +26,29 @@ public class Defined {
                             new FuzzyQuantifier("Less than 1000", new TrapezoidalMembershipFunction<Double>(x-> x,0, 0, 600, 1000), true)
                     );
 
-//    public static LinguisticVariable sincere = new LinguisticVariable("sincere",
-//                    List.of(new Label("insincere", new GaussMembershipFunction(7.0, 2.0, new UniverseOfDiscourse({}))),
-//                            new Label("sincere", new TrapezoidalMembershipFunction(8, 11, 13, 13)),
-//                            new Label("duplicitous", new TrapezoidalMembershipFunction(0, 2, 2, 6))
-//                    ),
-//                    new UniverseOfDiscourse<Integer>(0, 13));
+    private static DenseClassicSet sincereUni = new DenseClassicSet(List.of(0,1,2,3,4,5,6,7,8,9,10,11,12));
+
+    public static LinguisticVariable sincere = new LinguisticVariable("sincere",
+                    List.of(new FuzzySet("insincere", new GaussMembershipFunction<CustomRecord>(Extractor::sincere, 7.0, 2.0, new DenseClassicSet(4, 11)), sincereUni),
+                            new FuzzySet("sincere", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::sincere,8, 11, 13, 13), sincereUni),
+                            new FuzzySet("duplicitous", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::sincere,0, 2, 2, 6), sincereUni)
+                    ), sincereUni);
+
+
+    public static LinguisticVariable funny = new LinguisticVariable("funny",
+                                    List.of(new FuzzySet("boring", new TrapezoidalMembershipFunction<CustomRecord>( Extractor::funny, 0,0,2,3), sincereUni),
+                                            new FuzzySet("a little bit boring", new TriangleMembershipFunction<CustomRecord>( Extractor::funny,1,4,6), sincereUni),
+                                            new FuzzySet("entertaining", new TrapezoidalMembershipFunction<CustomRecord>( Extractor::funny,9, 10, 13,13), sincereUni),
+                                            new FuzzySet("funny", new TrapezoidalMembershipFunction<CustomRecord>( Extractor::funny,5,6,7,10), sincereUni)),
+                                    sincereUni);
 //
-//    public static LinguisticVariable funny = new LinguisticVariable("funny",
-//                                    List.of(new Label("boring", new TrapezoidalMembershipFunction(0,0,2,3)),
-//                                            new Label("a little bit boring", new TriangleMembershipFunction(1,4,6)),
-//                                            new Label("entertaining", new TrapezoidalMembershipFunction(9, 10, 13,13)),
-//                                            new Label("funny", new TrapezoidalMembershipFunction(5,6,7,10))),
-//                                    new UniverseOfDiscourse<Integer>(0, 13));
-//
-//    public static LinguisticVariable guess_prob_liked = new LinguisticVariable("guess_prob_liked",
-//            List.of(new Label("none", new TrapezoidalMembershipFunction(0, 0, 1, 2)),
-//                    new Label("tiny", new TriangleMembershipFunction(1, 3, 4)),
-//                    new Label("small", new TriangleMembershipFunction(3, 5, 6)),
-//                    new Label("significant", new TrapezoidalMembershipFunction(5, 8, 9, 10)),
-//                    new Label("huge", new TrapezoidalMembershipFunction(9, 11, 12, 12))),
-//            new UniverseOfDiscourse<Integer>(0, 13));
+    public static LinguisticVariable guess_prob_liked = new LinguisticVariable("guess_prob_liked",
+            List.of(new FuzzySet("none", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::guess_prob_liked,0, 0, 1, 2),sincereUni),
+                    new FuzzySet("tiny", new TriangleMembershipFunction<CustomRecord>(Extractor::guess_prob_liked,1, 3, 4),sincereUni),
+                    new FuzzySet("small", new TriangleMembershipFunction<CustomRecord>(Extractor::guess_prob_liked,3, 5, 6),sincereUni),
+                    new FuzzySet("significant", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::guess_prob_liked,5, 8, 9, 10), sincereUni),
+                    new FuzzySet("huge", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::guess_prob_liked,9, 11, 12, 12), sincereUni)),
+            sincereUni);
 
     private static DenseClassicSet ageUni = new DenseClassicSet(List.of(18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,42,55));
     public static LinguisticVariable age = new LinguisticVariable<CustomRecord>("age",
@@ -66,53 +68,57 @@ public class Defined {
                     new FuzzySet("significant difference in age", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::d_age,15,19,22,32),dageUni),
                     new FuzzySet("huge difference in age", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::d_age,30,35,45,45),dageUni)),dageUni);
 
-//    public static LinguisticVariable importance_same_race = new LinguisticVariable("importance_same_race",
-//            List.of(new Label("none", new TriangleMembershipFunction(0,0,1)),
-//                    new Label("tiny", new TriangleMembershipFunction(1, 2, 3)),
-//                    new Label("small", new TrapezoidalMembershipFunction(2, 3, 4, 5)),
-//                    new Label("average", new TriangleMembershipFunction(4,5,6)),
-//                    new Label("significant", new GaussMembershipFunction(6, 1, new UniverseOfDiscourse(0, 13, 1))),
-//                    new Label("huge", new GaussMembershipFunction(9,1.5, new UniverseOfDiscourse(0, 13, 1)))),
-//            new UniverseOfDiscourse(0, 13));
+
+    public static LinguisticVariable importance_same_race = new LinguisticVariable("importance_same_race",
+            List.of(new FuzzySet("none", new TriangleMembershipFunction<CustomRecord>(Extractor::importance_same_race, 0,0,1), sincereUni),
+                    new FuzzySet("tiny", new TriangleMembershipFunction<CustomRecord>(Extractor::importance_same_race,1, 2, 3), sincereUni),
+                    new FuzzySet("small", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::importance_same_race,2, 3, 4, 5), sincereUni),
+                    new FuzzySet("average", new TriangleMembershipFunction<CustomRecord>(Extractor::importance_same_race,4,5,6), sincereUni),
+                    new FuzzySet("significant", new GaussMembershipFunction<CustomRecord>(Extractor::importance_same_race,6, 1, new DenseClassicSet(5, 8)),sincereUni),
+                    new FuzzySet("huge", new GaussMembershipFunction<CustomRecord>(Extractor::importance_same_race,9,1.5, new DenseClassicSet(7, 10)), sincereUni)),
+           sincereUni);
 //
-//    public static LinguisticVariable importance_same_religion = new LinguisticVariable("importance_same_religion",
-//            List.of(new Label("none", new TriangleMembershipFunction(0,0,1)),
-//                    new Label("tiny", new TriangleMembershipFunction(1, 2, 3)),
-//                    new Label("small", new TrapezoidalMembershipFunction(2, 3, 4, 5)),
-//                    new Label("average", new TriangleMembershipFunction(4,5,6)),
-//                    new Label("significant", new GaussMembershipFunction(6, 1, new UniverseOfDiscourse(0, 13, 1))),
-//                    new Label("huge", new GaussMembershipFunction(9,1.5, new UniverseOfDiscourse(0, 13, 1)))),
-//            new UniverseOfDiscourse(0, 13, 1));
+    public static LinguisticVariable importance_same_religion = new LinguisticVariable("importance_same_religion",
+            List.of(new FuzzySet("none", new TriangleMembershipFunction<CustomRecord>(Extractor::importance_same_religion, 0,0,1),sincereUni),
+                    new FuzzySet("tiny", new TriangleMembershipFunction<CustomRecord>(Extractor::importance_same_religion,1, 2, 3),sincereUni),
+                    new FuzzySet("small", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::importance_same_religion,2, 3, 4, 5),sincereUni),
+                    new FuzzySet("average", new TriangleMembershipFunction<CustomRecord>(Extractor::importance_same_religion,4,5,6),sincereUni),
+                    new FuzzySet("significant", new GaussMembershipFunction<CustomRecord>(Extractor::importance_same_religion,6, 1, new DenseClassicSet(0, 13)),sincereUni),
+                    new FuzzySet("huge", new GaussMembershipFunction<CustomRecord>(Extractor::importance_same_religion,9,1.5, new DenseClassicSet(0, 13)),sincereUni)),
+            sincereUni);
 //
-//    public static LinguisticVariable pref_o_ambitious = new LinguisticVariable("pref_o_ambitious",
-//            List.of(new Label("not ambitious", new GaussMembershipFunction(6, 8, new UniverseOfDiscourse(0, 55, 1))),
-//                    new Label("moderately ambitious'", new GaussMembershipFunction(30, 12, new UniverseOfDiscourse(0, 55, 1))),
-//                    new Label("ambitious", new GaussMembershipFunction(45, 5, new UniverseOfDiscourse(0, 55, 1)))),
-//            new UniverseOfDiscourse(0, 55, 1));
+private static DenseClassicSet ambitiousUni = new DenseClassicSet(0,55);
+
+    public static LinguisticVariable pref_o_ambitious = new LinguisticVariable("pref_o_ambitious",
+            List.of(new FuzzySet("not ambitious", new GaussMembershipFunction<CustomRecord>(Extractor::pref_o_ambitious,6, 8, new DenseClassicSet(0, 24)),ambitiousUni),
+                    new FuzzySet("moderately ambitious'", new GaussMembershipFunction<CustomRecord>(Extractor::pref_o_ambitious,30, 12, new DenseClassicSet(5, 54)),ambitiousUni),
+                    new FuzzySet("ambitious", new GaussMembershipFunction<CustomRecord>(Extractor::pref_o_ambitious,45, 5, new DenseClassicSet(30, 55)),ambitiousUni)),
+            ambitiousUni);
 //
-//    public static LinguisticVariable pref_o_intelligence = new LinguisticVariable("pref_o_intelligence",
-//            List.of(new Label("stupid", new TrapezoidalMembershipFunction(0,0,1,3)),
-//                    new Label("not very intelligent", new TrapezoidalMembershipFunction(2,5,12,16)),
-//                    new Label("average", new TrapezoidalMembershipFunction(14, 20, 30, 35)),
-//                    new Label("inteligent", new TrapezoidalMembershipFunction(32, 44, 58, 64)),
-//                    new Label("genius", new TrapezoidalMembershipFunction(57, 62, 67, 67))),
-//            new UniverseOfDiscourse(0, 68, 1));
+private static DenseClassicSet IntelligenceUni = new DenseClassicSet(0,55);
+    public static LinguisticVariable pref_o_intelligence = new LinguisticVariable<CustomRecord>("pref_o_intelligence",
+            List.of(new FuzzySet("stupid", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::pref_o_intelligence,0,0,1,3),IntelligenceUni),
+                    new FuzzySet("not very intelligent", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::pref_o_intelligence,2,5,12,16),IntelligenceUni),
+                    new FuzzySet("average", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::pref_o_intelligence,14, 20, 30, 35),IntelligenceUni),
+                    new FuzzySet("inteligent", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::pref_o_intelligence,32, 44, 58, 64),IntelligenceUni),
+                    new FuzzySet("genius", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::pref_o_intelligence,57, 62, 67, 67),IntelligenceUni)),
+            IntelligenceUni);
 //
-//    public static LinguisticVariable tvsports = new LinguisticVariable("sports",
-//            List.of(new Label("not interested", new TrapezoidalMembershipFunction(0, 0, 2, 5)),
-//                    new Label("neutral", new TriangleMembershipFunction(2, 4, 7)),
-//                    new Label("moderately interested", new TrapezoidalMembershipFunction(4, 6, 8, 9)),
-//                    new Label("interested", new TriangleMembershipFunction(8, 9, 11)),
-//                    new Label("passionate", new TrapezoidalMembershipFunction(9, 11, 12, 12))),
-//            new UniverseOfDiscourse(0, 13, 1));
+    public static LinguisticVariable tvsports = new LinguisticVariable("sports",
+            List.of(new FuzzySet("not interested", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::tvsports, 0, 0, 2, 5),sincereUni),
+                    new FuzzySet("neutral", new TriangleMembershipFunction<CustomRecord>(Extractor::tvsports,2, 4, 7),sincereUni),
+                    new FuzzySet("moderately interested", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::tvsports,4, 6, 8, 9),sincereUni),
+                    new FuzzySet("interested", new TriangleMembershipFunction<CustomRecord>(Extractor::tvsports,8, 9, 11),sincereUni),
+                    new FuzzySet("passionate", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::tvsports,9, 11, 12, 12),sincereUni)),
+            sincereUni);
 //
-//    public static LinguisticVariable expected_num_interested_in_me = new LinguisticVariable("expected_num_interested_in_me",
-//            List.of(new Label("none", new TrapezoidalMembershipFunction(0, 0, 1, 3)),
-//                    new Label("few", new TrapezoidalMembershipFunction(1, 3, 4, 6)),
-//                    new Label("not many", new TriangleMembershipFunction(4, 5, 7)),
-//                    new Label("some", new TriangleMembershipFunction(6, 7, 8)),
-//                    new Label("many", new TriangleMembershipFunction(8, 9, 10)),
-//                    new Label("a lot", new TrapezoidalMembershipFunction(9, 11, 15, 15))),
-//            new UniverseOfDiscourse(0, 15, 1));
+    public static LinguisticVariable expected_num_interested_in_me = new LinguisticVariable("expected_num_interested_in_me",
+            List.of(new FuzzySet("none", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::expected_num_interested_in_me,0, 0, 1, 3),sincereUni),
+                    new FuzzySet("few", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::expected_num_interested_in_me,1, 3, 4, 6),sincereUni),
+                    new FuzzySet("not many", new TriangleMembershipFunction<CustomRecord>(Extractor::expected_num_interested_in_me,4, 5, 7),sincereUni),
+                    new FuzzySet("some", new TriangleMembershipFunction<CustomRecord>(Extractor::expected_num_interested_in_me,6, 7, 8),sincereUni),
+                    new FuzzySet("many", new TriangleMembershipFunction<CustomRecord>(Extractor::expected_num_interested_in_me,8, 9, 10),sincereUni),
+                    new FuzzySet("a lot", new TrapezoidalMembershipFunction<CustomRecord>(Extractor::expected_num_interested_in_me,9, 11, 15, 15),sincereUni)),
+            sincereUni);
 
 }
