@@ -6,6 +6,7 @@ public class DenseClassicSet extends ClassicSet<Double> {
 
     public DenseClassicSet(int begin, int end) {
         super(begin, end);
+        isDiscrete = false;
         for (double i = begin; i < end; i++)
             this.add(i);
     }

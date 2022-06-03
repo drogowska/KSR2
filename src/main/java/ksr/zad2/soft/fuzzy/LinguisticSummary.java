@@ -2,6 +2,7 @@ package ksr.zad2.soft.fuzzy;
 
 import ksr.zad2.soft.data.CustomRecord;
 import ksr.zad2.soft.data.SpeedDatingRecord;
+import ksr.zad2.soft.functions.Extractor;
 import ksr.zad2.soft.set.FuzzySet;
 import lombok.Getter;
 
@@ -19,8 +20,8 @@ public class LinguisticSummary {
     private String subject2;  //P2
 
     private List<CustomRecord> records;
-
-    private boolean withQualifier;
+    private List<CustomRecord> subList;
+    private List<CustomRecord> subList1;
 
     private int form;
     private SummaryType summaryType;
@@ -30,7 +31,6 @@ public class LinguisticSummary {
     public LinguisticSummary(FuzzyQuantifier quantifier, LinguisticVariable qualifiers, LinguisticVariable summarizers, List<SpeedDatingRecord> subjects, List<SpeedDatingRecord> subjects2, List<SpeedDatingRecord> objects, boolean withQualifier, int form, SummaryType summaryType, List<Double> wages) {
         this.quantifier = quantifier;
         this.qualifiers = qualifiers;
-        this.withQualifier = withQualifier;
         this.form = form;
         this.summaryType = summaryType;
         this.wages = wages;
@@ -59,7 +59,7 @@ public class LinguisticSummary {
 //        filtered = objects.stream().filter(Record::get)
     }
 
-    public LinguisticSummary(FuzzyQuantifier quantifier, LinguisticVariable summarizers, List<CustomRecord> objects, String subject, String sub2, int form) {
+    public LinguisticSummary(FuzzyQuantifier quantifier, LinguisticVariable summarizers,List<CustomRecord> subList, List<CustomRecord> sublist2, List<CustomRecord> objects, String subject, String sub2, int form) {
         this.quantifier = quantifier;
         this.summarizers = summarizers;
         this.subject = subject;
@@ -71,15 +71,20 @@ public class LinguisticSummary {
         else if (form == 4)
             string = " than ";
         summaryType = SummaryType.MULTISUBJECTS;
+        records = objects;
+        this.subList = subList;
+        this.subList1 = sublist2;
 //        filtered = objects.stream().filter(Record::get)
     }
 
-    public LinguisticSummary(FuzzyQuantifier quantifier, LinguisticVariable summarizers, LinguisticVariable sum2, List<CustomRecord> objects, String subject, String s2, int form) {
+    public LinguisticSummary(FuzzyQuantifier quantifier, LinguisticVariable summarizers, LinguisticVariable sum2, List<CustomRecord> objects,
+                             List<CustomRecord> subList, List<CustomRecord> sublist2, String subject, String s2, int form) {
         this.quantifier = quantifier;
         this.summarizers = summarizers;
         qualifiers = sum2;
         this.subject2 = s2;
-
+        this.subList = subList;
+        this.subList1 = sublist2;
         this.subject = subject;
         this.form = form;
         summaryType = SummaryType.MULTISUBJECTS;
@@ -126,8 +131,31 @@ public class LinguisticSummary {
                 return a / qualifiers.getLabel().sigmaCount(records);
             }
         } else {
-            throw new RuntimeException("TWO SUBJECT QUALIFIERS ARE NOT AVAILABLE RIGHT NOW");
+            switch (form) {
+                case 1 : {
+                    double c = summarizers.getLabel().sigmaCount(subList) / subList.size();
+                    double d = summarizers.getLabel().sigmaCount(subList1) / subList1.size();
+                    return quantifier.compatibility(c / (c + d));
+                } case 2: {
+                    double c = summarizers.getLabel().sigmaCount(subList) / subList.size();
+                    for (CustomRecord i : subList1)
+                        a += summarizers.getLabel().and(qualifiers.getLabel(), i);
+                    a /= subList1.size();
+                    return quantifier.compatibility(c / (c + a));
+                } case 3 : {
+                    for (CustomRecord i : subList)
+                        a += summarizers.getLabel().and(qualifiers.getLabel(), i);
+                    a /= subList.size();
+                    double c = summarizers.getLabel().sigmaCount(subList1) / subList1.size();
+                    return quantifier.compatibility(a / (c + a));
+                } case 4 : {
+                    return -2;
+                }
+            }
+
+            System.out.println("TWO SUBJECT QUALIFIERS ARE NOT AVAILABLE RIGHT NOW");
         }
+        return -1;
     }
 //
 //    //degree of imprecision
@@ -144,7 +172,15 @@ public class LinguisticSummary {
 
     //degree of covering
     public double T3() {
-        return 0;
+//        return 0;
+        double t = 0, h = 0;
+        for (CustomRecord r : records) {
+            if (summarizers.getLabel().compatibility(r) > 0 && qualifiers.getLabel().compatibility(r) > 0)
+                t++;
+            if (qualifiers.getLabel().compatibility(r) > 0)
+                h++;
+        }
+        return t/h;
 //        CompoundVariable q = (CompoundVariable) qualifiers;
 //        CompoundVariable sumSet = (CompoundVariable) summarizers;
 //        return sumSet.compound().and(q.compound()).getSupp().size() / q.compound().getSupp().size();
@@ -152,11 +188,16 @@ public class LinguisticSummary {
 
     //degree of appropriateness
     public double T4() {
-        return 0;
-//        Double mul = 0.0;
-//        for (FuzzySet s : summarizers.getLabels())
-//            mul *= (double) s.getSupp().size() / database.size();
-//        return Math.abs(mul- T3());
+        double t = 0;
+        Double mul = 0.0;
+        for (Object s : summarizers.getLabels()) {
+            for (CustomRecord r : records) {
+                if (((FuzzySet) s).compatibility(r) > 0)
+                    t++;
+            }
+            mul *= (double) t / records.size();
+        }
+        return Math.abs(mul- T3());
     }
 
     //length of a summary

@@ -14,6 +14,7 @@ import org.w3c.dom.CDATASection;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class SoftApplication  {
@@ -44,7 +45,15 @@ public class SoftApplication  {
 //                List.of(Defined.age.getByName("young"),Defined.d_age.getByName("tiny")),
 //                List.of("and"));
         SpeedDatingRecord r = database.get(0);
-        LinguisticSummary linguisticSummary = new LinguisticSummary(q, s, new LinguisticVariable(Defined.funny.getByName("funny")), cutDB, "people");
+//        LinguisticSummary linguisticSummary = new LinguisticSummary(q, s, cutDB, "people"); //f1
+//        LinguisticSummary linguisticSummary = new LinguisticSummary(q, s, new LinguisticVariable(Defined.funny.getByName("funny")), cutDB, "people"); //f2
+
+       List<CustomRecord> f = cutDB.stream().filter(o-> o.getGender().equals("female")).collect(Collectors.toList());
+        List<CustomRecord> m = cutDB.stream().filter(o-> o.getGender().equals("male")).collect(Collectors.toList());
+
+        LinguisticSummary linguisticSummary = new LinguisticSummary(q, s, f, m,cutDB,
+                "female", "male", 1); //f1m
+
         System.out.println(linguisticSummary.toString());
         System.out.println(linguisticSummary.T1());
 
