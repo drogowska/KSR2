@@ -44,7 +44,7 @@ public class SoftApplication  {
 //                List.of(Defined.age.getByName("young"),Defined.d_age.getByName("tiny")),
 //                List.of("and"));
         SpeedDatingRecord r = database.get(0);
-        LinguisticSummary linguisticSummary = new LinguisticSummary(q, s, cutDB, "people");
+        LinguisticSummary linguisticSummary = new LinguisticSummary(q, s, new LinguisticVariable(Defined.funny.getByName("funny")), cutDB, "people");
         System.out.println(linguisticSummary.toString());
         System.out.println(linguisticSummary.T1());
 

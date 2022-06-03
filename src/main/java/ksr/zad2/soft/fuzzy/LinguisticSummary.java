@@ -112,114 +112,115 @@ public class LinguisticSummary {
 
     //degree of truth
     public double T1() {
-        CompoundVariable q = (CompoundVariable) qualifiers;
-        double a = 0; 
-//        for (CustomRecord i : records) {
-//            a += summarizers.getLabels().forEach(l -> l.sum())
-//        }
+//        CompoundVariable q = (CompoundVariable) qualifiers;
+        double a = 0;
+        double b = 0;
+
 //        CompoundVariable sumSet = (CompoundVariable) summarizers;
         if (summaryType.equals(SummaryType.ONESUBJECT)) {
             if (form == 1)
                 return quantifier.compatibility(summarizers.getLabel().sigmaCount(records));
             else {
-//                return quantifier.compatibility(sumSet.compound().and(q.compound()).sigmaCount()) / q.compound().sigmaCount();
+                for (CustomRecord i : records)
+                     a += summarizers.getLabel().and(qualifiers.getLabel(), i);
+                return a / qualifiers.getLabel().sigmaCount(records);
             }
         } else {
             throw new RuntimeException("TWO SUBJECT QUALIFIERS ARE NOT AVAILABLE RIGHT NOW");
         }
-        return 0;
     }
 //
 //    //degree of imprecision
-//    public double T2() {
-//        return imprecision(summarizers);
-//    }
-//
-//    private double imprecision(LinguisticVariable set) {
-//        Double mul = 0.0;
-//        for (FuzzySet s : set.getLabels())
-//            mul *= s.in();
-//        return 1 - Math.pow(mul, set.getLabels().size());
-//    }
-//
-//    //degree of covering
-//    public double T3() {
+    public double T2() {
+        return imprecision(summarizers);
+    }
+
+    private double imprecision(LinguisticVariable set) {
+        Double mul = 0.0;
+        for (Object s : set.getLabels())
+            mul *= ((FuzzySet) s).in(records);
+        return 1 - Math.pow(mul, set.getLabels().size());
+    }
+
+    //degree of covering
+    public double T3() {
+        return 0;
 //        CompoundVariable q = (CompoundVariable) qualifiers;
 //        CompoundVariable sumSet = (CompoundVariable) summarizers;
 //        return sumSet.compound().and(q.compound()).getSupp().size() / q.compound().getSupp().size();
-//    }
-//
-//    //degree of appropriateness
-//    public double T4() {
+    }
+
+    //degree of appropriateness
+    public double T4() {
+        return 0;
 //        Double mul = 0.0;
 //        for (FuzzySet s : summarizers.getLabels())
 //            mul *= (double) s.getSupp().size() / database.size();
 //        return Math.abs(mul- T3());
-//    }
-//
-//    //length of a summary
-//    public double T5() {
-//        return length(summarizers);
-//    }
-//
-//    //the optimal summary
-//    public double T(List<Double> wages) {
-//        return wages.get(0) * T1() +
-//                wages.get(1) * T2() +
-//                wages.get(2) * T3() +
-//                wages.get(3) * T4() +
-//                wages.get(4) * T5() +
-//                wages.get(5) * T6() +
-//                wages.get(6) * T7() +
-//                wages.get(7) * T8() +
-//                wages.get(8) * T9() +
-//                wages.get(9) * T10() +
-//                wages.get(10) * T11();
-//    }
-//
-//    //degree of quantifier imprecision
-//    public double T6() {
-//        if (quantifier.isAbsolute())
-//            return 1 - quantifier.getSupp().size() / database.size();
-//        return 1 - quantifier.in();
-//    }
-//    //degree of quantifier cardinality
-//    public double T7() {
-//        if (quantifier.isAbsolute()) {
-//            return 1 - quantifier.sigmaCount() / database.size();
-//        }
-//        return 1 - quantifier.sigmaCount();
-//    }
-//    //degree of summarizer cardinality
-//    public double T8() {
-//       return cardinality(summarizers);
-//    }
-//
-//    //degree of qualifier imprecision
-//    public double T9() {
-//        return imprecision(qualifiers);
-//    }
-//
-//    //degree of qualifier cardinality
-//    public double T10() {
-//        return cardinality(qualifiers);
-//    }
-//
-//    private double length(LinguisticVariable set) {
-//        return 2 * Math.pow(0.5, set.getLabels().size());
-//    }
-//
-//    private double cardinality(LinguisticVariable set) {
-//        Double mul = 0.0;
-//        for (FuzzySet s : set.getLabels())
-//            mul *= s.sigmaCount() / s.getUniverseOfDiscourse().size();
-//        return 1 - Math.pow(mul, set.getLabels().size());
-//    }
-//
-//    //length of a qualifier
-//    public double T11() {
-//        return length(qualifiers);
-//    }
+    }
+
+    //length of a summary
+    public double T5() {
+        return length(summarizers);
+    }
+
+    //the optimal summary
+    public double T(List<Double> wages) {
+        return wages.get(0) * T1() +
+                wages.get(1) * T2() +
+                wages.get(2) * T3() +
+                wages.get(3) * T4() +
+                wages.get(4) * T5() +
+                wages.get(5) * T6() +
+                wages.get(6) * T7() +
+                wages.get(7) * T8() +
+                wages.get(8) * T9() +
+                wages.get(9) * T10() +
+                wages.get(10) * T11();
+    }
+
+    //degree of quantifier imprecision
+    public double T6() {
+        if (quantifier.isAbsolute())
+            return 1 - quantifier.supp(quantifier.getUniverse()).size() / database.size();
+        return 1 - quantifier.in(quantifier.getUniverse());
+    }
+    //degree of quantifier cardinality
+    public double T7() {
+        if (quantifier.isAbsolute()) {
+            return 1 - quantifier.sigmaCount(quantifier.getUniverse()) / database.size();
+        }
+        return 1 - quantifier.sigmaCount(quantifier.getUniverse());
+    }
+    //degree of summarizer cardinality
+    public double T8() {
+       return cardinality(summarizers);
+    }
+
+    //degree of qualifier imprecision
+    public double T9() {
+        return imprecision(qualifiers);
+    }
+
+    //degree of qualifier cardinality
+    public double T10() {
+        return cardinality(qualifiers);
+    }
+
+    private double length(LinguisticVariable set) {
+        return 2 * Math.pow(0.5, set.getLabels().size());
+    }
+    private double cardinality(LinguisticVariable set) {
+        Double mul = 0.0;
+        for (Object s : set.getLabels())
+            mul *= ((FuzzySet)s).sigmaCount(records) / records.size();
+        return 1 - Math.pow(mul, set.getLabels().size());
+    }
+
+    //length of a qualifier
+    public double T11() {
+        return length(qualifiers);
+    }
 
 
 }

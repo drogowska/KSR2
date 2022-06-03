@@ -29,20 +29,20 @@ public class FuzzySet<T> {
         this.universe = cutDB;
     }
 
-    public ClassicSet getAlphaCut(double a) {
-        if (universe.isDiscrete) {
+    public ClassicSet getAlphaCut(List<T> list, double a) {
+//        if (universe.isDiscrete) {
             List<T> l = new ArrayList<>();
-            for (T i : universe) {
+            for (T i : list) {
                 if (function.calculate(i) > a)
                     l.add(i);
             }
             return new ClassicSet(l);
-        }
-        return null;
+//        }
+//        return null;
     }
 
-    public ClassicSet supp() {
-        return getAlphaCut(0);
+    public ClassicSet supp(List<T> list) {
+        return getAlphaCut(list, 0);
     }
 
 //    public double sum(FuzzySet set, double v) {
@@ -91,8 +91,8 @@ public class FuzzySet<T> {
     }
 
     //degree of fuzziness
-    public Double in() {
-        return (double) (supp().size() / universe.size());
+    public Double in(List<T> list) {
+        return (double) (supp(list).size() / list.size());
     }
 
 //

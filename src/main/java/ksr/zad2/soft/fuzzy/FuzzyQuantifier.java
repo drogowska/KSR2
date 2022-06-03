@@ -9,6 +9,7 @@ import lombok.Getter;
 import java.util.HashMap;
 import java.util.List;
 
+import static ksr.zad2.soft.SoftApplication.cutDB;
 import static ksr.zad2.soft.SoftApplication.database;
 
 @Getter
@@ -31,7 +32,7 @@ public class FuzzyQuantifier extends FuzzySet<Double> {
 //    }
 
     public FuzzyQuantifier(String label, MembershipFunction membershipFunctions, boolean isAbsolute) {
-        super(new ClassicSet(0, database.size()), membershipFunctions);
+        super(cutDB, membershipFunctions);
         this.isAbsolute = isAbsolute;
         name = label;
     }
