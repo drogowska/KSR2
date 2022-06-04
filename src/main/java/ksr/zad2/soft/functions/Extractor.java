@@ -4,7 +4,7 @@ import ksr.zad2.soft.data.CustomRecord;
 
 public class Extractor {
 
-    public static double age(CustomRecord record) {
+    /*public static double age(CustomRecord record) {
         return record.getAge();
     }
 
@@ -40,5 +40,5 @@ public class Extractor {
 
     public static double funny(CustomRecord record) {
         return record.getFunny();
-    }
+    }*/
 }

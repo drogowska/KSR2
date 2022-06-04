@@ -3,7 +3,6 @@ package ksr.zad2.soft.data;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import javax.management.ConstructorParameters;
 import javax.persistence.Column;
 import javax.persistence.Id;
 @AllArgsConstructor
@@ -28,6 +27,8 @@ public class CustomRecord {
     private float expected_num_interested_in_me;
     private float guess_prob_liked;
     private float funny;
+
+
 
 
 }

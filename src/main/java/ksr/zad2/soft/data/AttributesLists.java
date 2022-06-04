@@ -18,7 +18,7 @@ public class AttributesLists {
     static List<Integer> guess_prob_liked= new ArrayList<>();;
 
     public static void fill() {
-        database.forEach(d -> {
+        /*database.forEach(d -> {
             age.add((int) d.getAge());
             d_age.add((int) d.getD_age());
             importance_same_race.add((int) d.getImportance_same_race());
@@ -29,6 +29,6 @@ public class AttributesLists {
             tvsports.add((int) d.getTvsports());
             expected_num_interested_in_me.add((int) d.getExpected_num_interested_in_me());
             guess_prob_liked.add((int) d.getGuess_prob_liked());
-        });
+        });*/
     }
 }

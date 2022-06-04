@@ -18,12 +18,12 @@ public class CompoundVariable extends LinguisticVariable<CustomRecord> {
         super(name, labels, denseUniverse);
     }
 
-    public CompoundVariable(List<FuzzySet<CustomRecord>> labels, List<String> connectives) {
+    /*public CompoundVariable(List<FuzzySet<CustomRecord>> labels, List<String> connectives) {
         super("compound", labels, new ClassicSet(labels.get(0).getUniverse().sum(
                 labels.get(1).getUniverse())));
         this.connectives = connectives;
         compound();
-    }
+    }*/
 
     public CompoundVariable(FuzzySet labels) {
         super(List.of(labels));
