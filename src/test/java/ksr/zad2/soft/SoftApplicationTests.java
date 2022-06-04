@@ -2,12 +2,12 @@ package ksr.zad2.soft;
 
 import ksr.zad2.soft.data.AttributeEnum;
 import ksr.zad2.soft.data.CustomRecord;
-import ksr.zad2.soft.data.SpeedDatingRecord;
 import ksr.zad2.soft.database.SpeedDatingRepository;
 import ksr.zad2.soft.functions.MembershipFunction;
 import ksr.zad2.soft.functions.TrapezoidalFunction;
 import ksr.zad2.soft.fuzzy.*;
 import ksr.zad2.soft.set.FuzzySet;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -23,22 +23,51 @@ class SoftApplicationTests {
     @Autowired
     private SpeedDatingRepository repository;
 
+    private static MembershipFunction quantifierFunction;
+    private static Quantifier quantifier;
+    private static MembershipFunction summarizerFunction;
+    private static MembershipFunction qualifierFunction;
+    private static Label label1;
+    private static Label label2;
+    private static Summarizer summarizer;
+    private static List<CustomRecord> subject1;
+    private static Qualifier qualifier;
+
+    @BeforeAll
+    static void setup() {
+        quantifierFunction = new TrapezoidalFunction(0, 4600, 10000, 10000);
+        quantifier = new Quantifier("Most of", quantifierFunction);
+
+        qualifierFunction = new TrapezoidalFunction(1, 4, 5, 6);
+        label2 = new Label("a bit boring", new FuzzySet(qualifierFunction));
+        qualifier = new Qualifier(label2, AttributeEnum.valueOf("funny"));
+
+        summarizerFunction = new TrapezoidalFunction(28, 34, 40, 44);
+        label1 = new Label("young", new FuzzySet(summarizerFunction));
+        summarizer = new Summarizer(label1, AttributeEnum.valueOf("age"));
+    }
+
     @Test
-    void Test() {
-        MembershipFunction quantifierFunction = new TrapezoidalFunction(4100, 4600, 10000, 10000);
-        Quantifier quantifier = new Quantifier("Most of", quantifierFunction);
-
-        MembershipFunction summarizerFunction = new TrapezoidalFunction(28, 34, 40, 44);
-        Label label = new Label("young", new FuzzySet(summarizerFunction)); // age
-        Summarizer summarizer = new Summarizer(label, AttributeEnum.valueOf("age"));
-
-        List<CustomRecord> subject = repository.findAll().stream().map(r -> {
+    void testForm1() {
+        subject1 = repository.findAll().stream().map(r -> {
             CustomRecord customRecord = r.getCustomRecord();
             customRecord.setName("People");
             return customRecord;
         }).collect(Collectors.toList());
 
-        LinguisticSummary summary = new LinguisticSummary(quantifier, List.of(summarizer), subject);
+        LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(summarizer), subject1);
+        System.out.println(summary.toString() + " [" + summary.getT1() + "]");
+    }
+
+    @Test
+    void testForm2() {
+        subject1 = repository.findAll().stream().map(r -> {
+            CustomRecord customRecord = r.getCustomRecord();
+            customRecord.setName("People");
+            return customRecord;
+        }).collect(Collectors.toList());
+
+        LinguisticSummary summary = new LinguisticSummary(quantifier, qualifier, List.of(summarizer), subject1);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
     }
 
