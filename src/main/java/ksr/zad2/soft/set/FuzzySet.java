@@ -10,8 +10,4 @@ public class FuzzySet<T> extends Set<T> {
         super();
         this.membershipFunction = membershipFunction;
     }
-
-    public double calculateByMembershipFunction() {
-        return me
-    }
 }

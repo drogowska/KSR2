@@ -1,8 +1,6 @@
 package ksr.zad2.soft;
 
-import ksr.zad2.soft.data.SpeedDatingRecord;
 import ksr.zad2.soft.database.SpeedDatingRepository;
-import ksr.zad2.soft.functions.MembershipFunction;
 import ksr.zad2.soft.set.FuzzySet;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +18,9 @@ class SoftApplicationTests {
 
     @Test
     void Test() {
-        List<SpeedDatingRecord> rows = repository.findAll();
-        MembershipFunction<T>
-
-        FuzzySet<Double> summarizer = new FuzzySet<>();
-        FuzzySet<Double> quantifier = new FuzzySet<>();
-        String subject = "People";
-
+        String summarizerLabel = "age is old";
+        FuzzySet<Double> age = new FuzzySet<>();
+        repository.getDistinctAge().forEach(a -> age.add(a));
     }
 
 }
