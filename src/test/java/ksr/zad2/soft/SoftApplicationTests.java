@@ -44,7 +44,7 @@ class SoftApplicationTests {
 
         summarizerFunction = new TrapezoidalFunction(28, 34, 40, 44);
         label1 = new Label("young", new FuzzySet(summarizerFunction));
-        summarizer = new Summarizer(label1, AttributeEnum.valueOf("age"));
+        summarizer = new Summarizer(label1, AttributeEnum.valueOf("age"), ConnectiveEnum.AND);
     }
 
     @Test
@@ -55,7 +55,7 @@ class SoftApplicationTests {
             return customRecord;
         }).collect(Collectors.toList());
 
-        LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(summarizer), subject1);
+        LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(summarizer, summarizer), subject1);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
     }
 
@@ -67,7 +67,7 @@ class SoftApplicationTests {
             return customRecord;
         }).collect(Collectors.toList());
 
-        LinguisticSummary summary = new LinguisticSummary(quantifier, qualifier, List.of(summarizer), subject1);
+        LinguisticSummary summary = new LinguisticSummary(quantifier, qualifier, List.of(summarizer, summarizer, summarizer), subject1);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
     }
 

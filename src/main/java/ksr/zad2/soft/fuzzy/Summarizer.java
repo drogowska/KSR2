@@ -7,11 +7,13 @@ public class Summarizer<T> extends FuzzySet<T> {
 
     private AttributeEnum columnName;
     private String labelName;
+    private ConnectiveEnum connective;
 
-    public Summarizer(Label label, AttributeEnum columnName) {
+    public Summarizer(Label label, AttributeEnum columnName, ConnectiveEnum connective) {
         super(label.getFuzzySet().getMembershipFunction());
         this.columnName = columnName;
         this.labelName = label.getLabelName();
+        this.connective = connective;
     }
 
     public AttributeEnum getColumnName() {
@@ -20,5 +22,9 @@ public class Summarizer<T> extends FuzzySet<T> {
 
     public String getLabel() {
         return labelName;
+    }
+
+    public ConnectiveEnum getConnective() {
+        return connective;
     }
 }
