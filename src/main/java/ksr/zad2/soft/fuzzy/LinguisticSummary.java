@@ -1,5 +1,6 @@
 package ksr.zad2.soft.fuzzy;
 
+import ksr.zad2.soft.data.AttributeEnum;
 import ksr.zad2.soft.data.CustomRecord;
 
 import java.util.List;
@@ -19,13 +20,14 @@ public class LinguisticSummary {
         this.firstSubject = firstSubject;
     }
 
-    public double getT1() {
-        double result = 0;
+    public float getT1() {
+        float result = 0;
         if(secondSubject == null) {
             if(getForm() == 1) {
-                AtomicReference<Double> sum = new AtomicReference<>(0d);
+                AtomicReference<Float> sum = new AtomicReference<>(0f);
                 firstSubject.forEach(record -> {
-                    sum.set(sum.get() + summarizers.get(0).getMembershipFunction().calculate(record.getAge())); // age
+                    sum.set(sum.get() + summarizers.get(0).getMembershipFunction().calculate(
+                            AttributeEnum.getValue(record, summarizers.get(0).getColumnName()))); // age
                 });
                 result = quantifier.getMembershipFunction().calculate(sum.get());
             }

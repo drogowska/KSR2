@@ -1,13 +1,13 @@
 package ksr.zad2.soft.functions;
 
-public class TrapezoidalFunction implements MembershipFunction<Double> {
+public class TrapezoidalFunction implements MembershipFunction<Float> {
 
-    private double a;
-    private double b;
-    private double c;
-    private double d;
+    private float a;
+    private float b;
+    private float c;
+    private float d;
 
-    public TrapezoidalFunction(double a, double b, double c, double d) {
+    public TrapezoidalFunction(float a, float b, float c, float d) {
         this.a = a;
         this.b = b;
         this.c = c;
@@ -15,7 +15,7 @@ public class TrapezoidalFunction implements MembershipFunction<Double> {
     }
 
     @Override
-    public double calculate(Double x) {
+    public float calculate(Float x) {
         if(x <= a || d <= x) {
             return 0;
         }
@@ -23,10 +23,10 @@ public class TrapezoidalFunction implements MembershipFunction<Double> {
             return 1;
         }
         if(c <= x && x <= d) {
-            return (x - d) / (c - b);
+            return (float)((x - d) / (c - b));
         }
         if(a <= x && x <= b) {
-            return (x - a) / (b - a);
+            return (float)((x - a) / (b - a));
         }
         return 0;
     }

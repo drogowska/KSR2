@@ -1,19 +1,20 @@
 package ksr.zad2.soft.fuzzy;
 
+import ksr.zad2.soft.data.AttributeEnum;
 import ksr.zad2.soft.set.FuzzySet;
 
 public class Summarizer<T> extends FuzzySet<T> {
 
-    private String columnName;
+    private AttributeEnum columnName;
     private String labelName;
 
-    public Summarizer(Label label, String columnName) {
+    public Summarizer(Label label, AttributeEnum columnName) {
         super(label.getFuzzySet().getMembershipFunction());
         this.columnName = columnName;
         this.labelName = label.getLabelName();
     }
 
-    public String getColumnName() {
+    public AttributeEnum getColumnName() {
         return columnName;
     }
 

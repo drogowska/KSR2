@@ -1,5 +1,6 @@
 package ksr.zad2.soft;
 
+import ksr.zad2.soft.data.AttributeEnum;
 import ksr.zad2.soft.data.CustomRecord;
 import ksr.zad2.soft.data.SpeedDatingRecord;
 import ksr.zad2.soft.database.SpeedDatingRepository;
@@ -29,7 +30,7 @@ class SoftApplicationTests {
 
         MembershipFunction summarizerFunction = new TrapezoidalFunction(28, 34, 40, 44);
         Label label = new Label("young", new FuzzySet(summarizerFunction)); // age
-        Summarizer summarizer = new Summarizer(label, "age");
+        Summarizer summarizer = new Summarizer(label, AttributeEnum.valueOf("age"));
 
         List<CustomRecord> subject = repository.findAll().stream().map(r -> {
             CustomRecord customRecord = r.getCustomRecord();
