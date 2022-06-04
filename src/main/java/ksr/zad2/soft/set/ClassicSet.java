@@ -7,9 +7,9 @@ import java.util.*;
 @Getter
 public class ClassicSet<T> extends ArrayList<T> {
 
-    double begin;
-    double end;
-    boolean isDiscrete;
+    protected double begin;
+    protected double end;
+    protected boolean isDiscrete;
     public ClassicSet() {
         super();
     }
@@ -74,4 +74,15 @@ public class ClassicSet<T> extends ArrayList<T> {
         return new ClassicSet(list);
     }
 
+    public double getBegin() {
+        return begin;
+    }
+
+    public double getEnd() {
+        return end;
+    }
+
+    public boolean isDiscrete() {
+        return isDiscrete;
+    }
 }
