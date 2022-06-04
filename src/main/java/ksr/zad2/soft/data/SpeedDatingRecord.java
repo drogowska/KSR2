@@ -153,8 +153,13 @@ public class SpeedDatingRecord {
         this.sincere = sincere;
     }
 
-    public SpeedDatingRecord() {
+    public CustomRecord getCustomRecord() {
+        return new CustomRecord(age, gender, race, field, d_age, importance_same_race,
+                importance_same_religion, pref_o_ambitious, pref_o_intelligence, sincere, tvsports,
+                expected_num_interested_in_me, guess_prob_liked, funny);
+    }
 
+    public SpeedDatingRecord() {
     }
 
     public Long getId() {
