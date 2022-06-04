@@ -1,13 +1,7 @@
 package ksr.zad2.soft.data;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 import javax.persistence.*;
 
-@Data
-@AllArgsConstructor
 @Entity(name = "sp_tab")
 public class SpeedDatingRecord {
 
@@ -139,22 +133,13 @@ public class SpeedDatingRecord {
     private float _match;
     private float column_123;
 
-    public SpeedDatingRecord(int age, int d_age, int importance_same_race, int importance_same_religion, float pref_o_inteligence, float pref_o_ambitious,
-                             int tvsports, int expected_num_interested_in_me, float guess_prob_liked, float sincere) {
-        this.age = age;
-        this.d_age = d_age;
-        this.importance_same_race = importance_same_race;
-        this.importance_same_religion = importance_same_religion;
-        this.pref_o_intelligence = pref_o_inteligence;
-        this.pref_o_ambitious = pref_o_ambitious;
-        this.tvsports = tvsports;
-        this.expected_num_interested_in_me = expected_num_interested_in_me;
-        this.guess_prob_liked = guess_prob_liked;
-        this.sincere = sincere;
+    public SpeedDatingRecord() {
     }
 
-    public SpeedDatingRecord() {
-
+    public CustomRecord getCustomRecord() {
+        return new CustomRecord(age, gender, race, field, d_age, importance_same_race,
+                importance_same_religion, pref_o_ambitious, pref_o_intelligence, sincere, tvsports,
+                expected_num_interested_in_me, guess_prob_liked, funny);
     }
 
     public Long getId() {
