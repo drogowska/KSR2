@@ -2,6 +2,8 @@ package ksr.zad2.soft.data;
 
 public class CustomRecord {
 
+    private String name;
+
     private float age;
     private String gender;
     private String race;
@@ -35,6 +37,14 @@ public class CustomRecord {
         this.expected_num_interested_in_me = expected_num_interested_in_me;
         this.guess_prob_liked = guess_prob_liked;
         this.funny = funny;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public float getAge() {

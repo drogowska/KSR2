@@ -1,16 +1,23 @@
 package ksr.zad2.soft.fuzzy;
 
-import ksr.zad2.soft.functions.MembershipFunction;
 import ksr.zad2.soft.set.FuzzySet;
 
-public class Summarizer extends FuzzySet<Double> {
+public class Summarizer<T> extends FuzzySet<T> {
 
-    String label;
+    private String columnName;
+    private String labelName;
 
-    public Summarizer(MembershipFunction membershipFunction, String label) {
-        super(membershipFunction);
-        this.label = label;
+    public Summarizer(Label label, String columnName) {
+        super(label.getFuzzySet().getMembershipFunction());
+        this.columnName = columnName;
+        this.labelName = label.getLabelName();
     }
 
+    public String getColumnName() {
+        return columnName;
+    }
 
+    public String getLabel() {
+        return labelName;
+    }
 }
