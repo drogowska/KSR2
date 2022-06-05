@@ -14,13 +14,14 @@ public class LinguisticSummary {
     List<CustomRecord> firstSubject;
     List<CustomRecord> secondSubject;
 
-    public LinguisticSummary(Quantifier quantifier, List<Qualifier> qualifiers, List<Summarizer> summarizers, List<CustomRecord> firstSubject) {
+    public LinguisticSummary(Quantifier quantifier, List<Qualifier> qualifiers, List<Summarizer> summarizers, List<CustomRecord> firstSubject, List<CustomRecord> secondSubject) {
         if(qualifiers != null) {
             this.qualifierList = new QualifierList(qualifiers);
         }
         this.quantifier = quantifier;
         this.summarizerList = new SummarizerList(summarizers);
         this.firstSubject = firstSubject;
+        this.secondSubject = secondSubject;
     }
 
     public List<Float> getT() {

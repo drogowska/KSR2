@@ -17,4 +17,12 @@ public class LinguisticVariable {
     public void addNewLabel(Label label) {
         labels.add(label);
     }
+
+    public Label getLabel(int i) {
+        return labels.get(i);
+    }
+
+    public AttributeEnum getColumn() {
+        return column;
+    }
 }

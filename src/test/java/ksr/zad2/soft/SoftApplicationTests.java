@@ -16,6 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static ksr.zad2.soft.defined.DefinedLinguisticVariables.*;
+
 @SpringBootTest
 @EnableAutoConfiguration
 class SoftApplicationTests {
@@ -48,6 +50,63 @@ class SoftApplicationTests {
     }
 
     @Test
+    void realTest() {
+        subject1 = repository.findAll().stream().map(r -> {
+            CustomRecord customRecord = r.getCustomRecord();
+            customRecord.setName("People");
+            return customRecord;
+        }).collect(Collectors.toList());
+
+        Quantifier quantifier = quantifiers.get(2);
+
+        LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(
+                new Summarizer(expected_num_interested_in_me.getLabel(2), expected_num_interested_in_me.getColumn(), ConnectiveEnum.AND)
+        ), subject1, null);
+
+        System.out.println(summary.toString() + " [" + summary.getT1() + "]");
+        summary.getT().forEach(System.out::println);
+    }
+
+    @Test
+    void realTest2() {
+        subject1 = repository.findAll().stream().map(r -> {
+            CustomRecord customRecord = r.getCustomRecord();
+            customRecord.setName("People");
+            return customRecord;
+        }).collect(Collectors.toList());
+
+        Quantifier quantifier = quantifiers.get(4);
+
+        LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(
+                new Summarizer(age.getLabel(1), age.getColumn(), ConnectiveEnum.AND)
+        ), subject1, null);
+
+        System.out.println(summary.toString() + " [" + summary.getT1() + "]");
+        summary.getT().forEach(System.out::println);
+    }
+
+    @Test
+    void realTest3() {
+        subject1 = repository.findAll().stream().map(r -> {
+            CustomRecord customRecord = r.getCustomRecord();
+            customRecord.setName("People");
+            return customRecord;
+        }).collect(Collectors.toList());
+
+        Quantifier quantifier = quantifiers.get(3);
+
+        LinguisticSummary summary = new LinguisticSummary(quantifier, List.of(
+                new Qualifier(age.getLabel(1), age.getColumn(), ConnectiveEnum.AND)
+        ), List.of(
+                new Summarizer(expected_num_interested_in_me.getLabel(2), expected_num_interested_in_me.getColumn(), ConnectiveEnum.AND)
+        ), subject1, null);
+
+        System.out.println(summary.toString() + " [" + summary.getT1() + "]");
+        summary.getT().forEach(System.out::println);
+    }
+
+
+    @Test
     void testForm1() {
         subject1 = repository.findAll().stream().map(r -> {
             CustomRecord customRecord = r.getCustomRecord();
@@ -55,7 +114,7 @@ class SoftApplicationTests {
             return customRecord;
         }).collect(Collectors.toList());
 
-        LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(summarizer, summarizer, summarizer), subject1);
+        LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(summarizer, summarizer, summarizer), subject1, null);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
 
         summary.getT().forEach(System.out::println);
@@ -69,7 +128,7 @@ class SoftApplicationTests {
             return customRecord;
         }).collect(Collectors.toList());
 
-        LinguisticSummary summary = new LinguisticSummary(quantifier, List.of(qualifier, qualifier, qualifier), List.of(summarizer), subject1);
+        LinguisticSummary summary = new LinguisticSummary(quantifier, List.of(qualifier, qualifier, qualifier), List.of(summarizer), subject1, null);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
 
         summary.getT().forEach(System.out::println);
