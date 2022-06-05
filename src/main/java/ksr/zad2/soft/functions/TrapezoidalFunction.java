@@ -22,10 +22,10 @@ public class TrapezoidalFunction extends MembershipFunction<Float> {
         if(b <= x && x <= c) {
             return 1;
         }
-        if(c <= x && x <= d) {
+        if(c < x && x < d) {
             return (x - d) / (c - d);
         }
-        if(a <= x && x <= b) {
+        if(a < x && x < b) {
             return (x - a) / (b - a);
         }
         return 0;

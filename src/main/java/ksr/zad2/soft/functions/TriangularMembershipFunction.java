@@ -20,10 +20,10 @@ public class TriangularMembershipFunction extends MembershipFunction<Float> {
         if(x == b) {
             return 1;
         }
-        if(a <= x && x <= b) {
+        if(a < x && x < b) {
             return (x - a) / (b - a);
         }
-        if(b <= x && x <= c) {
+        if(b < x && x < c) {
             return (x - c) / (b - c);
         }
         return 0;
