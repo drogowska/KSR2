@@ -68,4 +68,14 @@ public class SummarizerList {
     public float getLengthOfSummary() {
         return (float) (2d * Math.pow(0.5, summarizers.size()));
     }
+
+    public float getDegreeOfSummarizerRelativeCardinality(int recordsSize) {
+        AtomicReference<Float> result = new AtomicReference<>(1f);
+        float p = summarizers.size();
+        summarizers.forEach(summarizer -> {
+            result.set(result.get() * (summarizer.getMembershipFunction().getCardinality() / recordsSize));
+        });
+        result.set((float) Math.pow(result.get(), 1/p));
+        return 1f - result.get();
+    }
 }

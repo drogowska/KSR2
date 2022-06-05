@@ -29,7 +29,8 @@ public class LinguisticSummary {
                 getT4(),
                 getT5(),
                 getT6(),
-                getT7());
+                getT7(),
+                getT8());
     }
 
     public float getT1() {
@@ -109,6 +110,11 @@ public class LinguisticSummary {
     public float getT7() {
         return 1 - (quantifier.getMembershipFunction().getCardinality() / firstSubject.size());
     }
+
+    public float getT8() {
+        return summarizerList.getDegreeOfSummarizerRelativeCardinality(firstSubject.size());
+    }
+
 
     public int getForm() {
         if(qualifier == null) {
