@@ -36,7 +36,7 @@ class SoftApplicationTests {
     @BeforeAll
     static void setup() {
         quantifierFunction = new TrapezoidalMembershipFunction(100, 4600, 10000, 7000);
-        quantifier = new Quantifier("Most of", quantifierFunction);
+        quantifier = new Quantifier("Most of", quantifierFunction, true);
 
         qualifierFunction = new TrapezoidalMembershipFunction(1, 4, 5, 6);
         label2 = new Label("a bit boring", new FuzzySet(qualifierFunction));

@@ -13,4 +13,8 @@ public class LinguisticVariable {
         this.column = column;
         this.labels = label;
     }
+
+    public void addNewLabel(Label label) {
+        labels.add(label);
+    }
 }
