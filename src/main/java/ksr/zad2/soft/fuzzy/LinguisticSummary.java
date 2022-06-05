@@ -21,6 +21,13 @@ public class LinguisticSummary {
         this.firstSubject = firstSubject;
     }
 
+    public List<Float> getT() {
+        return List.of(
+                getT1(),
+                getT2(),
+                getT3());
+    }
+
     public float getT1() {
         float result = 0;
         if(secondSubject == null) { // ONE SUBJECT
@@ -50,7 +57,29 @@ public class LinguisticSummary {
     }
 
     public float getT2() {
-        return summarizerList.getDegreeOfImprecision();
+        if(secondSubject == null) {
+            return summarizerList.getDegreeOfImprecision();
+        } else {
+            return 0;
+        }
+    }
+
+    public float getT3() {
+        if(getForm() == 2 && secondSubject == null) {
+            AtomicReference<Float> h = new AtomicReference<>(0f);
+            AtomicReference<Float> t = new AtomicReference<>(0f);
+            firstSubject.forEach(record -> {
+                if(qualifier.getMembershipFunction().calculate(AttributeEnum.getValue(record, qualifier.getColumnName())) > 0) {
+                    h.set(h.get() + 1);
+                    if(summarizerList.calculate(record) > 0) {
+                        t.set(t.get() + 1);
+                    }
+                }
+            });
+            return t.get() / h.get();
+        } else {
+            return 0;
+        }
     }
 
     public int getForm() {
