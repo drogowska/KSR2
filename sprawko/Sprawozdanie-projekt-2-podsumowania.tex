@@ -772,15 +772,37 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne kw
 obliczeń rozmytych i~generatora podsumowań. Instrukcja użytkownika}
 
 Aplikacja została napisana w technologii Java w wersji 17, z wykorzystaniem biblioteki JavaFX \cite{javafx} w celu stworzenia prostego
-okienkowego interfejsu użytkownika.\\
+okienkowego interfejsu użytkownika. W celu odczytania danych zawarytch w bazie danych \cite{database} użyto Spring Framework \cite{spring}. \\
 
 Implementacja została podzielona na dwa moduły warstwy logiki i widoku, wykorzystany został wzorzec projektowy Model View Controler. Z kolei cześć odpowiedzialna za logikę aplikacji składa się z poszczególnych pakietów:
 \begin{enumerate}
-  \item functions - pakiet reprezentujący funkcje przynależności (klasa abstrakcyjna MembershipFunction i rozsrzerzające ją klasy) oraz przestrzeń rozważań (klasa UniverseOfDiscourse). 
-  \item fuzzy - pakiet reprezentujący poszczególne elementy podsumowania, jak i samo podsumowanie lingwistyczne oraz metryki użyte to obliczeń jakości wykonywanych operacji. Zawiera międzyinnymi klasy: Metrics - reprezentującą metryki oraz LinguisticVariable reprezentującą zmienną lingwistyczną
-  \item set - pakiet reprezentujący obiekt zbioru, zarówno rozmumianego w sensie klasycznym jak i rozmytym. Zawiera klase abstrakcyjną Set oraz rozszerzające ją klasy ClassicSet oraz FuzzySet.
-  \item quantifier - pakiet odpowiedzialny za reprezentacje kwantyfikatorów absolutnych (klasa FuzzyAbsoluteQuantifier) jak i względnych (klasa FuzzyRelativeQuantifier) oraz etykiet (klasa Tag). 
+  \item functions - pakiet reprezentujący funkcje przynależności (klasa abstrakcyjna MembershipFunction i rozsrzerzające ją klasy). 
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.2]{fun}
+    \caption{Diagram UML pakietu \(functions\)}
+  \end{figure}
+  \item fuzzy - pakiet reprezentujący poszczególne elementy podsumowania, jak i samo podsumowanie lingwistyczne oraz metryki użyte to obliczeń jakości wykonywanych operacji. Zawiera międzyinnymi klasy: LinguisticVariable reprezentującą zmienną lingwistyczną, LinguisticSummary - podsumowanie lingwistyczne.
+  \begin{figure}[H]    
+    \centering
+    \includegraphics[scale = 0.16]{fuzzy}
+    \caption{Diagram UML pakietu \(fuzzy\)}
+  \end{figure}
+  \item set - pakiet reprezentujący obiekt zbioru, zarówno rozmumianego w sensie klasycznym jak i rozmytym. Zawiera klase abstrakcyjną Set, która rozszerza klasę bibliioteczną ArrayList oraz rozszerzające ją klasę FuzzySet.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.2]{set}
+    \caption{Diagram UML pakietu \(set\)}
+  \end{figure}
+  \item data - pakiet reprezentujący pojedyńczy rekord odczytany z bazy danych.
+   \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.2]{data}
+    \caption{Diagram UML pakietu \(data\)}
+  \end{figure}
 \end{enumerate}
+
+
 
   \begin{figure}[H]
     \includegraphics[scale = 0.08]{all}
@@ -880,6 +902,7 @@ podać merytoryczne (ale nie czasowe) przyczyny tych braków.
 \bibitem{postgres} strona internetowa PostgreSQL, \url{https://www.postgresql.org}
 \bibitem{pgadmin} strona internetowa PgAdmin 4, \url{https://www.pgadmin.org}
 \bibitem{javafx} JavaFX, \url{https://openjfx.io}
+\bibitem{spring} Spring Framework, \url{https://spring.io}
 
 \end{thebibliography}
 
