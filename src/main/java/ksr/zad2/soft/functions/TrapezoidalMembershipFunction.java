@@ -1,13 +1,13 @@
 package ksr.zad2.soft.functions;
 
-public class TrapezoidalFunction extends MembershipFunction<Float> {
+public class TrapezoidalMembershipFunction extends MembershipFunction<Float> {
 
     private float a;
     private float b;
     private float c;
     private float d;
 
-    public TrapezoidalFunction(float a, float b, float c, float d) {
+    public TrapezoidalMembershipFunction(float a, float b, float c, float d) {
         this.a = a;
         this.b = b;
         this.c = c;

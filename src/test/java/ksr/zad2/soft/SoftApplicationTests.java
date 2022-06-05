@@ -4,7 +4,7 @@ import ksr.zad2.soft.data.AttributeEnum;
 import ksr.zad2.soft.data.CustomRecord;
 import ksr.zad2.soft.database.SpeedDatingRepository;
 import ksr.zad2.soft.functions.MembershipFunction;
-import ksr.zad2.soft.functions.TrapezoidalFunction;
+import ksr.zad2.soft.functions.TrapezoidalMembershipFunction;
 import ksr.zad2.soft.fuzzy.*;
 import ksr.zad2.soft.set.FuzzySet;
 import org.junit.jupiter.api.BeforeAll;
@@ -35,14 +35,14 @@ class SoftApplicationTests {
 
     @BeforeAll
     static void setup() {
-        quantifierFunction = new TrapezoidalFunction(100, 4600, 10000, 7000);
+        quantifierFunction = new TrapezoidalMembershipFunction(100, 4600, 10000, 7000);
         quantifier = new Quantifier("Most of", quantifierFunction);
 
-        qualifierFunction = new TrapezoidalFunction(1, 4, 5, 6);
+        qualifierFunction = new TrapezoidalMembershipFunction(1, 4, 5, 6);
         label2 = new Label("a bit boring", new FuzzySet(qualifierFunction));
         qualifier = new Qualifier(label2, AttributeEnum.valueOf("funny"), ConnectiveEnum.AND);
 
-        summarizerFunction = new TrapezoidalFunction(28, 34, 40, 44);
+        summarizerFunction = new TrapezoidalMembershipFunction(28, 34, 40, 44);
         label1 = new Label("young", new FuzzySet(summarizerFunction));
         summarizer = new Summarizer(label1, AttributeEnum.valueOf("age"), ConnectiveEnum.AND);
     }
