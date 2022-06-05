@@ -127,8 +127,44 @@ class SoftApplicationTests {
 
     @Test
     void t() {
+        subject1 = repository.findAll().stream().map(r -> {
+            CustomRecord customRecord = r.getCustomRecord();
+            customRecord.setName("People");
+            return customRecord;
+        }).collect(Collectors.toList());
 
+        List<LinguisticVariable> variables = List.of(sincere, age, d_age, expected_num_interested_in_me, tvsports, pref_o_intelligence, pref_o_ambitious, importance_same_race, importance_same_religion, guess_prob_liked, funny);
+
+        quantifiers.forEach(quantifier -> {
+            variables.forEach(v1 -> {
+                variables.forEach(v2 -> {
+                    v1.getLabels().forEach(labelS -> {
+                        v2.getLabels().forEach(labelQ -> {
+                            LinguisticSummary summary = new LinguisticSummary(quantifier, List.of(
+                                    new Qualifier(labelQ, v2.getColumn(), ConnectiveEnum.AND)
+                            ), List.of(
+                                    new Summarizer(labelS, v1.getColumn(), ConnectiveEnum.AND)
+                            ), subject1, null);
+
+
+                            if(summary.getT1() == 1) {
+                                System.out.println(summary.getT1());
+                            }
+
+                            if(summary.getT1() != 0 && summary.getT1() != 1 && summary.getT1() >= 0.0049) {
+                                System.out.print("[" + summary.getT1() + "]" + summary.toString() + " ");
+                                List<Float> wages = List.of(0.16f, 0.16f, 0f, 0f, 0.16f, 0.16f, 0.16f, 0.16f, 0.0f, 0.0f, 0.0f);
+                                summary.getT().forEach(t -> System.out.print(t + " "));
+                                System.out.println(summary.getOptimal(wages));
+                            }
+
+                        });
+                    });
+                });
+            });
+        });
     }
+
     @Test
     void testForm2() {
         subject1 = repository.findAll().stream().map(r -> {
@@ -167,6 +203,5 @@ class SoftApplicationTests {
         });
 
         List<Float> wages = List.of(0.091f,0.091f, 0.091f, 0.091f, 0.091f, 0.091f, 0.091f ,0.091f, 0.091f,0.091f,0.091f);
-
     }
 }
