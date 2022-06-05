@@ -30,7 +30,8 @@ public class LinguisticSummary {
                 getT5(),
                 getT6(),
                 getT7(),
-                getT8());
+                getT8(),
+                getT9());
     }
 
     public float getT1() {
@@ -104,17 +105,37 @@ public class LinguisticSummary {
     }
 
     public float getT6() {
-        return 1 - (quantifier.getMembershipFunction().getSupport() / firstSubject.size());
+        if(secondSubject == null) {
+            return 1 - (quantifier.getMembershipFunction().getSupport() / firstSubject.size());
+        } else {
+            return 0;
+        }
     }
 
     public float getT7() {
-        return 1 - (quantifier.getMembershipFunction().getCardinality() / firstSubject.size());
+        if(secondSubject == null) {
+            return 1 - (quantifier.getMembershipFunction().getCardinality() / firstSubject.size());
+        } else {
+            return 0;
+        }
     }
 
     public float getT8() {
-        return summarizerList.getDegreeOfSummarizerRelativeCardinality(firstSubject.size());
+        if(secondSubject == null) {
+            return summarizerList.getDegreeOfSummarizerRelativeCardinality(firstSubject.size());
+        } else {
+            return 0;
+        }
     }
 
+    public float getT9() {
+        if(secondSubject == null && qualifier != null) {
+            return 1 - ((float)firstSubject.stream().filter(record -> qualifier.getMembershipFunction().calculate(AttributeEnum.getValue(record, qualifier.getColumnName())) > 0)
+                    .count() / (float)firstSubject.size());
+        } else {
+            return 0;
+        }
+    }
 
     public int getForm() {
         if(qualifier == null) {
