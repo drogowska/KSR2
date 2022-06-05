@@ -67,4 +67,35 @@ public class DefinedLinguisticVariables {
             new Label("genius", new FuzzySet(new TrapezoidalMembershipFunction(57, 62, 67, 67)))
     ));
 
+    public static final LinguisticVariable pref_o_ambitious = new LinguisticVariable(AttributeEnum.pref_o_ambitious, List.of(
+            new Label("not ambitious", new FuzzySet(new GaussMembershipFunction(6,8))),
+            new Label("moderately ambitious", new FuzzySet(new GaussMembershipFunction(30,12))),
+            new Label("very ambitious", new FuzzySet(new GaussMembershipFunction(45, 5)))
+    ));
+
+    public static final LinguisticVariable importance_same_religion = new LinguisticVariable(AttributeEnum.importance_same_religion, List.of(
+            new Label("none", new FuzzySet(new TriangularMembershipFunction(0, 0, 1))),
+            new Label("tiny", new FuzzySet(new TriangularMembershipFunction(1, 2, 3))),
+            new Label("small", new FuzzySet(new TrapezoidalMembershipFunction(2, 3, 4,5))),
+            new Label("average", new FuzzySet(new TriangularMembershipFunction(4, 5, 6))),
+            new Label("significant", new FuzzySet(new GaussMembershipFunction(6, 1))),
+            new Label("huge", new FuzzySet(new GaussMembershipFunction(9, 1.5f)))
+    ));
+
+    public static final LinguisticVariable importance_same_race = new LinguisticVariable(AttributeEnum.importance_same_race, List.of(
+            new Label("none", new FuzzySet(new TriangularMembershipFunction(0, 0, 1))),
+            new Label("tiny", new FuzzySet(new TriangularMembershipFunction(1, 2, 3))),
+            new Label("small", new FuzzySet(new TrapezoidalMembershipFunction(2, 3, 4,5))),
+            new Label("average", new FuzzySet(new TriangularMembershipFunction(4, 5, 6))),
+            new Label("significant", new FuzzySet(new GaussMembershipFunction(6, 1))),
+            new Label("huge", new FuzzySet(new GaussMembershipFunction(9, 1.5f)))
+    ));
+
+    public static final LinguisticVariable guess_prob_liked = new LinguisticVariable(AttributeEnum.guess_prob_liked, List.of(
+            new Label("none", new FuzzySet(new TrapezoidalMembershipFunction(0, 0, 1, 2))),
+            new Label("tiny", new FuzzySet(new TriangularMembershipFunction(1, 3, 4))),
+            new Label("small", new FuzzySet(new TriangularMembershipFunction(3, 5, 6))),
+            new Label("significant", new FuzzySet(new TrapezoidalMembershipFunction(5, 8, 9, 10))),
+            new Label("huge", new FuzzySet(new TrapezoidalMembershipFunction(9, 11, 12, 12)))
+    ));
 }
