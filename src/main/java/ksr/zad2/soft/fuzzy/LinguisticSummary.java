@@ -15,7 +15,9 @@ public class LinguisticSummary {
     List<CustomRecord> secondSubject;
 
     public LinguisticSummary(Quantifier quantifier, List<Qualifier> qualifiers, List<Summarizer> summarizers, List<CustomRecord> firstSubject) {
-        this.qualifierList = new QualifierList(qualifiers);
+        if(qualifiers != null) {
+            this.qualifierList = new QualifierList(qualifiers);
+        }
         this.quantifier = quantifier;
         this.summarizerList = new SummarizerList(summarizers);
         this.firstSubject = firstSubject;
