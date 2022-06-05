@@ -31,7 +31,8 @@ public class LinguisticSummary {
                 getT6(),
                 getT7(),
                 getT8(),
-                getT9());
+                getT9(),
+                getT10());
     }
 
     public float getT1() {
@@ -132,6 +133,14 @@ public class LinguisticSummary {
         if(secondSubject == null && qualifier != null) {
             return 1 - ((float)firstSubject.stream().filter(record -> qualifier.getMembershipFunction().calculate(AttributeEnum.getValue(record, qualifier.getColumnName())) > 0)
                     .count() / (float)firstSubject.size());
+        } else {
+            return 0;
+        }
+    }
+
+    public float getT10() {
+        if(secondSubject == null && qualifier != null) {
+            return 1 - qualifier.getMembershipFunction().getCardinality() / (float)firstSubject.size();
         } else {
             return 0;
         }
