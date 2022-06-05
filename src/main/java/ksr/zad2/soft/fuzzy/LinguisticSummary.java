@@ -25,7 +25,8 @@ public class LinguisticSummary {
         return List.of(
                 getT1(),
                 getT2(),
-                getT3());
+                getT3(),
+                getT4());
     }
 
     public float getT1() {
@@ -58,7 +59,7 @@ public class LinguisticSummary {
 
     public float getT2() {
         if(secondSubject == null) {
-            return summarizerList.getDegreeOfImprecision();
+            return summarizerList.getDegreeOfImprecision(firstSubject);
         } else {
             return 0;
         }
@@ -77,6 +78,14 @@ public class LinguisticSummary {
                 }
             });
             return t.get() / h.get();
+        } else {
+            return 0;
+        }
+    }
+
+    public float getT4() {
+        if(getForm() == 2 && secondSubject == null) {
+            return summarizerList.getDegreeOfAppropriateness(firstSubject, getT3());
         } else {
             return 0;
         }

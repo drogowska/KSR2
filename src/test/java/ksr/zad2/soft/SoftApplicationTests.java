@@ -57,6 +57,8 @@ class SoftApplicationTests {
 
         LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(summarizer, summarizer), subject1);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
+
+        summary.getT().forEach(System.out::println);
     }
 
     @Test
@@ -69,6 +71,8 @@ class SoftApplicationTests {
 
         LinguisticSummary summary = new LinguisticSummary(quantifier, qualifier, List.of(summarizer, summarizer, summarizer), subject1);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
+
+        summary.getT().forEach(System.out::println);
     }
 
 }

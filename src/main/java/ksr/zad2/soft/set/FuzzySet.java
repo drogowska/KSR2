@@ -1,6 +1,10 @@
 package ksr.zad2.soft.set;
 
+import ksr.zad2.soft.data.AttributeEnum;
+import ksr.zad2.soft.data.CustomRecord;
 import ksr.zad2.soft.functions.MembershipFunction;
+
+import java.util.List;
 
 public class FuzzySet<T> extends Set<T> {
 
@@ -15,8 +19,8 @@ public class FuzzySet<T> extends Set<T> {
         return membershipFunction;
     }
 
-    public float getDegreeOfFuzziness() {
-        long suppSize = this.stream().filter(t -> membershipFunction.calculate(t) > 0).count();
-        return (float)suppSize / (float)this.size();
+    public float getDegreeOfFuzziness(List<CustomRecord> record, AttributeEnum columnName) {
+        long suppSize = record.stream().filter(r -> membershipFunction.calculate(AttributeEnum.getValue(r, columnName)) > 0).count();
+        return (float)suppSize / (float)record.size();
     }
 }
