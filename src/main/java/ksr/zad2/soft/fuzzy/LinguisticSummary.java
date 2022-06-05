@@ -32,7 +32,8 @@ public class LinguisticSummary {
                 getT7(),
                 getT8(),
                 getT9(),
-                getT10());
+                getT10(),
+                getT11());
     }
 
     public float getT1() {
@@ -141,6 +142,14 @@ public class LinguisticSummary {
     public float getT10() {
         if(secondSubject == null && qualifier != null) {
             return 1 - qualifier.getMembershipFunction().getCardinality() / (float)firstSubject.size();
+        } else {
+            return 0;
+        }
+    }
+
+    public float getT11() {
+        if(secondSubject == null && qualifier != null) {
+            return (float) (2 * Math.pow(0.5, 1));
         } else {
             return 0;
         }
