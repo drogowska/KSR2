@@ -64,4 +64,8 @@ public class SummarizerList {
         });
         return Math.abs(result.get() - t3);
     }
+
+    public float getLengthOfSummary() {
+        return (float) (2d * Math.pow(0.5, summarizers.size()));
+    }
 }
