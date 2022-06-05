@@ -28,7 +28,8 @@ public class LinguisticSummary {
                 getT3(),
                 getT4(),
                 getT5(),
-                getT6());
+                getT6(),
+                getT7());
     }
 
     public float getT1() {
@@ -103,6 +104,10 @@ public class LinguisticSummary {
 
     public float getT6() {
         return 1 - (quantifier.getMembershipFunction().getSupport() / firstSubject.size());
+    }
+
+    public float getT7() {
+        return 1 - (quantifier.getMembershipFunction().getCardinality() / firstSubject.size());
     }
 
     public int getForm() {

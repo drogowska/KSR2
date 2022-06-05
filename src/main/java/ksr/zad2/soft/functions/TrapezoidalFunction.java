@@ -1,6 +1,6 @@
 package ksr.zad2.soft.functions;
 
-public class TrapezoidalFunction implements MembershipFunction<Float> {
+public class TrapezoidalFunction extends MembershipFunction<Float> {
 
     private float a;
     private float b;
@@ -34,5 +34,10 @@ public class TrapezoidalFunction implements MembershipFunction<Float> {
     @Override
     public float getSupport() {
         return d - a;
+    }
+
+    @Override
+    public float getCardinality() {
+        return ((d - a) + (c - b))/2;
     }
 }

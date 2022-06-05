@@ -1,7 +1,8 @@
 package ksr.zad2.soft.functions;
 
-public interface MembershipFunction<T> {
+public abstract class MembershipFunction<T> {
 
-    float calculate(T t);
-    float getSupport();
+    public abstract float calculate(T t);
+    public abstract float getSupport();
+    public abstract float getCardinality();
 }
