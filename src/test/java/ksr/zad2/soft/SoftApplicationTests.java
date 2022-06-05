@@ -3,6 +3,7 @@ package ksr.zad2.soft;
 import ksr.zad2.soft.data.AttributeEnum;
 import ksr.zad2.soft.data.CustomRecord;
 import ksr.zad2.soft.database.SpeedDatingRepository;
+import ksr.zad2.soft.defined.DefinedLinguisticVariables;
 import ksr.zad2.soft.functions.MembershipFunction;
 import ksr.zad2.soft.functions.TrapezoidalMembershipFunction;
 import ksr.zad2.soft.fuzzy.*;
@@ -26,7 +27,7 @@ class SoftApplicationTests {
     private SpeedDatingRepository repository;
 
     private static MembershipFunction quantifierFunction;
-    private static Quantifier quantifier;
+    private static Quantifier q;
     private static MembershipFunction summarizerFunction;
     private static MembershipFunction qualifierFunction;
     private static Label label1;
@@ -34,15 +35,18 @@ class SoftApplicationTests {
     private static Summarizer summarizer;
     private static List<CustomRecord> subject1;
     private static Qualifier qualifier;
+    private static Qualifier qualifier1;
+//    private static Qualifier qualifier;
 
     @BeforeAll
     static void setup() {
         quantifierFunction = new TrapezoidalMembershipFunction(100, 4600, 10000, 7000);
-        quantifier = new Quantifier("Most of", quantifierFunction, true);
+        q = new Quantifier("Most of", quantifierFunction, true);
 
         qualifierFunction = new TrapezoidalMembershipFunction(1, 4, 5, 6);
         label2 = new Label("a bit boring", new FuzzySet(qualifierFunction));
         qualifier = new Qualifier(label2, AttributeEnum.valueOf("funny"), ConnectiveEnum.AND);
+        qualifier1 = new Qualifier(d_age.getLabel(1), AttributeEnum.valueOf("d_age"), ConnectiveEnum.AND);
 
         summarizerFunction = new TrapezoidalMembershipFunction(28, 34, 40, 44);
         label1 = new Label("young", new FuzzySet(summarizerFunction));
@@ -114,12 +118,17 @@ class SoftApplicationTests {
             return customRecord;
         }).collect(Collectors.toList());
 
-        LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(summarizer, summarizer, summarizer), subject1, null);
+
+        LinguisticSummary summary = new LinguisticSummary(q, null, List.of(summarizer, summarizer, summarizer), subject1, null);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
 
         summary.getT().forEach(System.out::println);
     }
 
+    @Test
+    void t() {
+
+    }
     @Test
     void testForm2() {
         subject1 = repository.findAll().stream().map(r -> {
@@ -128,10 +137,36 @@ class SoftApplicationTests {
             return customRecord;
         }).collect(Collectors.toList());
 
-        LinguisticSummary summary = new LinguisticSummary(quantifier, List.of(qualifier, qualifier, qualifier), List.of(summarizer), subject1, null);
+        LinguisticSummary summary = new LinguisticSummary(q, List.of(qualifier, qualifier, qualifier), List.of(summarizer), subject1, null);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
 
         summary.getT().forEach(System.out::println);
     }
 
+
+    @Test
+    void test1() {
+        subject1 = repository.findAll().stream().map(r -> {
+            CustomRecord customRecord = r.getCustomRecord();
+            customRecord.setName("people");
+            return customRecord;
+        }).collect(Collectors.toList());
+        d_age.getLabels().forEach( s-> {
+            summarizer = new Summarizer(s, AttributeEnum.valueOf("age"), ConnectiveEnum.AND);
+            quantifiers.forEach(q -> {
+                LinguisticSummary summary = new LinguisticSummary(q, null, List.of(summarizer), subject1, null);
+                System.out.println(summary.toString() + " [" + summary.getT1() + "]");
+                List<String> m = summary.getTstr();
+                for (String f : m) {
+                    System.out.print(f + " & ");
+                }
+                List<Float> wages = List.of(0.16f, 0.16f, 0f, 0f, 0.16f, 0.16f, 0.16f, 0.16f, 0.0f, 0.0f, 0.0f);
+                System.out.println(summary.getOptimal(wages));
+                System.out.println("");
+            });
+        });
+
+        List<Float> wages = List.of(0.091f,0.091f, 0.091f, 0.091f, 0.091f, 0.091f, 0.091f ,0.091f, 0.091f,0.091f,0.091f);
+
+    }
 }

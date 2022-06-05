@@ -3,6 +3,8 @@ package ksr.zad2.soft.fuzzy;
 import ksr.zad2.soft.data.AttributeEnum;
 import ksr.zad2.soft.data.CustomRecord;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -24,6 +26,25 @@ public class LinguisticSummary {
         this.secondSubject = secondSubject;
     }
 
+    public List<String> getTstr() {
+        DecimalFormat df = new DecimalFormat("#.###");
+        List<Float> res = List.of(
+                getT1(),
+                getT2(),
+                getT3(),
+                getT4(),
+                getT5(),
+                getT6(),
+                getT7(),
+                getT8(),
+                getT9(),
+                getT10(),
+                getT11());
+        List<String> str = new ArrayList<>();
+        res.forEach(f -> str.add(df.format(f)));
+        return str;
+    }
+
     public List<Float> getT() {
         return List.of(
                 getT1(),
@@ -37,6 +58,13 @@ public class LinguisticSummary {
                 getT9(),
                 getT10(),
                 getT11());
+    }
+
+    public float getOptimal(List<Float> wages) {
+        float res = 0;
+        for (int i = 0; i < wages.size(); i++)
+            res += wages.get(i) * getT().get(i);
+        return res;
     }
 
     public float getT1() {

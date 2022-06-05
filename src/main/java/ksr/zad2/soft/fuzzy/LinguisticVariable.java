@@ -14,6 +14,10 @@ public class LinguisticVariable {
         this.labels = label;
     }
 
+    public List<Label> getLabels() {
+        return labels;
+    }
+
     public void addNewLabel(Label label) {
         labels.add(label);
     }

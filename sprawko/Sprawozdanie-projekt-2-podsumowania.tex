@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{adjustbox}
 \usepackage{amsfonts}
+\usepackage{tabularx}
 
 \studycycle{Informatyka, studia STACJONARNE, I st.}
 \coursesemester{VI}
@@ -849,13 +850,73 @@ Implementacja została podzielona na dwa moduły warstwy logiki i widoku, wykorz
 
 
 \section{ Jednopodmiotowe podsumowania lingwistyczne. Miary jakości, podsumowanie optymalne}
-Wyniki kolejnych eksperymentów wg punktów 2.-4. opisu projektu 2.  Listy podsumowań
-jednopodmiotowych i tabele/rankingi podsumowań dla danych atrybutów obowiązkowe i dokładnie opisane w ,,captions'' (tytułach), konieczny opis kolumn i wierszy tabel. Dla każdego podsumowania podane miary jakości oraz miara jakości podsumowania
-optymalnego. {\bf Wzorów podsumowań ani miar nie należy przepisywać ani cytować, wystarczy podać literaturę, ale
-należy skomentować co oznaczają i jaką informacje niosą wybrane miary w wybranych
-przypadkach.}\\
-\noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 11 wg Harmonogramu Zajęć na WIKAMP KSR.}
 
+\subsubsection{Jednopodmiotowe podsumowanie lingwistyczne w pierwszej formie}
+
+
+\begin{center}
+  \begin{table}[h]
+    \begin{tabularx}{\textwidth}{lXc}
+    
+    id & Podsumowanie [$T_1$] \\ \hline 
+  
+    1 & Around 8000 people are/have age equals young [0.397] \\ \hline
+    2 & Less than 1000 people are/have age equals teenager [1.0]\\ \hline
+    3 & Some of people are/have age equals in the prime of age [0.04] \\ \hline
+    4 & Approximately 3000 people are/have sincere equals insincere [0.906] \\ \hline
+    5 & Less than 1000 people are/have sincere equals sincere [1.0] \\ \hline
+    6 & Around half of people are/have sincere equals insincere [0.764]\\ \hline
+    7 & Less than 1000 people are/have age equals average [1.0] \\ \hline 
+    8 & More than 5000 people are/have age equals significant [0.7983193]
+  \end{tabularx}
+\end{table}
+\end{center}
+
+W poniższej tabeli zostały zawarte wartości miar jakości uzyskanego podsumowania, przy czym wagi wykorzystane do
+obliczenia podsumowania optymalnego były następujęce:
+\begin{equation}
+  
+\end{equation}
+
+\begin{center}
+  \begin{table}[h]
+    \begin{tabularx}{\textwidth}{ccccccccccccc}
+    
+    id & $T_1$ & $T_2$ & $T_3$ & $T_4$ & $T_5$ & $T_6$ & $T_7$ & $T_8$ & $T_9$ & $T_{10}$ & $T_{11}$ & $T$ \\ \hline 
+
+    1 &0,397 & 0,178 & 0 & 0 & 1 & 0,656 & 0,806 & 0,999 & 0 & 0 & 0 & 0.646 \\ \hline
+    2 &1 & 0,996 & 0 & 0 & 1 & 0,881 & 0,905 & 1 & 0 & 0 & 0 & 0.925\\ \hline
+    3 &0,04 & 0,998 & 0 & 0 & 1 & 0,797 & 0,821 & 0,999 & 0 & 0 & 0 & 0.745 \\ \hline
+    4 &0,906 & 0,264 & 0 & 0 & 1 & 0,594 & 0,714 & 1 & 0 & 0 & 0 & 0.716  \\ \hline
+    5 & 1 & 0,883 & 0 & 0 & 1 & 0,881 & 0,905 & 1 & 0 & 0 & 0 & 0.91   \\ \hline  
+    6 & 0,764 & 0,264 & 0 & 0 & 1 & 0,904 & 0,952 & 1 & 0 & 0 & 0 & 0.78  \\ \hline  
+    7 & 1 & 0,877 & 0 & 0 & 1 & 0,881 & 0,905 & 0,999 & 0 & 0 & 0 & 0.906\\ \hline 
+    8 & 0,798 & 0,094 & 0 & 0 & 1 & 0,761 & 0,894 & 0,999 & 0 & 0 & 0 & 0.7275262
+
+  \end{tabularx}
+\end{table}
+\end{center}
+
+\subsubsection{Jednopodomiotowe podsumowanie lingwistyczne w drugiej formie}
+
+
+
+% 
+% 
+% \begin{table}[h]
+% 
+% Use Case Navn:          & Opret Server & d \\
+% Scenarie:               & At oprette en server med bestemte regler som tillader folk at spille sammen. More Text more text More Text & dd \\
+% 
+% \end{table}
+% 
+% Wyniki kolejnych eksperymentów wg punktów 2.-4. opisu projektu 2.  Listy podsumowań
+% jednopodmiotowych i tabele/rankingi podsumowań dla danych atrybutów obowiązkowe i dokładnie opisane w ,,captions'' (tytułach), konieczny opis kolumn i wierszy tabel. Dla każdego podsumowania podane miary jakości oraz miara jakości podsumowania
+% optymalnego. {\bf Wzorów podsumowań ani miar nie należy przepisywać ani cytować, wystarczy podać literaturę, ale
+% należy skomentować co oznaczają i jaką informacje niosą wybrane miary w wybranych
+% przypadkach.}\\
+% \noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 11 wg Harmonogramu Zajęć na WIKAMP KSR.}
+% 
 \section{Wielopodmiotowe podsumowania lingwistyczne i~ich miary jakości} 
 Wyniki kolejnych eksperymentów wg punktów 2.-4. opisu projektu 2. Uzasadnienie i
 metoda podziału zbioru danych na rozłączne podmioty. Listy podsumowań
