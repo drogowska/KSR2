@@ -35,7 +35,7 @@ class SoftApplicationTests {
 
     @BeforeAll
     static void setup() {
-        quantifierFunction = new TrapezoidalFunction(0, 4600, 10000, 10000);
+        quantifierFunction = new TrapezoidalFunction(100, 4600, 10000, 7000);
         quantifier = new Quantifier("Most of", quantifierFunction);
 
         qualifierFunction = new TrapezoidalFunction(1, 4, 5, 6);

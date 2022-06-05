@@ -30,4 +30,9 @@ public class TrapezoidalFunction implements MembershipFunction<Float> {
         }
         return 0;
     }
+
+    @Override
+    public float getSupport() {
+        return d - a;
+    }
 }
