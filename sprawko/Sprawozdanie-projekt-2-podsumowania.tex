@@ -163,7 +163,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \item age
 
       \begin{equation}
-        \mu_{nastolatek} =
+        \mu_{teenager} =
           \begin{cases}
             1 & \text{dla } x \in [16,18] \\
             -0.25x +5 & \text{ dla } x \in [18,20]
@@ -171,7 +171,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \end{equation}
 
       \begin{equation}
-        \mu_{młody} =
+        \mu_{young} =
         \begin{cases}
             0.2x-3.4 & \text{ dla } x \in [17,22]  \\
             1 & \text{ dla } x \in [23,28] \\
@@ -180,7 +180,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \end{equation}
 
       \begin{equation}
-        \mu_{w\_średnim\_wieku} =
+        \mu_{\text{in middle age}} =
                 \begin{cases}
             0.125x-3.375 & \text{ dla } x \in [28,34]  \\
             1 & \text{ dla } x \in [35,40] \\
@@ -189,7 +189,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \end{equation} 
 
       \begin{equation}
-        \mu_{w\_sile\_ wieku} =
+        \mu_{\text{in the prime of age}} =
         \begin{cases}
             0.2x-8 & \text{ dla } x \in [40,45]  \\
             1 & \text{ dla } x \in [45,49] \\
@@ -198,7 +198,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \end{equation} 
 
       \begin{equation}
-        \mu_{stary} =
+        \mu_{old} =
         \begin{cases}
             0.2x-9 & \text{ dla } x \in [45,50]  \\
             1 & \text{ dla } x \in [50,65] \\
@@ -206,14 +206,14 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \end{equation} 
 
       \begin{figure}[H]
-      \includegraphics{fp_age.png}
+      \includegraphics{fp_av2.png}
       \caption{Wykres funkcji przynależności dla atrybutu \(age\).}
       \end{figure}
 
   \item d\_age 
 
   \begin{equation}
-    \mu_{brak} =
+    \mu_{none} =
       \begin{cases}
         1 & \text{dla } x =0 \\
         -x +1 & \text{ dla } x \in [0,1]
@@ -221,7 +221,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-  \mu_{niewielka} =
+  \mu_{tiny} =
       \begin{cases}
         0.33x-0.33 & \text{dla } x \in [1,3] \\
         1 & \text{ dla } x=3\\
@@ -230,7 +230,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{mała} =
+    \mu_{small} =
         \begin{cases}
           0.25x-0.75 & \text{dla } x \in [3,7] \\
           1 & \text{ dla } x=7\\
@@ -239,7 +239,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{equation}
 
     \begin{equation}
-      \mu_{średnia} =
+      \mu_{average} =
           \begin{cases}
             0.125x-1.125 & \text{dla } x \in [9,17] \\
             1 & \text{ dla } x\in [17,19]\\
@@ -248,16 +248,22 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \end{equation}
 
       \begin{equation}
-        \mu_{znacząca} =
+        \mu_{significant} =
             \begin{cases}
               0.2x-3 & \text{dla } x \in [15,19] \\
               1 & \text{ dla } x\in [19,22]\\
               -0.1x+3.2 & \text{dla } x \in [22,32] 
             \end{cases}  
         \end{equation}
-
+        \begin{equation}
+          \mu_{huge} =
+              \begin{cases}
+                0.2x-6 & \text{dla } x \in [30,35] \\
+                1 & \text{ dla } x\in [35,45]\\
+              \end{cases}  
+          \end{equation}
     \begin{figure}[H]
-    \includegraphics{fp_d_age.png}
+    \includegraphics{fp_da.png}
     \caption{Wykres funkcji przynależności dla atrybutu \(d\_age\).}
     \end{figure}
 
@@ -307,7 +313,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{equation}
 
       \begin{figure}[H]
-      \includegraphics{fp_israce.png}
+      \includegraphics{fp_isrv2.png}
       \caption{Wykres funkcji przynależności dla atrybutu \(importance\_same\_race\).}
       \end{figure}
 
@@ -315,7 +321,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
 
   \item importance\_same\_religion 
     \begin{equation}
-      \mu_{\text{nieistotne}} =
+      \mu_{\text{none}} =
         \begin{cases}
           1 & \text{dla } x =0 \\
           -x +1 & \text{ dla } x \in [0,1]
@@ -323,7 +329,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{equation}
 
     \begin{equation}
-      \mu_{\text{mało istotne}} =
+      \mu_{\text{tiny}} =
         \begin{cases}
           x-1 & \text{dla } x \in [1,2] \\
           1 & \text{ dla } x =2 \\
@@ -332,7 +338,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{equation}
 
     \begin{equation}
-      \mu_{\text{średnio ważne}} =
+      \mu_{\text{small}} =
         \begin{cases}
           x-2 & \text{dla } x \in [2,3] \\
           1 & \text{ dla } x \in [3,4] \\
@@ -341,7 +347,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{equation}
 
     \begin{equation}
-      \mu_{\text{przeciętne}} =
+      \mu_{\text{average}} =
         \begin{cases}
           x-4 & \text{dla } x \in [4,5] \\
           1 & \text{ dla } x =5 \\
@@ -350,22 +356,22 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{equation}
 
     \begin{equation}
-      \mu_{\text{znaczące}} = e^{-{(x-6)}^2}, \text{ dla } x \in [5,7]
+      \mu_{\text{significant}} = e^{-{(x-6)}^2}, \text{ dla } x \in [5,7]
     \end{equation}
 
     \begin{equation}
-      \mu_{\text{ważne}} = e^{-(\frac{x-9}{1.5})^2}, \text{ dla } x \in [7,10]
+      \mu_{\text{huge}} = e^{-(\frac{x-9}{1.5})^2}, \text{ dla } x \in [7,10]
     \end{equation}
 
       \begin{figure}[H]
-      \includegraphics{fp_isrel.png}
+      \includegraphics{fp_rel.png}
       \caption{Wykres funkcji przynależności dla atrybutu \(importance\_same\_religion\).}
       \end{figure}
   
 
   \item pref\_o\_intelligence
   \begin{equation}
-    \mu_{głupi} =
+    \mu_{stupid} =
       \begin{cases}
         1 & \text{ dla } x \in [0 ,1] \\
         -0.5x+1.5 & \text{ dla } x \in [1,3]       
@@ -373,7 +379,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{mało\_inteligentny} =
+    \mu_{\text{not very intelligent}} =
       \begin{cases}
         0.33x-0.66 & \text{ dla } x \in [2,5]\\
         1 & \text{ dla } x \in [5,12] \\
@@ -382,7 +388,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{przeciętny} =
+    \mu_{average} =
       \begin{cases}
         0.166x-2.33 & \text{ dla } x \in [14,20]\\
         1 & \text{ dla } x \in [20,30] \\
@@ -391,7 +397,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{inteligentny} =
+    \mu_{intelligent} =
       \begin{cases}
         0.083x-2.67 & \text{ dla } x \in [32,44]\\
         1 & \text{ dla } x \in [44,58] \\
@@ -400,7 +406,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{geniusz} =
+    \mu_{genius} =
       \begin{cases}
         0.2x-11.4 & \text{ dla } x \in [57,62] \\
         1 & \text{ dla } x \in [62,67] \\   
@@ -408,31 +414,31 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
   
   \begin{figure}[H]
-    \includegraphics{fp_poi.png}
+    \includegraphics{fp_poiv2.png}
     \caption{Wykres funkcji przynależności dla atrybutu \(pref\_o\_intelligence\).}
     \end{figure}
 
   \item pref\_o\_ambitious
   \begin{equation}
-    \mu_{nieambitny} = e^{-(\frac{x-6}{8})^2}, \text{ dla } x \in [0,24]
+    \mu_{\text{not ambitious}} = e^{-(\frac{x-6}{8})^2}, \text{ dla } x \in [0,24]
   \end{equation}
 
   \begin{equation}
-    \mu_{średnio\_ambitny} = e^{-(\frac{x-30}{12})^2}, \text{ dla } x \in [5,54]
+    \mu_{\text{moderately ambitious}} = e^{-(\frac{x-30}{12})^2}, \text{ dla } x \in [5,54]
   \end{equation}
 
   \begin{equation}
-    \mu_{ambitny} = e^{-(\frac{x-45}{5})^2}, \text{ dla } x \in [30,55]
+    \mu_{\text{very ambitious}} = e^{-(\frac{x-45}{5})^2}, \text{ dla } x \in [30,55]
   \end{equation}
   
   \begin{figure}[H]
-    \includegraphics{fp_poa.png}
+    \includegraphics{fp_poav2.png}
     \caption{Wykres funkcji przynależności dla atrybutu \(pref\_o\_ambitious\).}
     \end{figure}
   
   \item tvsports 
   \begin{equation}
-    \mu_{niezaintresowany} =
+    \mu_{\text{not interested}} =
       \begin{cases}
         1 & \text{ dla } x \in [0,2] \\
         -0.33x+1.67 & \text{ dla } x \in [2,5]       
@@ -440,7 +446,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{obojętny} =
+    \mu_{neutral} =
       \begin{cases}
         0.5x-1 & \text{ dla } x \in [2,4]\\
         1 & \text{ dla } x=4 \\
@@ -449,7 +455,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{średnio\_zainteresowany} =
+    \mu_{\text{moderately interested}} =
       \begin{cases}
         0.5x-2 & \text{ dla } x \in [4,6]\\
         1 & \text{ dla } x \in [6,8] \\
@@ -458,7 +464,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{zainteresowany} =
+    \mu_{interested} =
       \begin{cases}
         x-8 & \text{ dla } x \in [8,9]\\
         1 & \text{ dla } x =9 \\
@@ -467,7 +473,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{pasjonat} =
+    \mu_{passionate} =
       \begin{cases}
         0.5x-4.5 & \text{ dla } x \in [9,11]\\
         1 & \text{ dla } x \in [11,12] \\
@@ -476,14 +482,14 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{figure}[H]
-    \includegraphics{fp_tvs.png}
+    \includegraphics{fp_tv2.png}
     \caption{Wykres funkcji przynależności dla atrybutu \(tvsports\).}
     \end{figure}
 
   \item expected\_num\_interested\_in\_me
   
   \begin{equation}
-    \mu_{brak} =
+    \mu_{none} =
       \begin{cases}
         1 & \text{ dla } x \in [0,1] \\
         0.5x+1.5  & \text{ dla } x \in [1,3]
@@ -491,7 +497,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation} 
 
   \begin{equation}
-    \mu_{niewiele} =
+    \mu_{few} =
       \begin{cases}
         0.5x-0.5 & \text{ dla } x \in [1,3] \\
         1 & \text{ dla } x \in [3,4] \\
@@ -500,7 +506,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
   
   \begin{equation}
-    \mu_{mało} =
+    \mu_{not many} =
       \begin{cases}
         x-4 & \text{ dla } x \in [4,5] \\
         1 & \text{ dla } x =5 \\
@@ -509,7 +515,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{kilka} =
+    \mu_{some} =
       \begin{cases}
         x-6 & \text{ dla } x \in [6,7] \\
         1 & \text{ dla } x =7 \\
@@ -518,7 +524,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
   
   \begin{equation}
-    \mu_{dużo} =
+    \mu_{many} =
       \begin{cases}
         x+8 & \text{ dla } x \in [7,9] \\
         1 & \text{ dla } x =9 \\
@@ -527,7 +533,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{wiele} =
+    \mu_{a lot} =
       \begin{cases}
         0.5x-4.5 & \text{ dla } x \in [8,11] \\
         1 & \text{ dla } x \in [11,12]
@@ -535,13 +541,13 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{figure}[H]
-    \includegraphics{fp_enim.png}
+    \includegraphics{fp_enimv2.png}
     \caption{Wykres funkcji przynależności dla atrybutu \(expected\_num\_interested\_in\_me\).}
     \end{figure}
 
   \item guess\_prob\_liked
   \begin{equation}
-    \mu_{brak} =
+    \mu_{none} =
       \begin{cases}
         1 & \text{ dla } x \in [0,1] \\
         -x+2  & \text{ dla } x \in [1,2]
@@ -549,7 +555,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{niewielka} =
+    \mu_{tiny} =
       \begin{cases}
         0.5x-0.5 & \text{ dla } x \in [1,3] \\
         1 & \text{ dla } x =3 \\
@@ -558,7 +564,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{mała} =
+    \mu_{small} =
       \begin{cases}
         0.5x-1.5 & \text{ dla } x \in [3,5] \\
         1 & \text{ dla } x =5 \\
@@ -567,7 +573,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{znaczaca} =
+    \mu_{significant} =
       \begin{cases}
         0.34x-1.67 & \text{ dla } x \in [5,8] \\
         1 & \text{ dla } x \in [8,9] \\
@@ -576,7 +582,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{spora} =
+    \mu_{huge} =
       \begin{cases}
         0.5x-4.5 & \text{ dla } x \in [9,11] \\
         1 & \text{ dla } x \in [11,12] \\
@@ -584,13 +590,13 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{figure}[H]
-    \includegraphics{fp_gpl.png}
+    \includegraphics{fp_gplv2.png}
     \caption{Wykres funkcji przynależności dla atrybutu \(guess\_prob\_liked \).}
     \end{figure}
 
   \item funny
   \begin{equation}
-    \mu_{nudny} =
+    \mu_{boring} =
       \begin{cases}
         1 & \text{ dla } x \in [0,2] \\
         -0.5x-1.5 & \text{ dla } x \in [2,3] 
@@ -598,7 +604,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
  
   \begin{equation}
-    \mu_{trochę\_nudny} =
+    \mu_{\text{a little bit boring}} =
       \begin{cases}
         0.33x-0.34 & \text{ dla } x \in [1,4] \\
         1 & \text{ dla } x \in [4,5] \\
@@ -607,7 +613,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
   
   \begin{equation}
-    \mu_{przeciętnie\_zabawny} =
+    \mu_{entertaining} =
       \begin{cases}
         x-5 & \text{ dla } x \in [5,6] \\
         1 & \text{ dla } x \in [6,7] \\
@@ -616,7 +622,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{zabawny} =
+    \mu_{funny} =
       \begin{cases}
         x-9 & \text{ dla } x \in [9,10] \\
         1 & \text{ dla } x \in [10,13] \\
@@ -625,14 +631,14 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{figure}[H]
-    \includegraphics{fp_f.png}
+    \includegraphics{fp_fv2.png}
     \caption{Wykres funkcji przynależności dla atrybutu \(funny\).}
     \end{figure}
 
   \item sincere
   
   \begin{equation}
-    \mu_{fałszywy} =
+    \mu_{duplicitous} =
       \begin{cases}
         1 & \text{ dla } x \in [0,2] \\
         -0.34x+2 & \text{ dla } x \in [2,6] \\
@@ -640,11 +646,11 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   \end{equation}
 
   \begin{equation}
-    \mu_{nieszczery} =  e^{-(\frac{x-7}{2})^2}, dla x \in [4,11]
+    \mu_{insincere} =  e^{-(\frac{x-7}{2})^2}, dla x \in [4,11]
   \end{equation}
 
   \begin{equation}
-    \mu_{szczery} =
+    \mu_{sincere} =
       \begin{cases}
         0.34x-2.67 & \text{ dla } x \in [8,11] \\
         1 & \text{ dla } x \in [11,13] \\
@@ -653,7 +659,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
 
   
   \begin{figure}[H]
-    \includegraphics{fp_s.png}
+    \includegraphics{fp_sv2.png}
     \caption{Wykres funkcji przynależności dla atrybutu \(sincere\).}
     \end{figure}
 
@@ -672,7 +678,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne kw
 \( \mu_z(x) \) oznacza wartość funkcji przynależności kwantyfikatora lingwistycznego \(z\) dla danego atrybutu zbioru danych zależnie od wartości x:
 
  \begin{equation}
-    \mu_{\text{Prawie żadne}} = 
+    \mu_{\text{Almost none of}} = 
     \begin{cases}
         1 & \text{ dla } x \in [0,50] \\
         2 - 0.02x & \text{ dla } x \in [50,100] \\
@@ -680,7 +686,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne kw
   \end{equation}
 
   \begin{equation}
-    \mu_{\text{Trochę}} =
+    \mu_{\text{Some of}} =
       \begin{cases}
         0.005x & \text{ dla } x \in [0,200] \\
         1 & \text{ dla } x \in [200,1500] \\
@@ -689,11 +695,11 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne kw
   \end{equation}
   
   \begin{equation}
-    \mu_{\text{ok. 1/3}} = e^{-(\frac{x-2700}{800})^2}, \text{ dla } x \in [1000,5000]
+    \mu_{\text{Approximately 1/3 of}} = e^{-(\frac{x-2700}{800})^2}, \text{ dla } x \in [1000,5000]
   \end{equation}
 
    \begin{equation}
-    \mu_{\text{Mniej więcej połowa}} =
+    \mu_{\text{Around half of}} =
       \begin{cases}
         0.0025x - 9.4725 & \text{ dla } x \in [3789,4189] \\
         -0.0025x + 11.4725 & \text{ dla } x \in [4189,4589] \\
@@ -701,7 +707,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne kw
   \end{equation}
   
   \begin{equation}
-    \mu_{\text{Większość}} =
+    \mu_{\text{Most of}} =
       \begin{cases}
         0.002x - 8.2 & \text{ dla } x \in [4100,4600] \\
         1 & \text{ dla } x \in [4600,8378] \\
@@ -709,7 +715,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne kw
   \end{equation}
   
   \begin{equation}
-    \mu_{\text{Zdecydowana większość}} =
+    \mu_{\text{The vast majority of}} =
       \begin{cases}
         0.001x - 7.3 & \text{ dla } x \in [7300,8300] \\
         1 & \text{ dla } x \in [8300,8378] \\
@@ -718,13 +724,13 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne kw
   
  \begin{figure}[H]
  \centering
-   \includegraphics{fp_qr.png}
+   \includegraphics{wzgledne.png}
    \caption{Wykres funkcji przynależności dla kwantyfikatorów względnych użytych w zadaniu}
  \end{figure}
 
   
  \begin{equation}
-  \mu_{\text{mniej niż 1000}} =
+  \mu_{\text{Less than 1000}} =
     \begin{cases}
       1 & \text{ dla } x \in [0,600] \\
       0.0034x - 3.34 & \text{ dla } x \in [600,1000] \\
@@ -732,11 +738,11 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne kw
 \end{equation}
 
 \begin{equation}
-  \mu_{\text{ponad 1000}} = e^{-(\frac{x-1500}{500})^2}, \text{ dla } x \in [300,2700]
+  \mu_{\text{More than 1000}} = e^{-(\frac{x-1500}{500})^2}, \text{ dla } x \in [300,2700]
 \end{equation}
 
 \begin{equation}
-  \mu_{\text{ok. 3000}} =
+  \mu_{\text{Approximately 3000}} =
     \begin{cases}
       0.001x - 1.6 & \text{ dla } x \in [1600,2600] \\
       1 & \text{ dla } x \in [2600,4000] \\
@@ -745,11 +751,11 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne kw
 \end{equation}
 
 \begin{equation}
-  \mu_{\text{ponad 5000}} =e^{-(\frac{x-5000}{1000})^2}, \text{ dla } x \in [2800,6900]
+  \mu_{\text{More than 5000}} =e^{-(\frac{x-5000}{1000})^2}, \text{ dla } x \in [2800,6900]
 \end{equation}
 
 \begin{equation}
-  \mu_{\text{ok. 8000}} =
+  \mu_{\text{Around 8000}} =
     \begin{cases}
       0.0004x - 2.2 & \text{ dla } x \in [5500,8000] \\
       1 & \text{ dla } x \in [8000,8400] \\
@@ -757,7 +763,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne kw
 \end{equation}
 
  \begin{figure}[H]
-  \includegraphics{fp_qa.png}
+  \includegraphics{absolute.PNG}
   \caption{Wykres funkcji przynależności dla kwantyfikatorów absolutnych użytych w zadaniu}
 \end{figure}
 
@@ -801,8 +807,6 @@ Implementacja została podzielona na dwa moduły warstwy logiki i widoku, wykorz
     \caption{Diagram UML pakietu \(data\)}
   \end{figure}
 \end{enumerate}
-
-
 
   \begin{figure}[H]
     \includegraphics[scale = 0.1]{all}
