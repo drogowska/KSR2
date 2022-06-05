@@ -28,7 +28,7 @@ public class SummarizerList {
                 result.set(Math.max(result.get(), newValue));
             }
         }
-        return result.get();
+        return result.get(); 
     }
 
     public String toString() {
@@ -42,5 +42,15 @@ public class SummarizerList {
             result.append(summarizers.get(i).getColumnName() + " equals " + summarizers.get(i).getLabel());
         }
         return result.toString();
+    }
+
+    public float getDegreeOfImprecision() {
+        AtomicReference<Float> result = new AtomicReference<>(1f);
+        float p = summarizers.size();
+        summarizers.forEach(summarizer -> {
+            result.set(result.get() * summarizer.getDegreeOfFuzziness());
+        });
+        result.set((float) Math.pow(result.get(), 1/p));
+        return 1f - result.get();
     }
 }

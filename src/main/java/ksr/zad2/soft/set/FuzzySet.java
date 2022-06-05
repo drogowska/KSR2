@@ -14,4 +14,9 @@ public class FuzzySet<T> extends Set<T> {
     public MembershipFunction getMembershipFunction() {
         return membershipFunction;
     }
+
+    public float getDegreeOfFuzziness() {
+        long suppSize = this.stream().filter(t -> membershipFunction.calculate(t) > 0).count();
+        return (float)suppSize / (float)this.size();
+    }
 }

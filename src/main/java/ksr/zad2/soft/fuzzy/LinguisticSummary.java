@@ -49,6 +49,10 @@ public class LinguisticSummary {
         return result;
     }
 
+    public float getT2() {
+        return summarizerList.getDegreeOfImprecision();
+    }
+
     public int getForm() {
         if(qualifier == null) {
             return 1;
