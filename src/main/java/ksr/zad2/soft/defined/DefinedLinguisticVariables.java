@@ -14,14 +14,15 @@ import java.util.List;
 public class DefinedLinguisticVariables {
 
     // 8378 values in database
+    public static final int database_size = 8378;
 
     public static final List<Quantifier> quantifiers = List.of(
-            new Quantifier("Almost none of", new TrapezoidalMembershipFunction(0, 0, 50, 100), false),
-            new Quantifier("Some of", new TrapezoidalMembershipFunction(0, 200, 1500, 1700), false),
-            new Quantifier("Approximately 1/3 of", new GaussMembershipFunction(2700, 800), false),
-            new Quantifier("Around half of", new TriangularMembershipFunction(3789, 4189, 4589), false),
-            new Quantifier("Most of", new TrapezoidalMembershipFunction(4100, 4600, 8378, 8378), false),
-            new Quantifier("The vast majority of", new TrapezoidalMembershipFunction(7300, 8300, 8378, 8378), false),
+            new Quantifier("Almost none of", new TrapezoidalMembershipFunction(0, 0, 0.006f, 0.012f), false),
+            new Quantifier("Some of", new TrapezoidalMembershipFunction(0, 0.024f, 0.179f, 0.203f), false),
+            new Quantifier("Approximately 1/3 of", new GaussMembershipFunction(0.322f, 0.095f), false),
+            new Quantifier("Around half of", new TriangularMembershipFunction(0.452f, 0.5f, 0.548f), false),
+            new Quantifier("Most of", new TrapezoidalMembershipFunction(0.489f, 0.549f, 1, 1), false),
+            new Quantifier("The vast majority of", new TrapezoidalMembershipFunction(0.871f, 0.991f, 1, 1), false),
 
             new Quantifier("Around 8000", new TrapezoidalMembershipFunction(5500, 8000, 8378, 8378), true),
             new Quantifier("More than 5000", new GaussMembershipFunction(5000, 1000), true),

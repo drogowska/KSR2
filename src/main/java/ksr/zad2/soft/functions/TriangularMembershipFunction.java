@@ -1,5 +1,7 @@
 package ksr.zad2.soft.functions;
 
+import static ksr.zad2.soft.defined.DefinedLinguisticVariables.database_size;
+
 public class TriangularMembershipFunction extends MembershipFunction<Float> {
 
     private float a;
@@ -37,5 +39,13 @@ public class TriangularMembershipFunction extends MembershipFunction<Float> {
     @Override
     public float getCardinality() {
         return (c - a)/2;
+    }
+
+    @Override
+    public MembershipFunction denormalized() {
+        a = a * database_size;
+        b = b * database_size;
+        c = c * database_size;
+        return this;
     }
 }

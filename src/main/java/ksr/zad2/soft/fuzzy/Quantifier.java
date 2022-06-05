@@ -8,7 +8,7 @@ public class Quantifier<T> extends FuzzySet<T> {
     private String quantifierName;
 
     public Quantifier(String quantifierName, MembershipFunction membershipFunction, boolean isAbsolute) {
-        super(membershipFunction);
+        super(isAbsolute ? membershipFunction : membershipFunction.denormalized());
         this.quantifierName = quantifierName;
     }
 

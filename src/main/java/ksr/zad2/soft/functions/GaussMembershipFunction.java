@@ -1,5 +1,7 @@
 package ksr.zad2.soft.functions;
 
+import static ksr.zad2.soft.defined.DefinedLinguisticVariables.database_size;
+
 public class GaussMembershipFunction extends MembershipFunction<Float> {
 
     float center;
@@ -29,5 +31,12 @@ public class GaussMembershipFunction extends MembershipFunction<Float> {
     @Override
     public float getCardinality() {
         return (float) ((halfOfWidth / 2) * Math.pow(Math.PI, 0.5d));
+    }
+
+    @Override
+    public MembershipFunction denormalized() {
+        center = center * database_size;
+        halfOfWidth = halfOfWidth * database_size;
+        return this;
     }
 }
