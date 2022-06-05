@@ -86,7 +86,7 @@ public class LinguisticSummary {
                     sum.set(sum.get() + Math.min(summarizerValue, qualifierValue));
                     sumQualifier.set(sumQualifier.get() + qualifierValue);
                 });
-                result = quantifier.getMembershipFunction().calculate(sum.get() / sumQualifier.get());
+                result = quantifier.getMembershipFunction().calculate((firstSubject.size() * sum.get()) / sumQualifier.get());
             }
         }
         else { // TWO SUBJECTS
