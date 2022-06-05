@@ -38,7 +38,7 @@ public class SummarizerList {
             if(summarizers.get(i).getConnective().equals(ConnectiveEnum.AND)) {
                 result.append(" and ");
             } else if(summarizers.get(i).getConnective().equals(ConnectiveEnum.OR)) {
-                result.append(" and ");
+                result.append(" or ");
             }
             result.append(summarizers.get(i).getColumnName() + " equals " + summarizers.get(i).getLabel());
         }
