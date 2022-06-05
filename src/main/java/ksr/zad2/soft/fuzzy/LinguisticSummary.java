@@ -9,13 +9,13 @@ import java.util.concurrent.atomic.AtomicReference;
 public class LinguisticSummary {
 
     Quantifier quantifier;
-    Qualifier qualifier;
+    QualifierList qualifierList;
     SummarizerList summarizerList;
     List<CustomRecord> firstSubject;
     List<CustomRecord> secondSubject;
 
-    public LinguisticSummary(Quantifier quantifier, Qualifier qualifier, List<Summarizer> summarizers, List<CustomRecord> firstSubject) {
-        this.qualifier = qualifier;
+    public LinguisticSummary(Quantifier quantifier, List<Qualifier> qualifiers, List<Summarizer> summarizers, List<CustomRecord> firstSubject) {
+        this.qualifierList = new QualifierList(qualifiers);
         this.quantifier = quantifier;
         this.summarizerList = new SummarizerList(summarizers);
         this.firstSubject = firstSubject;
@@ -51,7 +51,7 @@ public class LinguisticSummary {
                 AtomicReference<Float> sumQualifier = new AtomicReference<>(0f);
                 firstSubject.forEach(record -> {
                     float summarizerValue = summarizerList.calculate(record);
-                    float qualifierValue = qualifier.getMembershipFunction().calculate(AttributeEnum.getValue(record, qualifier.getColumnName()));
+                    float qualifierValue = qualifierList.calculate(record);
                     sum.set(sum.get() + Math.min(summarizerValue, qualifierValue));
                     sumQualifier.set(sumQualifier.get() + qualifierValue);
                 });
@@ -77,7 +77,7 @@ public class LinguisticSummary {
             AtomicReference<Float> h = new AtomicReference<>(0f);
             AtomicReference<Float> t = new AtomicReference<>(0f);
             firstSubject.forEach(record -> {
-                if(qualifier.getMembershipFunction().calculate(AttributeEnum.getValue(record, qualifier.getColumnName())) > 0) {
+                if(qualifierList.calculate(record) > 0) {
                     h.set(h.get() + 1);
                     if(summarizerList.calculate(record) > 0) {
                         t.set(t.get() + 1);
@@ -131,8 +131,8 @@ public class LinguisticSummary {
     }
 
     public float getT9() {
-        if(secondSubject == null && qualifier != null) {
-            return 1 - ((float)firstSubject.stream().filter(record -> qualifier.getMembershipFunction().calculate(AttributeEnum.getValue(record, qualifier.getColumnName())) > 0)
+        if(secondSubject == null && qualifierList != null) {
+            return 1 - ((float)firstSubject.stream().filter(record -> qualifierList.calculate(record) > 0)
                     .count() / (float)firstSubject.size());
         } else {
             return 0;
@@ -140,26 +140,26 @@ public class LinguisticSummary {
     }
 
     public float getT10() {
-        if(secondSubject == null && qualifier != null) {
-            return 1 - qualifier.getMembershipFunction().getCardinality() / (float)firstSubject.size();
+        if(secondSubject == null && qualifierList != null) {
+            return qualifierList.getDegreeOfQualifierRelativeCardinality(firstSubject.size());
         } else {
             return 0;
         }
     }
 
     public float getT11() {
-        if(secondSubject == null && qualifier != null) {
-            return (float) (2 * Math.pow(0.5, 1));
+        if(secondSubject == null && qualifierList != null) {
+            return qualifierList.getLengthOfQualification();
         } else {
             return 0;
         }
     }
 
     public int getForm() {
-        if(qualifier == null) {
+        if(qualifierList == null) {
             return 1;
         }
-        if(qualifier != null) {
+        if(qualifierList != null) {
             return 2;
         }
         return -1;
@@ -176,9 +176,8 @@ public class LinguisticSummary {
             }
             else if(getForm() == 2) {
                 result = quantifier.getQuantifierName() + " " +
-                        firstSubject.get(0).getName() + " are/have " +
-                        qualifier.getColumnName() + " equals " +
-                        qualifier.getLabel() + " are/have " +
+                        firstSubject.get(0).getName() + " having " +
+                        qualifierList.toString() + " are/have " +
                         summarizerList.toString();
             }
         } else { // TWO SUBJECTS
