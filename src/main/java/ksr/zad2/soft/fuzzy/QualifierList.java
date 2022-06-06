@@ -37,7 +37,7 @@ public class QualifierList {
             if(qualifiers.get(i).getConnective().equals(ConnectiveEnum.AND)) {
                 result.append(" and ");
             } else if(qualifiers.get(i).getConnective().equals(ConnectiveEnum.OR)) {
-                result.append(" and ");
+                result.append(" or ");
             }
             result.append(qualifiers.get(i).getColumnName() + " equals " + qualifiers.get(i).getLabel());
         }
