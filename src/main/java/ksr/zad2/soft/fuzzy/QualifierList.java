@@ -57,4 +57,14 @@ public class QualifierList {
         result.set((float) Math.pow(result.get(), 1/p));
         return 1f - result.get();
     }
+
+    public float getDegreeOfImprecision(List<CustomRecord> records) {
+        AtomicReference<Float> result = new AtomicReference<>(1f);
+        float p = qualifiers.size();
+        qualifiers.forEach(qualifier -> {
+            result.set(result.get() * qualifier.getDegreeOfFuzziness(records, qualifier.getColumnName()));
+        });
+        result.set((float) Math.pow(result.get(), 1/p));
+        return 1f - result.get();
+    }
 }

@@ -163,8 +163,9 @@ public class LinguisticSummary {
 
     public float getT9() {
         if(secondSubject == null && qualifierList != null) {
-            return 1 - ((float)firstSubject.stream().filter(record -> qualifierList.calculate(record) > 0)
-                    .count() / (float)firstSubject.size());
+            return qualifierList.getDegreeOfImprecision(firstSubject);
+            //return 1 - ((float)firstSubject.stream().filter(record -> qualifierList.calculate(record) > 0)
+            //        .count() / (float)firstSubject.size());
         } else {
             return 0;
         }
