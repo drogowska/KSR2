@@ -97,12 +97,10 @@ class SoftApplicationTests {
             return customRecord;
         }).collect(Collectors.toList());
 
-        Quantifier quantifier = quantifiers.get(3);
+        Quantifier quantifier = quantifiers.get(10);
 
-        LinguisticSummary summary = new LinguisticSummary(quantifier, List.of(
-                new Qualifier(age.getLabel(1), age.getColumn(), ConnectiveEnum.AND)
-        ), List.of(
-                new Summarizer(expected_num_interested_in_me.getLabel(2), expected_num_interested_in_me.getColumn(), ConnectiveEnum.AND)
+        LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(
+                new Summarizer(age.getLabel(0), age.getColumn(), ConnectiveEnum.AND)
         ), subject1, null);
 
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
@@ -170,7 +168,7 @@ class SoftApplicationTests {
             return customRecord;
         }).collect(Collectors.toList());
 
-        LinguisticSummary summary = new LinguisticSummary(q, List.of(qualifier, qualifier, qualifier), List.of(summarizer), subject1, null);
+        LinguisticSummary summary = new LinguisticSummary(q, List.of(qualifier), List.of(summarizer), subject1, null);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
 
         summary.getT().forEach(System.out::println);

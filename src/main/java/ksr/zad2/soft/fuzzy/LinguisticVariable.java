@@ -26,6 +26,10 @@ public class LinguisticVariable {
         return labels.get(i);
     }
 
+    public Label getLabel(String labelName) {
+        return labels.stream().filter(label -> label.getLabelName().equals(labelName)).findFirst().orElseThrow();
+    }
+
     public AttributeEnum getColumn() {
         return column;
     }

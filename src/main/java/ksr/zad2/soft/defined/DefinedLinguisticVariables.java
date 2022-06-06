@@ -16,6 +16,10 @@ public class DefinedLinguisticVariables {
     // 8378 values in database
     public static final int database_size = 8378;
 
+    public static Quantifier getQuantifier(String quantifierName) {
+        return quantifiers.stream().filter(q -> q.getQuantifierName().equals(quantifierName)).findFirst().orElseThrow();
+    }
+
     public static final List<Quantifier> quantifiers = List.of(
             new Quantifier("Almost none of", new TrapezoidalMembershipFunction(0, 0, 0.006f, 0.012f), false),
             new Quantifier("Some of", new TrapezoidalMembershipFunction(0, 0.024f, 0.179f, 0.203f), false),
