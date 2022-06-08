@@ -34,6 +34,7 @@ class SoftApplicationTests {
     private static Label label2;
     private static Summarizer summarizer;
     private static List<CustomRecord> subject1;
+    private static List<CustomRecord> subject2;
     private static Qualifier qualifier;
     private static Qualifier qualifier1;
 //    private static Qualifier qualifier;
@@ -65,7 +66,7 @@ class SoftApplicationTests {
 
         LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(
                 new Summarizer(expected_num_interested_in_me.getLabel(2), expected_num_interested_in_me.getColumn(), ConnectiveEnum.AND)
-        ), subject1, null);
+        ), subject1, null, false);
 
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
         summary.getT().forEach(System.out::println);
@@ -83,7 +84,7 @@ class SoftApplicationTests {
 
         LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(
                 new Summarizer(age.getLabel(1), age.getColumn(), ConnectiveEnum.AND)
-        ), subject1, null);
+        ), subject1, null, false);
 
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
         summary.getT().forEach(System.out::println);
@@ -101,7 +102,7 @@ class SoftApplicationTests {
 
         LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(
                 new Summarizer(age.getLabel(0), age.getColumn(), ConnectiveEnum.AND)
-        ), subject1, null);
+        ), subject1, null, false);
 
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
         summary.getT().forEach(System.out::println);
@@ -117,7 +118,7 @@ class SoftApplicationTests {
         }).collect(Collectors.toList());
 
 
-        LinguisticSummary summary = new LinguisticSummary(q, null, List.of(summarizer, summarizer, summarizer), subject1, null);
+        LinguisticSummary summary = new LinguisticSummary(q, null, List.of(summarizer, summarizer, summarizer), subject1, null, false);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
 
         summary.getT().forEach(System.out::println);
@@ -145,7 +146,7 @@ class SoftApplicationTests {
                                 ), List.of(
                                         new Summarizer(labelS, v1.getColumn(), ConnectiveEnum.AND),
                                         new Summarizer(l3, v3.getColumn(), ConnectiveEnum.AND)
-                                ), subject1, null);
+                                ), subject1, null, false);
 
                                 System.out.print(summary.toString() + " ");
                                 List<Float> wages = List.of(0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f);
@@ -168,7 +169,7 @@ class SoftApplicationTests {
             return customRecord;
         }).collect(Collectors.toList());
 
-        LinguisticSummary summary = new LinguisticSummary(q, List.of(qualifier), List.of(summarizer), subject1, null);
+        LinguisticSummary summary = new LinguisticSummary(q, List.of(qualifier), List.of(summarizer), subject1, null, false);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
 
         summary.getT().forEach(System.out::println);
@@ -185,7 +186,7 @@ class SoftApplicationTests {
         d_age.getLabels().forEach( s-> {
             summarizer = new Summarizer(s, AttributeEnum.valueOf("age"), ConnectiveEnum.AND);
             quantifiers.forEach(q -> {
-                LinguisticSummary summary = new LinguisticSummary(q, null, List.of(summarizer), subject1, null);
+                LinguisticSummary summary = new LinguisticSummary(q, null, List.of(summarizer), subject1, null, false);
                 System.out.println(summary.toString() + " [" + summary.getT1() + "]");
                 List<String> m = summary.getTstr();
                 for (String f : m) {
@@ -198,5 +199,125 @@ class SoftApplicationTests {
         });
 
         List<Float> wages = List.of(0.091f,0.091f, 0.091f, 0.091f, 0.091f, 0.091f, 0.091f ,0.091f, 0.091f,0.091f,0.091f);
+    }
+
+    @Test
+    public void MultiSubject1Form() {
+        subject1 = repository.findAll().stream()
+                .filter(r -> r.getCustomRecord().getGender().equals("female"))
+                .map(r -> {
+                    CustomRecord customRecord = r.getCustomRecord();
+                    customRecord.setName("Females");
+                    return customRecord;
+                }).collect(Collectors.toList());
+
+        subject2 = repository.findAll().stream()
+                .filter(r -> r.getCustomRecord().getGender().equals("male"))
+                .map(r -> {
+                    CustomRecord customRecord = r.getCustomRecord();
+                    customRecord.setName("Males");
+                    return customRecord;
+                }).collect(Collectors.toList());
+
+        LinguisticSummary summary = new LinguisticSummary(
+                quantifiers.get(4),
+                null,
+                List.of(new Summarizer(age.getLabel("teenager"), age.getColumn(), ConnectiveEnum.AND)),
+                subject1,
+                subject2,
+                false
+        );
+
+        System.out.println(summary.toString() + " [" + summary.getT1() + "]");
+    }
+
+    @Test
+    public void MultiSubject2Form() {
+        subject1 = repository.findAll().stream()
+                .filter(r -> r.getCustomRecord().getGender().equals("female"))
+                .map(r -> {
+                    CustomRecord customRecord = r.getCustomRecord();
+                    customRecord.setName("Females");
+                    return customRecord;
+                }).collect(Collectors.toList());
+
+        subject2 = repository.findAll().stream()
+                .filter(r -> r.getCustomRecord().getGender().equals("male"))
+                .map(r -> {
+                    CustomRecord customRecord = r.getCustomRecord();
+                    customRecord.setName("Males");
+                    return customRecord;
+                }).collect(Collectors.toList());
+
+        LinguisticSummary summary = new LinguisticSummary(
+                quantifiers.get(4),
+                List.of(new Qualifier(funny.getLabel("entertaining"), funny.getColumn(), ConnectiveEnum.AND)),
+                List.of(new Summarizer(age.getLabel("teenager"), age.getColumn(), ConnectiveEnum.AND)),
+                subject1,
+                subject2,
+                false
+        );
+
+        System.out.println(summary.toString() + " [" + summary.getT1() + "]");
+    }
+
+    @Test
+    public void MultiSubject3Form() {
+        subject1 = repository.findAll().stream()
+                .filter(r -> r.getCustomRecord().getGender().equals("female"))
+                .map(r -> {
+                    CustomRecord customRecord = r.getCustomRecord();
+                    customRecord.setName("Females");
+                    return customRecord;
+                }).collect(Collectors.toList());
+
+        subject2 = repository.findAll().stream()
+                .filter(r -> r.getCustomRecord().getGender().equals("male"))
+                .map(r -> {
+                    CustomRecord customRecord = r.getCustomRecord();
+                    customRecord.setName("Males");
+                    return customRecord;
+                }).collect(Collectors.toList());
+
+        LinguisticSummary summary = new LinguisticSummary(
+                quantifiers.get(4),
+                List.of(new Qualifier(funny.getLabel("entertaining"), funny.getColumn(), ConnectiveEnum.AND)),
+                List.of(new Summarizer(age.getLabel("teenager"), age.getColumn(), ConnectiveEnum.AND)),
+                subject1,
+                subject2,
+                true
+        );
+
+        System.out.println(summary.toString() + " [" + summary.getT1() + "]");
+    }
+
+    @Test
+    public void MultiSubject4Form() {
+        subject1 = repository.findAll().stream()
+                .filter(r -> r.getCustomRecord().getGender().equals("female"))
+                .map(r -> {
+                    CustomRecord customRecord = r.getCustomRecord();
+                    customRecord.setName("Females");
+                    return customRecord;
+                }).collect(Collectors.toList());
+
+        subject2 = repository.findAll().stream()
+                .filter(r -> r.getCustomRecord().getGender().equals("male"))
+                .map(r -> {
+                    CustomRecord customRecord = r.getCustomRecord();
+                    customRecord.setName("Males");
+                    return customRecord;
+                }).collect(Collectors.toList());
+
+        LinguisticSummary summary = new LinguisticSummary(
+                null,
+                null,
+                List.of(new Summarizer(age.getLabel("teenager"), age.getColumn(), ConnectiveEnum.AND)),
+                subject2,
+                subject1,
+                false
+        );
+
+        System.out.println(summary.toString() + " [" + summary.getT1() + "]");
     }
 }

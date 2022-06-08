@@ -261,7 +261,32 @@ public class LinguisticSummary {
                         summarizerList.toString();
             }
         } else { // TWO SUBJECTS
-
+            if(getForm() == 1) {
+                result = quantifier.getQuantifierName() + " " +
+                        firstSubject.get(0).getName() + " compared to " +
+                        secondSubject.get(0).getName() + " are/have " +
+                        summarizerList.toString();
+            }
+            else if(getForm() == 2) {
+                result = quantifier.getQuantifierName() + " " +
+                        firstSubject.get(0).getName() + " compared to " +
+                        secondSubject.get(0).getName() +  " having " +
+                        qualifierList.toString() + " are/have " +
+                        summarizerList.toString();
+            }
+            else if(getForm() == 3) {
+                result = quantifier.getQuantifierName() + " " +
+                        firstSubject.get(0).getName() + " having " +
+                        qualifierList.toString() + " compared to " +
+                        secondSubject.get(0).getName() + " are/have " +
+                        summarizerList.toString();
+            }
+            else if(getForm() == 4) {
+                result = "More " +
+                        firstSubject.get(0).getName() + " than " +
+                        secondSubject.get(0).getName() + " are/have " +
+                        summarizerList.toString();
+            }
         }
         return result;
     }

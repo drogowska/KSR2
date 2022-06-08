@@ -53,4 +53,8 @@ public interface SpeedDatingRepository extends JpaRepository<SpeedDatingRecord, 
     default List<Float> getDistinctFunny() {
         return findAll().stream().map(r -> r.getCustomRecord().getFunny()).distinct().collect(Collectors.toList());
     }
+
+    default List<String> getDistinctGender() {
+        return findAll().stream().map(r -> r.getCustomRecord().getGender()).distinct().collect(Collectors.toList());
+    }
 }
