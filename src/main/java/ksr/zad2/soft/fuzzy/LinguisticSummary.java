@@ -1,7 +1,10 @@
 package ksr.zad2.soft.fuzzy;
 
+import ksr.zad2.soft.Main;
 import ksr.zad2.soft.data.AttributeEnum;
 import ksr.zad2.soft.data.CustomRecord;
+import ksr.zad2.soft.data.SpeedDatingRecord;
+import ksr.zad2.soft.database.SpeedDatingRepository;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -90,7 +93,26 @@ public class LinguisticSummary {
             }
         }
         else { // TWO SUBJECTS
+            AtomicReference<Float> firstSubjectSigmaCount = new AtomicReference<>(0f);
+            AtomicReference<Float> secondSubjectSigmaCount = new AtomicReference<>(0f);
+            if(getForm() == 1) {
+                firstSubject.forEach(record -> firstSubjectSigmaCount.set(firstSubjectSigmaCount.get() + summarizerList.calculate(record)));
+                secondSubject.forEach(record -> secondSubjectSigmaCount.set(secondSubjectSigmaCount.get() + summarizerList.calculate(record)));
+            }
+            else if(getForm() == 2) {
+                firstSubject.forEach(record -> firstSubjectSigmaCount.set(firstSubjectSigmaCount.get() + summarizerList.calculate(record)));
+                secondSubject.forEach(record -> secondSubjectSigmaCount.set(secondSubjectSigmaCount.get() +
+                        Math.min(summarizerList.calculate(record), qualifierList.calculate(record))));
+            } else if(getForm() == 3) {
+                firstSubject.forEach(record -> firstSubjectSigmaCount.set(firstSubjectSigmaCount.get() +
+                        Math.min(summarizerList.calculate(record), qualifierList.calculate(record))));
+                secondSubject.forEach(record -> secondSubjectSigmaCount.set(secondSubjectSigmaCount.get() + summarizerList.calculate(record)));
+            } else if(getForm() == 4) {
 
+            }
+            result = quantifier.getMembershipFunction().calculate(((firstSubjectSigmaCount.get() / firstSubject.size())
+                    / ((firstSubjectSigmaCount.get() / firstSubject.size()) + (secondSubjectSigmaCount.get() / secondSubject.size())))
+                    * Main.applicationContext.getBean(SpeedDatingRepository.class).findAll().stream().map(SpeedDatingRecord::getCustomRecord).count());
         }
         return result;
     }
@@ -164,8 +186,6 @@ public class LinguisticSummary {
     public float getT9() {
         if(secondSubject == null && qualifierList != null) {
             return qualifierList.getDegreeOfImprecision(firstSubject);
-            //return 1 - ((float)firstSubject.stream().filter(record -> qualifierList.calculate(record) > 0)
-            //        .count() / (float)firstSubject.size());
         } else {
             return 0;
         }
@@ -188,11 +208,20 @@ public class LinguisticSummary {
     }
 
     public int getForm() {
-        if(qualifierList == null) {
-            return 1;
-        }
-        if(qualifierList != null) {
-            return 2;
+        if(secondSubject == null) {
+            if(qualifierList == null) {
+                return 1;
+            }
+            if(qualifierList != null) {
+                return 2;
+            }
+        } else {
+            if(qualifierList == null) {
+                return 1;
+            }
+            if(qualifierList != null) {
+                return 2;
+            }
         }
         return -1;
     }

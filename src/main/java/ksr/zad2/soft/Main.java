@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    ConfigurableApplicationContext applicationContext;
+    public static ConfigurableApplicationContext applicationContext;
 
     @Override
     public void init() {
