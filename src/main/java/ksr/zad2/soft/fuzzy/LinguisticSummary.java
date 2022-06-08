@@ -5,6 +5,7 @@ import ksr.zad2.soft.data.AttributeEnum;
 import ksr.zad2.soft.data.CustomRecord;
 import ksr.zad2.soft.data.SpeedDatingRecord;
 import ksr.zad2.soft.database.SpeedDatingRepository;
+import ksr.zad2.soft.defined.DefinedLinguisticVariables;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -13,13 +14,15 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class LinguisticSummary {
 
-    Quantifier quantifier;
-    QualifierList qualifierList;
-    SummarizerList summarizerList;
-    List<CustomRecord> firstSubject;
-    List<CustomRecord> secondSubject;
+    private Quantifier quantifier;
+    private QualifierList qualifierList;
+    private  SummarizerList summarizerList;
+    private List<CustomRecord> firstSubject;
+    private List<CustomRecord> secondSubject;
+    private boolean isThirdFormInMultiSubject;
 
-    public LinguisticSummary(Quantifier quantifier, List<Qualifier> qualifiers, List<Summarizer> summarizers, List<CustomRecord> firstSubject, List<CustomRecord> secondSubject) {
+    public LinguisticSummary(Quantifier quantifier, List<Qualifier> qualifiers, List<Summarizer> summarizers, List<CustomRecord> firstSubject, List<CustomRecord> secondSubject,
+                             boolean isThirdFormInMultiSubject) {
         if(qualifiers != null) {
             this.qualifierList = new QualifierList(qualifiers);
         }
@@ -27,6 +30,7 @@ public class LinguisticSummary {
         this.summarizerList = new SummarizerList(summarizers);
         this.firstSubject = firstSubject;
         this.secondSubject = secondSubject;
+        this.isThirdFormInMultiSubject = isThirdFormInMultiSubject;
     }
 
     public List<String> getTstr() {
@@ -107,14 +111,23 @@ public class LinguisticSummary {
                 firstSubject.forEach(record -> firstSubjectSigmaCount.set(firstSubjectSigmaCount.get() +
                         Math.min(summarizerList.calculate(record), qualifierList.calculate(record))));
                 secondSubject.forEach(record -> secondSubjectSigmaCount.set(secondSubjectSigmaCount.get() + summarizerList.calculate(record)));
-            } else if(getForm() == 4) {
-
             }
-            result = quantifier.getMembershipFunction().calculate(((firstSubjectSigmaCount.get() / firstSubject.size())
-                    / ((firstSubjectSigmaCount.get() / firstSubject.size()) + (secondSubjectSigmaCount.get() / secondSubject.size())))
-                    * Main.applicationContext.getBean(SpeedDatingRepository.class).findAll().stream().map(SpeedDatingRecord::getCustomRecord).count());
+            if(getForm() != 4) {
+                result = quantifier.getMembershipFunction().calculate(((firstSubjectSigmaCount.get() / firstSubject.size())
+                        / ((firstSubjectSigmaCount.get() / firstSubject.size()) + (secondSubjectSigmaCount.get() / secondSubject.size())))
+                        * DefinedLinguisticVariables.database_size);
+            } else {
+                firstSubject.forEach(record -> firstSubjectSigmaCount.set(firstSubjectSigmaCount.get() + summarizerList.calculate(record)));
+                secondSubject.forEach(record -> secondSubjectSigmaCount.set(secondSubjectSigmaCount.get() + summarizerList.calculate(record)));
+                result = 1 - KleeneDienesImplication(firstSubjectSigmaCount.get() / firstSubject.size(), secondSubjectSigmaCount.get() / secondSubject.size());
+            }
+
         }
         return result;
+    }
+
+    private float KleeneDienesImplication(float x, float y) {
+        return Math.max(1 - x, y);
     }
 
     public float getT2() {
@@ -216,11 +229,17 @@ public class LinguisticSummary {
                 return 2;
             }
         } else {
-            if(qualifierList == null) {
+            if(qualifierList == null && quantifier != null) {
                 return 1;
             }
-            if(qualifierList != null) {
+            if(qualifierList != null && !isThirdFormInMultiSubject) {
                 return 2;
+            }
+            if(qualifierList != null && isThirdFormInMultiSubject) {
+                return 3;
+            }
+            if(qualifierList == null && quantifier == null) {
+                return 4;
             }
         }
         return -1;
