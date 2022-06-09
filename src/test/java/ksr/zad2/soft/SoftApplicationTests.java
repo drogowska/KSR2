@@ -320,4 +320,45 @@ class SoftApplicationTests {
 
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
     }
+
+    @Test
+    public void hugeMultiFormTest() {
+        subject1 = repository.findAll().stream()
+                .filter(r -> r.getCustomRecord().getGender().equals("female"))
+                .map(r -> {
+                    CustomRecord customRecord = r.getCustomRecord();
+                    customRecord.setName("Females");
+                    return customRecord;
+                }).collect(Collectors.toList());
+
+        subject2 = repository.findAll().stream()
+                .filter(r -> r.getCustomRecord().getGender().equals("male"))
+                .map(r -> {
+                    CustomRecord customRecord = r.getCustomRecord();
+                    customRecord.setName("Males");
+                    return customRecord;
+                }).collect(Collectors.toList());
+
+        List<LinguisticVariable> variables = List.of(sincere, age, d_age, expected_num_interested_in_me, tvsports, pref_o_intelligence, pref_o_ambitious, importance_same_race, importance_same_religion, guess_prob_liked, funny);
+        List<Quantifier> quantifiers = DefinedLinguisticVariables.quantifiers;
+
+        quantifiers.forEach(q -> {
+            variables.forEach(v1 -> {
+                variables.forEach(v2 -> {
+                    v1.getLabels().forEach(l1 -> {
+                        v2.getLabels().forEach(l2 -> {
+                            LinguisticSummary summary = new LinguisticSummary(q, List.of(
+                                    new Qualifier(l2, v2.getColumn(), ConnectiveEnum.AND)
+                            ), List.of(
+                                    new Summarizer(l1, v1.getColumn(), ConnectiveEnum.AND)
+                            ), subject2, subject1, false);
+                            if(summary.getT1() >= 0.01) {
+                                System.out.println("[" + summary.getT1() + "] " + summary.toString());
+                            }
+                        });
+                    });
+                });
+            });
+        });
+    }
 }
