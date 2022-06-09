@@ -2,11 +2,10 @@ package ksr.zad2.soft.defined;
 
 import ksr.zad2.soft.data.AttributeEnum;
 import ksr.zad2.soft.functions.GaussMembershipFunction;
+import ksr.zad2.soft.functions.StableMembershipFunction;
 import ksr.zad2.soft.functions.TrapezoidalMembershipFunction;
 import ksr.zad2.soft.functions.TriangularMembershipFunction;
-import ksr.zad2.soft.fuzzy.Label;
-import ksr.zad2.soft.fuzzy.LinguisticVariable;
-import ksr.zad2.soft.fuzzy.Quantifier;
+import ksr.zad2.soft.fuzzy.*;
 import ksr.zad2.soft.set.FuzzySet;
 
 import java.util.List;
@@ -15,6 +14,13 @@ public class DefinedLinguisticVariables {
 
     // 8378 values in database
     public static final int database_size = 8378;
+
+    public static QualifierList stableQualifierList = new QualifierList(List.of(
+            new Qualifier(
+                    new Label("EMPTY", new FuzzySet(new StableMembershipFunction())),
+                    AttributeEnum.age,
+                    ConnectiveEnum.AND)
+    ));
 
     public static Quantifier getQuantifier(String quantifierName) {
         return quantifiers.stream().filter(q -> q.getQuantifierName().equals(quantifierName)).findFirst().orElseThrow();

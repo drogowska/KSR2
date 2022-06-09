@@ -139,7 +139,10 @@ public class LinguisticSummary {
     }
 
     public float getT3() {
-        if(getForm() == 2 && secondSubject == null) {
+        if(secondSubject == null) {
+            if(qualifierList == null) {
+                qualifierList = DefinedLinguisticVariables.stableQualifierList;
+            }
             AtomicReference<Float> h = new AtomicReference<>(0f);
             AtomicReference<Float> t = new AtomicReference<>(0f);
             firstSubject.forEach(record -> {
@@ -150,6 +153,9 @@ public class LinguisticSummary {
                     }
                 }
             });
+            if(qualifierList == DefinedLinguisticVariables.stableQualifierList) {
+                qualifierList = null;
+            }
             return t.get() / h.get();
         } else {
             return 0;
@@ -157,7 +163,7 @@ public class LinguisticSummary {
     }
 
     public float getT4() {
-        if(getForm() == 2 && secondSubject == null) {
+        if(secondSubject == null) {
             return summarizerList.getDegreeOfAppropriateness(firstSubject, getT3());
         } else {
             return 0;
@@ -213,7 +219,10 @@ public class LinguisticSummary {
     }
 
     public float getT11() {
-        if(secondSubject == null && qualifierList != null) {
+        if(secondSubject == null) {
+            if(qualifierList == null) {
+                return 1;
+            }
             return qualifierList.getLengthOfQualification();
         } else {
             return 0;
