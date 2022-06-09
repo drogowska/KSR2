@@ -27,4 +27,9 @@ public class Summarizer<T> extends FuzzySet<T> {
     public ConnectiveEnum getConnective() {
         return connective;
     }
+
+    @Override
+    public String toString() {
+        return columnName.name() + " " + labelName;
+    }
 }

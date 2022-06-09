@@ -18,8 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ksr.zad2.soft.gui.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ksr.zad2.soft.gui.MainController">
    <children>
       <TabPane layoutX="2.0" layoutY="1.0" prefHeight="645.0" prefWidth="934.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -42,13 +41,13 @@
                           </rowConstraints>
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kwantyfikator:" />
-                              <ComboBox prefHeight="28.0" prefWidth="203.0" GridPane.columnIndex="1" />
+                              <ComboBox fx:id="quantifierComboBox" prefHeight="28.0" prefWidth="203.0" GridPane.columnIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Podmiot:" GridPane.rowIndex="1" />
-                              <ComboBox prefHeight="28.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="subject1ComboBox" prefHeight="28.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sumaryzator:" GridPane.rowIndex="3" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kwalifikator:" GridPane.rowIndex="4" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Podmiot 2 (obcjonalny):" GridPane.rowIndex="2" />
-                              <ComboBox prefHeight="28.0" prefWidth="204.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <ComboBox fx:id="subject2ComboBox" prefHeight="28.0" prefWidth="204.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Forma:" GridPane.rowIndex="5" />
                               <ComboBox prefHeight="28.0" prefWidth="204.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                               <HBox prefHeight="100.0" prefWidth="403.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -56,7 +55,7 @@
                                     <TextArea prefHeight="100.0" prefWidth="258.0" />
                                     <VBox prefHeight="100.0" prefWidth="147.0">
                                        <children>
-                                          <ComboBox prefHeight="28.0" prefWidth="149.0" />
+                                          <ComboBox fx:id="summarizerComboBox" prefHeight="28.0" prefWidth="149.0" />
                                           <RadioButton mnemonicParsing="false" prefHeight="30.0" prefWidth="69.0" text="AND" />
                                           <RadioButton mnemonicParsing="false" text="OR" />
                                           <Button mnemonicParsing="false" text="Dodaj" />
@@ -69,7 +68,7 @@
                                     <TextArea prefHeight="100.0" prefWidth="258.0" />
                                     <VBox prefHeight="100.0" prefWidth="147.0">
                                        <children>
-                                          <ComboBox prefHeight="28.0" prefWidth="149.0" />
+                                          <ComboBox fx:id="qualifierComboBox" prefHeight="28.0" prefWidth="149.0" />
                                           <RadioButton mnemonicParsing="false" prefHeight="30.0" prefWidth="69.0" text="AND" />
                                           <RadioButton mnemonicParsing="false" text="OR" />
                                           <Button mnemonicParsing="false" text="Dodaj" />
@@ -79,8 +78,8 @@
                               </HBox>
                            </children>
                         </GridPane>
-                        <Button layoutX="14.0" layoutY="522.0" mnemonicParsing="false" text="Generuj podumowanie" />
-                        <GridPane layoutX="712.0" layoutY="94.0" prefHeight="330.0" prefWidth="136.0">
+                        <Button layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onMousePressed="#generateSummary" text="Generuj podumowanie" />
+                        <GridPane fx:id="wagesGridPane" layoutX="712.0" layoutY="94.0" prefHeight="330.0" prefWidth="136.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="55.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="100.0" />

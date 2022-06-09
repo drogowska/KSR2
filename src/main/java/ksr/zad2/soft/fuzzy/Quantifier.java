@@ -15,4 +15,8 @@ public class Quantifier<T> extends FuzzySet<T> {
     public String getQuantifierName() {
         return quantifierName;
     }
+
+    public String toString() {
+        return quantifierName;
+    }
 }
