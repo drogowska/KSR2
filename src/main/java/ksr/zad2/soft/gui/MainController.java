@@ -68,7 +68,7 @@ public class MainController {
     private static String EQUALS = " equals ";
 
     private enum SubjectEnum {
-        NONE, ALL, FEMALE, MALE;
+        NONE, PEOPLE, FEMALE, MALE;
     }
 
     private enum FormEnum {
@@ -90,14 +90,17 @@ public class MainController {
 
     @FXML
     public void generateSummary() {
+        if(!isSummaryCorrect()) {
+            return;
+        }
 
         List<CustomRecord> firstSubject = getByEnum(subject1ComboBox.getValue());
         List<CustomRecord> secondSubject = getByEnum(subject2ComboBox.getValue());
 
         LinguisticSummary linguisticSummary = new LinguisticSummary(
                 quantifiers.stream().filter(q -> q.getQuantifierName().equals(quantifierComboBox.getValue())).findFirst().orElse(null),
-                chosenQualifiers,
-                chosenSummarizers,
+                chosenQualifiers.isEmpty() ? null : chosenQualifiers,
+                chosenSummarizers.isEmpty() ? null : chosenSummarizers,
                 firstSubject,
                 secondSubject,
                 formComboBox.getValue().equals(FormEnum.Wielopodmiotowe_forma_3)
@@ -107,7 +110,7 @@ public class MainController {
 
     private List<CustomRecord> getByEnum(SubjectEnum s) {
         switch(s) {
-            case ALL:
+            case PEOPLE:
                 return allData;
             case MALE:
                 return males;
@@ -265,5 +268,45 @@ public class MainController {
         chosenSummarizers.clear();
         refreshJavaFx();
         fillComboBoxes();
+    }
+
+    private boolean isSummaryCorrect() {
+        Quantifier quantifier = quantifiers.stream().filter(q -> q.getQuantifierName().equals(quantifierComboBox.getValue())).findFirst().orElse(null);
+        boolean isCorrect = false;
+
+        switch (formComboBox.getValue()) {
+            case Jednopodmiotowe_forma_1:
+                isCorrect = (quantifier != null && getByEnum(subject1ComboBox.getValue()) != null && !chosenSummarizers.isEmpty());
+                if(isCorrect) {
+                    generateAlert(Alert.AlertType.WARNING, "Złe parametry!", "Wybrana forma wymaga wybrania kwantyfikatora, sumaryzatorów oraz podmiotu 1");
+                }
+                break;
+            case Jednopodmiotowe_forma_2:
+                isCorrect = (quantifier != null && getByEnum(subject1ComboBox.getValue()) != null && !chosenSummarizers.isEmpty() && !chosenQualifiers.isEmpty());
+                if(isCorrect) {
+                    generateAlert(Alert.AlertType.WARNING, "Złe parametry!", "Wybrana forma wymaga wybrania kwantyfikatora, kwalifikatorów, sumaryzatorów oraz podmiotu 1");
+                }
+                break;
+            case Wielopodmiotowe_forma_1:
+                isCorrect = (quantifier != null && getByEnum(subject1ComboBox.getValue()) != null && getByEnum(subject2ComboBox.getValue()) != null && !chosenSummarizers.isEmpty());
+                if(isCorrect) {
+                    generateAlert(Alert.AlertType.WARNING, "Złe parametry!", "Wybrana forma wymaga wybrania kwantyfikatora, sumaryzatorów oraz podmiotu 1 oraz 2");
+                }
+                break;
+            case Wielopodmiotowe_forma_2:
+            case Wielopodmiotowe_forma_3:
+                isCorrect = (quantifier != null && getByEnum(subject1ComboBox.getValue()) != null && getByEnum(subject2ComboBox.getValue()) != null && !chosenSummarizers.isEmpty() && !chosenQualifiers.isEmpty());
+                if(isCorrect) {
+                    generateAlert(Alert.AlertType.WARNING, "Złe parametry!", "Wybrana forma wymaga wybrania kwantyfikatora, kwalifikatorów, sumaryzatorów oraz podmiotu 1 oraz 2");
+                }
+                break;
+            case Wielopodmiotowe_forma_4:
+                isCorrect = (getByEnum(subject1ComboBox.getValue()) != null && getByEnum(subject2ComboBox.getValue()) != null && !chosenSummarizers.isEmpty());
+                if(isCorrect) {
+                    generateAlert(Alert.AlertType.WARNING, "Złe parametry!", "Wybrana forma wymaga wybrania sumaryzatorów oraz podmiotu 1 oraz 2");
+                }
+                break;
+        }
+        return isCorrect;
     }
 }
