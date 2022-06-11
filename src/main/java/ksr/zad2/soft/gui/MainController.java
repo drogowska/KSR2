@@ -1,19 +1,30 @@
 package ksr.zad2.soft.gui;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.util.Callback;
 import ksr.zad2.soft.Main;
 import ksr.zad2.soft.data.CustomRecord;
 import ksr.zad2.soft.database.SpeedDatingRepository;
 import ksr.zad2.soft.fuzzy.*;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import static ksr.zad2.soft.defined.DefinedLinguisticVariables.*;
@@ -53,6 +64,9 @@ public class MainController {
     @FXML
     TextArea qualifierText;
 
+    @FXML
+    TableView summariesTable;
+
     private SpeedDatingRepository speedDatingRepository;
     private List<LinguisticVariable> variables;
     private List<CustomRecord> allData;
@@ -64,6 +78,7 @@ public class MainController {
     private List<Float> wages;
     private List<Summarizer> chosenSummarizers;
     private List<Qualifier> chosenQualifiers;
+    private List<LinguisticSummary> previousSummaries;
     private static String NONE = "none";
     private static String EQUALS = " equals ";
 
@@ -71,7 +86,7 @@ public class MainController {
         NONE, PEOPLE, FEMALE, MALE;
     }
 
-    private enum FormEnum {
+    public enum FormEnum {
         Jednopodmiotowe_forma_1,
         Jednopodmiotowe_forma_2,
         Wielopodmiotowe_forma_1,
@@ -98,14 +113,17 @@ public class MainController {
         List<CustomRecord> secondSubject = getByEnum(subject2ComboBox.getValue());
 
         LinguisticSummary linguisticSummary = new LinguisticSummary(
+                formComboBox.getValue(),
                 quantifiers.stream().filter(q -> q.getQuantifierName().equals(quantifierComboBox.getValue())).findFirst().orElse(null),
                 chosenQualifiers.isEmpty() ? null : chosenQualifiers,
                 chosenSummarizers.isEmpty() ? null : chosenSummarizers,
                 firstSubject,
                 secondSubject,
-                formComboBox.getValue().equals(FormEnum.Wielopodmiotowe_forma_3)
+                formComboBox.getValue().equals(FormEnum.Wielopodmiotowe_forma_3),
+                new ArrayList<>(wages)
         );
-        System.out.println(linguisticSummary.toString() + " [" + linguisticSummary.getT1() + "]");
+        previousSummaries.add(linguisticSummary);
+        refreshSummaryTable();
     }
 
     private List<CustomRecord> getByEnum(SubjectEnum s) {
@@ -154,10 +172,12 @@ public class MainController {
             availableSummarizers.add(new Summarizer(l, v.getColumn(), ConnectiveEnum.AND));
         }));
 
-        wages = List.of(0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f);
+        wages = new ArrayList<>();
+        List.of(0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f).forEach(f -> wages.add(f));
 
         chosenSummarizers = new ArrayList<>();
         chosenQualifiers = new ArrayList<>();
+        previousSummaries = new ArrayList<>();
     }
 
     private static void generateAlert(Alert.AlertType alertType, String title, String message) {
@@ -206,6 +226,69 @@ public class MainController {
         Arrays.stream(FormEnum.values()).forEach(form -> formComboBox.getItems().add(form));
 
         refreshQualifierAndSummarizer();
+        refreshSummaryTable();
+    }
+
+    private void refreshSummaryTable() {
+        ObservableList<SummaryModel> tableData = FXCollections.observableArrayList();
+        previousSummaries.forEach(s -> {
+            tableData.add(new SummaryModel(
+                    s.toString(),
+                    s.getT1(),
+                    s.getT2(),
+                    s.getT3(),
+                    s.getT4(),
+                    s.getT5(),
+                    s.getT6(),
+                    s.getT7(),
+                    s.getT8(),
+                    s.getT9(),
+                    s.getT10(),
+                    s.getT11(),
+                    s.getOptimal(),
+                    false
+                    ));
+        });
+
+        ((TableColumn)summariesTable.getColumns().get(0)).setCellValueFactory(new PropertyValueFactory<SummaryModel, String>("summary"));
+        ((TableColumn)summariesTable.getColumns().get(1)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T1"));
+        ((TableColumn)summariesTable.getColumns().get(2)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T2"));
+        ((TableColumn)summariesTable.getColumns().get(3)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T2"));
+        ((TableColumn)summariesTable.getColumns().get(4)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T4"));
+        ((TableColumn)summariesTable.getColumns().get(5)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T5"));
+        ((TableColumn)summariesTable.getColumns().get(6)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T6"));
+        ((TableColumn)summariesTable.getColumns().get(7)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T7"));
+        ((TableColumn)summariesTable.getColumns().get(8)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T8"));
+        ((TableColumn)summariesTable.getColumns().get(9)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T9"));
+        ((TableColumn)summariesTable.getColumns().get(10)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T10"));
+        ((TableColumn)summariesTable.getColumns().get(11)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T11"));
+        ((TableColumn)summariesTable.getColumns().get(12)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T"));
+
+        ((TableColumn)summariesTable.getColumns().get(13)).setCellValueFactory(//new PropertyValueFactory<SummaryModel, Boolean>("save"));
+                new Callback<TableColumn.CellDataFeatures<SummaryModel, CheckBox>, ObservableValue<CheckBox>>() {
+
+                    @Override
+                    public ObservableValue<CheckBox> call(TableColumn.CellDataFeatures<SummaryModel, CheckBox> summaryModelCheckBoxCellDataFeatures) {
+                            SummaryModel summaryModel = summaryModelCheckBoxCellDataFeatures.getValue();
+                            CheckBox checkBox = new CheckBox();
+
+                            checkBox.selectedProperty().setValue(summaryModel.getSave());
+                            checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                                public void changed(ObservableValue<? extends Boolean> ov,
+                                                    Boolean old_val, Boolean new_val) {
+                                    summaryModel.setSave(new_val);
+                                }
+                            });
+
+                            return new SimpleObjectProperty<CheckBox>(checkBox);
+                    }
+                });
+
+        summariesTable.setItems(tableData);
+    }
+
+    private ObservableList<SummaryModel> getSummaryModelList() {
+        return summariesTable.getItems();
     }
 
     private void refreshQualifierAndSummarizer() {
@@ -308,5 +391,36 @@ public class MainController {
                 break;
         }
         return isCorrect;
+    }
+
+    @FXML
+    private void updateWages() {
+        wagesGridPane.getChildren().forEach(node -> {
+            if(node != null && GridPane.getRowIndex(node) != null && GridPane.getColumnIndex(node) != null) {
+                if(GridPane.getColumnIndex(node) == 1) {
+                    wages.set(GridPane.getRowIndex(node) - 1, Float.parseFloat(((TextField)node).getText()));
+                }
+            }
+        });
+    }
+
+    @FXML
+    private void saveToFile() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Zapisz");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
+        File file = fileChooser.showSaveDialog(Stage.getWindows().stream().filter(Window::isShowing).collect(Collectors.toList()).get(0));
+
+        StringBuilder result = new StringBuilder();
+        getSummaryModelList().forEach(m -> {
+            if(m.getSave()) {
+                result.append(m.toString()).append("\n");
+            }
+        });
+
+        try(FileOutputStream outputStream = new FileOutputStream(file)) {
+            outputStream.write(result.toString().getBytes());
+        } catch (IOException ex) {
+        }
     }
 }

@@ -37,6 +37,7 @@ class SoftApplicationTests {
     private static List<CustomRecord> subject2;
     private static Qualifier qualifier;
     private static Qualifier qualifier1;
+    private static List<Float> wages = List.of(0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f);
 //    private static Qualifier qualifier;
 
     @BeforeAll
@@ -66,7 +67,7 @@ class SoftApplicationTests {
 
         LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(
                 new Summarizer(expected_num_interested_in_me.getLabel(2), expected_num_interested_in_me.getColumn(), ConnectiveEnum.AND)
-        ), subject1, null, false);
+        ), subject1, null, false, wages);
 
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
         summary.getT().forEach(System.out::println);
@@ -84,7 +85,7 @@ class SoftApplicationTests {
 
         LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(
                 new Summarizer(age.getLabel(1), age.getColumn(), ConnectiveEnum.AND)
-        ), subject1, null, false);
+        ), subject1, null, false, wages);
 
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
         summary.getT().forEach(System.out::println);
@@ -102,7 +103,7 @@ class SoftApplicationTests {
 
         LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(
                 new Summarizer(age.getLabel(0), age.getColumn(), ConnectiveEnum.AND)
-        ), subject1, null, false);
+        ), subject1, null, false, wages);
 
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
         summary.getT().forEach(System.out::println);
@@ -118,7 +119,7 @@ class SoftApplicationTests {
         }).collect(Collectors.toList());
 
 
-        LinguisticSummary summary = new LinguisticSummary(q, null, List.of(summarizer, summarizer, summarizer), subject1, null, false);
+        LinguisticSummary summary = new LinguisticSummary(q, null, List.of(summarizer, summarizer, summarizer), subject1, null, false, wages);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
 
         summary.getT().forEach(System.out::println);
@@ -146,10 +147,9 @@ class SoftApplicationTests {
                                 ), List.of(
                                         new Summarizer(labelS, v1.getColumn(), ConnectiveEnum.AND),
                                         new Summarizer(l3, v3.getColumn(), ConnectiveEnum.AND)
-                                ), subject1, null, false);
+                                ), subject1, null, false, wages);
 
                                 System.out.print(summary.toString() + " ");
-                                List<Float> wages = List.of(0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f);
                                 summary.getTstr().forEach(t -> System.out.print(t + " "));
                                 System.out.println(summary.getOptimal(wages));
                             });
@@ -169,7 +169,7 @@ class SoftApplicationTests {
             return customRecord;
         }).collect(Collectors.toList());
 
-        LinguisticSummary summary = new LinguisticSummary(q, List.of(qualifier), List.of(summarizer), subject1, null, false);
+        LinguisticSummary summary = new LinguisticSummary(q, List.of(qualifier), List.of(summarizer), subject1, null, false, wages);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
 
         summary.getT().forEach(System.out::println);
@@ -186,7 +186,7 @@ class SoftApplicationTests {
         d_age.getLabels().forEach( s-> {
             summarizer = new Summarizer(s, AttributeEnum.valueOf("age"), ConnectiveEnum.AND);
             quantifiers.forEach(q -> {
-                LinguisticSummary summary = new LinguisticSummary(q, null, List.of(summarizer), subject1, null, false);
+                LinguisticSummary summary = new LinguisticSummary(q, null, List.of(summarizer), subject1, null, false, wages);
                 System.out.println(summary.toString() + " [" + summary.getT1() + "]");
                 List<String> m = summary.getTstr();
                 for (String f : m) {
@@ -225,7 +225,8 @@ class SoftApplicationTests {
                 List.of(new Summarizer(age.getLabel("teenager"), age.getColumn(), ConnectiveEnum.AND)),
                 subject1,
                 subject2,
-                false
+                false,
+                wages
         );
 
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
@@ -255,7 +256,8 @@ class SoftApplicationTests {
                 List.of(new Summarizer(age.getLabel("teenager"), age.getColumn(), ConnectiveEnum.AND)),
                 subject1,
                 subject2,
-                false
+                false,
+                wages
         );
 
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
@@ -285,7 +287,8 @@ class SoftApplicationTests {
                 List.of(new Summarizer(age.getLabel("teenager"), age.getColumn(), ConnectiveEnum.AND)),
                 subject1,
                 subject2,
-                true
+                true,
+                wages
         );
 
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
@@ -315,7 +318,8 @@ class SoftApplicationTests {
                 List.of(new Summarizer(age.getLabel("teenager"), age.getColumn(), ConnectiveEnum.AND)),
                 subject2,
                 subject1,
-                false
+                false,
+                wages
         );
 
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
@@ -351,7 +355,7 @@ class SoftApplicationTests {
                                     new Qualifier(l2, v2.getColumn(), ConnectiveEnum.AND)
                             ), List.of(
                                     new Summarizer(l1, v1.getColumn(), ConnectiveEnum.AND)
-                            ), subject2, subject1, false);
+                            ), subject2, subject1, false, null);
                             if(summary.getT1() >= 0.01) {
                                 System.out.println("[" + summary.getT1() + "] " + summary.toString());
                             }

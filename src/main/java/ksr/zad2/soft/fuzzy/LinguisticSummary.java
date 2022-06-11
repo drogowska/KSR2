@@ -1,11 +1,8 @@
 package ksr.zad2.soft.fuzzy;
 
-import ksr.zad2.soft.Main;
-import ksr.zad2.soft.data.AttributeEnum;
 import ksr.zad2.soft.data.CustomRecord;
-import ksr.zad2.soft.data.SpeedDatingRecord;
-import ksr.zad2.soft.database.SpeedDatingRepository;
 import ksr.zad2.soft.defined.DefinedLinguisticVariables;
+import ksr.zad2.soft.gui.MainController;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -20,13 +17,30 @@ public class LinguisticSummary {
     private List<CustomRecord> firstSubject;
     private List<CustomRecord> secondSubject;
     private boolean isThirdFormInMultiSubject;
+    private List<Float> wages;
+    private MainController.FormEnum form;
+
+    public LinguisticSummary(MainController.FormEnum form, Quantifier quantifier, List<Qualifier> qualifiers, List<Summarizer> summarizers, List<CustomRecord> firstSubject, List<CustomRecord> secondSubject,
+                             boolean isThirdFormInMultiSubject, List<Float> wages) {
+        if(qualifiers != null) {
+            this.qualifierList = new QualifierList(qualifiers);
+        }
+        this.form = form;
+        this.quantifier = quantifier;
+        this.wages = wages;
+        this.summarizerList = new SummarizerList(summarizers);
+        this.firstSubject = firstSubject;
+        this.secondSubject = secondSubject;
+        this.isThirdFormInMultiSubject = isThirdFormInMultiSubject;
+    }
 
     public LinguisticSummary(Quantifier quantifier, List<Qualifier> qualifiers, List<Summarizer> summarizers, List<CustomRecord> firstSubject, List<CustomRecord> secondSubject,
-                             boolean isThirdFormInMultiSubject) {
+                             boolean isThirdFormInMultiSubject, List<Float> wages) {
         if(qualifiers != null) {
             this.qualifierList = new QualifierList(qualifiers);
         }
         this.quantifier = quantifier;
+        this.wages = wages;
         this.summarizerList = new SummarizerList(summarizers);
         this.firstSubject = firstSubject;
         this.secondSubject = secondSubject;
@@ -68,6 +82,13 @@ public class LinguisticSummary {
     }
 
     public float getOptimal(List<Float> wages) {
+        float res = 0;
+        for (int i = 0; i < wages.size(); i++)
+            res += wages.get(i) * getT().get(i);
+        return res;
+    }
+
+    public float getOptimal() {
         float res = 0;
         for (int i = 0; i < wages.size(); i++)
             res += wages.get(i) * getT().get(i);
@@ -230,25 +251,44 @@ public class LinguisticSummary {
     }
 
     public int getForm() {
-        if(secondSubject == null) {
-            if(qualifierList == null) {
-                return 1;
-            }
-            if(qualifierList != null) {
-                return 2;
+        if(form == null) {
+            if(secondSubject == null) {
+                if(qualifierList == null) {
+                    return 1;
+                }
+                if(qualifierList != null) {
+                    return 2;
+                }
+            } else {
+                if(qualifierList == null && quantifier != null) {
+                    return 1;
+                }
+                if(qualifierList != null && !isThirdFormInMultiSubject) {
+                    return 2;
+                }
+                if(qualifierList != null && isThirdFormInMultiSubject) {
+                    return 3;
+                }
+                if(qualifierList == null && quantifier == null) {
+                    return 4;
+                }
             }
         } else {
-            if(qualifierList == null && quantifier != null) {
-                return 1;
-            }
-            if(qualifierList != null && !isThirdFormInMultiSubject) {
-                return 2;
-            }
-            if(qualifierList != null && isThirdFormInMultiSubject) {
-                return 3;
-            }
-            if(qualifierList == null && quantifier == null) {
-                return 4;
+            switch(form) {
+                case Jednopodmiotowe_forma_1:
+                    secondSubject = null;
+                    return 1;
+                case Jednopodmiotowe_forma_2:
+                    secondSubject = null;
+                    return 2;
+                case Wielopodmiotowe_forma_1:
+                    return 1;
+                case Wielopodmiotowe_forma_2:
+                    return 2;
+                case Wielopodmiotowe_forma_3:
+                    return 3;
+                case Wielopodmiotowe_forma_4:
+                    return 4;
             }
         }
         return -1;
