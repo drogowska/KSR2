@@ -277,32 +277,32 @@ public class MainController {
         switch (formComboBox.getValue()) {
             case Jednopodmiotowe_forma_1:
                 isCorrect = (quantifier != null && getByEnum(subject1ComboBox.getValue()) != null && !chosenSummarizers.isEmpty());
-                if(isCorrect) {
+                if(!isCorrect) {
                     generateAlert(Alert.AlertType.WARNING, "Złe parametry!", "Wybrana forma wymaga wybrania kwantyfikatora, sumaryzatorów oraz podmiotu 1");
                 }
                 break;
             case Jednopodmiotowe_forma_2:
                 isCorrect = (quantifier != null && getByEnum(subject1ComboBox.getValue()) != null && !chosenSummarizers.isEmpty() && !chosenQualifiers.isEmpty());
-                if(isCorrect) {
+                if(!isCorrect) {
                     generateAlert(Alert.AlertType.WARNING, "Złe parametry!", "Wybrana forma wymaga wybrania kwantyfikatora, kwalifikatorów, sumaryzatorów oraz podmiotu 1");
                 }
                 break;
             case Wielopodmiotowe_forma_1:
                 isCorrect = (quantifier != null && getByEnum(subject1ComboBox.getValue()) != null && getByEnum(subject2ComboBox.getValue()) != null && !chosenSummarizers.isEmpty());
-                if(isCorrect) {
+                if(!isCorrect) {
                     generateAlert(Alert.AlertType.WARNING, "Złe parametry!", "Wybrana forma wymaga wybrania kwantyfikatora, sumaryzatorów oraz podmiotu 1 oraz 2");
                 }
                 break;
             case Wielopodmiotowe_forma_2:
             case Wielopodmiotowe_forma_3:
                 isCorrect = (quantifier != null && getByEnum(subject1ComboBox.getValue()) != null && getByEnum(subject2ComboBox.getValue()) != null && !chosenSummarizers.isEmpty() && !chosenQualifiers.isEmpty());
-                if(isCorrect) {
+                if(!isCorrect) {
                     generateAlert(Alert.AlertType.WARNING, "Złe parametry!", "Wybrana forma wymaga wybrania kwantyfikatora, kwalifikatorów, sumaryzatorów oraz podmiotu 1 oraz 2");
                 }
                 break;
             case Wielopodmiotowe_forma_4:
                 isCorrect = (getByEnum(subject1ComboBox.getValue()) != null && getByEnum(subject2ComboBox.getValue()) != null && !chosenSummarizers.isEmpty());
-                if(isCorrect) {
+                if(!isCorrect) {
                     generateAlert(Alert.AlertType.WARNING, "Złe parametry!", "Wybrana forma wymaga wybrania sumaryzatorów oraz podmiotu 1 oraz 2");
                 }
                 break;
