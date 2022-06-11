@@ -11,7 +11,7 @@ public class SummarizerList {
 
     private List<Summarizer> summarizers;
 
-    SummarizerList(List<Summarizer> summarizers) {
+    public SummarizerList(List<Summarizer> summarizers) {
         this.summarizers = summarizers;
     }
 
@@ -33,16 +33,20 @@ public class SummarizerList {
     }
 
     public String toString() {
-        StringBuilder result = new StringBuilder(summarizers.get(0).getColumnName() + " equals " + summarizers.get(0).getLabel());
-        for(int i=1; i<summarizers.size(); i++) {
-            if(summarizers.get(i).getConnective().equals(ConnectiveEnum.AND)) {
-                result.append(" and ");
-            } else if(summarizers.get(i).getConnective().equals(ConnectiveEnum.OR)) {
-                result.append(" or ");
+        if(summarizers != null && summarizers.size() > 0) {
+            StringBuilder result = new StringBuilder(summarizers.get(0).getColumnName() + " equals " + summarizers.get(0).getLabel());
+            for(int i=1; i<summarizers.size(); i++) {
+                if(summarizers.get(i).getConnective().equals(ConnectiveEnum.AND)) {
+                    result.append(" and ");
+                } else if(summarizers.get(i).getConnective().equals(ConnectiveEnum.OR)) {
+                    result.append(" or ");
+                }
+                result.append(summarizers.get(i).getColumnName() + " equals " + summarizers.get(i).getLabel());
             }
-            result.append(summarizers.get(i).getColumnName() + " equals " + summarizers.get(i).getLabel());
+            return result.toString();
+        } else {
+            return "";
         }
-        return result.toString();
     }
 
     public float getDegreeOfImprecision(List<CustomRecord> records) {

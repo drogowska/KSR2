@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -49,29 +48,27 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Podmiot 2 (obcjonalny):" GridPane.rowIndex="2" />
                               <ComboBox fx:id="subject2ComboBox" prefHeight="28.0" prefWidth="204.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Forma:" GridPane.rowIndex="5" />
-                              <ComboBox prefHeight="28.0" prefWidth="204.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <ComboBox fx:id="formComboBox" prefHeight="28.0" prefWidth="204.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                               <HBox prefHeight="100.0" prefWidth="403.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <children>
-                                    <TextArea prefHeight="100.0" prefWidth="258.0" />
+                                    <TextArea fx:id="summarizerText" editable="false" prefHeight="100.0" prefWidth="258.0" wrapText="true" />
                                     <VBox prefHeight="100.0" prefWidth="147.0">
                                        <children>
                                           <ComboBox fx:id="summarizerComboBox" prefHeight="28.0" prefWidth="149.0" />
-                                          <RadioButton mnemonicParsing="false" prefHeight="30.0" prefWidth="69.0" text="AND" />
-                                          <RadioButton mnemonicParsing="false" text="OR" />
-                                          <Button mnemonicParsing="false" text="Dodaj" />
+                                          <ComboBox fx:id="summarizerConnective" layoutX="10.0" layoutY="10.0" prefHeight="28.0" prefWidth="149.0" />
+                                          <Button mnemonicParsing="false" onMousePressed="#addSummarizer" text="Dodaj" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="403.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
-                                    <TextArea prefHeight="100.0" prefWidth="258.0" />
+                                    <TextArea fx:id="qualifierText" editable="false" prefHeight="100.0" prefWidth="258.0" wrapText="true" />
                                     <VBox prefHeight="100.0" prefWidth="147.0">
                                        <children>
                                           <ComboBox fx:id="qualifierComboBox" prefHeight="28.0" prefWidth="149.0" />
-                                          <RadioButton mnemonicParsing="false" prefHeight="30.0" prefWidth="69.0" text="AND" />
-                                          <RadioButton mnemonicParsing="false" text="OR" />
-                                          <Button mnemonicParsing="false" text="Dodaj" />
+                                          <ComboBox fx:id="qualifierConnective" layoutX="10.0" layoutY="10.0" prefHeight="28.0" prefWidth="149.0" />
+                                          <Button mnemonicParsing="false" onMousePressed="#addQualifier" text="Dodaj" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -79,10 +76,10 @@
                            </children>
                         </GridPane>
                         <Button layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onMousePressed="#generateSummary" text="Generuj podumowanie" />
-                        <GridPane fx:id="wagesGridPane" layoutX="712.0" layoutY="94.0" prefHeight="330.0" prefWidth="136.0">
+                        <GridPane fx:id="wagesGridPane" layoutX="712.0" layoutY="94.0" prefHeight="340.0" prefWidth="136.0">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="55.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="45.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="91.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -96,22 +93,22 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T1:" />
-                              <TextField GridPane.columnIndex="1" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T2:" GridPane.rowIndex="1" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T3:" GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T1:" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T2:" GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T3:" GridPane.rowIndex="3" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T4:" GridPane.rowIndex="4" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T5:" GridPane.rowIndex="5" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T6:" GridPane.rowIndex="6" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T7:" GridPane.rowIndex="7" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T8:" GridPane.rowIndex="8" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T9:" GridPane.rowIndex="9" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T10:" GridPane.rowIndex="10" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T11:" GridPane.rowIndex="11" />
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T4:" GridPane.rowIndex="3" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T5:" GridPane.rowIndex="4" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T6:" GridPane.rowIndex="5" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T7:" GridPane.rowIndex="6" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T8:" GridPane.rowIndex="7" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T9:" GridPane.rowIndex="8" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T10:" GridPane.rowIndex="9" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="T11:" GridPane.rowIndex="10" />
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -120,10 +117,11 @@
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="11" />
                            </children>
                         </GridPane>
                         <Text layoutX="652.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Określ wagi dla poszczególnych metryk:" />
+                        <Button layoutX="164.0" layoutY="522.0" mnemonicParsing="false" onMousePressed="#resetSummary" text="Reset" />
                      </children>
                   </AnchorPane>
             </content>

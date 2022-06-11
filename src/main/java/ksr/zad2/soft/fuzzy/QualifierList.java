@@ -32,16 +32,20 @@ public class QualifierList {
     }
 
     public String toString() {
-        StringBuilder result = new StringBuilder(qualifiers.get(0).getColumnName() + " equals " + qualifiers.get(0).getLabel());
-        for(int i=1; i<qualifiers.size(); i++) {
-            if(qualifiers.get(i).getConnective().equals(ConnectiveEnum.AND)) {
-                result.append(" and ");
-            } else if(qualifiers.get(i).getConnective().equals(ConnectiveEnum.OR)) {
-                result.append(" or ");
+        if(qualifiers != null && qualifiers.size() > 0) {
+            StringBuilder result = new StringBuilder(qualifiers.get(0).getColumnName() + " equals " + qualifiers.get(0).getLabel());
+            for(int i=1; i<qualifiers.size(); i++) {
+                if(qualifiers.get(i).getConnective().equals(ConnectiveEnum.AND)) {
+                    result.append(" and ");
+                } else if(qualifiers.get(i).getConnective().equals(ConnectiveEnum.OR)) {
+                    result.append(" or ");
+                }
+                result.append(qualifiers.get(i).getColumnName() + " equals " + qualifiers.get(i).getLabel());
             }
-            result.append(qualifiers.get(i).getColumnName() + " equals " + qualifiers.get(i).getLabel());
+            return result.toString();
+        } else {
+            return "";
         }
-        return result.toString();
     }
 
     public float getLengthOfQualification() {

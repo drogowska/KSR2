@@ -6,12 +6,14 @@ import ksr.zad2.soft.set.FuzzySet;
 public class Summarizer<T> extends FuzzySet<T> {
 
     private AttributeEnum columnName;
+    private Label orgLabel;
     private String labelName;
     private ConnectiveEnum connective;
 
     public Summarizer(Label label, AttributeEnum columnName, ConnectiveEnum connective) {
         super(label.getFuzzySet().getMembershipFunction());
         this.columnName = columnName;
+        this.orgLabel = label;
         this.labelName = label.getLabelName();
         this.connective = connective;
     }
@@ -28,8 +30,16 @@ public class Summarizer<T> extends FuzzySet<T> {
         return connective;
     }
 
+    public void setConnective(ConnectiveEnum connective) {
+        this.connective = connective;
+    }
+
     @Override
     public String toString() {
         return columnName.name() + " " + labelName;
+    }
+
+    public Summarizer copy() {
+        return new Summarizer(orgLabel, columnName, ConnectiveEnum.AND);
     }
 }
