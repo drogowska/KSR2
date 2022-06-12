@@ -172,8 +172,8 @@ public class MainController {
         LinguisticSummary linguisticSummary = new LinguisticSummary(
                 formComboBox.getValue(),
                 quantifiers.stream().filter(q -> q.getQuantifierName().equals(quantifierComboBox.getValue())).findFirst().orElse(null),
-                chosenQualifiers.isEmpty() ? null : chosenQualifiers,
-                chosenSummarizers.isEmpty() ? null : chosenSummarizers,
+                chosenQualifiers.isEmpty() ? null : new ArrayList<>(chosenQualifiers),
+                chosenSummarizers.isEmpty() ? null : new ArrayList<>(chosenSummarizers),
                 firstSubject,
                 secondSubject,
                 formComboBox.getValue().equals(FormEnum.Wielopodmiotowe_forma_3),
