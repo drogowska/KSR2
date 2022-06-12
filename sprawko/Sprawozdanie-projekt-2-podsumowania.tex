@@ -38,7 +38,7 @@
 \section{Cel}
 
 % poprawka
-Celem zadania jest stworzenie aplikacji, której główna funkcjonalność odpowiedzialna jest za lingwistyczną agregacje zawartości, wybranego do badania, zbioru danych\cite{database}. 
+Celem zadania jest stworzenie aplikacji, której główna funkcjonalność odpowiedzialna jest za lingwistyczną agregacje zawartości, wybranego do badania, zbioru danych \cite{database}. 
 Program generuje opis w jezyku quasi-naturlanym na podstawie danych liczbowych w zbiorze. 
 Podsumowania danych z bazy tworzone są, na podstawie elementów linwistycznego podsumowania tj. kwantyfikatory, kwalifikatory, sumatory oraz podmiot, podanych przez użytkownika, które to stanowią interpretację informacji i wiedzy pozyskanej z dużego zbioru danych.
 Wygenerowane podsumowania są prezentowane w formie tekstowej i opiera się na romytych modelach wyrażeń w języku naturlanym.
@@ -65,7 +65,7 @@ wpływu wyboru kwantyfikatorów, sumatorów, kwalifikatorów i ich miar jakości
 
 \subsection{Charakterystyka podsumowywanej bazy danych}
 
-W celu wykonania projektu wybrano zbiór danych SpeedDating\cite{database}, który zawiera dane zebrane na eksperymentalnych wydarzeniach 'speed dating' na przełomie lat 2002-2004, przeprowadzone przez Columbia Business School. 
+W celu wykonania projektu wybrano zbiór danych SpeedDating \cite{database}, który zawiera dane zebrane na eksperymentalnych wydarzeniach 'speed dating' na przełomie lat 2002-2004, przeprowadzone przez Columbia Business School. 
 Speed dating to rodzaj zorganizowanego randkowania polegający na wyjątkowo krótkich spotkaniach z nieznajomymi. Jeden rekord odpowiada jednemu spotkaniu. Dane opisują osobę randkującą oraz przypisanego jej partnera, oraz wrażenia i wyniki po spotkaniu. 
 Zbiór danych może posłużyć np. w celu polepszenia jakości usług agencji matrymonialnych.
 Zbiór ten zawiera 8378 rekordów, tego samego typu, a każdy z nich opisany jest na 121 atrybutach, z czego wybrano 11 atrybutów do rozmycia:
@@ -814,6 +814,7 @@ Implementacja została podzielona na dwa moduły warstwy logiki i widoku, wykorz
     \includegraphics[scale = 0.1]{all}
     \caption{Diagram UML modułu logiki}
   \end{figure}
+
   Poniżej zamieszczono poszczególne widoki GUI aplikacji:
   
   \begin{figure}[H]
@@ -888,11 +889,13 @@ Implementacja została podzielona na dwa moduły warstwy logiki i widoku, wykorz
 \end{table}
 \end{center}
 
+
 W poniższej tabeli zostały zawarte wartości miar jakości uzyskanego podsumowania, przy czym wagi wykorzystane do
 obliczenia podsumowania optymalnego były następujęce: dla miar $T_{x} = 0.16$, gdzie $x \in {1,2,5,6,7,8}$, zaś wartości wag dla pozostałych miar są równe 0.
 
 \begin{center}
   \begin{table}[H]
+    \begin{adjustbox}{center=11cm}
     \begin{tabularx}{\textwidth}{ccccccccccccc}
     
     id & $T_1$ & $T_2$ & $T_3$ & $T_4$ & $T_5$ & $T_6$ & $T_7$ & $T_8$ & $T_9$ & $T_{10}$ & $T_{11}$ & $T$ \\ \hline 
@@ -921,6 +924,7 @@ obliczenia podsumowania optymalnego były następujęce: dla miar $T_{x} = 0.16$
     22 & 0,477 & 1 & 0 & 0 & 0,5 & 0,881 & 0,947 & 1 & 0 & 0 & 0 & 0.769\\ \hline
 
   \end{tabularx}
+\end{adjustbox}
   \caption{Tabela wartości miar dla podsumowań lingwistycznych jednopodmiotowych w pierwszej formie.}
 \end{table}
 \end{center}
@@ -1005,22 +1009,30 @@ obliczenia podsumowania optymalnego były następujęce: dla miar $T_{x} = 0.09$
 % \noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 11 wg Harmonogramu Zajęć na WIKAMP KSR.}
 % 
 \section{Wielopodmiotowe podsumowania lingwistyczne i~ich miary jakości} 
-Wyniki kolejnych eksperymentów wg punktów 2.-4. opisu projektu 2. Uzasadnienie i
-metoda podziału zbioru danych na rozłączne podmioty. Listy podsumowań
-wielopodmiotowych i tabele/rankingi podsumowań dla danych atrybutów obowiązkowe i
-dokładnie opisane w ,,captions'' (tytułach), konieczny opis kolumn i wierszy tabel.
-{\bf Wzorów podsumowań ani miar nie należy przepisywać ani cytować, wystarczy podać literaturę, ale
-należy skomentować co oznaczają i jaką informacje niosą wybrane miary w wybranych
-przypadkach.}Konieczne uwzględnienie wszystkich 4-ch form podsumowań wielopodmiotowych. 
-\\ 
 
-** Możliwe sformułowanie zagadnienia wielopodmiotowego podsumowania optymalnego **.\\
-\indent {** Ewentualne wyniki realizacji punktu ,,na ocenę 5.0'' wg opisu Projektu 2. i ich porównanie do wyników z
-części obowiązkowej **.}\\
+Po pobieżnej analizie zawartości uznano, że najlepszym podziałem badanego zbioru \cite{database} jest podział bazujący na płci 
+anikietowanych. Dlatego, też w wielopodmiotowych podsumowania porównaniu podlegać będą rekordy osób należących do klasy \(female\) i \(male\).
 
-\noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 12 wg Harmonogramu Zajęć
-na WIKAMP KSR.}
+\subsection{Wielopodmiotowe podsumowania lingwistyczne w pierwszej formie}
 
+
+
+% Wyniki kolejnych eksperymentów wg punktów 2.-4. opisu projektu 2. Uzasadnienie i
+% metoda podziału zbioru danych na rozłączne podmioty. Listy podsumowań
+% wielopodmiotowych i tabele/rankingi podsumowań dla danych atrybutów obowiązkowe i
+% dokładnie opisane w ,,captions'' (tytułach), konieczny opis kolumn i wierszy tabel.
+% {\bf Wzorów podsumowań ani miar nie należy przepisywać ani cytować, wystarczy podać literaturę, ale
+% należy skomentować co oznaczają i jaką informacje niosą wybrane miary w wybranych
+% przypadkach.}Konieczne uwzględnienie wszystkich 4-ch form podsumowań wielopodmiotowych. 
+
+% 
+% ** Możliwe sformułowanie zagadnienia wielopodmiotowego podsumowania optymalnego **.\\
+% \indent {** Ewentualne wyniki realizacji punktu ,,na ocenę 5.0'' wg opisu Projektu 2. i ich porównanie do wyników z
+% części obowiązkowej **.}\\
+% 
+% \noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 12 wg Harmonogramu Zajęć
+% na WIKAMP KSR.}
+% 
 
 \section{Dyskusja, wnioski}
 Dokładne interpretacje uzyskanych wyników w zależności od parametrów klasyfikacji
