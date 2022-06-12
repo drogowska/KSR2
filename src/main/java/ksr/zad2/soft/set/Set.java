@@ -6,6 +6,7 @@ public /*abstract*/ class Set<T> extends ArrayList<T> {
 
     private float xStart;
     private float xEnd;
+    private SetType SetType;
 
     public Set() {
         super();

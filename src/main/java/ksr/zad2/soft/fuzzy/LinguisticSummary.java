@@ -226,16 +226,30 @@ public class LinguisticSummary {
     }
 
     public float getT9() {
-        if(secondSubject == null && qualifierList != null) {
-            return qualifierList.getDegreeOfImprecision(firstSubject);
+        if(secondSubject == null) {
+            if(qualifierList == null) {
+                qualifierList = DefinedLinguisticVariables.stableQualifierList;
+            }
+            float result = qualifierList.getDegreeOfImprecision(firstSubject);
+            if(qualifierList == DefinedLinguisticVariables.stableQualifierList) {
+                qualifierList = null;
+            }
+            return result;
         } else {
             return 0;
         }
     }
 
     public float getT10() {
-        if(secondSubject == null && qualifierList != null) {
-            return qualifierList.getDegreeOfQualifierRelativeCardinality(firstSubject.size());
+        if(secondSubject == null) {
+            if(qualifierList == null) {
+                qualifierList = DefinedLinguisticVariables.stableQualifierList;
+            }
+            float result = qualifierList.getDegreeOfQualifierRelativeCardinality(firstSubject.size());
+            if(qualifierList == DefinedLinguisticVariables.stableQualifierList) {
+                qualifierList = null;
+            }
+            return result;
         } else {
             return 0;
         }
