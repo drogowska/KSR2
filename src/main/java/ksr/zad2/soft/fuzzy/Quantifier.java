@@ -21,4 +21,12 @@ public class Quantifier<T> extends FuzzySet<T> {
     public String toString() {
         return quantifierName;
     }
+
+    public boolean isAbsolute() {
+        return isAbsolute;
+    }
+
+    public void setAbsolute(boolean absolute) {
+        isAbsolute = absolute;
+    }
 }

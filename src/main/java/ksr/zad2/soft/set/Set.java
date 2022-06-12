@@ -28,4 +28,12 @@ public /*abstract*/ class Set<T> extends ArrayList<T> {
     public Set<T> getComplement() {
         return null;
     }
+
+    public ksr.zad2.soft.set.SetType getSetType() {
+        return SetType;
+    }
+
+    public void setSetType(ksr.zad2.soft.set.SetType setType) {
+        SetType = setType;
+    }
 }
