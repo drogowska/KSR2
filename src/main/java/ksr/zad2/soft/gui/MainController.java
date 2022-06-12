@@ -231,7 +231,7 @@ public class MainController {
         }));
 
         wages = new ArrayList<>();
-        List.of(0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f).forEach(f -> wages.add(f));
+        List.of(0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f, 0.09f).forEach(f -> wages.add(f));
 
         chosenSummarizers = new ArrayList<>();
         chosenQualifiers = new ArrayList<>();
