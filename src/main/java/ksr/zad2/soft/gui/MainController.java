@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -29,6 +31,8 @@ import ksr.zad2.soft.set.FuzzySet;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -104,6 +108,9 @@ public class MainController {
     @FXML
     Text Dtext;
 
+    @FXML
+    ImageView imageView;
+
     private SpeedDatingRepository speedDatingRepository;
     private List<LinguisticVariable> variables;
     private List<CustomRecord> allData;
@@ -139,17 +146,18 @@ public class MainController {
     }
 
     public enum FunctionEnum {
+        Funkcja_Trapezowa,
         Funkcja_Gaussa,
-        Funkcja_Trójkątna,
-        Funkcja_Trapezowa
+        Funkcja_Trójkątna
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws URISyntaxException {
         speedDatingRepository = Main.applicationContext.getBean(SpeedDatingRepository.class);
         initializeRealVariables();
         refreshJavaFx();
         fillComboBoxes();
+        filterFunctionAttributes();
     }
 
     @FXML
@@ -500,7 +508,7 @@ public class MainController {
                         membershipFunction,
                         true
                 );
-                quantifiers.add(q1);
+                availableQuantifiers.add(q1);
                 break;
             case kwantyfikatorów_względnych:
                 Quantifier q2 = new Quantifier(
@@ -508,19 +516,28 @@ public class MainController {
                         membershipFunction,
                         false
                 );
-                quantifiers.add(q2);
+                availableQuantifiers.add(q2);
                 break;
             case sumaryzatorów_i_kwalifikatorów:
                 Label label = new Label<>(labelNameField.getText(), new FuzzySet<>(membershipFunction));
-                variables.stream().filter(v -> v.getColumn().equals(variablesComboBox.getValue()))
-                        .findFirst().orElseGet(null).addNewLabel(label);
+                availableSummarizers.add(new Summarizer(label, variablesComboBox.getValue(), ConnectiveEnum.AND));
+                availableQualifiers.add(new Qualifier(label, variablesComboBox.getValue(), ConnectiveEnum.AND));
                 break;
         }
         refreshJavaFx();
+        fillComboBoxes();
+        generateAlert(Alert.AlertType.INFORMATION, "Powodzenie", "Dodanie powiodło się!");
     }
 
     @FXML
-    private void filterFunctionAttributes() {
+    private void filterFunctionAttributes() throws URISyntaxException {
+        if(functionComboBox.getValue() == null) {
+            return;
+        }
+
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL resource = null;
+
         switch(functionComboBox.getValue()) {
             case Funkcja_Gaussa:
                 A.setVisible(true);
@@ -529,6 +546,7 @@ public class MainController {
                 D.setVisible(false);
                 Ctext.setVisible(false);
                 Dtext.setVisible(false);
+                resource = classLoader.getResource("gauss.png");
                 break;
             case Funkcja_Trapezowa:
                 A.setVisible(true);
@@ -537,6 +555,7 @@ public class MainController {
                 D.setVisible(true);
                 Ctext.setVisible(true);
                 Dtext.setVisible(true);
+                resource = classLoader.getResource("trapez.png");
                 break;
             case Funkcja_Trójkątna:
                 A.setVisible(true);
@@ -545,7 +564,11 @@ public class MainController {
                 D.setVisible(false);
                 Ctext.setVisible(true);
                 Dtext.setVisible(false);
+                resource = classLoader.getResource("trojkat.png");
                 break;
         }
+        File file = new File(resource.toURI());
+        Image image = new Image(file.toURI().toString());
+        imageView.setImage(image);
     }
 }

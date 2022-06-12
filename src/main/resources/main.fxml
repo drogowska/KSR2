@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -137,18 +138,18 @@
                         <Button layoutX="420.0" layoutY="115.0" mnemonicParsing="false" onMousePressed="#addNewLabel" prefHeight="36.0" prefWidth="68.0" text="Dodaj" />
                         <Text layoutX="33.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funkcja przynależności:" />
                         <ComboBox fx:id="functionComboBox" layoutX="198.0" layoutY="202.0" onAction="#filterFunctionAttributes" prefWidth="150.0" />
-                        <AnchorPane layoutX="14.0" layoutY="354.0" prefHeight="223.0" prefWidth="366.0" />
+                        <ImageView fx:id="imageView" fitHeight="509.0" fitWidth="634.0" layoutX="519.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
                         <Text layoutX="33.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wybierz zmienną:" />
                         <ComboBox fx:id="variablesComboBox" layoutX="198.0" layoutY="83.0" prefWidth="150.0" />
                         <Text layoutX="33.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Określ funkcję:" />
                         <Text layoutX="33.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A" />
-                        <TextField fx:id="A" layoutX="48.0" layoutY="285.0" prefHeight="25.0" prefWidth="24.0" />
+                        <TextField fx:id="A" layoutX="48.0" layoutY="285.0" prefHeight="25.0" prefWidth="38.0" />
                         <Text layoutX="33.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B" />
-                        <TextField fx:id="B" layoutX="48.0" layoutY="314.0" prefHeight="25.0" prefWidth="24.0" />
+                        <TextField fx:id="B" layoutX="48.0" layoutY="314.0" prefHeight="25.0" prefWidth="38.0" />
                         <Text fx:id="Ctext" layoutX="95.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C" />
-                        <TextField fx:id="C" layoutX="110.0" layoutY="285.0" prefHeight="25.0" prefWidth="24.0" />
+                        <TextField fx:id="C" layoutX="110.0" layoutY="285.0" prefHeight="25.0" prefWidth="36.0" />
                         <Text fx:id="Dtext" layoutX="95.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D" />
-                        <TextField fx:id="D" layoutX="110.0" layoutY="312.0" prefHeight="25.0" prefWidth="24.0" />
+                        <TextField fx:id="D" layoutX="110.0" layoutY="314.0" prefHeight="25.0" prefWidth="36.0" />
                      </children>
                   </AnchorPane>
             </content>

@@ -90,9 +90,12 @@ public class LinguisticSummary {
 
     public float getOptimal() {
         float res = 0;
-        for (int i = 0; i < wages.size(); i++)
+        float sum = 0;
+        for (int i = 0; i < wages.size(); i++) {
+            sum += wages.get(i);
             res += wages.get(i) * getT().get(i);
-        return res;
+        }
+        return res / sum;
     }
 
     public float getT1() {
