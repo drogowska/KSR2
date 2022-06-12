@@ -150,6 +150,13 @@
                         <TextField fx:id="C" layoutX="110.0" layoutY="285.0" prefHeight="25.0" prefWidth="36.0" />
                         <Text fx:id="Dtext" layoutX="95.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D" />
                         <TextField fx:id="D" layoutX="110.0" layoutY="314.0" prefHeight="25.0" prefWidth="36.0" />
+                        <TextField layoutX="46.0" layoutY="414.0" prefHeight="25.0" prefWidth="38.0" />
+                        <Text layoutX="33.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Określ dziedzinę funkcji (X;Y)" />
+                        <Text layoutX="61.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" />
+                        <TextField layoutX="89.0" layoutY="414.0" prefHeight="25.0" prefWidth="38.0" />
+                        <Text layoutX="103.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y" />
+                        <TextField layoutX="235.0" layoutY="444.0" prefHeight="25.0" prefWidth="38.0" />
+                        <Text layoutX="26.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeśli z krokiem to podaj wartość kroku:" />
                      </children>
                   </AnchorPane>
             </content>
