@@ -9,14 +9,22 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Callback;
 import ksr.zad2.soft.Main;
+import ksr.zad2.soft.data.AttributeEnum;
 import ksr.zad2.soft.data.CustomRecord;
 import ksr.zad2.soft.database.SpeedDatingRepository;
+import ksr.zad2.soft.functions.GaussMembershipFunction;
+import ksr.zad2.soft.functions.MembershipFunction;
+import ksr.zad2.soft.functions.TrapezoidalMembershipFunction;
+import ksr.zad2.soft.functions.TriangularMembershipFunction;
 import ksr.zad2.soft.fuzzy.*;
+import ksr.zad2.soft.fuzzy.Label;
+import ksr.zad2.soft.set.FuzzySet;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,7 +32,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import static ksr.zad2.soft.defined.DefinedLinguisticVariables.*;
@@ -67,6 +74,36 @@ public class MainController {
     @FXML
     TableView summariesTable;
 
+    @FXML
+    ComboBox<LabelForNewObjectsEnum> newObjectComboBox;
+
+    @FXML
+    ComboBox<AttributeEnum> variablesComboBox;
+
+    @FXML
+    TextField labelNameField;
+
+    @FXML
+    ComboBox<FunctionEnum> functionComboBox;
+
+    @FXML
+    TextField A;
+
+    @FXML
+    TextField B;
+
+    @FXML
+    TextField C;
+
+    @FXML
+    TextField D;
+
+    @FXML
+    Text Ctext;
+
+    @FXML
+    Text Dtext;
+
     private SpeedDatingRepository speedDatingRepository;
     private List<LinguisticVariable> variables;
     private List<CustomRecord> allData;
@@ -82,7 +119,7 @@ public class MainController {
     private static String NONE = "none";
     private static String EQUALS = " equals ";
 
-    private enum SubjectEnum {
+    public enum SubjectEnum {
         NONE, PEOPLE, FEMALE, MALE;
     }
 
@@ -93,6 +130,18 @@ public class MainController {
         Wielopodmiotowe_forma_2,
         Wielopodmiotowe_forma_3,
         Wielopodmiotowe_forma_4
+    }
+
+    public enum LabelForNewObjectsEnum {
+        sumaryzatorów_i_kwalifikatorów,
+        kwantyfikatorów_absolutnych,
+        kwantyfikatorów_względnych
+    }
+
+    public enum FunctionEnum {
+        Funkcja_Gaussa,
+        Funkcja_Trójkątna,
+        Funkcja_Trapezowa
     }
 
     @FXML
@@ -124,6 +173,7 @@ public class MainController {
         );
         previousSummaries.add(linguisticSummary);
         refreshSummaryTable();
+        generateAlert(Alert.AlertType.INFORMATION, "Powodzenie", "Podsumowanie zostało poprawnie wygenerowane i zapisane w zakładce Wyniki");
     }
 
     private List<CustomRecord> getByEnum(SubjectEnum s) {
@@ -196,6 +246,9 @@ public class MainController {
         subject1ComboBox.getItems().clear();
         subject2ComboBox.getItems().clear();
         formComboBox.getItems().clear();
+        variablesComboBox.getItems().clear();
+        newObjectComboBox.getItems().clear();
+        functionComboBox.getItems().clear();
 
         qualifierComboBox.getItems().add(NONE);
         quantifierComboBox.getItems().add(NONE);
@@ -227,6 +280,10 @@ public class MainController {
 
         refreshQualifierAndSummarizer();
         refreshSummaryTable();
+
+        Arrays.stream(AttributeEnum.values()).forEach(a -> variablesComboBox.getItems().add(a));
+        Arrays.stream(LabelForNewObjectsEnum.values()).forEach(l -> newObjectComboBox.getItems().add(l));
+        Arrays.stream(FunctionEnum.values()).forEach(f -> functionComboBox.getItems().add(f));
     }
 
     private void refreshSummaryTable() {
@@ -305,6 +362,9 @@ public class MainController {
         subject1ComboBox.getSelectionModel().select(0);
         subject2ComboBox.getSelectionModel().select(0);
         formComboBox.getSelectionModel().select(0);
+        newObjectComboBox.getSelectionModel().selectFirst();
+        variablesComboBox.getSelectionModel().selectFirst();
+        functionComboBox.getSelectionModel().selectFirst();
     }
 
     @FXML
@@ -421,6 +481,71 @@ public class MainController {
         try(FileOutputStream outputStream = new FileOutputStream(file)) {
             outputStream.write(result.toString().getBytes());
         } catch (IOException ex) {
+        }
+    }
+
+    @FXML
+    private void addNewLabel() {
+        MembershipFunction membershipFunction = switch (functionComboBox.getValue()) {
+            case Funkcja_Trójkątna -> new TriangularMembershipFunction(Float.parseFloat(A.getText()), Float.parseFloat(B.getText()), Float.parseFloat(C.getText()));
+            case Funkcja_Trapezowa -> new TrapezoidalMembershipFunction(Float.parseFloat(A.getText()), Float.parseFloat(B.getText()), Float.parseFloat(C.getText()), Float.parseFloat(D.getText()));
+            case Funkcja_Gaussa -> new GaussMembershipFunction(Float.parseFloat(A.getText()), Float.parseFloat(B.getText()));
+            default -> null;
+        };
+
+        switch(newObjectComboBox.getValue()) {
+            case kwantyfikatorów_absolutnych:
+                Quantifier q1 = new Quantifier(
+                        labelNameField.getText(),
+                        membershipFunction,
+                        true
+                );
+                quantifiers.add(q1);
+                break;
+            case kwantyfikatorów_względnych:
+                Quantifier q2 = new Quantifier(
+                        labelNameField.getText(),
+                        membershipFunction,
+                        false
+                );
+                quantifiers.add(q2);
+                break;
+            case sumaryzatorów_i_kwalifikatorów:
+                Label label = new Label<>(labelNameField.getText(), new FuzzySet<>(membershipFunction));
+                variables.stream().filter(v -> v.getColumn().equals(variablesComboBox.getValue()))
+                        .findFirst().orElseGet(null).addNewLabel(label);
+                break;
+        }
+        refreshJavaFx();
+    }
+
+    @FXML
+    private void filterFunctionAttributes() {
+        switch(functionComboBox.getValue()) {
+            case Funkcja_Gaussa:
+                A.setVisible(true);
+                B.setVisible(true);
+                C.setVisible(false);
+                D.setVisible(false);
+                Ctext.setVisible(false);
+                Dtext.setVisible(false);
+                break;
+            case Funkcja_Trapezowa:
+                A.setVisible(true);
+                B.setVisible(true);
+                C.setVisible(true);
+                D.setVisible(true);
+                Ctext.setVisible(true);
+                Dtext.setVisible(true);
+                break;
+            case Funkcja_Trójkątna:
+                A.setVisible(true);
+                B.setVisible(true);
+                C.setVisible(true);
+                D.setVisible(false);
+                Ctext.setVisible(true);
+                Dtext.setVisible(false);
+                break;
         }
     }
 }
