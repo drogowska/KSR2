@@ -83,9 +83,12 @@ public class LinguisticSummary {
 
     public float getOptimal(List<Float> wages) {
         float res = 0;
-        for (int i = 0; i < wages.size(); i++)
+        float sum = 0;
+        for (int i = 0; i < wages.size(); i++) {
             res += wages.get(i) * getT().get(i);
-        return res;
+            sum += wages.get(i);
+        }
+        return res / sum;
     }
 
     public float getOptimal() {
