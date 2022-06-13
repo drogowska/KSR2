@@ -134,28 +134,31 @@ class SoftApplicationTests {
         }).collect(Collectors.toList());
 
         List<LinguisticVariable> variables = List.of(sincere, age, d_age, expected_num_interested_in_me, tvsports, pref_o_intelligence, pref_o_ambitious, importance_same_race, importance_same_religion, guess_prob_liked, funny);
-        Quantifier quantifier = quantifiers.get(9);
+        //Quantifier quantifier = quantifiers.get(5);
 
-        variables.forEach(v1 -> {
-            variables.forEach(v2 -> {
+        quantifiers.forEach(quantifier -> {
+            variables.forEach(v1 -> {
+                ///variables.forEach(v2 -> {
                 variables.forEach(v3 -> {
                     v3.getLabels().forEach(l3 -> {
                         v1.getLabels().forEach(labelS -> {
-                            v2.getLabels().forEach(labelQ -> {
-                                LinguisticSummary summary = new LinguisticSummary(quantifier, List.of(
-                                        new Qualifier(labelQ, v2.getColumn(), ConnectiveEnum.AND)
-                                ), List.of(
-                                        new Summarizer(labelS, v1.getColumn(), ConnectiveEnum.AND),
-                                        new Summarizer(l3, v3.getColumn(), ConnectiveEnum.AND)
-                                ), subject1, null, false, wages);
+                            //v2.getLabels().forEach(labelQ -> {
+                            LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(
+                                    new Summarizer(labelS, v1.getColumn(), ConnectiveEnum.AND),
+                                    new Summarizer(l3, v3.getColumn(), ConnectiveEnum.AND)
+                            ), subject1, null, false, wages);
 
+                            if(summary.getT1() >= 0.01) {
                                 System.out.print(summary.toString() + " ");
                                 summary.getTstr().forEach(t -> System.out.print(t + " "));
-                                System.out.println(summary.getOptimal(wages));
-                            });
+                                System.out.println(summary.getOptimal(List.of(0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0f, 0f, 0f)));
+                            }
+
+                            //});
                         });
                     });
                 });
+                //});
             });
         });
 

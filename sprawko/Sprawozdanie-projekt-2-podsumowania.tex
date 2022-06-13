@@ -864,26 +864,13 @@ Implementacja została podzielona na dwa moduły warstwy logiki i widoku, wykorz
   
     1 & Around 8000 people are/have age equals young [0.397] \\ \hline
     2 & Less than 1000 people are/have age equals teenager [1.0]\\ \hline
-    3 & Some of people are/have age equals in the prime of age [0.04] \\ \hline
-    4 & Approximately 3000 people are/have sincere equals insincere [0.906] \\ \hline
-    5 & Less than 1000 people are/have sincere equals sincere [1.0] \\ \hline
-    6 & Around half of people are/have sincere equals insincere [0.764]\\ \hline
-    7 & Less than 1000 people are/have d\_age equals average [1.0] \\ \hline 
-    8 & More than 5000 people are/have d\_age equals significant [0.799]\\ \hline 
-    9 & Less than 1000 people are/have funny equals entertaining [0.22]\\ \hline 
-    10 & Approximately 1/3 of people are/have expected\_num\_interested\_in\_me equals few [0.961] \\ \hline
-    11 & Some of people are/have tvsports equals interested [0.568] \\ \hline
-    12 & Less than 1000 people are/have pref\_o\_intelligence equals not very intelligent [0.307]\\ \hline
-    13 & Some of people are/have pref\_o\_intelligence equals intelligent [0.849] \\ \hline
-    14 & Some of people are/have pref\_o\_ambitious equals moderately ambitious [0.385] \\ \hline
-    15 & Approximately 3000 people are/have pref\_o\_ambitious equals not ambitious [0.675]\\ \hline
-    16 & Less than 1000 people are/have importance\_same\_religion equals significant [0.848] \\ \hline
-    17 & More than 1000 people are/have importance\_same\_race equals small [0.999] \\ \hline
-    18 & Some of people are/have guess\_prob\_liked equals huge [0.450] \\ \hline
-    19 & Some of people are/have guess\_prob\_liked equals small and expected\_num\_interested\_in\_me equals many [0.164]\\ \hline
-    20 & The vast majority of people are/have age equals teenager and pref\_o\_intelligence equals not very intelligent [0.695]\\ \hline
-    21 & Approximately 3000 people are/have importance\_same\_race equals tiny and tvsports equals neutral [0.801]\\ \hline
-    22 & More than 1000 people are/have importance\_same\_race equals tiny or pref\_o\_ambitious equals very ambitious [0.477]\\ \hline
+    3 & Around half of people are/have sincere equals insincere [0.764] \\ \hline
+    4 & Less than 1000 People are/have funny equals entertaining [0.220] \\ \hline
+    5 & Some of People are/have tvsports equals interested [0.568] \\ \hline
+    6 & Less than 1000 People are/have pref\_o\_intelligence equals not very intelligent [0.307]\\ \hline
+    7 & More than 1000 People are/have importance\_same\_race equals tiny and pref\_o\_ambitious equals very ambitious [0.0] \\ \hline 
+    8 & Some of People are/have sincere equals sincere and importance\_same\_race [0.322]\\ \hline 
+
   \end{tabularx}
   \caption{Tabela podsumowań lingwistycznych jednopodmiotowych w pierwszej formie.}
 \end{table}
@@ -891,7 +878,7 @@ Implementacja została podzielona na dwa moduły warstwy logiki i widoku, wykorz
 
 
 W poniższej tabeli zostały zawarte wartości miar jakości uzyskanego podsumowania, przy czym wagi wykorzystane do
-obliczenia podsumowania optymalnego były następujęce: dla miar $T_{x} = 0.16$, gdzie $x \in {1,2,5,6,7,8}$, zaś wartości wag dla pozostałych miar są równe 0.
+obliczenia podsumowania optymalnego były następujęce: dla miar $T_{x} = 0.125$, gdzie $x \in {1,2,3,4,5,6,7,8}$, zaś wartości wag dla pozostałych miar są równe 0.
 
 \begin{center}
   \begin{table}[H]
@@ -900,28 +887,14 @@ obliczenia podsumowania optymalnego były następujęce: dla miar $T_{x} = 0.16$
     
     id & $T_1$ & $T_2$ & $T_3$ & $T_4$ & $T_5$ & $T_6$ & $T_7$ & $T_8$ & $T_9$ & $T_{10}$ & $T_{11}$ & $T$ \\ \hline 
 
-    1 &0,397 & 0,178 & 0 & 0 & 1 & 0,656 & 0,806 & 0,999 & 0 & 0 & 0 & 0.646 \\ \hline
-    2 &1 & 0,996 & 0 & 0 & 1 & 0,881 & 0,905 & 1 & 0 & 0 & 0 & 0.925\\ \hline
-    3 &0,04 & 0,998 & 0 & 0 & 1 & 0,797 & 0,821 & 0,999 & 0 & 0 & 0 & 0.745 \\ \hline
-    4 &0,906 & 0,264 & 0 & 0 & 1 & 0,594 & 0,714 & 1 & 0 & 0 & 0 & 0.716  \\ \hline
-    5 & 1 & 0,883 & 0 & 0 & 1 & 0,881 & 0,905 & 1 & 0 & 0 & 0 & 0.91   \\ \hline  
-    6 & 0,764 & 0,264 & 0 & 0 & 1 & 0,904 & 0,952 & 1 & 0 & 0 & 0 & 0.78  \\ \hline  
-    7 & 1 & 0,877 & 0 & 0 & 1 & 0,881 & 0,905 & 0,999 & 0 & 0 & 0 & 0.906\\ \hline 
-    8 & 0,798 & 0,094 & 0 & 0 & 1 & 0,761 & 0,894 & 0,999 & 0 & 0 & 0 & 0.728 \\ \hline 
-    9 & 0,22 & 0,891 & 0 & 0 & 1 & 0,881 & 0,905 & 1 & 0 & 0 & 0 & 0.783\\ \hline 
-    10 & 0,961 & 0,55 & 0 & 0 & 1 & 0,81 & 0,916 & 1 & 0 & 0 & 0 & 0.838 \\ \hline 
-    11 &0,568 & 0,747 & 0 & 0 & 1 & 0,797 & 0,821 & 1 & 0 & 0 & 0 & 0.789\\ \hline
-    12 & 0,307 & 0,832 & 0 & 0 & 1 & 0,881 & 0,905 & 0,999 & 0 & 0 & 0 & 0.788 \\ \hline
-    13 & 0,849 & 0,965 & 0 & 0 & 1 & 0,797 & 0,821 & 0,997 & 0 & 0 & 0 & 0.869 \\ \hline
-    14 & 0,385 & 0,905 & 0 & 0 & 1 & 0,797 & 0,821 & 0,999 & 0 & 0 & 0 & 0.785\\ \hline
-    15 & 0,675 & 0,362 & 0 & 0 & 1 & 0,594 & 0,714 & 0,999 & 0 & 0 & 0 & 0.695 \\ \hline
-    16 &0,848 & 0,921 & 0 & 0 & 1 & 0,881 & 0,905 & 1 & 0 & 0 & 0 & 0.889 \\ \hline
-    17 &0,999 & 0,822 & 0 & 0 & 1 & 0,881 & 0,947 & 1 & 0 & 0 & 0 & 0.904 \\ \hline
-    18 & 0,45 & 0,978 & 0 & 0 & 1 & 0,797 & 0,821 & 1 & 0 & 0 & 0 & 0.807 \\ \hline
-    19 & 0,164 & 0,923 & 0 & 0 & 0,5 & 0,797 & 0,821 & 1 & 0 & 0 & 0 & 0.678 \\ \hline
-    20 & 0,695 & 0,941 & 0 & 0 & 0,5 & 0,871 & 0,931 & 0,999 & 0 & 0 & 0 & 0.79\\ \hline
-    21 & 0,802 & 0,805 & 0 & 0 & 0,5 & 0,594 & 0,714 & 1 & 0 & 0 & 0 & 0.706\\ \hline
-    22 & 0,477 & 1 & 0 & 0 & 0,5 & 0,881 & 0,947 & 1 & 0 & 0 & 0 & 0.769\\ \hline
+    1 &0.397 & 0.178 & 0.822 & 0 & 1 & 0.656 & 0.806 & 0.999 & 0 & 0 & 1 & 0.607\\ \hline
+    2 &1 & 0.996 & 0.004 & 0 & 1 & 0.881 & 0.905 & 1 & 0 & 0 & 1 & 0.723\\ \hline
+    3 &0.764 & 0.264 & 0.736 & 0 & 1 & 0.904 & 0.952 & 1 & 0 & 0 & 1 & 0.702 \\ \hline
+    4 &0.22 & 0.891 & 0.109 & 0 & 1 & 0.881 & 0.905 & 1 & 0 & 0 & 1 & 0.626  \\ \hline
+    5 &0.568 & 0.747 & 0.253 & 0 & 1 & 0.797 & 0.821 & 1 & 0.0 & 0.0 & 1.0 & 0.648  \\ \hline  
+    6 &0.307 & 0.832 & 0.168 & 0 & 1 & 0.881 & 0.905 & 0.999 & 0 & 0 & 1 & 0.636  \\ \hline  
+    7 &0 & 1 & 0 & 0 & 0.500 & 0.881 & 0.947 & 1 & 0 & 0 & 1 & 0.541 \\ \hline 
+    8 &0.322 & 0.856 & 0.019 & 0.002 & 0.5 & 0.797 & 0.821 & 1 & 0 & 0 & 1 & 0.539 \\ \hline 
 
   \end{tabularx}
 \end{adjustbox}
@@ -938,27 +911,27 @@ obliczenia podsumowania optymalnego były następujęce: dla miar $T_{x} = 0.16$
     
     id & Podsumowanie [$T_1$] \\ \hline 
   
-    22 & Almost none of people having tvsports equals interested are/have d\_age equals significant [0.014] \\ \hline
-    23 & Some of people having pref\_o\_ambitious equals not ambitious are/have age equals teenager [0.131] \\ \hline
-    24 & Some of people having expected\_num\_interested\_in\_me equals many are/have d\_age equals significant [0.907] \\ \hline
-    25 & Some of people having pref\_o\_intelligence equals not very intelligent are/have d\_age equals significant [0.451] \\ \hline
-    26 & Some of people having importance\_same\_religion equals small are/have d\_age equals small [0.068] \\ \hline
-    27 & Some of people having funny equals entertaining are/have d\_age equals significant [0.334]\\ \hline
-    28 & Some of people having tvsports equals moderately interested are/have expected\_num\_interested\_in\_me equals none [0.725] \\ \hline 
-    29 & More than 5000 people having importance\_same\_race equals small are/have pref\_o\_intelligence equals average [0.053]\\ \hline 
-    30 & More than 5000 people having pref\_o\_intelligence equals average are/have funny equals funny [0.974]\\ \hline 
-    31 & Approximately 3000 people having importance\_same\_religion equals average are/have sincere equals insincere [0.032]\\ \hline
-    32 & Approximately 3000 people having d\_age equals average are/have tvsports equals not interested [0.679] \\ \hline
-    33 & More than 1000 people having pref\_o\_intelligence equals not very intelligent are/have expected\_num\_interested\_in\_me equals some [0.982] \\ \hline
-    34 & More than 1000 people having age equals young are/have tvsports equals interested [0.468] \\ \hline
-    35 & More than 1000 people having funny equals entertaining are/have tvsports equals neutral [0.084] \\ \hline
-    36 & More than 1000 people having importance\_same\_religion equals huge are/have importance\_same\_race equals small [0.802]\\ \hline
-    37 & Less than 1000 people having importance\_same\_race equals tiny are/have funny equals entertaining [0.414] \\ \hline
-    38 & Approximately 1/3 of people having importance\_same\_race equals tiny are/have d\_age equals tiny [0.143] \\ \hline
-    39 & Almost none of people having importance\_same\_race equals small and importance\_same\_religion equals tiny are/have d\_age equals significant [0.682] \\ \hline
-    40 & More than 5000 people having age equals in middle age and tvsports equals neutral are/have sincere equals insincere [0.313] \\ \hline
-    41 & Most of People having pref\_o\_intelligence equals intelligent are/have sincere equals insincere and sincere equals insincere [0.987]\\ \hline
-    42 & More than 1000 People having pref\_o\_intelligence equals average are/have sincere equals insincere and expected\_num\_interested\_in\_me equals not many [0.271]\\ \hline
+    9 & Almost none of people having tvsports equals interested are/have d\_age equals significant [0.014] \\ \hline
+    10 & Some of people having pref\_o\_ambitious equals not ambitious are/have age equals teenager [0.131] \\ \hline
+    11 & Some of people having expected\_num\_interested\_in\_me equals many are/have d\_age equals significant [0.907] \\ \hline
+    12 & Some of people having pref\_o\_intelligence equals not very intelligent are/have d\_age equals significant [0.451] \\ \hline
+    13 & Some of people having importance\_same\_religion equals small are/have d\_age equals small [0.068] \\ \hline
+    14 & Some of people having funny equals entertaining are/have d\_age equals significant [0.334]\\ \hline
+    15 & Some of people having tvsports equals moderately interested are/have expected\_num\_interested\_in\_me equals none [0.725] \\ \hline 
+    16 & More than 5000 people having importance\_same\_race equals small are/have pref\_o\_intelligence equals average [0.053]\\ \hline 
+    17 & More than 5000 people having pref\_o\_intelligence equals average are/have funny equals funny [0.974]\\ \hline 
+    18 & Approximately 3000 people having importance\_same\_religion equals average are/have sincere equals insincere [0.032]\\ \hline
+    19 & Approximately 3000 people having d\_age equals average are/have tvsports equals not interested [0.679] \\ \hline
+    20 & More than 1000 people having pref\_o\_intelligence equals not very intelligent are/have expected\_num\_interested\_in\_me equals some [0.982] \\ \hline
+ %   34 & More than 1000 people having age equals young are/have tvsports equals interested [0.468] \\ \hline
+  %  35 & More than 1000 people having funny equals entertaining are/have tvsports equals neutral [0.084] \\ \hline
+ %   36 & More than 1000 people having importance\_same\_religion equals huge are/have importance\_same\_race equals small [0.802]\\ \hline
+%    37 & Less than 1000 people having importance\_same\_race equals tiny are/have funny equals entertaining [0.414] \\ \hline
+ %   38 & Approximately 1/3 of people having importance\_same\_race equals tiny are/have d\_age equals tiny [0.143] \\ \hline
+%    39 & Almost none of people having importance\_same\_race equals small and importance\_same\_religion equals tiny are/have d\_age equals significant [0.682] \\ \hline
+ %   40 & More than 5000 people having age equals in middle age and tvsports equals neutral are/have sincere equals insincere [0.313] \\ \hline
+ %   41 & Most of People having pref\_o\_intelligence equals intelligent are/have sincere equals insincere and sincere equals insincere [0.987]\\ \hline
+ %   42 & More than 1000 People having pref\_o\_intelligence equals average are/have sincere equals insincere and expected\_num\_interested\_in\_me equals not many [0.271]\\ \hline
     
   \end{tabularx}
   \caption{Tabela podsumowań lingwistycznych jednopodmiotowych w drugiej formie.}
@@ -973,27 +946,27 @@ obliczenia podsumowania optymalnego były następujęce: dla miar $T_{x} = 0.09$
   \begin{adjustbox}{center=11cm}
     \begin{tabularx}{\textwidth}{ccccccccccccc}
     id & $T_1$ & $T_2$ & $T_3$ & $T_4$ & $T_5$ & $T_6$ & $T_7$ & $T_8$ & $T_9$ & $T_{10}$ & $T_{11}$ & $T$ \\ \hline 
-    22	&	0.014	&	0.973	&	0.017	&	0.010	&	1.000	&	0.988	&	0.991	&	0.999	&	0.747	&	1.000	&	1	&	0.697	\\ \hline
-23	&	0.130	&	0.996	&	0.004	&	0.000	&	1.000	&	0.797	&	0.821	&	1.000	&	0.362	&	0.999	&	1	&	0.640	\\ \hline
-24	&	0.907	&	0.973	&	0.032	&	0.006	&	1.000	&	0.797	&	0.821	&	0.999	&	0.974	&	1.000	&	1	&	0.766	\\ \hline
-25	&	0.451	&	0.973	&	0.019	&	0.008	&	1.000	&	0.797	&	0.821	&	0.999	&	0.832	&	0.999	&	1	&	0.711	\\ \hline
-26	&	0.068	&	0.620	&	0.385	&	0.004	&	1.000	&	0.797	&	0.821	&	1.000	&	0.827	&	1.000	&	1	&	0.677	\\ \hline
-27	&	0.334	&	0.973	&	0.011	&	0.016	&	1.000	&	0.797	&	0.821	&	0.999	&	0.891	&	1.000	&	1	&	0.706	\\ \hline
-28	&	0.725	&	0.951	&	0.031	&	0.018	&	1.000	&	0.797	&	0.821	&	1.000	&	0.517	&	1.000	&	1	&	0.707	\\ \hline
-29	&	0.053	&	0.174	&	0.816	&	0.010	&	1.000	&	0.761	&	0.894	&	0.998	&	0.822	&	1.000	&	1	&	0.678	\\ \hline
-30	&	0.974	&	0.211	&	0.798	&	0.009	&	1.000	&	0.761	&	0.894	&	1.000	&	0.174	&	0.998	&	1	&	0.704	\\ \hline
-31	&	0.032	&	0.264	&	0.811	&	0.075	&	1.000	&	0.594	&	0.714	&	1.000	&	0.917	&	1.000	&	1	&	0.667	\\ \hline
-32	&	0.680	&	0.758	&	0.278	&	0.035	&	1.000	&	0.594	&	0.714	&	1.000	&	0.951	&	0.999	&	1	&	0.721	\\ \hline
-33	&	0.982	&	0.824	&	0.174	&	0.002	&	1.000	&	0.881	&	0.947	&	1.000	&	0.832	&	0.999	&	1	&	0.778	\\ \hline
-34	&	0.468	&	0.747	&	0.274	&	0.021	&	1.000	&	0.881	&	0.947	&	1.000	&	0.178	&	0.999	&	1	&	0.676	\\ \hline
-35	&	0.084	&	0.667	&	0.390	&	0.057	&	1.000	&	0.881	&	0.947	&	1.000	&	0.891	&	1.000	&	1	&	0.712	\\ \hline
-36	&	0.802	&	0.822	&	0.194	&	0.015	&	1.000	&	0.881	&	0.947	&	1.000	&	0.866	&	1.000	&	1	&	0.767	\\ \hline
-37	&	0.414	&	0.891	&	0.100	&	0.009	&	1.000	&	0.881	&	0.905	&	1.000	&	0.886	&	1.000	&	1	&	0.728	\\ \hline
-38	&	0.143	&	0.597	&	0.385	&	0.018	&	1.000	&	0.810	&	0.916	&	1.000	&	0.886	&	1.000	&	1	&	0.698	\\ \hline
-39	&	0.682	&	0.973	&	0.017	&	0.010	&	1.000	&	0.988	&	0.991	&	0.999	&	0.979	&	1.000	&	0.5	&	0.732	\\ \hline
-40	&	0.313	&	0.264	&	0.765	&	0.030	&	1.000	&	0.761	&	0.894	&	1.000	&	0.909	&	0.999	&	0.5	&	0.669	\\ \hline
-41	&	0.987	&	0.264	&	0.740	&	0.198	&	0.500	&	0.489	&	0.519	&	1.000	&	0.965	&	0.997	&	1	&	0.689	\\ \hline
-42	&	0.271	&	0.410	&	0.368	&	0.019	&	0.500	&	0.881	&	0.947	&	1.000	&	0.174	&	0.998	&	1	&	0.591	\\ \hline
+    1	&	0.014	&	0.973	&	0.017	&	0.010	&	1.000	&	0.988	&	0.991	&	0.999	&	0.747	&	1.000	&	1	&	0.697	\\ \hline
+2	&	0.130	&	0.996	&	0.004	&	0.000	&	1.000	&	0.797	&	0.821	&	1.000	&	0.362	&	0.999	&	1	&	0.640	\\ \hline
+3	&	0.907	&	0.973	&	0.032	&	0.006	&	1.000	&	0.797	&	0.821	&	0.999	&	0.974	&	1.000	&	1	&	0.766	\\ \hline
+4	&	0.451	&	0.973	&	0.019	&	0.008	&	1.000	&	0.797	&	0.821	&	0.999	&	0.832	&	0.999	&	1	&	0.711	\\ \hline
+5	&	0.068	&	0.620	&	0.385	&	0.004	&	1.000	&	0.797	&	0.821	&	1.000	&	0.827	&	1.000	&	1	&	0.677	\\ \hline
+6	&	0.334	&	0.973	&	0.011	&	0.016	&	1.000	&	0.797	&	0.821	&	0.999	&	0.891	&	1.000	&	1	&	0.706	\\ \hline
+7	&	0.725	&	0.951	&	0.031	&	0.018	&	1.000	&	0.797	&	0.821	&	1.000	&	0.517	&	1.000	&	1	&	0.707	\\ \hline
+8	&	0.053	&	0.174	&	0.816	&	0.010	&	1.000	&	0.761	&	0.894	&	0.998	&	0.822	&	1.000	&	1	&	0.678	\\ \hline
+9	&	0.974	&	0.211	&	0.798	&	0.009	&	1.000	&	0.761	&	0.894	&	1.000	&	0.174	&	0.998	&	1	&	0.704	\\ \hline
+10	&	0.032	&	0.264	&	0.811	&	0.075	&	1.000	&	0.594	&	0.714	&	1.000	&	0.917	&	1.000	&	1	&	0.667	\\ \hline
+11	&	0.680	&	0.758	&	0.278	&	0.035	&	1.000	&	0.594	&	0.714	&	1.000	&	0.951	&	0.999	&	1	&	0.721	\\ \hline
+12	&	0.982	&	0.824	&	0.174	&	0.002	&	1.000	&	0.881	&	0.947	&	1.000	&	0.832	&	0.999	&	1	&	0.778	\\ \hline
+13	&	0.468	&	0.747	&	0.274	&	0.021	&	1.000	&	0.881	&	0.947	&	1.000	&	0.178	&	0.999	&	1	&	0.676	\\ \hline
+14	&	0.084	&	0.667	&	0.390	&	0.057	&	1.000	&	0.881	&	0.947	&	1.000	&	0.891	&	1.000	&	1	&	0.712	\\ \hline
+15	&	0.802	&	0.822	&	0.194	&	0.015	&	1.000	&	0.881	&	0.947	&	1.000	&	0.866	&	1.000	&	1	&	0.767	\\ \hline
+16	&	0.414	&	0.891	&	0.100	&	0.009	&	1.000	&	0.881	&	0.905	&	1.000	&	0.886	&	1.000	&	1	&	0.728	\\ \hline
+17	&	0.143	&	0.597	&	0.385	&	0.018	&	1.000	&	0.810	&	0.916	&	1.000	&	0.886	&	1.000	&	1	&	0.698	\\ \hline
+18	&	0.682	&	0.973	&	0.017	&	0.010	&	1.000	&	0.988	&	0.991	&	0.999	&	0.979	&	1.000	&	0.5	&	0.732	\\ \hline
+19	&	0.313	&	0.264	&	0.765	&	0.030	&	1.000	&	0.761	&	0.894	&	1.000	&	0.909	&	0.999	&	0.5	&	0.669	\\ \hline
+20	&	0.987	&	0.264	&	0.740	&	0.198	&	0.500	&	0.489	&	0.519	&	1.000	&	0.965	&	0.997	&	1	&	0.689	\\ \hline
+%42	&	0.271	&	0.410	&	0.368	&	0.019	&	0.500	&	0.881	&	0.947	&	1.000	&	0.174	&	0.998	&	1	&	0.591	\\ \hline
   \end{tabularx}
   \end{adjustbox}
   \caption{Tabela wartości miar dla podsumowań lingwistycznych jednopodmiotowych w drugiej formie.}
