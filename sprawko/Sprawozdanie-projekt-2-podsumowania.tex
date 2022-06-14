@@ -162,7 +162,8 @@ Baza danych została zrealizowana w PostgreSQL 14 \cite{postgres}. Poniższy zrz
 Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zmienne lingwistyczne. \( \mu_z(x) \) oznacza wartość funkcji przynależności zmiennej lingwistycznej \(z\) dla danego atrybutu zbioru danych zależnie od wartości x:
 
 \begin{enumerate}
-  \item age
+  \item age:\\
+  Przestrzeń rozważań $X_{age} = [16,65]$. 
 
       \begin{equation}
         \mu_{teenager} =
@@ -212,7 +213,9 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \caption{Wykres funkcji przynależności dla atrybutu \(age\).}
       \end{figure}
 
-  \item d\_age 
+  \item d\_age:\\
+  Przestrzeń rozważań $X_{d\_age} = [0,45]$. 
+ 
 
   \begin{equation}
     \mu_{none} =
@@ -269,7 +272,8 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \caption{Wykres funkcji przynależności dla atrybutu \(d\_age\).}
     \end{figure}
 
-  \item importance\_same\_race
+  \item importance\_same\_race:\\
+  Przestrzeń rozważań $X_{importance\_same\_race} = [0,10]$. 
 
    \begin{equation}
       \mu_{\text{nieistotne}} =
@@ -321,7 +325,9 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
 
   
 
-  \item importance\_same\_religion 
+  \item importance\_same\_religion:\\
+  Przestrzeń rozważań $X_{importance\_same\_religion} = [0,10]$. 
+
     \begin{equation}
       \mu_{\text{none}} =
         \begin{cases}
@@ -371,7 +377,9 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
       \end{figure}
   
 
-  \item pref\_o\_intelligence
+  \item pref\_o\_intelligence:\\
+  Przestrzeń rozważań $X_{pref\_o\_intelligence} = [0,67]$. 
+
   \begin{equation}
     \mu_{stupid} =
       \begin{cases}
@@ -420,7 +428,9 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \caption{Wykres funkcji przynależności dla atrybutu \(pref\_o\_intelligence\).}
     \end{figure}
 
-  \item pref\_o\_ambitious
+  \item pref\_o\_ambitious:\\
+  Przestrzeń rozważań $X_{pref\_o\_ambitious} = [0,55]$. 
+
   \begin{equation}
     \mu_{\text{not ambitious}} = e^{-(\frac{x-6}{8})^2}, \text{ dla } x \in [0,24]
   \end{equation}
@@ -438,7 +448,9 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \caption{Wykres funkcji przynależności dla atrybutu \(pref\_o\_ambitious\).}
     \end{figure}
   
-  \item tvsports 
+  \item tvsports: \\
+  Przestrzeń rozważań $X_{tvsports} = [0,12]$. 
+
   \begin{equation}
     \mu_{\text{not interested}} =
       \begin{cases}
@@ -488,7 +500,9 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \caption{Wykres funkcji przynależności dla atrybutu \(tvsports\).}
     \end{figure}
 
-  \item expected\_num\_interested\_in\_me
+  \item expected\_num\_interested\_in\_me:\\
+  Przestrzeń rozważań $X_{expected\_num\_interested\_in\_me} = [0,12]$. 
+
   
   \begin{equation}
     \mu_{none} =
@@ -547,7 +561,9 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \caption{Wykres funkcji przynależności dla atrybutu \(expected\_num\_interested\_in\_me\).}
     \end{figure}
 
-  \item guess\_prob\_liked
+  \item guess\_prob\_liked:\\
+  Przestrzeń rozważań $X_{guess\_prob\_liked} = [0,12]$. 
+
   \begin{equation}
     \mu_{none} =
       \begin{cases}
@@ -596,7 +612,9 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \caption{Wykres funkcji przynależności dla atrybutu \(guess\_prob\_liked \).}
     \end{figure}
 
-  \item funny
+  \item funny:\\
+  Przestrzeń rozważań $X_{funny} = [0,13]$. 
+
   \begin{equation}
     \mu_{boring} =
       \begin{cases}
@@ -637,7 +655,9 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \caption{Wykres funkcji przynależności dla atrybutu \(funny\).}
     \end{figure}
 
-  \item sincere
+  \item sincere:\\
+  Przestrzeń rozważań $X_{sincere} = [0,13]$. 
+
   
   \begin{equation}
     \mu_{duplicitous} =
@@ -1085,8 +1105,9 @@ Bazując na wynikach eksperymentów zamieszczonych odpowidnio w sekcji 4 i 5, mo
 mogą stanowić cenne źródło ogólnej informacji na temat danego zbioru danych. Co prawda, zdecydowana większość posumowań, wygenerowanych w takcie pozyskiwania wyników zamieszocznych w wyżej 
 wspomninych sekcjach, nie niosła ze sobą żadnej wartości lub były wręcz oczywiste. Przykładowo: .... $(jakiś z none co nie ma sensu i jakiś taki oczywisty)$
 
-% wnioski - na podstawie jakiej miarze takie wnioski, co z tego wynika
 
+
+% wnioski - na podstawie jakiej miarze takie wnioski, co z tego wynika
 
 
 % Dokładne interpretacje uzyskanych wyników w zależności od parametrów klasyfikacji
