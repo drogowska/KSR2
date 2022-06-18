@@ -114,12 +114,13 @@ class SoftApplicationTests {
     void testForm1() {
         subject1 = repository.findAll().stream().map(r -> {
             CustomRecord customRecord = r.getCustomRecord();
-            customRecord.setName("People");
+            customRecord.setName("people");
             return customRecord;
         }).collect(Collectors.toList());
 
 
-        LinguisticSummary summary = new LinguisticSummary(q, null, List.of(summarizer, summarizer, summarizer), subject1, null, false, wages);
+        LinguisticSummary summary = new LinguisticSummary(quantifiers.get(0),
+                null, List.of(summarizer), subject1, null, false, wages);
         System.out.println(summary.toString() + " [" + summary.getT1() + "]");
 
         summary.getT().forEach(System.out::println);
