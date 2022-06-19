@@ -39,7 +39,7 @@
 
 % poprawka
 Celem zadania jest stworzenie aplikacji, której główna funkcjonalność odpowiedzialna jest za lingwistyczną agregacje zawartości, wybranego do badania, zbioru danych \cite{database}. 
-Program generuje opis w jezyku quasi-naturlanym na podstawie danych liczbowych w zbiorze. 
+Program generuje opis w jezyku quasi-naturlanym na podstawie danych liczbowych w zbiorze. Podsumowania lingwistyczne, są to zdania w języku naturlanym, które opisują zanaczenie wybranych danych. Przykładowo: \(\text{None of people have age young.}\)  
 Podsumowania danych z bazy tworzone są, na podstawie elementów linwistycznego podsumowania tj. kwantyfikatory, kwalifikatory, sumatory oraz podmiot, podanych przez użytkownika, które to stanowią interpretację informacji i wiedzy pozyskanej z dużego zbioru danych.
 Wygenerowane podsumowania są prezentowane w formie tekstowej i opiera się na romytych modelach wyrażeń w języku naturlanym.
 Część eksperymentalna zadania stanowi określenie 
@@ -66,8 +66,9 @@ wpływu wyboru kwantyfikatorów, sumatorów, kwalifikatorów i ich miar jakości
 \subsection{Charakterystyka podsumowywanej bazy danych}
 
 W celu wykonania projektu wybrano zbiór danych SpeedDating \cite{database}, który zawiera dane zebrane na eksperymentalnych wydarzeniach 'speed dating' na przełomie lat 2002-2004, przeprowadzone przez Columbia Business School. 
-Speed dating to rodzaj zorganizowanego randkowania polegający na wyjątkowo krótkich spotkaniach z nieznajomymi. Jeden rekord odpowiada jednemu spotkaniu. Dane opisują osobę randkującą oraz przypisanego jej partnera, oraz wrażenia i wyniki po spotkaniu. 
+Speed dating to rodzaj zorganizowanego randkowania polegający na wyjątkowo krótkich spotkaniach z nieznajomymi. Jeden rekord odpowiada jednemu spotkaniu. Dane opisują osobę randkującą, przypisanego jej partnera, oraz wrażenia i wyniki po spotkaniu, a także prefesncje co do posiadanych cech partnera. 
 Zbiór danych może posłużyć np. w celu polepszenia jakości usług agencji matrymonialnych.
+
 Zbiór ten zawiera 8378 rekordów, tego samego typu, a każdy z nich opisany jest na 121 atrybutach, z czego wybrano 11 atrybutów do rozmycia:
 \begin{enumerate}
   \item age (oznacza wiek osoby randkującej),
@@ -113,17 +114,17 @@ Wybrane atrybuty przyjmują wartości liczbowe. Ludzie jednak nie posługują si
 \begin{tabular}{|c|c|}
 \hline
 Atrybut & Zwyczajowe wartości lingwistyczne \\ & nadawane danemu atrybutowi \\ \hline
-age & natolatek, młody, \\ & w średnim wieku, w sile wieku, stary \\ \hline
-d\_age & brak, niewielka, mała, średnia,\\ &  znacząca, spora \\ \hline
-importance\_same\_race & nieistotne, mało istotne, średnio ważne, \\ & znaczące, ważne \\ \hline
-importance\_same\_religion & nieistotne, mało istotne, \\ & średnio ważne, znaczące, ważne \\ \hline
-pref\_o\_intelligence & głupi, malo inteligentny, przeciętny, \\ & inteligenty, geniusz \\ \hline
-pref\_o\_ambitious & nieambitny, średnio ambitny, ambitny \\ \hline
-tvsports & niezaintresowany, obojętny, \\ & średnio zainteresowany, \\ & zainteresowany, pasjonat \\ \hline
-expected\_num\_interested\_in\_me & brak, niewiele, mało, \\ & kilka, dużo, wiele \\ \hline
-guess\_prob\_liked & brak, niewielka, mała, znacząca, spora \\ \hline
-funny & nudny, trochę nudny, \\ & przeciętnie zabawny, zabawny \\ \hline
-sincere & fałszywy, nieszczery, szczery \\ \hline
+age & teenager, young, in the prime of age, \\ & in the middle age, old\\ \hline
+d\_age & none, tiny, small, average,\\ &  significant, huge \\ \hline
+importance\_same\_race & none, tiny, small, \\ & average, significant, huge \\ \hline
+importance\_same\_religion & none, tiny, small, \\ & average, significant, huge \\ \hline
+pref\_o\_intelligence & stupid, not very intelligent, average, \\ & intelligent, genius \\ \hline
+pref\_o\_ambitious & not ambitious, moderately ambitious, very ambitious \\ \hline
+tvsports & not interested, neutral, \\ & moderately interested, \\ & interested, passionate \\ \hline
+expected\_num\_interested\_in\_me & none, few, not many, \\ & some, many, a lot \\ \hline
+guess\_prob\_liked & none, tiny, small, significant, huge \\ \hline
+funny & boring, a little bit boring, \\ & entertaining, funny \\ \hline
+sincere & duplicitous, insincere, sincere \\ \hline
 \end{tabular}
 \caption{Tabela przedstawiająca zwyczajowe wartości lingwistyczne wybranych atrybutów przykładowego rekordu zbioru danych SpeedDating \cite{database}}
 \end{table}
@@ -276,7 +277,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
   Przestrzeń rozważań $X_{importance\_same\_race} = [0,10]$. 
 
    \begin{equation}
-      \mu_{\text{nieistotne}} =
+      \mu_{\text{none}} =
         \begin{cases}
           1 & \text{dla } x =0 \\
           -x +1 & \text{ dla } x \in [0,1]
@@ -284,7 +285,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{equation}
 
     \begin{equation}
-      \mu_{\text{mało istotne}} =
+      \mu_{\text{tiny}} =
         \begin{cases}
           x-1 & \text{dla } x \in [1,2] \\
           1 & \text{ dla } x =2 \\
@@ -293,7 +294,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{equation}
 
     \begin{equation}
-      \mu_{\text{średnio ważne}} =
+      \mu_{\text{small}} =
         \begin{cases}
           x-2 & \text{dla } x \in [2,3] \\
           1 & \text{ dla } x \in [3,4] \\
@@ -302,7 +303,7 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{equation}
 
     \begin{equation}
-      \mu_{\text{przeciętne}} =
+      \mu_{\text{average}} =
         \begin{cases}
           x-4 & \text{dla } x \in [4,5] \\
           1 & \text{ dla } x =5 \\
@@ -311,11 +312,11 @@ Poniżej zostały przedstawione wzory i wykresy przedstwiające poszczególne zm
     \end{equation}
 
     \begin{equation}
-      \mu_{\text{znaczące}} = e^{-{(x-6)}^2}, \text{ dla } x \in [5,7]
+      \mu_{\text{significant}} = e^{-{(x-6)}^2}, \text{ dla } x \in [5,7]
     \end{equation}
 
     \begin{equation}
-      \mu_{\text{ważne}} = e^{-(\frac{x-9}{1.5})^2}, \text{ dla } x \in [7,10]
+      \mu_{\text{huge}} = e^{-(\frac{x-9}{1.5})^2}, \text{ dla } x \in [7,10]
     \end{equation}
 
       \begin{figure}[H]
