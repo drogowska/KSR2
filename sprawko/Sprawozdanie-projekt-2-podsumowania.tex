@@ -1064,7 +1064,7 @@ W poniższych tabelach zostały zawarte podsumowania oraz wartości miary [$T_1$
   \begin{table}[H]
     \begin{tabularx}{\textwidth}{lXc}
     
-    id & Podsumowanie [$T_1$] & $T$ \\ \hline 
+    id & Podsumowanie [$T_1$] \\ \hline 
   
     1 & The vast majority of females compared to males under 30 are/have pref\_o\_intelligence equals stupid [0.082] \\\hline
     2 & Most of females compared to males under 30 are/have importance\_same\_religion equals significant [0.969] \\  \hline
@@ -1156,11 +1156,20 @@ W poniższych tabelach zostały zawarte podsumowania oraz wartości miary [$T_1$
 
 \subsection{Jednopodmiotowe podsumowania w formie pierwszej}
 
-Na podstawie danych zebranych w Tabeli nr. 4, na pierwszy plan wysuwają się wartości miar $T_4$, $T_9$, $T_{10}$, $T_{11}$, gdyż posiadają one we wszystkich, bądź w większości, uzyskanych wyników takie same wartości. 
+Na podstawie danych zebranych w Tabeli nr. 4 i 5, na pierwszy plan wysuwają się wartości miar $T_4$, $T_9$, $T_{10}$, $T_{11}$, gdyż posiadają one we wszystkich, bądź w większości, uzyskanych wyników takie same wartości. 
 Począwszy od miary $T_4$, we wszystkich podsumowaniach nie posiadających kwalifikatora uzyskała ona wartość równą zeru. Natomiast dla dwóch ostatnich podsumowań, zawierających kwalifikator, metryka ta osiągnęła co prawda wartość różną od zera, ale nadal dość jemu bliską. Dzieje się tak, ze względu na dość dużą liczbę krotek spełniającą warunek kwalifikatora.
 
 \subsection{Jednopodmiotowe podsumowania w formie drugiej}
 
+Analizując dane zawarte w tabelach nr. 6 i 7, wyniki dla podsumowań zawierających conajmniej jeden kwalifikator, można zauważyć, że miara $T_{10}$, we wszystkich zaprezentowanych zdaniach osiąga wartości bliskie wartości maksymalnej.
+Sytuacja ta jest rezultatem określenie funckji kwalifikator na prawie całej jego przestrzeni rozważań. W tym przypadku można zaobserować iż, według miar $T_5$ i $T_{11}$, określających odpowiednio długość sumaryzatory i kwantyfikatora, daje w wyniku wartość różną od 1, w sytuacji
+zastosowania więcej niż jednego z wcześniej wspomnianych elementów podsumowania. Miarę $T_2$ należy interpretować jako stopnień precyzyjności sumaryzatora, lub też jego braku. Zgodnie z danymi zawartymi w tabeli, najlepszy rezultat tej metryki otrzymał sumaryzator \(\text{age equals teenager}\), na poziomie wartości 0.898, lecz to podsumowanie pomimo, dobrze dobranego sumaryzatora, 
+reprezentuje dość mało prawdziwe stwierdzenie, na poziomie 0.13, a także posiada słaby stopeń pokrycia i trafności (wartości bardzo bliskie zeru). 
+
+
+
+
+\section{Wnioski}
 Bazując na wynikach eksperymentów zamieszczonych odpowiednio w sekcji 4 i 5, można dojść do wniosku, że podsumowania lingwistyczne
 mogą stanowić cenne źródło ogólnej informacji na temat zbioru danych. Co prawda, zdecydowana większość podsumowań, wygenerowanych w trakcie pozyskiwania wyników zamieszczanych w wyżej 
 wspomnianych sekcjach, posiadała wartości miary \(T_1\) równej zeru, co za tym idzie stanowiły one fałszywe stwierdzenia. Dlatego też, przy wyborze wyników znajdujących się w powyższych tabelach, sugerowano się 
@@ -1170,10 +1179,11 @@ Podsumowania lingwistyczne pozwalają na uzyskanie ogólnego obrazu rozkładu da
 dla zmiennych lingwistycznych określających dane cech. Po przeprowadzonych eksperymentach, można wysnuć, że funkcje te powinny posiadać dość wąski zakres wartości, ale także powinny się 'zazębiać', dzięki czemu cała przestrzeń rozważań jest pokryta funkcjami, co za tym idzie wpływa to na miarodajność wyników.
 
 Po analizie informatywności poszczególnych metryk, można śmiało orzec, że niezbędna do oceny jakości jest metryka \(T_1\). Określa ona stopnień prawdziwości danego stwierdzenia, i dzięki niej można określić czy uzyskane podsumowanie wzbogaca poziom wiedzy na temat zbioru danych. 
-W przypadku stosowania kwalifikatora dodatkowo użyteczne mogą się dać metryki \(T_9\) i $T_{10}$, ale za to nie sprawdzają się one dla zapytań z dość mała liczbą sumaryzatorów i kwalifikatorów. Miary $T_5$ oraz $T_{11}$ są dość łatwe w analizie - im więcej sumaryzatorów, bądź kwalifikatorów, tym wartość metryki jest mniejsza, co przekłada się na słabszą jakość podsumowania i sprawia to, że nie zawsze wartości te są cenne pod względem informacyjnym. Jeśli chodzi o metryki, które tyczą się kwantyfikatora, są to $T_6$ i $T_7$, dla niemal wszystkich uprzednio zdefiniowanych, wartości te są na poziomie nie niższym niż ok. 0.5. We wszystkich zamieszczonych wynikach podsumowań, miara \(\text{degree of quantifier cardinality}\) jest nieco większa niż 
+W przypadku stosowania kwalifikatora dodatkowo użyteczne mogą się dać metryki \(T_9\) i $T_{\text{10}}$, ale za to nie sprawdzają się one dla zapytań z dość mała liczbą sumaryzatorów i kwalifikatorów. Miary $T_5$ oraz $T_{11}$ są dość łatwe w analizie - im więcej sumaryzatorów, bądź kwalifikatorów, 
+tym wartość metryki jest mniejsza, co przekłada się na słabszą jakość podsumowania i sprawia to, że nie zawsze wartości te są cenne pod względem informacyjnym. Jeśli chodzi o metryki, które tyczą się kwantyfikatora, są to $T_6$ i $T_7$, dla niemal wszystkich uprzednio zdefiniowanych, wartości te są na poziomie nie niższym niż ok. 0.5. We wszystkich zamieszczonych wynikach podsumowań, miara \(\text{degree of quantifier cardinality}\) jest nieco większa niż 
 \(\text{degree of quantifier imprecision}\).
 
-\section{Wnioski}
+
 
 
 
