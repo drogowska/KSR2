@@ -13,15 +13,16 @@ public /*abstract*/ class Set<T> extends ArrayList<T> {
     }
 
     public Set(float xStart, float xEnd) {
+        super();
         this.xStart = xStart;
         this.xEnd = xEnd;
     }
 
-    public float getxStart() {
+    public float getXStart() {
         return xStart;
     }
 
-    public float getxEnd() {
+    public float getXEnd() {
         return xEnd;
     }
 

@@ -11,7 +11,7 @@ public class Summarizer<T> extends FuzzySet<T> {
     private ConnectiveEnum connective;
 
     public Summarizer(Label label, AttributeEnum columnName, ConnectiveEnum connective) {
-        super(label.getFuzzySet().getMembershipFunction());
+        super(label.getFuzzySet().getXStart(), label.getFuzzySet().getXEnd(), label.getFuzzySet().getMembershipFunction());
         this.columnName = columnName;
         this.orgLabel = label;
         this.labelName = label.getLabelName();

@@ -1,20 +1,17 @@
 package ksr.zad2.soft.set;
 
-import ksr.zad2.soft.data.AttributeEnum;
-import ksr.zad2.soft.data.CustomRecord;
 import ksr.zad2.soft.functions.MembershipFunction;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class FuzzySet<T> extends Set<T> {
 
     protected MembershipFunction membershipFunction;
 
-    public FuzzySet(MembershipFunction membershipFunction) {
+    /*public FuzzySet(MembershipFunction membershipFunction) {
         super();
         this.membershipFunction = membershipFunction;
-    }
+    }*/
 
     public FuzzySet(float xStart, float xEnd, MembershipFunction membershipFunction) {
         super(xStart, xEnd);
@@ -25,9 +22,9 @@ public class FuzzySet<T> extends Set<T> {
         return membershipFunction;
     }
 
-    public float getDegreeOfFuzziness(List<CustomRecord> record, AttributeEnum columnName) {
-        long suppSize = record.stream().filter(r -> membershipFunction.calculate(AttributeEnum.getValue(r, columnName)) > 0).count();
-        return (float)suppSize / (getxEnd() - getxStart());
+    public float getDegreeOfFuzziness() {
+        float suppSize = membershipFunction.getSupport();
+        return suppSize / (getXEnd() - getXStart());
     }
 
     public boolean isConvex() {

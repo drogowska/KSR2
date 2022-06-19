@@ -46,12 +46,12 @@ class SoftApplicationTests {
         q = new Quantifier("Most of", quantifierFunction, true);
 
         qualifierFunction = new TrapezoidalMembershipFunction(1, 4, 5, 6);
-        label2 = new Label("a bit boring", new FuzzySet(qualifierFunction));
+        label2 = new Label("a bit boring", new FuzzySet(0, 12, qualifierFunction));
         qualifier = new Qualifier(label2, AttributeEnum.valueOf("funny"), ConnectiveEnum.AND);
         qualifier1 = new Qualifier(d_age.getLabel(1), AttributeEnum.valueOf("d_age"), ConnectiveEnum.AND);
 
         summarizerFunction = new TrapezoidalMembershipFunction(28, 34, 40, 44);
-        label1 = new Label("young", new FuzzySet(summarizerFunction));
+        label1 = new Label("young", new FuzzySet(0, 12, summarizerFunction));
         summarizer = new Summarizer(label1, AttributeEnum.valueOf("age"), ConnectiveEnum.AND);
     }
 

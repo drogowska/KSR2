@@ -155,7 +155,7 @@ public class LinguisticSummary {
 
     public float getT2() {
         if(secondSubject == null) {
-            return summarizerList.getDegreeOfImprecision(firstSubject);
+            return summarizerList.getDegreeOfImprecision();
         } else {
             return 0;
         }
@@ -219,7 +219,7 @@ public class LinguisticSummary {
 
     public float getT8() {
         if(secondSubject == null) {
-            return summarizerList.getDegreeOfSummarizerRelativeCardinality(firstSubject.size());
+            return summarizerList.getDegreeOfSummarizerRelativeCardinality(firstSubject);
         } else {
             return 0;
         }
@@ -230,7 +230,7 @@ public class LinguisticSummary {
             if(qualifierList == null) {
                 qualifierList = DefinedLinguisticVariables.stableQualifierList;
             }
-            float result = qualifierList.getDegreeOfImprecision(firstSubject);
+            float result = qualifierList.getDegreeOfImprecision();
             if(qualifierList == DefinedLinguisticVariables.stableQualifierList) {
                 qualifierList = null;
             }
@@ -245,7 +245,7 @@ public class LinguisticSummary {
             if(qualifierList == null) {
                 qualifierList = DefinedLinguisticVariables.stableQualifierList;
             }
-            float result = qualifierList.getDegreeOfQualifierRelativeCardinality(firstSubject.size());
+            float result = qualifierList.getDegreeOfQualifierRelativeCardinality(firstSubject);
             if(qualifierList == DefinedLinguisticVariables.stableQualifierList) {
                 qualifierList = null;
             }

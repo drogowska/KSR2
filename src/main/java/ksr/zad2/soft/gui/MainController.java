@@ -111,6 +111,12 @@ public class MainController {
     @FXML
     ImageView imageView;
 
+    @FXML
+    TextField xStart;
+
+    @FXML
+    TextField xEnd;
+
     private SpeedDatingRepository speedDatingRepository;
     private List<LinguisticVariable> variables;
     private List<CustomRecord> allData;
@@ -182,6 +188,7 @@ public class MainController {
         previousSummaries.add(linguisticSummary);
         refreshSummaryTable();
         generateAlert(Alert.AlertType.INFORMATION, "Powodzenie", "Podsumowanie zostało poprawnie wygenerowane i zapisane w zakładce Wyniki");
+        System.out.println(summariesTable.getItems().get(summariesTable.getItems().size() - 1).toString());
     }
 
     private List<CustomRecord> getByEnum(SubjectEnum s) {
@@ -519,7 +526,7 @@ public class MainController {
                 availableQuantifiers.add(q2);
                 break;
             case sumaryzatorów_i_kwalifikatorów:
-                Label label = new Label<>(labelNameField.getText(), new FuzzySet<>(membershipFunction));
+                Label label = new Label<>(labelNameField.getText(), new FuzzySet<>(Float.parseFloat(xStart.getText()), Float.parseFloat(xEnd.getText()), membershipFunction));
                 availableSummarizers.add(new Summarizer(label, variablesComboBox.getValue(), ConnectiveEnum.AND));
                 availableQualifiers.add(new Qualifier(label, variablesComboBox.getValue(), ConnectiveEnum.AND));
                 break;

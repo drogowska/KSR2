@@ -18,7 +18,7 @@ public class DefinedLinguisticVariables {
 
     public static QualifierList stableQualifierList = new QualifierList(new ArrayList<>(List.of(
             new Qualifier(
-                    new Label("EMPTY", new FuzzySet(new StableMembershipFunction())),
+                    new Label("EMPTY", new FuzzySet(0, 8378, new StableMembershipFunction())),
                     AttributeEnum.age,
                     ConnectiveEnum.AND)
     )));

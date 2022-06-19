@@ -4,7 +4,6 @@ import ksr.zad2.soft.data.AttributeEnum;
 import ksr.zad2.soft.data.CustomRecord;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class SummarizerList {
@@ -49,11 +48,11 @@ public class SummarizerList {
         }
     }
 
-    public float getDegreeOfImprecision(List<CustomRecord> records) {
+    public float getDegreeOfImprecision() {
         AtomicReference<Float> result = new AtomicReference<>(1f);
         float p = summarizers.size();
         summarizers.forEach(summarizer -> {
-            result.set(result.get() * summarizer.getDegreeOfFuzziness(records, summarizer.getColumnName()));
+            result.set(result.get() * summarizer.getDegreeOfFuzziness());
         });
         result.set((float) Math.pow(result.get(), 1/p));
         return 1f - result.get();
@@ -73,11 +72,13 @@ public class SummarizerList {
         return (float) (2d * Math.pow(0.5, summarizers.size()));
     }
 
-    public float getDegreeOfSummarizerRelativeCardinality(int recordsSize) {
+    public float getDegreeOfSummarizerRelativeCardinality(List<CustomRecord> records) {
         AtomicReference<Float> result = new AtomicReference<>(1f);
         float p = summarizers.size();
         summarizers.forEach(summarizer -> {
-            result.set(result.get() * (summarizer.getMembershipFunction().getCardinality() / recordsSize));
+            AtomicReference<Float> sum = new AtomicReference<>(0f);
+            records.forEach(r -> sum.set(sum.get() + summarizer.getMembershipFunction().calculate(AttributeEnum.getValue(r, summarizer.getColumnName()))));
+            result.set(result.get() * (sum.get() / (float)records.size()));
         });
         result.set((float) Math.pow(result.get(), 1/p));
         return 1f - result.get();

@@ -1,5 +1,6 @@
 package ksr.zad2.soft.fuzzy;
 
+import ksr.zad2.soft.defined.DefinedLinguisticVariables;
 import ksr.zad2.soft.functions.MembershipFunction;
 import ksr.zad2.soft.set.FuzzySet;
 
@@ -9,7 +10,7 @@ public class Quantifier<T> extends FuzzySet<T> {
     private boolean isAbsolute;
 
     public Quantifier(String quantifierName, MembershipFunction membershipFunction, boolean isAbsolute) {
-        super(isAbsolute ? membershipFunction : membershipFunction.denormalized());
+        super(0, DefinedLinguisticVariables.database_size, isAbsolute ? membershipFunction : membershipFunction.denormalized());
         this.quantifierName = quantifierName;
         this.isAbsolute = isAbsolute;
     }

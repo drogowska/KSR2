@@ -52,21 +52,23 @@ public class QualifierList {
         return (float) (2d * Math.pow(0.5, qualifiers.size()));
     }
 
-    public float getDegreeOfQualifierRelativeCardinality(int recordsSize) {
+    public float getDegreeOfQualifierRelativeCardinality(List<CustomRecord> records) {
         AtomicReference<Float> result = new AtomicReference<>(1f);
         float p = qualifiers.size();
         qualifiers.forEach(qualifier -> {
-            result.set(result.get() * (qualifier.getMembershipFunction().getCardinality() / recordsSize));
+            AtomicReference<Float> sum = new AtomicReference<>(0f);
+            records.forEach(r -> sum.set(sum.get() + qualifier.getMembershipFunction().calculate(AttributeEnum.getValue(r, qualifier.getColumnName()))));
+            result.set(result.get() * (sum.get() / (float)records.size()));
         });
         result.set((float) Math.pow(result.get(), 1/p));
         return 1f - result.get();
     }
 
-    public float getDegreeOfImprecision(List<CustomRecord> records) {
+    public float getDegreeOfImprecision() {
         AtomicReference<Float> result = new AtomicReference<>(1f);
         float p = qualifiers.size();
         qualifiers.forEach(qualifier -> {
-            result.set(result.get() * qualifier.getDegreeOfFuzziness(records, qualifier.getColumnName()));
+            result.set(result.get() * qualifier.getDegreeOfFuzziness());
         });
         result.set((float) Math.pow(result.get(), 1/p));
         return 1f - result.get();
