@@ -150,10 +150,10 @@
                         <TextField fx:id="C" layoutX="110.0" layoutY="285.0" prefHeight="25.0" prefWidth="36.0" />
                         <Text fx:id="Dtext" layoutX="95.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D" />
                         <TextField fx:id="D" layoutX="110.0" layoutY="314.0" prefHeight="25.0" prefWidth="36.0" />
-                        <TextField layoutX="46.0" layoutY="414.0" prefHeight="25.0" prefWidth="38.0" />
+                        <TextField layoutX="46.0" layoutY="414.0" prefHeight="25.0" prefWidth="38.0" fx:id="xStart" />
                         <Text layoutX="33.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Określ dziedzinę funkcji (X;Y)" />
                         <Text layoutX="61.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" />
-                        <TextField layoutX="89.0" layoutY="414.0" prefHeight="25.0" prefWidth="38.0" />
+                        <TextField layoutX="89.0" layoutY="414.0" prefHeight="25.0" prefWidth="38.0" fx:id="xEnd" />
                         <Text layoutX="103.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y" />
                         <TextField layoutX="235.0" layoutY="444.0" prefHeight="25.0" prefWidth="38.0" />
                         <Text layoutX="26.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeśli z krokiem to podaj wartość kroku:" />
@@ -168,20 +168,20 @@
                         <Button layoutX="26.0" layoutY="530.0" mnemonicParsing="false" onMousePressed="#saveToFile" text="Zapisz do pliku" />
                         <TableView fx:id="summariesTable" editable="true" prefHeight="482.0" prefWidth="1200.0">
                           <columns>
-                            <TableColumn editable="false" prefWidth="620.0" sortable="false" text="Podsumowanie" />
-                            <TableColumn minWidth="0.0" prefWidth="49.0" text="T1" />
-                              <TableColumn editable="false" minWidth="0.0" prefWidth="37.0" text="T2" />
-                              <TableColumn editable="false" prefWidth="41.0" text="T3" />
-                              <TableColumn editable="false" prefWidth="46.0" text="T4" />
-                              <TableColumn editable="false" prefWidth="47.0" text="T5" />
-                              <TableColumn editable="false" prefWidth="46.0" text="T6" />
-                              <TableColumn editable="false" prefWidth="43.0" text="T7" />
-                              <TableColumn editable="false" minWidth="0.0" prefWidth="46.0" text="T8" />
-                              <TableColumn editable="false" prefWidth="47.0" text="T9" />
-                              <TableColumn editable="false" prefWidth="42.0" text="T10" />
-                              <TableColumn editable="false" prefWidth="42.0" text="T11" />
-                              <TableColumn editable="false" prefWidth="36.0" text="T" />
-                              <TableColumn prefWidth="53.0" sortable="false" text="Zapis" />
+                            <TableColumn editable="false" prefWidth="535.0" sortable="false" text="Podsumowanie" />
+                            <TableColumn minWidth="0.0" prefWidth="50.0" text="T1" />
+                              <TableColumn editable="false" minWidth="0.0" prefWidth="50.0" text="T2" />
+                              <TableColumn editable="false" prefWidth="50.0" text="T3" />
+                              <TableColumn editable="false" prefWidth="50.0" text="T4" />
+                              <TableColumn editable="false" prefWidth="50.0" text="T5" />
+                              <TableColumn editable="false" prefWidth="50.0" text="T6" />
+                              <TableColumn editable="false" prefWidth="50.0" text="T7" />
+                              <TableColumn editable="false" minWidth="0.0" prefWidth="50.0" text="T8" />
+                              <TableColumn editable="false" prefWidth="50.0" text="T9" />
+                              <TableColumn editable="false" prefWidth="50.0" text="T10" />
+                              <TableColumn editable="false" prefWidth="50.0" text="T11" />
+                              <TableColumn editable="false" prefWidth="50.0" text="T" />
+                              <TableColumn prefWidth="62.0" sortable="false" text="Zapis" />
                           </columns>
                         </TableView>
                      </children>

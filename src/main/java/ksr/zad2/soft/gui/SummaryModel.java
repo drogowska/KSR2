@@ -1,5 +1,7 @@
 package ksr.zad2.soft.gui;
 
+import java.text.DecimalFormat;
+
 public class SummaryModel {
 
     private String summary;
@@ -148,18 +150,19 @@ public class SummaryModel {
 
     @Override
     public String toString() {
-        return  summary +
-                " & " + T1 + " " +
-                " & " + T2 + " " +
-                " & " + T3 + " " +
-                " & " + T4 + " " +
-                " & " + T5 + " " +
-                " & " + T6 + " " +
-                " & " + T7 + " " +
-                " & " + T8 + " " +
-                " & " + T9 + " " +
-                " & " + T10 + " " +
-                " & " + T11 + " " +
-                " & " + T;
+        DecimalFormat df = new DecimalFormat("#.###");
+        return summary +
+                " & " + df.format(T1) + " " +
+                " & " + df.format(T2) + " " +
+                " & " + df.format(T3) + " " +
+                " & " + df.format(T4) + " " +
+                " & " + df.format(T5) + " " +
+                " & " + df.format(T6) + " " +
+                " & " + df.format(T7) + " " +
+                " & " + df.format(T8) + " " +
+                " & " + df.format(T9) + " " +
+                " & " + df.format(T10) + " " +
+                " & " + df.format(T11) + " " +
+                " & " + df.format(T);
     }
 }
