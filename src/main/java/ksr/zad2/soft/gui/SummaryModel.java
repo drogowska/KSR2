@@ -152,7 +152,8 @@ public class SummaryModel {
     public String toString() {
         DecimalFormat df = new DecimalFormat("#.###");
         return summary +
-                " & " + df.format(T1) + " " +
+                " [" + df.format(T1) + "]" +
+                " " + df.format(T1) + " " +
                 " & " + df.format(T2) + " " +
                 " & " + df.format(T3) + " " +
                 " & " + df.format(T4) + " " +
