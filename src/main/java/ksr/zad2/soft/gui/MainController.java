@@ -336,7 +336,7 @@ public class MainController {
         ((TableColumn)summariesTable.getColumns().get(0)).setCellValueFactory(new PropertyValueFactory<SummaryModel, String>("summary"));
         ((TableColumn)summariesTable.getColumns().get(1)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T1"));
         ((TableColumn)summariesTable.getColumns().get(2)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T2"));
-        ((TableColumn)summariesTable.getColumns().get(3)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T2"));
+        ((TableColumn)summariesTable.getColumns().get(3)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T3"));
         ((TableColumn)summariesTable.getColumns().get(4)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T4"));
         ((TableColumn)summariesTable.getColumns().get(5)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T5"));
         ((TableColumn)summariesTable.getColumns().get(6)).setCellValueFactory(new PropertyValueFactory<SummaryModel, Float>("T6"));

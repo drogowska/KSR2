@@ -155,8 +155,8 @@
                         <Text layoutX="61.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" />
                         <TextField layoutX="89.0" layoutY="414.0" prefHeight="25.0" prefWidth="38.0" fx:id="xEnd" />
                         <Text layoutX="103.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y" />
-                        <TextField layoutX="235.0" layoutY="444.0" prefHeight="25.0" prefWidth="38.0" />
-                        <Text layoutX="26.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeśli z krokiem to podaj wartość kroku:" />
+                        <TextField layoutX="235.0" layoutY="444.0" opacity="0.0" prefHeight="25.0" prefWidth="38.0" />
+                        <Text layoutX="26.0" layoutY="461.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeśli z krokiem to podaj wartość kroku:" />
                      </children>
                   </AnchorPane>
             </content>
