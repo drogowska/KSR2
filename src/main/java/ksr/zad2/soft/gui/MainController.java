@@ -121,7 +121,8 @@ public class MainController {
     private List<LinguisticVariable> variables;
     private List<CustomRecord> allData;
     private List<CustomRecord> females;
-    private List<CustomRecord> males;
+    private List<CustomRecord> males_over_29;
+    private List<CustomRecord> males_under_30;
     private List<Summarizer> availableSummarizers;
     private List<Qualifier> availableQualifiers;
     private List<Quantifier> availableQuantifiers;
@@ -133,7 +134,7 @@ public class MainController {
     private static String EQUALS = " equals ";
 
     public enum SubjectEnum {
-        NONE, PEOPLE, FEMALE, MALE;
+        NONE, PEOPLE, FEMALE, MALE_UNDER_30, MALE_OVER_29;
     }
 
     public enum FormEnum {
@@ -195,8 +196,10 @@ public class MainController {
         switch(s) {
             case PEOPLE:
                 return allData;
-            case MALE:
-                return males;
+            case MALE_OVER_29:
+                return males_over_29;
+            case MALE_UNDER_30:
+                return males_under_30;
             case FEMALE:
                 return females;
             default:
@@ -207,15 +210,23 @@ public class MainController {
     private void initializeRealVariables() {
         allData = speedDatingRepository.findAll().stream().map(r -> {
             CustomRecord customRecord = r.getCustomRecord();
-            customRecord.setName("People");
+            customRecord.setName("people");
             return customRecord;
         }).collect(Collectors.toList());
 
-        males = speedDatingRepository.findAll().stream()
-                .filter(r -> r.getCustomRecord().getGender().equals("male"))
+        males_over_29 = speedDatingRepository.findAll().stream()
+                .filter(r -> r.getCustomRecord().getGender().equals("male") && r.getCustomRecord().getAge() > 29)
                 .map(r -> {
                     CustomRecord customRecord = r.getCustomRecord();
-                    customRecord.setName("Males");
+                    customRecord.setName("males over 29");
+                    return customRecord;
+                }).collect(Collectors.toList());
+
+        males_under_30 = speedDatingRepository.findAll().stream()
+                .filter(r -> r.getCustomRecord().getGender().equals("male") && r.getCustomRecord().getAge() < 30)
+                .map(r -> {
+                    CustomRecord customRecord = r.getCustomRecord();
+                    customRecord.setName("males under 30");
                     return customRecord;
                 }).collect(Collectors.toList());
 
@@ -223,7 +234,7 @@ public class MainController {
                 .filter(r -> r.getCustomRecord().getGender().equals("female"))
                 .map(r -> {
                     CustomRecord customRecord = r.getCustomRecord();
-                    customRecord.setName("Females");
+                    customRecord.setName("females");
                     return customRecord;
                 }).collect(Collectors.toList());
 
