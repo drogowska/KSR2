@@ -1,0 +1,10 @@
+
+Bazując na wynikach eksperymentów zamieszczonych odpowidnio w sekcji 4 i 5, można dojść do wniosku, że podsumowania lingwistyczne
+mogą stanowić cenne źródło ogólnej informacji na temat danego zbioru danych. Co prawda, zdecydowana większość posumowań, wygenerowanych w takcie pozyskiwania wyników 
+wspomninych sekcjach, nie niosła ze sobą żadnej wartości lub były wręcz oczywiste. Przykładowo: .... $(jakiś z none co nie ma sensu i jakiś taki oczywisty)$
+
+
+Forma druga podsumowań lingwistycznych jednopodmiotowych, różni się od formmy pierwszej zastosowaniem kwalifikatora, który to wybiera krotki posiadające określąną cec
+W tym przypadku zdania zawierające kwantyfikatory \(\text{Some of, Most of}\), nie wzbogacają znacząco poziomu wiedzy dotyczącej badanego zbioru \cite{database}.
+
+Some of, Almost none, most of - nie nosią wiele informacji, ze względu na dość ogólne stwierdzenie ciężko powiedzić ile tak na prawdę some of określa liczbę rekordów.
