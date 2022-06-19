@@ -2,6 +2,7 @@ package ksr.zad2.soft;
 
 import ksr.zad2.soft.data.AttributeEnum;
 import ksr.zad2.soft.data.CustomRecord;
+import ksr.zad2.soft.data.SpeedDatingRecord;
 import ksr.zad2.soft.database.SpeedDatingRepository;
 import ksr.zad2.soft.defined.DefinedLinguisticVariables;
 import ksr.zad2.soft.functions.MembershipFunction;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -128,43 +130,46 @@ class SoftApplicationTests {
 
     @Test
     void gen() {
-        subject1 = repository.findAll().stream().map(r -> {
-            CustomRecord customRecord = r.getCustomRecord();
-            customRecord.setName("People");
-            return customRecord;
-        }).collect(Collectors.toList());
+        List<CustomRecord> males_under_30 = repository.findAll().stream()
+                .filter(r -> r.getCustomRecord().getGender().equals("male") && r.getCustomRecord().getAge() < 30)
+                .map(r -> {
+                    CustomRecord customRecord = r.getCustomRecord();
+                    customRecord.setName("males under 30");
+                    return customRecord;
+                }).collect(Collectors.toList());
+
+        List<CustomRecord> females = repository.findAll().stream()
+                .filter(r -> r.getCustomRecord().getGender().equals("female"))
+                .map(r -> {
+                    CustomRecord customRecord = r.getCustomRecord();
+                    customRecord.setName("females");
+                    return customRecord;
+                }).collect(Collectors.toList());
 
         List<LinguisticVariable> variables = List.of(
                 sincere,
-                age,
+                //age,
                 //d_age,
-                //expected_num_interested_in_me,
-                //tvsports,
-                //pref_o_intelligence,
-                //pref_o_ambitious,
-                //importance_same_race,
-                //importance_same_religion,
-                //guess_prob_liked,
+                expected_num_interested_in_me,
+                tvsports,
+                pref_o_intelligence,
+                pref_o_ambitious,
+                importance_same_race,
+                importance_same_religion,
+                guess_prob_liked,
                 funny);
 
-        quantifiers.forEach(quantifier -> {
+        quantifiers.subList(0, 6).forEach(quantifier -> {
             variables.forEach(v1 -> {
                 v1.getLabels().forEach(l1 -> {
-                    variables.forEach(v2 -> {
-                        v2.getLabels().forEach(l2 -> {
-                            LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(
-                                    new Summarizer(l1, v1.getColumn(), ConnectiveEnum.AND),
-                                    new Summarizer(l2, v2.getColumn(), ConnectiveEnum.AND)
-                            ), subject1, null, false,
-                                    List.of(0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0f, 0f, 0f));
+                    LinguisticSummary summary = new LinguisticSummary(null, null, List.of(
+                            new Summarizer(l1, v1.getColumn(), ConnectiveEnum.AND)
+                    ), males_under_30, females, false, wages);
 
-                            if(summary.getT1() >= 0.01 && summary.getT1() != 1 && v1 != v2) {
-                                System.out.print(summary.toString() + " ");
-                                summary.getTstr().forEach(t -> System.out.print(t + " "));
-                                System.out.println(summary.getOptimal(List.of(0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0f, 0f, 0f)));
-                            }
-                        });
-                    });
+                    if(summary.getT1() >= 0.01 && summary.getT1() != 1) {
+                        DecimalFormat df = new DecimalFormat("#.###");
+                        System.out.println(summary.toString() + " [" + df.format(summary.getT1()) +  "]" );
+                    }
                 });
             });
         });
