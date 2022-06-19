@@ -127,6 +127,50 @@ class SoftApplicationTests {
     }
 
     @Test
+    void gen() {
+        subject1 = repository.findAll().stream().map(r -> {
+            CustomRecord customRecord = r.getCustomRecord();
+            customRecord.setName("People");
+            return customRecord;
+        }).collect(Collectors.toList());
+
+        List<LinguisticVariable> variables = List.of(
+                sincere,
+                age,
+                //d_age,
+                //expected_num_interested_in_me,
+                //tvsports,
+                //pref_o_intelligence,
+                //pref_o_ambitious,
+                //importance_same_race,
+                //importance_same_religion,
+                //guess_prob_liked,
+                funny);
+
+        quantifiers.forEach(quantifier -> {
+            variables.forEach(v1 -> {
+                v1.getLabels().forEach(l1 -> {
+                    variables.forEach(v2 -> {
+                        v2.getLabels().forEach(l2 -> {
+                            LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(
+                                    new Summarizer(l1, v1.getColumn(), ConnectiveEnum.AND),
+                                    new Summarizer(l2, v2.getColumn(), ConnectiveEnum.AND)
+                            ), subject1, null, false,
+                                    List.of(0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0f, 0f, 0f));
+
+                            if(summary.getT1() >= 0.01 && summary.getT1() != 1 && v1 != v2) {
+                                System.out.print(summary.toString() + " ");
+                                summary.getTstr().forEach(t -> System.out.print(t + " "));
+                                System.out.println(summary.getOptimal(List.of(0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0f, 0f, 0f)));
+                            }
+                        });
+                    });
+                });
+            });
+        });
+    }
+
+    @Test
     void t() {
         subject1 = repository.findAll().stream().map(r -> {
             CustomRecord customRecord = r.getCustomRecord();
@@ -147,7 +191,8 @@ class SoftApplicationTests {
                             LinguisticSummary summary = new LinguisticSummary(quantifier, null, List.of(
                                     new Summarizer(labelS, v1.getColumn(), ConnectiveEnum.AND),
                                     new Summarizer(l3, v3.getColumn(), ConnectiveEnum.AND)
-                            ), subject1, null, false, wages);
+                            ), subject1, null, false,
+                                    List.of(0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0.125f, 0f, 0f, 0f));
 
                             if(summary.getT1() >= 0.01) {
                                 System.out.print(summary.toString() + " ");
