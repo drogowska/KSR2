@@ -1151,25 +1151,31 @@ W poniższych tabelach zostały zawarte podsumowania oraz wartości miary [$T_1$
 % na WIKAMP KSR.}
 % 
 
-\section{Dyskusja}
+\section{Dyskusja i wnioski}
 
 
-\subsection{Jednopodmiotowe podsumowania w formie pierwszej}
-
-Na podstawie danych zebranych w Tabeli nr. 4 i 5, na pierwszy plan wysuwają się wartości miar $T_4$, $T_9$, $T_{10}$, $T_{11}$, gdyż posiadają one we wszystkich, bądź w większości, uzyskanych wyników takie same wartości. 
+Na podstawie danych zebranych w Tabeli nr. 4 i 5, tj. wyniki dla podsumowań jednopodmiotowych w pierwszej formie, na pierwszy plan wysuwają się wartości miar $T_4$, $T_9$, $T_{10}$, $T_{11}$, gdyż posiadają one we wszystkich, bądź w większości, uzyskanych wyników takie same wartości. 
 Począwszy od miary $T_4$, we wszystkich podsumowaniach nie posiadających kwalifikatora uzyskała ona wartość równą zeru. Natomiast dla dwóch ostatnich podsumowań, zawierających kwalifikator, metryka ta osiągnęła co prawda wartość różną od zera, ale nadal dość jemu bliską. Dzieje się tak, ze względu na dość dużą liczbę krotek spełniającą warunek kwalifikatora.
 
-\subsection{Jednopodmiotowe podsumowania w formie drugiej}
 
 Analizując dane zawarte w tabelach nr. 6 i 7, wyniki dla podsumowań zawierających conajmniej jeden kwalifikator, można zauważyć, że miara $T_{10}$, we wszystkich zaprezentowanych zdaniach osiąga wartości bliskie wartości maksymalnej.
 Sytuacja ta jest rezultatem określenie funckji kwalifikator na prawie całej jego przestrzeni rozważań. W tym przypadku można zaobserować iż, według miar $T_5$ i $T_{11}$, określających odpowiednio długość sumaryzatory i kwantyfikatora, daje w wyniku wartość różną od 1, w sytuacji
-zastosowania więcej niż jednego z wcześniej wspomnianych elementów podsumowania. Miarę $T_2$ należy interpretować jako stopnień precyzyjności sumaryzatora, lub też jego braku. Zgodnie z danymi zawartymi w tabeli, najlepszy rezultat tej metryki otrzymał sumaryzator \(\text{age equals teenager}\), na poziomie wartości 0.898, lecz to podsumowanie pomimo, dobrze dobranego sumaryzatora, 
+zastosowania więcej niż jednego z wcześniej wspomnianych elementów podsumowania. Miarę $T_2$ należy interpretować jako stopnień nieprecyzyjności sumaryzatora. Miara ta jest tym większa, im bardziej precyzyjny jest użyty sumaryzaotr. Zgodnie z danymi zawartymi w tabeli, najlepszy rezultat tej metryki otrzymał sumaryzator \(\text{age equals teenager}\), na poziomie wartości 0.898, lecz to podsumowanie pomimo, dobrze dobranego sumaryzatora, 
 reprezentuje dość mało prawdziwe stwierdzenie, na poziomie 0.13, a także posiada słaby stopeń pokrycia i trafności (wartości bardzo bliskie zeru). 
+Miara $T_4$ obrazuje trafność sumaryzator, określa jak bardzo podsumowywane wartości pasują do badanego zestawu danych, jak wiele krotek przynależy do danego sumaryzatora. MIara ta jest zależna funkcyjnie od miary \(\text{degree of covering}\). 
+Natomiast metryka $T_3$ pokazuje w jakim stopniu nośnik kwantyfikatora pokrywa się z nośnikiem sumaryzatora. Im większa wartość tej cechy, tym kwalifikator i sumaryzator są ze sobą ściślej powiązane.
+Kolejną zastosowaną miarą jest miara $T_8$, która to określa precyzyjność sumaryzatora. Dla większości przedstawionych wyników uzyskała ona wartości bardzo zbliżone jedności, lecz dla podsumowania z nr. 23, jest to podsumowanie w formie 2, jednopodmiotowego, wartość ta jest najmnijesza z odnotowanych (0.3), gdzie zastosowany został sumaryzator \(\text{pref\_o\_intelligence equals average}\) i złożony spójnikiem \(or\) kwalifikator 
+\(\text{sincere equals sincere or expected\_num\_interested\_in\_me equals not many.}\)
+
+Dwie miary $T_6$ i $T_7$ odnoszą się ściśle do zastosowanego kwantyfikatora. Opisują one jego precyzyjność, dokładność, a wartości tych miar zależą tylko od zastosowanego kwantyfikatora, są identyczne dla wszystkich podsumowań zawierających dany kwantyfikator. 
+Przy pierwszych podejściach analizy, zauważono, że kwantyfikatory względne niosą zdecydowanie bardziej ogólną, obszerną informację,
+niż absolutne. Według nas, dzieje się tak iż nie są one dość precyzyjnie określone, tzn. \(\text{Most of}\), mniej obrazuje o jaką ilość chodzi niż przykładowo \(\text{Less than 1000.}\) Świadczy o tym także wartości wcześniej wspomnianych miar, które przyjmują nieco większe wartości dla kwantyfikatorów absolutnych. 
 
 
+Dla podsumowań wielopodmiotowych jedyną miarą jakości uzyskanego stwierdzenia jest metryka $T_1$. Podsumowania te, mają na celu porównanie dwóch podmiotów, podzbiorów bazy danych, które łaczy wybrana ceach. W naszym przypadku jest to płeć, lub płeć z uwzględnieniem posiadania określonego wieku. 
+W porównaniu do podsumowań jednopodmiotowych, wielopodmiotowe niosą zdecydowanie bardziej szczegółową informacje. Napotkaną trudnością podczas uzyskiwania wyniku, był dobór odpowiednich sumaryzatorów/kwalifikatorów tak aby zdanie posiadało inną niż fałszywą wartość logiczną. 
 
 
-\section{Wnioski}
 Bazując na wynikach eksperymentów zamieszczonych odpowiednio w sekcji 4 i 5, można dojść do wniosku, że podsumowania lingwistyczne
 mogą stanowić cenne źródło ogólnej informacji na temat zbioru danych. Co prawda, zdecydowana większość podsumowań, wygenerowanych w trakcie pozyskiwania wyników zamieszczanych w wyżej 
 wspomnianych sekcjach, posiadała wartości miary \(T_1\) równej zeru, co za tym idzie stanowiły one fałszywe stwierdzenia. Dlatego też, przy wyborze wyników znajdujących się w powyższych tabelach, sugerowano się 
